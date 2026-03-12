@@ -206,7 +206,7 @@ export default function AgentwareDefinitionPage() {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
                 <a
-                  href="https://github.com/Agentware-studio"
+                  href="https://github.com/AgentwareStudio"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-transparent px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/5 active:scale-95"
@@ -399,7 +399,7 @@ export default function AgentwareDefinitionPage() {
                   </p>
                   <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <a
-                      href="https://github.com/Agentware-studio"
+                      href="https://github.com/AgentwareStudio"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-medium text-black transition-transform hover:scale-105 active:scale-95"
@@ -430,7 +430,7 @@ export default function AgentwareDefinitionPage() {
               <div className="mt-2 text-neutral-500">Defining the next software paradigm.</div>
             </div>
             <div className="flex items-center gap-6">
-              <a href="https://github.com/Agentware-studio" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neutral-300">
+              <a href="https://github.com/AgentwareStudio" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neutral-300">
                 <span className="sr-only">GitHub</span>
                 <Github className="h-5 w-5" />
               </a>
