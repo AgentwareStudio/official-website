@@ -100,11 +100,11 @@ const resources = {
             body: 'It transforms goals into executable strategies, subplans, and decision points across time.',
           },
           {
-            title: 'Tool-Executing',
+            title: 'Tool-Using',
             body: 'It acts through APIs, browsers, scripts, services, and digital systems to produce operational effects.',
           },
           {
-            title: 'Feedback-Closed',
+            title: 'Feedback-Driven',
             body: 'It monitors outcomes, detects deviation, and adapts behavior through continuous feedback loops.',
           },
           {
@@ -166,7 +166,7 @@ const resources = {
         label: 'Vision',
         title: 'Future products built on the Agentware paradigm.',
         description:
-          'Agentware is a software operating paradigm that can manifest across personal cognition, education, operations, research, and multi-agent infrastructure. As a consequence, these systems can deliver value to individuals, organizations, and other software systems.',
+          'Agentware is a software paradigm that can take form across personal cognition, education, operations, research, and Multi-Agent infrastructure. As a consequence, these systems can deliver value to individuals, organizations, and other software systems.',
         items: [
           {
             title: 'Personal Intelligence Systems',
@@ -188,7 +188,7 @@ const resources = {
         domainsLabel: 'Example Domains',
         domains: [
           'Personal intelligence systems',
-          'Agent-native browsers and operator systems',
+          'Agent-native browsers and operating systems',
           'AI tutors with memory and curriculum adaptation',
           'Autonomous research and knowledge workflows',
           'Business operations and decision-support agents',
@@ -196,11 +196,11 @@ const resources = {
         ],
         positioningLabel: 'Positioning Statement',
         positioningBody:
-          'Agentware is to the agent era what software was to the computing era: the operational medium through which goals become executable, governable, and scalable outcomes.',
+          'Agentware is the operational medium through which intent, constraints, memory, planning, tools, execution, feedback, and governance become executable, governable, and scalable outcomes.',
       },
       cta: {
         label: 'Get Involved',
-        title: 'Building the software layer for the agent era.',
+        title: 'Building the foundations of Agentware.',
         body:
           'Agentware Studio is an early effort to define, systematize, and build the conceptual and practical foundations of agent-native software.',
         github: 'Follow on GitHub',
@@ -302,11 +302,11 @@ const resources = {
             body: '它能够把目标转化为可执行策略、子计划以及跨时间的决策节点。',
           },
           {
-            title: '能够调用工具执行',
+            title: '工具使用原生',
             body: '它通过 API、浏览器、脚本、服务和各类数字系统来产生真实的操作效果。',
           },
           {
-            title: '反馈闭环',
+            title: '反馈驱动',
             body: '它会监测结果、发现偏差，并通过持续反馈循环调整行为。',
           },
           {
@@ -368,7 +368,7 @@ const resources = {
         label: '愿景',
         title: '基于 Agentware 范式构建的未来产品。',
         description:
-          'Agentware 是一种软件运行范式，可体现于个人认知、教育、运营、研究以及 Multi-Agent 基础设施之中。因此，这类系统能够为个人、组织以及其他软件系统创造价值。',
+          'Agentware 是一种软件范式，可体现于个人认知、教育、运营、研究以及 Multi-Agent 基础设施之中。因此，这类系统能够为个人、组织以及其他软件系统创造价值。',
         items: [
           {
             title: '个人智能系统',
@@ -390,7 +390,7 @@ const resources = {
         domainsLabel: '示例领域',
         domains: [
           '个人智能系统',
-          'Agent-native 浏览器与操作系统',
+          'Agent-native 浏览器与 operating systems',
           '具备记忆与课程自适应的 AI 导师',
           '自主研究与知识工作流',
           '业务运营与决策支持 Agent',
@@ -398,11 +398,11 @@ const resources = {
         ],
         positioningLabel: '定位陈述',
         positioningBody:
-          'Agentware 之于 Agent Era，正如 Software 之于计算时代：它是让目标变得可执行、可治理、可规模化交付结果的操作媒介。',
+          'Agentware 是一种操作媒介，通过它，意图、约束、记忆、规划、工具、执行、反馈与治理被转化为可执行、可治理、可规模化的结果。',
       },
       cta: {
         label: '参与进来',
-        title: '为 Agent Era 构建软件层。',
+        title: '构建 Agentware 的基础。',
         body:
           'Agentware Studio 正在尝试定义、系统化并构建 Agent-native 软件在概念与实践层面的基础。',
         github: '关注 GitHub',
@@ -504,11 +504,11 @@ const resources = {
             body: '目標を実行可能な戦略、サブプラン、時間軸上の意思決定点へと変換します。',
           },
           {
-            title: 'ツールを実行できる',
+            title: 'ツールを使って実行できる',
             body: 'API、ブラウザ、スクリプト、サービス、各種デジタルシステムを通じて実際の運用効果を生み出します。',
           },
           {
-            title: 'フィードバック閉ループ',
+            title: 'フィードバック駆動',
             body: '結果を監視し、逸脱を検知し、継続的なフィードバックループを通じて振る舞いを調整します。',
           },
           {
@@ -570,7 +570,7 @@ const resources = {
         label: 'ビジョン',
         title: 'Agentware パラダイム上に築かれる未来のプロダクト。',
         description:
-          'Agentware は、個人認知、教育、オペレーション、研究、Multi-Agent 基盤にまたがって現れうるソフトウェア運用パラダイムです。その結果、個人、組織、他のソフトウェアシステムに価値を届けられます。',
+          'Agentware は、個人認知、教育、オペレーション、研究、Multi-Agent 基盤にまたがって現れうるソフトウェアパラダイムです。その結果、個人、組織、他のソフトウェアシステムに価値を届けられます。',
         items: [
           {
             title: '個人知能システム',
@@ -592,7 +592,7 @@ const resources = {
         domainsLabel: '想定ドメイン',
         domains: [
           '個人知能システム',
-          'Agent-native ブラウザとオペレーターシステム',
+          'Agent-native ブラウザと operating systems',
           '記憶とカリキュラム適応を備えた AI チューター',
           '自律的なリサーチと知識ワークフロー',
           '業務運用と意思決定支援 Agent',
@@ -600,11 +600,11 @@ const resources = {
         ],
         positioningLabel: 'ポジショニング',
         positioningBody:
-          'Agentware は Agent Era において、コンピューティング時代の software に相当するものです。目標を実行可能で、統治可能で、スケール可能な成果へと変える運用媒体です。',
+          'Agentware は、意図、制約、記憶、計画、ツール、実行、フィードバック、ガバナンスを、実行可能で、統治可能で、スケール可能な成果へと変える運用媒体です。',
       },
       cta: {
         label: '参加する',
-        title: 'Agent Era のソフトウェアレイヤーをつくる。',
+        title: 'Agentware の基盤をつくる。',
         body:
           'Agentware Studio は、Agent-native ソフトウェアの概念的・実践的基盤を定義し、体系化し、実装するための初期的な取り組みです。',
         github: 'GitHub をフォロー',
@@ -706,11 +706,11 @@ const resources = {
             body: 'Transforma objetivos en estrategias ejecutables, subplanes y puntos de decisión a lo largo del tiempo.',
           },
           {
-            title: 'Capaz de ejecutar herramientas',
+            title: 'Capaz de actuar mediante herramientas',
             body: 'Actúa mediante APIs, navegadores, scripts, servicios y sistemas digitales para producir efectos operativos.',
           },
           {
-            title: 'Cerrado por retroalimentación',
+            title: 'Impulsado por retroalimentación',
             body: 'Supervisa resultados, detecta desviaciones y adapta su comportamiento a través de bucles continuos de retroalimentación.',
           },
           {
@@ -772,7 +772,7 @@ const resources = {
         label: 'Visión',
         title: 'Productos futuros construidos sobre el paradigma Agentware.',
         description:
-          'Agentware es un paradigma operativo de software que puede manifestarse en cognición personal, educación, operaciones, investigación e infraestructura multiagente. Como consecuencia, estos sistemas pueden entregar valor a individuos, organizaciones y otros sistemas de software.',
+          'Agentware es un paradigma de software que puede manifestarse en cognición personal, educación, operaciones, investigación e infraestructura Multi-Agent. Como consecuencia, estos sistemas pueden entregar valor a individuos, organizaciones y otros sistemas de software.',
         items: [
           {
             title: 'Sistemas de inteligencia personal',
@@ -794,7 +794,7 @@ const resources = {
         domainsLabel: 'Dominios de ejemplo',
         domains: [
           'Sistemas de inteligencia personal',
-          'Navegadores nativos para agentes y sistemas operadores',
+          'Navegadores Agent-native y sistemas operativos',
           'Tutores de IA con memoria y adaptación curricular',
           'Flujos autónomos de investigación y conocimiento',
           'Agentes para operaciones de negocio y apoyo a decisiones',
@@ -802,11 +802,11 @@ const resources = {
         ],
         positioningLabel: 'Declaración de posicionamiento',
         positioningBody:
-          'Agentware es para la era de los agentes lo que el software fue para la era de la computación: el medio operativo a través del cual los objetivos se vuelven resultados ejecutables, gobernables y escalables.',
+          'Agentware es el medio operativo a través del cual intención, restricciones, memoria, planificación, herramientas, ejecución, retroalimentación y gobernanza se convierten en resultados ejecutables, gobernables y escalables.',
       },
       cta: {
         label: 'Participa',
-        title: 'Construyendo la capa de software para la era de los agentes.',
+        title: 'Construyendo las bases de Agentware.',
         body:
           'Agentware Studio es un esfuerzo temprano por definir, sistematizar y construir los fundamentos conceptuales y prácticos del software nativo para agentes.',
         github: 'Seguir en GitHub',
@@ -908,11 +908,11 @@ const resources = {
             body: 'Es übersetzt Ziele in ausführbare Strategien, Teilpläne und Entscheidungspunkte über die Zeit.',
           },
           {
-            title: 'Werkzeug-ausführend',
+            title: 'Werkzeugnativ',
             body: 'Es handelt über APIs, Browser, Skripte, Dienste und digitale Systeme, um operative Wirkung zu erzeugen.',
           },
           {
-            title: 'Feedback-geschlossen',
+            title: 'Feedback-gesteuert',
             body: 'Es überwacht Ergebnisse, erkennt Abweichungen und passt Verhalten über kontinuierliche Feedback-Schleifen an.',
           },
           {
@@ -974,7 +974,7 @@ const resources = {
         label: 'Vision',
         title: 'Zukünftige Produkte auf Basis des Agentware-Paradigmas.',
         description:
-          'Agentware ist ein Software-Betriebsparadigma, das sich in persönlicher Kognition, Bildung, Betrieb, Forschung und Multi-Agenten-Infrastruktur manifestieren kann. Dadurch können diese Systeme Wert für Einzelpersonen, Organisationen und andere Softwaresysteme liefern.',
+          'Agentware ist ein Softwareparadigma, das sich in persönlicher Kognition, Bildung, Betrieb, Forschung und Multi-Agent-Infrastruktur manifestieren kann. Dadurch können diese Systeme Wert für Einzelpersonen, Organisationen und andere Softwaresysteme liefern.',
         items: [
           {
             title: 'Persönliche Intelligenzsysteme',
@@ -996,7 +996,7 @@ const resources = {
         domainsLabel: 'Beispieldomänen',
         domains: [
           'Persönliche Intelligenzsysteme',
-          'Agent-native Browser und Operatorsysteme',
+          'Agent-native Browser und Betriebssysteme',
           'KI-Tutoren mit Gedächtnis und Curriculum-Anpassung',
           'Autonome Forschungs- und Wissensworkflows',
           'Agenten für Geschäftsprozesse und Entscheidungsunterstützung',
@@ -1004,11 +1004,11 @@ const resources = {
         ],
         positioningLabel: 'Positionierung',
         positioningBody:
-          'Agentware ist für das Agentenzeitalter das, was Software für das Computerzeitalter war: das operative Medium, durch das Ziele zu ausführbaren, governierbaren und skalierbaren Ergebnissen werden.',
+          'Agentware ist das operative Medium, durch das Intention, Rahmenbedingungen, Gedächtnis, Planung, Werkzeuge, Ausführung, Feedback und Governance zu ausführbaren, governierbaren und skalierbaren Ergebnissen werden.',
       },
       cta: {
         label: 'Mitwirken',
-        title: 'Die Software-Schicht für das Agentenzeitalter bauen.',
+        title: 'Die Grundlagen von Agentware bauen.',
         body:
           'Agentware Studio ist ein früher Versuch, die konzeptionellen und praktischen Grundlagen agent-nativer Software zu definieren, zu systematisieren und aufzubauen.',
         github: 'Auf GitHub folgen',
@@ -1110,11 +1110,11 @@ const resources = {
             body: 'Il transforme des objectifs en stratégies exécutables, sous-plans et points de décision dans le temps.',
           },
           {
-            title: 'Capable d’exécuter via des outils',
+            title: 'Capable d’agir via des outils',
             body: 'Il agit au moyen d’API, de navigateurs, de scripts, de services et de systèmes numériques pour produire des effets opérationnels.',
           },
           {
-            title: 'Bouclé par la rétroaction',
+            title: 'Guidé par la rétroaction',
             body: 'Il surveille les résultats, détecte les écarts et adapte son comportement via des boucles continues de rétroaction.',
           },
           {
@@ -1176,7 +1176,7 @@ const resources = {
         label: 'Vision',
         title: 'Les futurs produits construits sur le paradigme Agentware.',
         description:
-          'Agentware est un paradigme opératoire logiciel qui peut se manifester dans la cognition personnelle, l’éducation, les opérations, la recherche et l’infrastructure multi-agents. En conséquence, ces systèmes peuvent créer de la valeur pour les individus, les organisations et d’autres systèmes logiciels.',
+          'Agentware est un paradigme logiciel qui peut se manifester dans la cognition personnelle, l’éducation, les opérations, la recherche et l’infrastructure Multi-Agent. En conséquence, ces systèmes peuvent créer de la valeur pour les individus, les organisations et d’autres systèmes logiciels.',
         items: [
           {
             title: 'Systèmes d’intelligence personnelle',
@@ -1198,7 +1198,7 @@ const resources = {
         domainsLabel: 'Domaines d’exemple',
         domains: [
           'Systèmes d’intelligence personnelle',
-          'Navigateurs natifs pour agents et systèmes opérateurs',
+          'Navigateurs Agent-native et systèmes d’exploitation',
           'Tuteurs IA avec mémoire et adaptation du curriculum',
           'Workflows autonomes de recherche et de connaissance',
           'Agents pour les opérations métier et l’aide à la décision',
@@ -1206,11 +1206,11 @@ const resources = {
         ],
         positioningLabel: 'Positionnement',
         positioningBody:
-          'Agentware est à l’ère des agents ce que le software était à l’ère informatique: le médium opérationnel par lequel les objectifs deviennent des résultats exécutables, gouvernables et extensibles.',
+          'Agentware est le médium opérationnel par lequel intention, contraintes, mémoire, planification, outils, exécution, rétroaction et gouvernance deviennent des résultats exécutables, gouvernables et extensibles.',
       },
       cta: {
         label: 'Participer',
-        title: 'Construire la couche logicielle de l’ère des agents.',
+        title: 'Construire les fondations d’Agentware.',
         body:
           'Agentware Studio est un effort précoce pour définir, systématiser et construire les fondations conceptuelles et pratiques du logiciel natif pour agents.',
         github: 'Suivre sur GitHub',
@@ -1312,11 +1312,11 @@ const resources = {
             body: 'Transforma objetivos em estratégias executáveis, subplanos e pontos de decisão ao longo do tempo.',
           },
           {
-            title: 'Capaz de executar por ferramentas',
+            title: 'Capaz de agir por meio de ferramentas',
             body: 'Age por meio de APIs, navegadores, scripts, serviços e sistemas digitais para produzir efeitos operacionais.',
           },
           {
-            title: 'Fechado por feedback',
+            title: 'Guiado por feedback',
             body: 'Monitora resultados, detecta desvios e adapta o comportamento por meio de ciclos contínuos de feedback.',
           },
           {
@@ -1378,7 +1378,7 @@ const resources = {
         label: 'Visão',
         title: 'Produtos futuros construídos sobre o paradigma Agentware.',
         description:
-          'Agentware é um paradigma operacional de software que pode se manifestar em cognição pessoal, educação, operações, pesquisa e infraestrutura multiagente. Como consequência, esses sistemas podem entregar valor a indivíduos, organizações e outros sistemas de software.',
+          'Agentware é um paradigma de software que pode se manifestar em cognição pessoal, educação, operações, pesquisa e infraestrutura Multi-Agent. Como consequência, esses sistemas podem entregar valor a indivíduos, organizações e outros sistemas de software.',
         items: [
           {
             title: 'Sistemas de inteligência pessoal',
@@ -1400,7 +1400,7 @@ const resources = {
         domainsLabel: 'Domínios de exemplo',
         domains: [
           'Sistemas de inteligência pessoal',
-          'Navegadores nativos para agentes e sistemas operadores',
+          'Navegadores Agent-native e sistemas operacionais',
           'Tutores de IA com memória e adaptação curricular',
           'Workflows autônomos de pesquisa e conhecimento',
           'Agentes de operações de negócio e apoio à decisão',
@@ -1408,11 +1408,11 @@ const resources = {
         ],
         positioningLabel: 'Declaração de posicionamento',
         positioningBody:
-          'Agentware é para a era dos agentes aquilo que software foi para a era da computação: o meio operacional pelo qual objetivos se tornam resultados executáveis, governáveis e escaláveis.',
+          'Agentware é o meio operacional pelo qual intenção, restrições, memória, planejamento, ferramentas, execução, feedback e governança se tornam resultados executáveis, governáveis e escaláveis.',
       },
       cta: {
         label: 'Participe',
-        title: 'Construindo a camada de software para a era dos agentes.',
+        title: 'Construindo os fundamentos de Agentware.',
         body:
           'Agentware Studio é um esforço inicial para definir, sistematizar e construir os fundamentos conceituais e práticos do software nativo para agentes.',
         github: 'Seguir no GitHub',
@@ -1514,11 +1514,11 @@ const resources = {
             body: '목표를 실행 가능한 전략, 하위 계획, 시간에 따른 의사결정 지점으로 전환합니다.',
           },
           {
-            title: '도구 실행 가능',
+            title: '도구를 통해 실행 가능',
             body: 'API, 브라우저, 스크립트, 서비스, 디지털 시스템을 통해 실제 운영 효과를 만들어 냅니다.',
           },
           {
-            title: '피드백 폐쇄 루프',
+            title: '피드백 기반',
             body: '결과를 모니터링하고, 편차를 감지하며, 지속적인 피드백 루프를 통해 행동을 조정합니다.',
           },
           {
@@ -1580,7 +1580,7 @@ const resources = {
         label: '비전',
         title: 'Agentware 패러다임 위에 구축될 미래 제품.',
         description:
-          'Agentware는 개인 인지, 교육, 운영, 연구, Multi-Agent 인프라 전반에 걸쳐 구현될 수 있는 소프트웨어 운영 패러다임입니다. 그 결과 이러한 시스템은 개인, 조직, 다른 소프트웨어 시스템에 가치를 전달할 수 있습니다.',
+          'Agentware는 개인 인지, 교육, 운영, 연구, Multi-Agent 인프라 전반에 걸쳐 구현될 수 있는 소프트웨어 패러다임입니다. 그 결과 이러한 시스템은 개인, 조직, 다른 소프트웨어 시스템에 가치를 전달할 수 있습니다.',
         items: [
           {
             title: '개인 지능 시스템',
@@ -1602,7 +1602,7 @@ const resources = {
         domainsLabel: '예시 도메인',
         domains: [
           '개인 지능 시스템',
-          'Agent-native 브라우저와 오퍼레이터 시스템',
+          'Agent-native 브라우저와 operating systems',
           '메모리와 커리큘럼 적응을 갖춘 AI 튜터',
           '자율 연구 및 지식 워크플로',
           '비즈니스 운영 및 의사결정 지원 Agent',
@@ -1610,11 +1610,11 @@ const resources = {
         ],
         positioningLabel: '포지셔닝 문장',
         positioningBody:
-          'Agentware는 Agent Era에 software가 컴퓨팅 시대에 했던 역할과 같습니다. 목표를 실행 가능하고, 거버넌스 가능하며, 확장 가능한 결과로 바꾸는 운영 매체입니다.',
+          'Agentware는 의도, 제약, 메모리, 계획, 도구, 실행, 피드백, 거버넌스를 실행 가능하고, 거버넌스 가능하며, 확장 가능한 결과로 바꾸는 운영 매체입니다.',
       },
       cta: {
         label: '함께하기',
-        title: 'Agent Era를 위한 소프트웨어 계층을 구축합니다.',
+        title: 'Agentware의 기반을 구축합니다.',
         body:
           'Agentware Studio는 Agent-native 소프트웨어의 개념적·실천적 기반을 정의하고 체계화하며 구축하려는 초기 노력입니다.',
         github: 'GitHub에서 팔로우',
