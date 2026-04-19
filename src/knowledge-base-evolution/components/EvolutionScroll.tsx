@@ -37,29 +37,29 @@ function LevelPage({
   };
 
   return (
-    <div id={level.id} className="snap-page flex items-center justify-center relative overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full grid md:grid-cols-[1.3fr_0.7fr] gap-12 xl:gap-24 items-center px-10 xl:px-20 pl-24 xl:pl-28">
-        <div className="space-y-10">
+    <div id={level.id} className="snap-page relative flex flex-col items-start justify-center overflow-hidden py-24 md:flex-row md:items-center md:py-0">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-14 pb-8 sm:px-6 md:grid-cols-[1.3fr_0.7fr] md:gap-12 md:px-10 md:pt-0 md:pb-0 md:pl-24 xl:gap-24 xl:px-20 xl:pl-28">
+        <div className="space-y-8 md:space-y-10">
           <div>
             <motion.h3
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="text-5xl xl:text-6xl font-black text-slate-900 mb-2 tracking-tighter leading-tight"
+              className="mb-2 text-3xl font-black leading-tight tracking-tighter text-slate-900 sm:text-4xl md:text-5xl xl:text-6xl"
             >
               {level.title}
             </motion.h3>
-            <p className="text-xl font-bold text-slate-400 mb-6">{level.subtitle}</p>
-            <p className="text-lg text-slate-600 font-light leading-relaxed max-w-xl">{level.description}</p>
+            <p className="mb-5 text-base font-bold text-slate-400 md:mb-6 md:text-xl">{level.subtitle}</p>
+            <p className="max-w-xl text-base font-light leading-relaxed text-slate-600 md:text-lg">{level.description}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 border-y border-slate-100 py-8">
+          <div className="grid grid-cols-1 gap-8 border-y border-slate-100 py-7 md:grid-cols-2 md:py-8">
             <div>
               <h4 className="flex items-center gap-2 text-[10px] font-black text-emerald-600 uppercase tracking-[0.3em] mb-4">
                 <CheckCircle2 size={14} /> {messages.common.advantages}
               </h4>
               <ul className="space-y-4">
                 {level.pros.map((pro, index) => (
-                  <li key={index} className="text-base text-slate-800 font-semibold leading-snug">
+                  <li key={index} className="text-sm font-semibold leading-snug text-slate-800 sm:text-base">
                     {pro}
                   </li>
                 ))}
@@ -71,7 +71,7 @@ function LevelPage({
               </h4>
               <ul className="space-y-4">
                 {level.cons.map((con, index) => (
-                  <li key={index} className="text-base text-slate-800 font-semibold leading-snug opacity-40">
+                  <li key={index} className="text-sm font-semibold leading-snug text-slate-800 opacity-40 sm:text-base">
                     {con}
                   </li>
                 ))}
@@ -79,24 +79,24 @@ function LevelPage({
             </div>
           </div>
 
-          <div className="flex flex-col xl:flex-row items-start xl:items-center gap-6">
+          <div className="flex flex-col items-start gap-4 md:gap-6 xl:flex-row xl:items-center">
             <div className="flex-1">
               <span className="text-[10px] font-black uppercase text-slate-400 block mb-2 tracking-widest">
                 {messages.common.coreBreakthrough}:
               </span>
-              <span className="text-xl font-black text-slate-900">{level.solved}</span>
+              <span className="text-lg font-black text-slate-900 md:text-xl">{level.solved}</span>
             </div>
-            <div className="flex-1 p-5 bg-slate-900 rounded-[1.5rem] shadow-xl shadow-slate-200">
+            <div className="flex-1 rounded-[1.5rem] bg-slate-900 p-4 shadow-xl shadow-slate-200 md:p-5">
               <span className="text-[10px] font-black uppercase text-slate-500 block mb-2 tracking-widest">
                 {messages.common.representativeIssue}:
               </span>
-              <span className="text-lg text-white font-medium italic leading-relaxed">{level.problem}</span>
+              <span className="text-base font-medium italic leading-relaxed text-white md:text-lg">{level.problem}</span>
             </div>
           </div>
         </div>
 
         <div className="relative flex justify-center">
-          <div className="rounded-[3.5rem] overflow-hidden shadow-2xl shadow-slate-200 border-[12px] border-white bg-white h-[500px] w-full max-w-[420px]">
+          <div className="h-[360px] w-full max-w-[420px] overflow-hidden rounded-[2rem] border-[8px] border-white bg-white shadow-2xl shadow-slate-200 md:h-[500px] md:rounded-[3.5rem] md:border-[12px]">
             <level.Visual />
           </div>
           <div
@@ -107,19 +107,19 @@ function LevelPage({
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-0 right-0 pointer-events-none">
-        <div className="max-w-7xl mx-auto flex px-10 justify-center">
+      <div className="left-0 right-0 mt-8 px-5 pb-6 md:absolute md:bottom-10 md:mt-0 md:px-0 md:pb-0 md:pointer-events-none">
+        <div className="mx-auto flex max-w-7xl justify-center md:px-10">
           <div className="pointer-events-auto">
             <motion.button
               onClick={scrollToNext}
               whileHover={{ scale: 1.02 }}
-              className="group flex items-center gap-6 p-1 bg-white border border-slate-200 rounded-full shadow-lg hover:shadow-2xl transition-all hover:border-slate-900 pr-6"
+              className="group flex w-full max-w-full items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white p-1 pr-4 shadow-lg transition-all hover:border-slate-900 hover:shadow-2xl sm:gap-4 md:rounded-full md:gap-6 md:pr-6"
             >
-              <div className="bg-slate-900 text-white px-5 py-3 rounded-full flex items-center gap-3">
+              <div className="flex items-center gap-3 rounded-full bg-slate-900 px-4 py-3 text-white md:px-5">
                 <span className="text-[10px] font-black uppercase tracking-widest">{messages.common.paradigmShift}</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
-              <p className="text-sm text-slate-500 italic max-w-sm text-left leading-tight line-clamp-2">{level.trigger}</p>
+              <p className="max-w-sm text-left text-xs italic leading-tight text-slate-500 sm:text-sm md:line-clamp-2">{level.trigger}</p>
             </motion.button>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function EvolutionScroll() {
     <>
       <AnimatePresence>
         {isLevel && (
-          <div className="fixed inset-x-0 top-1/2 z-[100] -translate-y-1/2 pointer-events-none">
+          <div className="pointer-events-none fixed inset-x-0 top-1/2 z-[100] hidden -translate-y-1/2 md:block">
             <div className="max-w-7xl mx-auto w-full px-10 xl:px-20">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -215,24 +215,24 @@ export default function EvolutionScroll() {
         )}
       </AnimatePresence>
 
-      <section id="hero" className="snap-page flex items-center justify-center">
-        <div className="max-w-7xl mx-auto w-full px-10 xl:px-20 pl-28 xl:pl-32">
+      <section id="hero" className="snap-page flex items-center justify-center py-24 md:py-0">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 md:px-10 md:pl-28 xl:px-20 xl:pl-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="flex flex-col justify-center"
           >
-            <h1 className="text-7xl xl:text-[9rem] font-black tracking-tighter text-slate-900 leading-[0.8] mb-12">
+            <h1 className="mb-8 text-4xl font-black leading-[0.85] tracking-tighter text-slate-900 sm:text-5xl md:mb-12 md:text-7xl xl:text-[9rem]">
               {messages.hero.titleLine1}
               <br />
               {messages.hero.titleLine2}
             </h1>
-            <div className="flex flex-col xl:flex-row xl:items-end gap-8">
-              <p className="text-2xl text-slate-400 font-light max-w-xl leading-relaxed">{messages.hero.subtitle}</p>
+            <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:gap-8">
+              <p className="max-w-xl text-lg font-light leading-relaxed text-slate-400 md:text-2xl">{messages.hero.subtitle}</p>
               <button
                 onClick={() => document.getElementById("level-1")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-4 text-slate-900 font-black uppercase tracking-[0.3em] group text-sm mb-2"
+                className="group mb-2 flex items-center gap-4 text-xs font-black uppercase tracking-[0.3em] text-slate-900 sm:text-sm"
               >
                 {messages.hero.startJourney}
                 <div className="p-3 rounded-full border border-slate-200 group-hover:border-slate-900 transition-all">

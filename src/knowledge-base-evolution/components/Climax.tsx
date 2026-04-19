@@ -148,14 +148,14 @@ function NeuralModule({ cap, index }: { cap: Capacity; index: number; key?: numb
       initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: index * 0.1 }}
-      className={`group relative bg-black/40 border border-white/10 hover:border-white/40 transition-all duration-700 p-8 xl:p-12 overflow-hidden flex flex-col justify-between min-h-[380px] ${cap.span}`}
+      className={`group relative flex min-h-[300px] flex-col justify-between overflow-hidden border border-white/10 bg-black/40 p-6 transition-all duration-700 hover:border-white/40 md:min-h-[380px] md:p-8 xl:p-12 ${cap.span}`}
     >
       <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/20 group-hover:border-white/60 transition-colors" />
       <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/20 group-hover:border-white/60 transition-colors" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
       <div className="relative z-10 text-left">
-        <div className="flex justify-between items-start mb-12">
-           <div className="p-4 bg-white text-black rounded-sm shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+        <div className="mb-10 flex items-start justify-between md:mb-12">
+           <div className="rounded-sm bg-white p-3 text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] md:p-4">
               {cap.icon}
            </div>
            <div className="text-right font-mono">
@@ -163,8 +163,8 @@ function NeuralModule({ cap, index }: { cap: Capacity; index: number; key?: numb
               <div className="text-[10px] text-white/40">{moduleCode}</div>
            </div>
         </div>
-        <h3 className="text-2xl font-bold mb-4 text-white uppercase tracking-tight">{cap.title}</h3>
-        <p className="text-lg font-light text-slate-500 leading-relaxed group-hover:text-slate-300 transition-colors">
+        <h3 className="mb-4 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">{cap.title}</h3>
+        <p className="text-base font-light leading-relaxed text-slate-500 transition-colors group-hover:text-slate-300 md:text-lg">
           {cap.desc}
         </p>
       </div>
@@ -210,13 +210,13 @@ export default function Climax() {
   }));
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-[#050505] text-slate-100 overflow-hidden py-48">
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-[#050505] py-24 text-slate-100 md:py-48">
       <MemoryCore />
       
-      <div className="max-w-7xl mx-auto relative z-10 px-10 xl:px-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 md:px-10 xl:px-20">
         
         {/* SIGNAL LEVEL 5 (STAYS VISIBLE) */}
-        <div className={`fixed inset-x-0 top-1/2 z-[100] -translate-y-1/2 pointer-events-none transition-opacity duration-300 ${showSignal ? "opacity-100" : "opacity-0"}`}>
+        <div className={`pointer-events-none fixed inset-x-0 top-1/2 z-[100] hidden -translate-y-1/2 transition-opacity duration-300 md:block ${showSignal ? "opacity-100" : "opacity-0"}`}>
             <div className="max-w-7xl mx-auto w-full px-10 xl:px-20">
             <div className="-translate-x-[92px] xl:-translate-x-[92px] flex w-fit items-center gap-[40px]">
                 <div className="flex flex-col items-center gap-0 text-left">
@@ -235,9 +235,9 @@ export default function Climax() {
           </div>
         </div>
 
-        <div className="pl-28 xl:pl-32">
+        <div className="md:pl-28 xl:pl-32">
           {/* Restored Header Section */}
-          <div className="mb-60 text-center md:text-left">
+          <div className="mb-24 text-center md:mb-60 md:text-left">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[10px] font-black tracking-[0.4em] uppercase mb-12">
               <Cpu size={12} className="text-blue-400" /> {messages.climax.badge}
             </motion.div>
@@ -246,7 +246,7 @@ export default function Climax() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-7xl md:text-[9rem] font-black tracking-tighter leading-tight mb-16 text-white"
+              className="mb-10 text-4xl font-black leading-[0.9] tracking-tighter text-white sm:text-5xl md:mb-16 md:text-7xl xl:text-[9rem]"
             >
               {messages.climax.titleLine1}<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-500">
@@ -258,14 +258,14 @@ export default function Climax() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-2xl md:text-4xl font-light text-slate-500 max-w-4xl leading-tight"
+              className="max-w-4xl text-lg font-light leading-tight text-slate-500 sm:text-xl md:text-4xl"
             >
               {messages.climax.description.before}<span className="text-white font-medium">{messages.climax.description.highlight}</span>{messages.climax.description.after}
             </motion.p>
           </div>
 
           {/* THE MANDALA CORE */}
-          <div className="mb-80 scale-110">
+          <div className="mb-28 scale-110 md:mb-80">
              <DigitalLifeCore />
           </div>
 
@@ -277,8 +277,8 @@ export default function Climax() {
           </div>
 
           {/* Final Thesis */}
-          <motion.div className="mt-80 mb-20 text-center" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-             <h2 className="text-5xl md:text-7xl font-black mb-12 tracking-tighter text-white">
+          <motion.div className="mt-24 mb-12 text-center md:mt-80 md:mb-20" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
+             <h2 className="mb-8 text-3xl font-black tracking-tighter text-white sm:text-4xl md:mb-12 md:text-7xl">
                {messages.climax.finalTitle}
              </h2>
              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />

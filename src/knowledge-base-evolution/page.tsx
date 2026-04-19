@@ -96,6 +96,8 @@ function HomeContent() {
     const sectionIds = ["hero", "level-1", "level-2", "level-3", "level-4"] as const;
     const levelFive = document.getElementById("level-5");
     if (!levelFive) return;
+    const shouldUseWheelPaging =
+      typeof window !== "undefined" && window.matchMedia("(min-width: 768px) and (pointer: fine)").matches;
 
     let accumulatedDelta = 0;
     let isLocked = false;
@@ -229,10 +231,14 @@ function HomeContent() {
     });
 
     observer.observe(levelFive);
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    if (shouldUseWheelPaging) {
+      window.addEventListener("wheel", handleWheel, { passive: false });
+    }
 
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      if (shouldUseWheelPaging) {
+        window.removeEventListener("wheel", handleWheel);
+      }
       window.clearTimeout(unlockTimer);
       window.cancelAnimationFrame(animationFrameId ?? 0);
       observer.disconnect();

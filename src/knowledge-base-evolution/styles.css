@@ -84,3 +84,21 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@media (max-width: 767px) {
+  .kbe-root .timeline-line {
+    display: none;
+  }
+
+  .kbe-root .snap-page {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .kbe-root .level-indicator {
+    writing-mode: initial;
+    text-orientation: initial;
+    transform: none;
+  }
+}
