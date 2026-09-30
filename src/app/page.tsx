@@ -399,7 +399,7 @@ export default function AgentwareDefinitionPage() {
                       <span>{t('cta.github')}</span>
                     </a>
                     <a
-                      href="https://x.com/Agentware190058"
+                      href="https://x.com/AgentwareStudio"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-transparent px-8 py-4 text-sm font-medium text-white transition-colors hover:bg-white/5 active:scale-95"
@@ -425,7 +425,7 @@ export default function AgentwareDefinitionPage() {
                 <span className="sr-only">{t('footer.github')}</span>
                 <Github className="h-5 w-5" />
               </a>
-              <a href="https://x.com/Agentware190058" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neutral-300">
+              <a href="https://x.com/AgentwareStudio" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neutral-300">
                 <span className="sr-only">{t('footer.x')}</span>
                 <Twitter className="h-5 w-5" />
               </a>
