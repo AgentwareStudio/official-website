@@ -1,6 +1,6 @@
 # UI strings and supporting copy that are not part of 05_官网多语言文案定稿_Website_Copy_i18n.md.
 # Translated for the site (interface labels, demo animation captions, the execution-loop demo,
-# and the /learn and /blog page scaffolding). Review before publishing.
+# and the /learn page scaffolding). Review before publishing.
 
 UI = {}
 
@@ -12,7 +12,7 @@ UI['en'] = dict(
     ui=dict(
         skip='Skip to content', home='Agentware Studio home', mainNav='Main navigation', menuOpen='Open menu', menuClose='Close menu',
         follow='Follow', language='Language',
-        nav=dict(paradigm='Paradigm', architecture='Architecture', manifesto='Manifesto', studio='Studio', learn='Learn', blog='Blog'),
+        nav=dict(paradigm='Paradigm', architecture='Architecture', manifesto='Manifesto', studio='Studio', learn='Learn'),
         heroCta='Discover Agentware', heroCta2='Read the Manifesto', questionsAria='Two questions software asks',
         markAria='AGENTWARE mark: the brackets are the authorized boundary, the rising path an execution path that can adapt, the point an outcome that must be verifiable. Click or press Enter to replay; use the arrow keys to move the path.',
         markAriaLight='AGENTWARE mark',
@@ -30,7 +30,7 @@ UI['en'] = dict(
                   inside='Within scope', touched='Boundary reached', out='Out of scope · handed back',
                   run='Run a delegation', rerun='Run it again', simulate='Simulate out of bounds', hint='After a run, select any step in the diagram to read about it.',
                   logs=dict(intent='Delegation received: goal, boundaries and acceptance criteria set', context='Reading the current environment and relevant memory', plan1='Path generated → next: query data', act1='Tool call: read the database', observe1='Feedback: result differs from expectation', adapt='Plan revised: switching to another path', plan2='Re-planned → next: call the API', act2ok='Tool call: API · MCP (within scope)', observe2ok='Feedback: state matches expectation', verifyOk='Checked against acceptance criteria: passed, evidence kept', deliver='Verifiable outcome delivered', act2warn='Requested action is outside the boundary; not executed', observe2warn='Feedback: goal cannot be met within scope', verifyFail='Acceptance failed: a human decision is needed', handback='Stopped; reported why and what was done; handed back')),
-        studioActions=['Go to the course site ↗', 'Read essays & notes →', 'Visit aikit.pro ↗'],
+        studioActions=['Go to the course site ↗'],
     ),
     steps=['Make clear what outcome is wanted, within what boundaries to act, and what counts as done.',
            'Gather the facts and experience relevant to the goal from the current environment and accumulated memory.',
@@ -44,19 +44,12 @@ UI['en'] = dict(
     learn=dict(
         status='First course: Graduating from AI Gacha', seasonsAria='Three seasons',
         cta='Videos on YouTube, |practice and Q&A on the course site',
-        actions=['Start the course', 'Follow on YouTube', 'Read the Blog'],
-        audience=[['Audience', 'Everyone at work'], ['Audience', 'Developers'], ['Audience', 'Team leads and engineers turning AI into working systems']],
+        actions=['Start the course', 'Follow on YouTube'],
         course=dict(name='Graduating from AI Gacha', langs='Course languages',
                     body='Stop rolling the dice with AI. Across three seasons, the course goes from how large language models work, to coding with AI, to building a real piece of work into a system yourself. The course site has practice games and an AI assistant that answers only from the course itself.'),
     ),
-    blog=dict(
-        status='Essays are published here first, then syndicated elsewhere', queueTitle='First essays', queueNote='Nothing has been published yet. The three essays below are planned and will appear here once published.', planned='Planned',
-        catsTitle='Four categories', catsNote='Every article is signed and dated. Personal notes end with “This article reflects the author’s personal views.”',
-        cats=[['Essays', 'Long-form Studio essays, in dialogue with the manifesto.'], ['Notes', 'Ways of working, learning and thinking in the AI era — real experience and failures from doing things with AI.'], ['Lectures', 'Companion articles and follow-ups for the lectures.'], ['News', 'Announcements, new lectures and events.']],
-        cta='Before the first essay is out, start with the manifesto', actions=['Read the Manifesto', 'Start Learning', 'Follow on X'],
-    ),
-    nf=dict(title='This address has no page', lead='The link may have changed. Go back home, or open the curriculum or the blog.', actions=['Back to home', 'Open Curriculum', 'Blog']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Open Curriculum — Agentware Studio', blog='Research & Essays — Agentware Studio', nf='Page not found — Agentware Studio'),
+    nf=dict(title='This address has no page', lead='The link may have changed. Go back home, or open the curriculum.', actions=['Back to home', 'Open Curriculum']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Open Curriculum — Agentware Studio', nf='Page not found — Agentware Studio'),
 )
 
 # ---------------------------------------------------------------- 日本語
@@ -67,7 +60,7 @@ UI['ja'] = dict(
     ui=dict(
         skip='本文へスキップ', home='Agentware Studio ホーム', mainNav='メインナビゲーション', menuOpen='メニューを開く', menuClose='メニューを閉じる',
         follow='フォロー', language='言語',
-        nav=dict(paradigm='パラダイム', architecture='アーキテクチャ', manifesto='マニフェスト', studio='Studio', learn='講座', blog='コラム'),
+        nav=dict(paradigm='パラダイム', architecture='アーキテクチャ', manifesto='マニフェスト', studio='Studio', learn='講座'),
         heroCta='Agentware を知る', heroCta2='マニフェストを読む', questionsAria='ソフトウェアの2つの問い',
         markAria='AGENTWARE のマーク：角括弧は授権された境界、上昇する線は変化しうる実行経路、終点の点は検証可能でなければならない結果を表します。クリックまたは Enter でアニメーションを再生、上下キーで経路を動かせます。',
         markAriaLight='AGENTWARE のマーク',
@@ -85,7 +78,7 @@ UI['ja'] = dict(
                   inside='授権範囲内', touched='境界に到達', out='範囲外・人に返却',
                   run='委任を実行する', rerun='もう一度実行する', simulate='境界外をシミュレート', hint='実行後、図の任意のステップを選ぶと説明を表示できます。',
                   logs=dict(intent='委任を受領：目標・境界・検収基準が明確', context='現在の環境と関連メモリを読み込み', plan1='実行経路を生成 → 次：データを照会', act1='ツール呼び出し：データベースを読み込み', observe1='フィードバック：結果が想定とずれている', adapt='計画を修正：別の経路に切り替え', plan2='再計画 → 次：API を呼び出し', act2ok='ツール呼び出し：API · MCP（授権範囲内）', observe2ok='フィードバック：状態は想定どおり', verifyOk='検収基準と照合：合格、根拠を保存', deliver='検証可能な結果を納品', act2warn='要求された操作は授権の境界外のため未実行', observe2warn='フィードバック：授権範囲内では目標を達成できない', verifyFail='検収不合格：人の判断が必要', handback='行動を停止し、理由と完了分を報告して人に返却')),
-        studioActions=['講座サイトへ ↗', 'コラム・研究ノートを読む →', 'aikit.pro へ ↗'],
+        studioActions=['講座サイトへ ↗'],
     ),
     steps=['どんな結果が欲しいのか、どの境界の中で動くのか、何をもって完了とするのかを明確にします。',
            '現在の環境と蓄積されたメモリから、目標に関係する事実と経験を取り出します。',
@@ -99,19 +92,12 @@ UI['ja'] = dict(
     learn=dict(
         status='最初の講座：AIガチャ卒業講座', seasonsAria='3つのシーズン',
         cta='動画は YouTube で、|練習と質問は講座サイトで',
-        actions=['講座へ進む', 'YouTube でフォロー', 'コラムを読む'],
-        audience=[['対象', 'すべての社員'], ['対象', '開発者'], ['対象', 'チームで AI をシステムとして組み上げたい業務リーダーとエンジニア']],
+        actions=['講座へ進む', 'YouTube でフォロー'],
         course=dict(name='AIガチャ卒業講座', langs='講座の言語',
                     body='AI を「ガチャ」のように運任せで使うのは、もう終わりにしましょう。3つのシーズンで、大規模言語モデルの仕組みから、AI とのコーディング、そして業務を自分の手でシステムに組み上げるところまでを学びます。講座サイトには練習ミニゲームと、講座の内容だけをもとに答える AI 質問アシスタントがあります。'),
     ),
-    blog=dict(
-        status='記事はまず本サイトで公開し、その後ほかのプラットフォームに転載します', queueTitle='最初の研究記事', queueNote='公開済みの記事はまだありません。以下の3本を計画中で、公開後はここに掲載します。', planned='計画中',
-        catsTitle='4つのカテゴリー', catsNote='すべての記事に署名と日付を記します。個人ノートの末尾には「本記事は筆者個人の見解です」と明記します。',
-        cats=[['論考', 'Studio としての長文の論考。マニフェストと呼応します。'], ['個人ノート', 'AI 時代の働き方・学び方・考え方の変化、AI で仕事をした実体験と失敗。'], ['講義関連', '講義に対応する記事と補足。'], ['お知らせ', 'お知らせ、新しい講義、イベント。']],
-        cta='最初の記事が出るまでは、まずマニフェストから', actions=['マニフェストを読む', 'AI 講座を見る', 'X でフォロー'],
-    ),
-    nf=dict(title='このアドレスにページはありません', lead='リンクが変わった可能性があります。ホームに戻るか、講座とコラムを開いてください。', actions=['ホームに戻る', 'AI 講座', 'コラム']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 体系化オープン講座 — Agentware Studio', blog='パラダイム研究と専門コラム — Agentware Studio', nf='ページが見つかりません — Agentware Studio'),
+    nf=dict(title='このアドレスにページはありません', lead='リンクが変わった可能性があります。ホームに戻るか、講座を開いてください。', actions=['ホームに戻る', 'AI 講座']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 体系化オープン講座 — Agentware Studio', nf='ページが見つかりません — Agentware Studio'),
 )
 
 # ---------------------------------------------------------------- Español
@@ -122,7 +108,7 @@ UI['es'] = dict(
     ui=dict(
         skip='Saltar al contenido', home='Inicio de Agentware Studio', mainNav='Navegación principal', menuOpen='Abrir menú', menuClose='Cerrar menú',
         follow='Síguenos', language='Idioma',
-        nav=dict(paradigm='Paradigma', architecture='Arquitectura', manifesto='Manifiesto', studio='Studio', learn='Curso', blog='Blog'),
+        nav=dict(paradigm='Paradigma', architecture='Arquitectura', manifesto='Manifiesto', studio='Studio', learn='Curso'),
         heroCta='Conoce Agentware', heroCta2='Leer el manifiesto', questionsAria='Las dos preguntas del software',
         markAria='Marca AGENTWARE: los corchetes son el límite autorizado, la línea ascendente una ruta de ejecución que puede cambiar y el punto un resultado que debe ser verificable. Haz clic o pulsa Intro para repetir la animación; usa las flechas para mover la ruta.',
         markAriaLight='Marca AGENTWARE',
@@ -140,7 +126,7 @@ UI['es'] = dict(
                   inside='Dentro del alcance', touched='Límite alcanzado', out='Fuera de alcance · devuelto',
                   run='Ejecutar una delegación', rerun='Ejecutar de nuevo', simulate='Simular fuera de límites', hint='Tras la ejecución, selecciona cualquier paso del diagrama para ver su explicación.',
                   logs=dict(intent='Delegación recibida: objetivo, límites y criterios definidos', context='Leyendo el entorno actual y la memoria relevante', plan1='Ruta generada → siguiente: consultar datos', act1='Herramienta: leer la base de datos', observe1='Retroalimentación: el resultado difiere de lo esperado', adapt='Plan corregido: se cambia a otra ruta', plan2='Replanificado → siguiente: llamar a la API', act2ok='Herramienta: API · MCP (dentro del alcance)', observe2ok='Retroalimentación: el estado es el esperado', verifyOk='Verificado con los criterios: aprobado, evidencia guardada', deliver='Resultado verificable entregado', act2warn='La acción solicitada excede el límite; no se ejecuta', observe2warn='Retroalimentación: el objetivo no se puede cumplir dentro del alcance', verifyFail='Aceptación fallida: se necesita una decisión humana', handback='Se detiene, explica motivos y lo hecho, y lo devuelve')),
-        studioActions=['Ir al sitio del curso ↗', 'Leer ensayos y notas →', 'Visitar aikit.pro ↗'],
+        studioActions=['Ir al sitio del curso ↗'],
     ),
     steps=['Aclarar qué resultado se quiere, dentro de qué límites actuar y qué se considera terminado.',
            'Obtener del entorno actual y de la memoria acumulada los hechos y la experiencia relevantes para el objetivo.',
@@ -154,19 +140,12 @@ UI['es'] = dict(
     learn=dict(
         status='Primer curso: Graduating from AI Gacha', seasonsAria='Tres temporadas',
         cta='Vídeos en YouTube, |práctica y preguntas en el sitio del curso',
-        actions=['Empezar el curso', 'Seguir en YouTube', 'Leer el blog'],
-        audience=[['Para', 'Todo el personal'], ['Para', 'Desarrolladores'], ['Para', 'Responsables de negocio e ingenieros que convierten la IA en sistemas para su equipo']],
+        actions=['Empezar el curso', 'Seguir en YouTube'],
         course=dict(name='Graduating from AI Gacha', langs='Idiomas del curso',
                     body='Deja de usar la IA como si fuera una tragaperras. En tres temporadas, el curso va desde cómo funcionan los grandes modelos de lenguaje hasta programar con IA y convertir tú mismo un proceso real en un sistema. El sitio del curso incluye minijuegos de práctica y un asistente de IA que responde solo a partir del contenido del curso.'),
     ),
-    blog=dict(
-        status='Los artículos se publican aquí primero y luego en otras plataformas', queueTitle='Primeros ensayos', queueNote='Aún no hay artículos publicados. Los tres siguientes están planificados y aparecerán aquí cuando se publiquen.', planned='Planificado',
-        catsTitle='Cuatro secciones', catsNote='Cada artículo va firmado y fechado. Las notas personales terminan con «Este artículo refleja la opinión personal del autor».',
-        cats=[['Ensayos', 'Ensayos largos del Studio, en diálogo con el manifiesto.'], ['Notas personales', 'Formas de trabajar, aprender y pensar en la era de la IA; experiencias y fracasos reales al trabajar con IA.'], ['Conferencias', 'Artículos complementarios y ampliaciones de las conferencias.'], ['Noticias', 'Anuncios, nuevas conferencias y eventos.']],
-        cta='Antes del primer ensayo, empieza por el manifiesto', actions=['Leer el manifiesto', 'Ver el curso de IA', 'Seguir en X'],
-    ),
-    nf=dict(title='Esta dirección no tiene página', lead='Puede que el enlace haya cambiado. Vuelve al inicio o abre el curso y el blog.', actions=['Volver al inicio', 'Curso de IA', 'Blog']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Curso abierto de IA — Agentware Studio', blog='Investigación y ensayos — Agentware Studio', nf='Página no encontrada — Agentware Studio'),
+    nf=dict(title='Esta dirección no tiene página', lead='Puede que el enlace haya cambiado. Vuelve al inicio o abre el curso.', actions=['Volver al inicio', 'Curso de IA']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Curso abierto de IA — Agentware Studio', nf='Página no encontrada — Agentware Studio'),
 )
 
 # ---------------------------------------------------------------- Deutsch
@@ -177,7 +156,7 @@ UI['de'] = dict(
     ui=dict(
         skip='Zum Inhalt springen', home='Agentware Studio Startseite', mainNav='Hauptnavigation', menuOpen='Menü öffnen', menuClose='Menü schließen',
         follow='Folgen', language='Sprache',
-        nav=dict(paradigm='Paradigma', architecture='Architektur', manifesto='Manifest', studio='Studio', learn='Kurs', blog='Blog'),
+        nav=dict(paradigm='Paradigma', architecture='Architektur', manifesto='Manifest', studio='Studio', learn='Kurs'),
         heroCta='Agentware entdecken', heroCta2='Manifest lesen', questionsAria='Die zwei Fragen der Software',
         markAria='AGENTWARE-Zeichen: Die Klammern stehen für die autorisierte Grenze, der aufsteigende Pfad für einen anpassbaren Ausführungspfad, der Punkt für ein Ergebnis, das überprüfbar sein muss. Klicken oder Enter drücken, um die Animation erneut abzuspielen; mit den Pfeiltasten den Pfad bewegen.',
         markAriaLight='AGENTWARE-Zeichen',
@@ -195,7 +174,7 @@ UI['de'] = dict(
                   inside='Im Rahmen', touched='Grenze erreicht', out='Außerhalb · zurückgegeben',
                   run='Eine Delegation ausführen', rerun='Erneut ausführen', simulate='Grenzüberschreitung simulieren', hint='Nach einem Durchlauf einen beliebigen Schritt im Diagramm wählen, um die Erklärung zu sehen.',
                   logs=dict(intent='Delegation erhalten: Ziel, Grenzen und Abnahmekriterien stehen fest', context='Aktuelle Umgebung und relevantes Gedächtnis werden gelesen', plan1='Pfad erzeugt → nächster Schritt: Daten abfragen', act1='Werkzeug: Datenbank lesen', observe1='Feedback: Ergebnis weicht von der Erwartung ab', adapt='Plan korrigiert: Wechsel auf einen anderen Pfad', plan2='Neu geplant → nächster Schritt: API aufrufen', act2ok='Werkzeug: API · MCP (im Rahmen)', observe2ok='Feedback: Zustand entspricht der Erwartung', verifyOk='Gegen Abnahmekriterien geprüft: bestanden, Nachweis gesichert', deliver='Überprüfbares Ergebnis geliefert', act2warn='Angefragte Aktion liegt außerhalb der Grenze; nicht ausgeführt', observe2warn='Feedback: Ziel im Rahmen nicht erreichbar', verifyFail='Abnahme fehlgeschlagen: Entscheidung eines Menschen nötig', handback='Gestoppt, Gründe und Erledigtes gemeldet, zurückgegeben')),
-        studioActions=['Zur Kursseite ↗', 'Essays und Notizen lesen →', 'aikit.pro besuchen ↗'],
+        studioActions=['Zur Kursseite ↗'],
     ),
     steps=['Klären, welches Ergebnis gewünscht ist, in welchen Grenzen gehandelt wird und wann es als erledigt gilt.',
            'Aus der aktuellen Umgebung und dem angesammelten Gedächtnis die für das Ziel relevanten Fakten und Erfahrungen holen.',
@@ -209,19 +188,12 @@ UI['de'] = dict(
     learn=dict(
         status='Erster Kurs: Graduating from AI Gacha', seasonsAria='Drei Staffeln',
         cta='Videos auf YouTube, |Übungen und Fragen auf der Kursseite',
-        actions=['Zum Kurs', 'Auf YouTube folgen', 'Blog lesen'],
-        audience=[['Zielgruppe', 'Alle Mitarbeitenden'], ['Zielgruppe', 'Entwicklerinnen und Entwickler'], ['Zielgruppe', 'Fachverantwortliche und Engineers, die KI im Team zu Systemen ausbauen']],
+        actions=['Zum Kurs', 'Auf YouTube folgen'],
         course=dict(name='Graduating from AI Gacha', langs='Kurssprachen',
                     body='Schluss mit dem Glücksspiel mit KI. In drei Staffeln führt der Kurs von der Funktionsweise großer Sprachmodelle über das Programmieren mit KI bis dahin, einen echten Arbeitsablauf selbst als System aufzubauen. Auf der Kursseite gibt es Übungsspiele und einen KI-Assistenten, der nur auf Grundlage der Kursinhalte antwortet.'),
     ),
-    blog=dict(
-        status='Beiträge erscheinen zuerst hier und danach auf anderen Plattformen', queueTitle='Erste Essays', queueNote='Noch ist nichts erschienen. Die folgenden drei Essays sind geplant und erscheinen hier nach Veröffentlichung.', planned='Geplant',
-        catsTitle='Vier Rubriken', catsNote='Jeder Beitrag ist namentlich gezeichnet und datiert. Persönliche Notizen enden mit „Dieser Beitrag gibt die persönliche Meinung des Autors wieder.“',
-        cats=[['Essays', 'Längere Essays des Studios, im Dialog mit dem Manifest.'], ['Persönliche Notizen', 'Arbeits-, Lern- und Denkweisen im KI-Zeitalter; echte Erfahrungen und Fehlschläge bei der Arbeit mit KI.'], ['Zu den Vorträgen', 'Begleittexte und Ergänzungen zu den Vorträgen.'], ['Neuigkeiten', 'Ankündigungen, neue Vorträge und Veranstaltungen.']],
-        cta='Bis der erste Essay erscheint: zuerst das Manifest', actions=['Manifest lesen', 'Zum KI-Kurs', 'Auf X folgen'],
-    ),
-    nf=dict(title='Unter dieser Adresse gibt es keine Seite', lead='Der Link hat sich vielleicht geändert. Zurück zur Startseite oder direkt zum Kurs und zum Blog.', actions=['Zur Startseite', 'KI-Kurs', 'Blog']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Open-Access-KI-Kurs — Agentware Studio', blog='Paradigmenforschung & Essays — Agentware Studio', nf='Seite nicht gefunden — Agentware Studio'),
+    nf=dict(title='Unter dieser Adresse gibt es keine Seite', lead='Der Link hat sich vielleicht geändert. Zurück zur Startseite oder direkt zum Kurs.', actions=['Zur Startseite', 'KI-Kurs']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Open-Access-KI-Kurs — Agentware Studio', nf='Seite nicht gefunden — Agentware Studio'),
 )
 
 # ---------------------------------------------------------------- Français
@@ -232,7 +204,7 @@ UI['fr'] = dict(
     ui=dict(
         skip='Aller au contenu', home='Accueil Agentware Studio', mainNav='Navigation principale', menuOpen='Ouvrir le menu', menuClose='Fermer le menu',
         follow='Suivre', language='Langue',
-        nav=dict(paradigm='Paradigme', architecture='Architecture', manifesto='Manifeste', studio='Studio', learn='Cours', blog='Blog'),
+        nav=dict(paradigm='Paradigme', architecture='Architecture', manifesto='Manifeste', studio='Studio', learn='Cours'),
         heroCta='Découvrir Agentware', heroCta2='Lire le manifeste', questionsAria='Les deux questions du logiciel',
         markAria='Marque AGENTWARE : les crochets représentent la limite autorisée, le trait ascendant un chemin d’exécution adaptable, le point un résultat qui doit être vérifiable. Cliquez ou appuyez sur Entrée pour rejouer l’animation ; utilisez les flèches pour déplacer le chemin.',
         markAriaLight='Marque AGENTWARE',
@@ -250,7 +222,7 @@ UI['fr'] = dict(
                   inside='Dans le périmètre', touched='Limite atteinte', out='Hors périmètre · rendu',
                   run='Lancer une délégation', rerun='Relancer', simulate='Simuler un dépassement', hint='Après l’exécution, sélectionnez une étape du schéma pour lire son explication.',
                   logs=dict(intent='Délégation reçue : objectif, limites et critères définis', context='Lecture de l’environnement actuel et de la mémoire utile', plan1='Chemin généré → suite : interroger les données', act1='Outil : lecture de la base de données', observe1='Retour : le résultat s’écarte de l’attendu', adapt='Plan corrigé : passage à un autre chemin', plan2='Replanifié → suite : appeler l’API', act2ok='Outil : API · MCP (dans le périmètre)', observe2ok='Retour : l’état est conforme', verifyOk='Vérifié selon les critères : validé, preuves conservées', deliver='Résultat vérifiable livré', act2warn='L’action demandée dépasse la limite ; non exécutée', observe2warn='Retour : objectif impossible dans le périmètre', verifyFail='Validation échouée : une décision humaine est nécessaire', handback='Arrêt, raisons et travail fait expliqués, rendu à l’humain')),
-        studioActions=['Aller sur le site du cours ↗', 'Lire les essais et notes →', 'Visiter aikit.pro ↗'],
+        studioActions=['Aller sur le site du cours ↗'],
     ),
     steps=['Préciser le résultat voulu, les limites dans lesquelles agir et ce qui vaut pour terminé.',
            'Tirer de l’environnement actuel et de la mémoire accumulée les faits et l’expérience utiles à l’objectif.',
@@ -264,19 +236,12 @@ UI['fr'] = dict(
     learn=dict(
         status='Premier cours : Graduating from AI Gacha', seasonsAria='Trois saisons',
         cta='Vidéos sur YouTube, |exercices et questions sur le site du cours',
-        actions=['Commencer le cours', 'Suivre sur YouTube', 'Lire le blog'],
-        audience=[['Public', 'Tous les collaborateurs'], ['Public', 'Développeurs'], ['Public', 'Responsables métier et ingénieurs qui transforment l’IA en systèmes pour leur équipe']],
+        actions=['Commencer le cours', 'Suivre sur YouTube'],
         course=dict(name='Graduating from AI Gacha', langs='Langues du cours',
                     body='Arrêtez de jouer à la loterie avec l’IA. En trois saisons, le cours va du fonctionnement des grands modèles de langage au code avec l’IA, jusqu’à transformer vous-même un vrai processus en système. Le site du cours propose des mini-jeux d’entraînement et un assistant IA qui répond uniquement à partir du contenu du cours.'),
     ),
-    blog=dict(
-        status='Les articles paraissent ici d’abord, puis sur d’autres plateformes', queueTitle='Premiers essais', queueNote='Aucun article n’est encore paru. Les trois essais ci-dessous sont prévus et apparaîtront ici dès leur publication.', planned='Prévu',
-        catsTitle='Quatre rubriques', catsNote='Chaque article est signé et daté. Les notes personnelles se terminent par « Cet article reflète l’opinion personnelle de l’auteur. »',
-        cats=[['Essais', 'Essais longs du Studio, en dialogue avec le manifeste.'], ['Notes personnelles', 'Façons de travailler, d’apprendre et de penser à l’ère de l’IA ; expériences et échecs réels en travaillant avec l’IA.'], ['Conférences', 'Articles d’accompagnement et compléments des conférences.'], ['Actualités', 'Annonces, nouvelles conférences et événements.']],
-        cta='Avant le premier essai, commencez par le manifeste', actions=['Lire le manifeste', 'Voir le cours d’IA', 'Suivre sur X'],
-    ),
-    nf=dict(title='Aucune page à cette adresse', lead='Le lien a peut-être changé. Revenez à l’accueil, ou ouvrez le cours et le blog.', actions=['Retour à l’accueil', 'Cours d’IA', 'Blog']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Cours ouvert d’IA — Agentware Studio', blog='Recherche et essais — Agentware Studio', nf='Page introuvable — Agentware Studio'),
+    nf=dict(title='Aucune page à cette adresse', lead='Le lien a peut-être changé. Revenez à l’accueil, ou ouvrez le cours.', actions=['Retour à l’accueil', 'Cours d’IA']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Cours ouvert d’IA — Agentware Studio', nf='Page introuvable — Agentware Studio'),
 )
 
 # ---------------------------------------------------------------- Português (Brasil)
@@ -287,7 +252,7 @@ UI['pt-BR'] = dict(
     ui=dict(
         skip='Pular para o conteúdo', home='Início da Agentware Studio', mainNav='Navegação principal', menuOpen='Abrir menu', menuClose='Fechar menu',
         follow='Siga', language='Idioma',
-        nav=dict(paradigm='Paradigma', architecture='Arquitetura', manifesto='Manifesto', studio='Studio', learn='Curso', blog='Blog'),
+        nav=dict(paradigm='Paradigma', architecture='Arquitetura', manifesto='Manifesto', studio='Studio', learn='Curso'),
         heroCta='Conheça a Agentware', heroCta2='Ler o manifesto', questionsAria='As duas perguntas do software',
         markAria='Marca AGENTWARE: os colchetes são o limite autorizado, o traço ascendente um caminho de execução que pode mudar, e o ponto um resultado que precisa ser verificável. Clique ou pressione Enter para repetir a animação; use as setas para mover o caminho.',
         markAriaLight='Marca AGENTWARE',
@@ -305,7 +270,7 @@ UI['pt-BR'] = dict(
                   inside='Dentro do escopo', touched='Limite atingido', out='Fora do escopo · devolvido',
                   run='Executar uma delegação', rerun='Executar de novo', simulate='Simular fora do limite', hint='Depois da execução, selecione qualquer passo do diagrama para ver a explicação.',
                   logs=dict(intent='Delegação recebida: objetivo, limites e critérios definidos', context='Lendo o ambiente atual e a memória relevante', plan1='Caminho gerado → próximo: consultar dados', act1='Ferramenta: ler o banco de dados', observe1='Retorno: o resultado difere do esperado', adapt='Plano corrigido: mudando para outro caminho', plan2='Replanejado → próximo: chamar a API', act2ok='Ferramenta: API · MCP (dentro do escopo)', observe2ok='Retorno: o estado está como esperado', verifyOk='Conferido com os critérios: aprovado, evidência guardada', deliver='Resultado verificável entregue', act2warn='A ação pedida passa do limite; não executada', observe2warn='Retorno: o objetivo não cabe no escopo', verifyFail='Aceite reprovado: é preciso uma decisão humana', handback='Parado; motivos e o que foi feito explicados; devolvido')),
-        studioActions=['Ir para o site do curso ↗', 'Ler ensaios e notas →', 'Visitar aikit.pro ↗'],
+        studioActions=['Ir para o site do curso ↗'],
     ),
     steps=['Deixar claro qual resultado se quer, dentro de quais limites agir e o que conta como concluído.',
            'Buscar no ambiente atual e na memória acumulada os fatos e a experiência relevantes para o objetivo.',
@@ -319,19 +284,12 @@ UI['pt-BR'] = dict(
     learn=dict(
         status='Primeiro curso: Graduating from AI Gacha', seasonsAria='Três temporadas',
         cta='Vídeos no YouTube, |prática e perguntas no site do curso',
-        actions=['Começar o curso', 'Seguir no YouTube', 'Ler o blog'],
-        audience=[['Para', 'Todos os colaboradores'], ['Para', 'Desenvolvedores'], ['Para', 'Líderes de negócio e engenheiros que transformam IA em sistemas no time']],
+        actions=['Começar o curso', 'Seguir no YouTube'],
         course=dict(name='Graduating from AI Gacha', langs='Idiomas do curso',
                     body='Chega de usar IA como quem tenta a sorte. Em três temporadas, o curso vai de como funcionam os grandes modelos de linguagem até programar com IA e transformar você mesmo um processo real em um sistema. O site do curso tem minijogos de prática e um assistente de IA que responde apenas com base no conteúdo do curso.'),
     ),
-    blog=dict(
-        status='Os artigos saem primeiro aqui e depois em outras plataformas', queueTitle='Primeiros ensaios', queueNote='Ainda não há artigos publicados. Os três ensaios abaixo estão planejados e aparecerão aqui quando forem publicados.', planned='Planejado',
-        catsTitle='Quatro seções', catsNote='Todo artigo é assinado e datado. As notas pessoais terminam com “Este artigo reflete a opinião pessoal do autor.”',
-        cats=[['Ensaios', 'Ensaios longos do Studio, em diálogo com o manifesto.'], ['Notas pessoais', 'Formas de trabalhar, aprender e pensar na era da IA; experiências e fracassos reais trabalhando com IA.'], ['Palestras', 'Artigos de apoio e complementos das palestras.'], ['Novidades', 'Avisos, novas palestras e eventos.']],
-        cta='Antes do primeiro ensaio, comece pelo manifesto', actions=['Ler o manifesto', 'Ver o curso de IA', 'Seguir no X'],
-    ),
-    nf=dict(title='Não há página neste endereço', lead='O link pode ter mudado. Volte ao início ou abra o curso e o blog.', actions=['Voltar ao início', 'Curso de IA', 'Blog']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Curso aberto de IA — Agentware Studio', blog='Pesquisa e ensaios — Agentware Studio', nf='Página não encontrada — Agentware Studio'),
+    nf=dict(title='Não há página neste endereço', lead='O link pode ter mudado. Volte ao início ou abra o curso.', actions=['Voltar ao início', 'Curso de IA']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Curso aberto de IA — Agentware Studio', nf='Página não encontrada — Agentware Studio'),
 )
 
 # ---------------------------------------------------------------- 한국어
@@ -342,7 +300,7 @@ UI['ko'] = dict(
     ui=dict(
         skip='본문으로 건너뛰기', home='Agentware Studio 홈', mainNav='주 메뉴', menuOpen='메뉴 열기', menuClose='메뉴 닫기',
         follow='팔로우', language='언어',
-        nav=dict(paradigm='패러다임', architecture='아키텍처', manifesto='선언문', studio='Studio', learn='강의', blog='칼럼'),
+        nav=dict(paradigm='패러다임', architecture='아키텍처', manifesto='선언문', studio='Studio', learn='강의'),
         heroCta='Agentware 알아보기', heroCta2='선언문 읽기', questionsAria='소프트웨어의 두 가지 질문',
         markAria='AGENTWARE 마크: 대괄호는 권한의 경계, 올라가는 선은 바뀔 수 있는 실행 경로, 끝의 점은 반드시 검증 가능해야 하는 결과를 뜻합니다. 클릭하거나 Enter를 누르면 애니메이션이 다시 재생되고, 방향키로 경로를 움직일 수 있습니다.',
         markAriaLight='AGENTWARE 마크',
@@ -360,7 +318,7 @@ UI['ko'] = dict(
                   inside='권한 범위 내', touched='경계 도달', out='범위 초과 · 인계됨',
                   run='위임 실행하기', rerun='다시 실행하기', simulate='경계 초과 시뮬레이션', hint='실행이 끝나면 도식의 단계를 선택해 설명을 볼 수 있습니다.',
                   logs=dict(intent='위임 수신: 목표·경계·검수 기준이 명확함', context='현재 환경과 관련 메모리를 읽는 중', plan1='실행 경로 생성 → 다음: 데이터 조회', act1='도구 호출: 데이터베이스 읽기', observe1='피드백: 결과가 예상과 다름', adapt='계획 수정: 다른 경로로 전환', plan2='재계획 → 다음: API 호출', act2ok='도구 호출: API · MCP (권한 범위 내)', observe2ok='피드백: 상태가 예상과 일치', verifyOk='검수 기준과 대조: 통과, 근거 보존', deliver='검증 가능한 결과 전달', act2warn='요청된 작업이 권한의 경계를 넘어 실행하지 않음', observe2warn='피드백: 권한 범위 안에서는 목표 달성 불가', verifyFail='검수 불합격: 사람의 결정이 필요함', handback='행동을 멈추고 이유와 완료분을 알린 뒤 사람에게 인계')),
-        studioActions=['강의 사이트로 ↗', '칼럼과 노트 읽기 →', 'aikit.pro 방문 ↗'],
+        studioActions=['강의 사이트로 ↗'],
     ),
     steps=['어떤 결과를 원하는지, 어떤 경계 안에서 움직일지, 무엇을 완료로 볼지 명확히 합니다.',
            '현재 환경과 축적된 메모리에서 목표와 관련된 사실과 경험을 가져옵니다.',
@@ -374,17 +332,10 @@ UI['ko'] = dict(
     learn=dict(
         status='첫 번째 강의: Graduating from AI Gacha', seasonsAria='세 개의 시즌',
         cta='영상은 YouTube에서, |연습과 질문은 강의 사이트에서',
-        actions=['강의 시작하기', 'YouTube 팔로우', '칼럼 읽기'],
-        audience=[['대상', '전 직원'], ['대상', '개발자'], ['대상', '팀에서 AI를 시스템으로 구축하려는 실무 리더와 엔지니어']],
+        actions=['강의 시작하기', 'YouTube 팔로우'],
         course=dict(name='Graduating from AI Gacha', langs='강의 언어',
                     body='AI를 ‘가챠’처럼 운에 맡겨 쓰는 일은 이제 그만. 세 개의 시즌에 걸쳐 대규모 언어 모델의 원리부터 AI와 함께 코딩하기, 그리고 업무 하나를 직접 시스템으로 구축하는 데까지 다룹니다. 강의 사이트에는 연습 미니게임과 강의 내용만을 근거로 답하는 AI 질문 도우미가 있습니다.'),
     ),
-    blog=dict(
-        status='글은 이 사이트에 먼저 공개한 뒤 다른 플랫폼에 게재합니다', queueTitle='첫 연구 글', queueNote='아직 공개된 글이 없습니다. 아래 세 편을 준비 중이며, 공개되면 여기에 올립니다.', planned='준비 중',
-        catsTitle='네 개의 코너', catsNote='모든 글에는 필자와 날짜를 밝힙니다. 개인 노트 끝에는 "이 글은 필자 개인의 견해입니다"라고 적습니다.',
-        cats=[['논고', 'Studio의 장문 논고로, 선언문과 호응합니다.'], ['개인 노트', 'AI 시대의 일하는 방식·배우는 방식·생각의 변화, AI로 일하며 겪은 실제 경험과 실패.'], ['강의 연계', '강의와 짝을 이루는 글과 보충 자료.'], ['소식', '공지, 새 강의, 이벤트.']],
-        cta='첫 글이 나오기 전에는 선언문부터 읽어 보세요', actions=['선언문 읽기', 'AI 강의 보기', 'X 팔로우'],
-    ),
-    nf=dict(title='이 주소에는 페이지가 없습니다', lead='링크가 바뀌었을 수 있습니다. 홈으로 돌아가거나 강의와 칼럼을 열어 보세요.', actions=['홈으로', 'AI 강의', '칼럼']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 체계화 공개 강의 — Agentware Studio', blog='패러다임 연구 및 심층 칼럼 — Agentware Studio', nf='페이지를 찾을 수 없습니다 — Agentware Studio'),
+    nf=dict(title='이 주소에는 페이지가 없습니다', lead='링크가 바뀌었을 수 있습니다. 홈으로 돌아가거나 강의를 열어 보세요.', actions=['홈으로', 'AI 강의']),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 체계화 공개 강의 — Agentware Studio', nf='페이지를 찾을 수 없습니다 — Agentware Studio'),
 )

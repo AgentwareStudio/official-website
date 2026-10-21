@@ -307,25 +307,16 @@
   "sub": "O Agentware Studio é um laboratório independente de pesquisa e criação iniciado em torno do paradigma Agentware. No ponto de virada em que o software avança da “operação de interfaces” para a “delegação de intenções”, dedicamo-nos a impulsionar a adoção e a evolução desse paradigma por meio de pesquisa aprofundada, cursos abertos e experimentos de produto:",
   "items": [
    {
-    "tag": "01 // OPEN CURRICULUM · learn.agentware.studio",
+    "tag": "01 // OPEN CURRICULUM",
     "title": "Curso Aberto e Sistemático de IA",
     "body": "Para passar de “operar software” para “delegar ao software”, é preciso primeiro atualizar a mentalidade e os métodos humanos. Estamos produzindo uma série sistemática de aulas sobre IA, dos princípios fundamentais à construção prática, ajudando qualquer pessoa a dominar as capacidades essenciais da era dos agentes",
     "action": "Ir para o site do curso ↗",
     "href": "https://learn.agentware.studio"
    },
    {
-    "tag": "02 // RESEARCH & ESSAYS · /blog",
-    "title": "Pesquisa de Paradigma e Ensaios",
-    "body": "Registramos e publicamos continuamente artigos aprofundados e notas práticas sobre design de software na era dos agentes, sistemas de memória, contratos de colaboração humano-máquina e a transformação do trabalho, oferecendo uma estrutura intelectual clara para compreender a próxima geração de software.",
-    "action": "Ler ensaios e notas →",
-    "href": "/blog/"
-   },
-   {
-    "tag": "03 // USER TOOLS · aikit.pro",
+    "tag": "02 // USER TOOLS",
     "title": "Experimentos de Ferramentas de IA para Usuários",
-    "body": "Ideias precisam, no fim, ser validadas por produtos. Em aikit.pro projetamos e lançamos continuamente ferramentas e aplicações de IA voltadas ao usuário, explorando como o “software que age com base na intenção” funciona em cenários reais do dia a dia.",
-    "action": "Visitar aikit.pro ↗",
-    "href": "https://aikit.pro"
+    "body": "Ideias precisam, no fim, ser validadas por produtos. Em aikit.pro projetamos e lançamos continuamente ferramentas e aplicações de IA voltadas ao usuário, explorando como o “software que age com base na intenção” funciona em cenários reais do dia a dia."
    }
   ]
  },
@@ -349,67 +340,24 @@
     "no": "Temporada 1",
     "zh": "Fundamentos",
     "en": "Fundamentals",
-    "body": "Sem exageros de marketing — da previsão do próximo token, alucinações e janelas de contexto até RAG, chamada de ferramentas e Agentes — entendendo quando confiar na IA e como aplicá-la no trabalho.",
-    "audience": [
-     "Para",
-     "Todos os colaboradores"
-    ]
+    "body": "Sem exageros de marketing — da previsão do próximo token, alucinações e janelas de contexto até RAG, chamada de ferramentas e Agentes — entendendo quando confiar na IA e como aplicá-la no trabalho."
    },
    {
     "id": "ai-coding",
     "no": "Temporada 2",
     "zh": "Prática",
     "en": "AI Coding",
-    "body": "Quando escrever código fica barato e o discernimento fica valioso, aprenda a escrever especificações de projeto para a IA, desenhar a solução antes de mexer no código e transformar experiência pessoal em habilidades reutilizáveis (Skills).",
-    "audience": [
-     "Para",
-     "Desenvolvedores"
-    ]
+    "body": "Quando escrever código fica barato e o discernimento fica valioso, aprenda a escrever especificações de projeto para a IA, desenhar a solução antes de mexer no código e transformar experiência pessoal em habilidades reutilizáveis (Skills)."
    },
    {
     "id": "building-ai-systems",
     "no": "Temporada 3",
     "zh": "Construção",
     "en": "Building AI Systems",
-    "body": "Voltada para cenários reais — da engenharia de contexto, orquestração de fluxos (n8n / Dify) e desenvolvimento de servidores MCP até colaboração multiagente, governança de segurança e avaliação em produção.",
-    "audience": [
-     "Para",
-     "Líderes de negócio e engenheiros que transformam IA em sistemas no time"
-    ]
+    "body": "Voltada para cenários reais — da engenharia de contexto, orquestração de fluxos (n8n / Dify) e desenvolvimento de servidores MCP até colaboração multiagente, governança de segurança e avaliação em produção."
    }
   ],
   "cta": "Vídeos no YouTube, |prática e perguntas no site do curso"
- },
- "blog": {
-  "title": "Pesquisa de Paradigma e Ensaios",
-  "en": "Research & Essays",
-  "lead": "Registramos e publicamos continuamente artigos aprofundados e notas práticas sobre design de software na era dos agentes, sistemas de memória, contratos de colaboração humano-máquina e a transformação do trabalho, oferecendo uma estrutura intelectual clara para compreender a próxima geração de software.",
-  "status": "Os artigos saem primeiro aqui e depois em outras plataformas",
-  "queueNote": "Ainda não há artigos publicados. Os três ensaios abaixo estão planejados e aparecerão aqui quando forem publicados.",
-  "catsNote": "Todo artigo é assinado e datado. As notas pessoais terminam com “Este artigo reflete a opinião pessoal do autor.”",
-  "cats": [
-   [
-    "Ensaios",
-    "essays",
-    "Ensaios longos do Studio, em diálogo com o manifesto."
-   ],
-   [
-    "Notas pessoais",
-    "notes",
-    "Formas de trabalhar, aprender e pensar na era da IA; experiências e fracassos reais trabalhando com IA."
-   ],
-   [
-    "Palestras",
-    "lectures",
-    "Artigos de apoio e complementos das palestras."
-   ],
-   [
-    "Novidades",
-    "news",
-    "Avisos, novas palestras e eventos."
-   ]
-  ],
-  "cta": "Antes do primeiro ensaio, comece pelo manifesto"
  },
  "ui": {
   "skip": "Pular para o conteúdo",
@@ -424,8 +372,7 @@
    "architecture": "Arquitetura",
    "manifesto": "Manifesto",
    "studio": "Studio",
-   "learn": "Curso",
-   "blog": "Blog"
+   "learn": "Curso"
   },
   "heroCta": "Conheça a Agentware",
   "heroCta2": "Ler o manifesto",
@@ -508,27 +455,15 @@
    "seasonsAria": "Três temporadas",
    "actions": [
     "Começar o curso",
-    "Seguir no YouTube",
-    "Ler o blog"
-   ]
-  },
-  "blog": {
-   "queueTitle": "Primeiros ensaios",
-   "planned": "Planejado",
-   "catsTitle": "Quatro seções",
-   "actions": [
-    "Ler o manifesto",
-    "Ver o curso de IA",
-    "Seguir no X"
+    "Seguir no YouTube"
    ]
   },
   "nf": {
    "title": "Não há página neste endereço",
-   "lead": "O link pode ter mudado. Volte ao início ou abra o curso e o blog.",
+   "lead": "O link pode ter mudado. Volte ao início ou abra o curso.",
    "actions": [
     "Voltar ao início",
-    "Curso de IA",
-    "Blog"
+    "Curso de IA"
    ]
   }
  }

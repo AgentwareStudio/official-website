@@ -150,8 +150,9 @@ def build(loc: str):
         items=[[m['n'], sentences(m['en']), mlocal(nop(m['local']), loc), m['body']] for m in d['manifesto']],
     )
 
-    items = d['studioItems']  # research, curriculum, aikit
-    research, curr, aikit = items[0], items[1], items[2]
+    # the copy doc lists research, curriculum, aikit; research (the blog) is a separate project and not shown here
+    items = d['studioItems']
+    curr, aikit = items[1], items[2]
     if en:
         stitle = '\n'.join(sentences(d['studioTitle']))
     else:
@@ -164,9 +165,9 @@ def build(loc: str):
         title=stitle,
         sub=d['studioIntro'],
         items=[
-            dict(tag='01 // OPEN CURRICULUM · learn.agentware.studio', title=curr['title'], body=curr['body'].rstrip('：: '), action=U['ui']['studioActions'][0], href=LEARN),
-            dict(tag='02 // RESEARCH & ESSAYS · /blog', title=research['title'], body=research['body'], action=U['ui']['studioActions'][1], href='/blog/'),
-            dict(tag='03 // USER TOOLS · aikit.pro', title=aikit['title'], body=aikit['body'], action=U['ui']['studioActions'][2], href='https://aikit.pro'),
+            dict(tag='01 // OPEN CURRICULUM', title=curr['title'], body=curr['body'].rstrip('：: '), action=U['ui']['studioActions'][0], href=LEARN),
+            # AIKit is not deployed yet: described, but not linked
+            dict(tag='02 // USER TOOLS', title=aikit['title'], body=aikit['body']),
         ],
     )
 
@@ -177,23 +178,18 @@ def build(loc: str):
         no, local, sen = season(label)
         if en:
             local, sen = sen, ''
-        seasons.append(dict(id=SEASON_IDS[i], no=no, zh=local, en=sen, body=body, audience=U['learn']['audience'][i]))
+        seasons.append(dict(id=SEASON_IDS[i], no=no, zh=local, en=sen, body=body))
     course = U['learn']['course']
     learn = dict(title=curr['title'], en='Open Curriculum', motto=[m_en, m_local], lead=curr['body'].rstrip('：: '),
                  status=U['learn']['status'], course=course, seasons=seasons, cta=U['learn']['cta'])
 
-    slugs = ['essays', 'notes', 'lectures', 'news']
-    blog = dict(title=research['title'], en='Research & Essays', lead=research['body'], status=U['blog']['status'], queueNote=U['blog']['queueNote'],
-                catsNote=U['blog']['catsNote'], cats=[[c[0], slugs[i], c[1]] for i, c in enumerate(U['blog']['cats'])], cta=U['blog']['cta'])
-
     ui = dict(U['ui'])
     ui['learn'] = {k: U['learn'][k] for k in ('seasonsAria', 'actions')}
-    ui['blog'] = {k: U['blog'][k] for k in ('queueTitle', 'planned', 'catsTitle', 'actions')}
     ui['nf'] = U['nf']
     ui.pop('studioActions', None)
 
     return dict(hero=hero, shift=shift, notAgentware=notA, architecture=architecture, loop=loop, pillars=pillars,
-                manifesto=manifesto, studio=studio, learn=learn, blog=blog, ui=ui), U['meta']
+                manifesto=manifesto, studio=studio, learn=learn, ui=ui), U['meta']
 
 
 def frspace(v):

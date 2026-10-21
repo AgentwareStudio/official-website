@@ -1,4 +1,4 @@
-import { LINKS, blog, learn, ui } from '../content';
+import { LINKS, learn, ui } from '../content';
 import { T } from '../lib';
 import { href, locale } from '../i18n';
 
@@ -72,7 +72,6 @@ export function LearnPage() {
                 <p className="eyebrow">{s.no} // {(s.en || s.zh).toUpperCase()}</p>
                 <h3>{s.zh}{s.en && <span lang="en"> · {s.en}</span>}</h3>
                 <p className="season__body">{s.body}</p>
-                <p className="season__audience"><span>{s.audience[0]}</span>{s.audience[1]}</p>
               </div>
             ))}
           </div>
@@ -84,60 +83,6 @@ export function LearnPage() {
           <ul className="join__actions">
             <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} en="Start the Course" />
             <JoinLink to={LINKS.youtube} label={ui.learn.actions[1]} en="YouTube" />
-            <JoinLink to="/blog/" label={ui.learn.actions[2]} en="Read the Blog" />
-          </ul>
-        </div>
-      </section>
-    </>
-  );
-}
-
-export function BlogPage() {
-  return (
-    <>
-      <PageHero crumb="RESEARCH & ESSAYS" title={blog.title} en={blog.en} lead={blog.lead} status={blog.status} />
-      <section className="section section--tight">
-        <div className="wrap split">
-          <div>
-            <p className="eyebrow">01 // FIRST ESSAYS</p>
-            <h2 className="h-sub">{ui.blog.queueTitle}</h2>
-            <p className="split__note">{blog.queueNote}</p>
-          </div>
-          <ol className="queue">
-            {blog.queue.map((q, i) => (
-              <li className="queue__item" key={q}>
-                <span className="queue__no mono">0{i + 1}</span>
-                <span className="queue__title" lang="en">{q}</span>
-                <span className="queue__state mono">{ui.blog.planned}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-      <section className="section section--tight">
-        <div className="wrap split">
-          <div>
-            <p className="eyebrow">02 // CATEGORIES</p>
-            <h2 className="h-sub">{ui.blog.catsTitle}</h2>
-            <p className="split__note">{blog.catsNote}</p>
-          </div>
-          <dl className="cats">
-            {blog.cats.map(([zh, code, body]) => (
-              <div key={code}>
-                <dt>{zh}<code>{code}</code></dt>
-                <dd>{body}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-      <section className="page-cta">
-        <div className="wrap page-cta__inner">
-          <h2 className="h-section"><T>{blog.cta}</T></h2>
-          <ul className="join__actions">
-            <JoinLink primary to="/#manifesto" label={ui.blog.actions[0]} en="The Manifesto" />
-            <JoinLink to="/learn/" label={ui.blog.actions[1]} en="Start Learning" />
-            <JoinLink to={LINKS.x} label={ui.blog.actions[2]} en="@AgentwareStudio" />
           </ul>
         </div>
       </section>
@@ -158,7 +103,6 @@ export function NotFoundPage() {
             <ul className="join__actions">
               <JoinLink primary to="/" label={ui.nf.actions[0]} en="Home" />
               <JoinLink to="/learn/" label={ui.nf.actions[1]} en="Learn" />
-              <JoinLink to="/blog/" label={ui.nf.actions[2]} en="Blog" />
             </ul>
           </div>
         </div>

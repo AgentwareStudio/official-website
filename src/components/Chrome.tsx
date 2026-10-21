@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LINKS, footer, ui } from '../content';
 import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale } from '../i18n';
 
-type Page = 'home' | 'learn' | 'blog' | 'notfound';
+type Page = 'home' | 'learn' | 'notfound';
 
 const NAV = [
   { href: '/#shift', key: 'paradigm', en: 'Paradigm' },
@@ -12,11 +12,10 @@ const NAV = [
 ] as const;
 const PAGES = [
   { href: '/learn/', key: 'learn', en: 'Learn' },
-  { href: '/blog/', key: 'blog', en: 'Blog' },
 ] as const;
 const showEn = locale !== 'en';
 const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
-const pagePath = (page: Page) => (page === 'learn' ? '/learn/' : page === 'blog' ? '/blog/' : '/');
+const pagePath = (page: Page) => (page === 'learn' ? '/learn/' : '/');
 
 /** Language switch: links to the same page in each locale. */
 function LangMenu({ page }: { page: Page }) {
@@ -102,7 +101,6 @@ export function Header({ page }: { page: Page }) {
             {PAGES.map((p) => (
               <li key={p.href}><a href={href(p.href)} aria-current={page === p.key ? 'page' : undefined}>{ui.nav[p.key]}</a></li>
             ))}
-            <li><a className="site-nav__ext" href={LINKS.aikit} target="_blank" rel="noopener">AIKit<span aria-hidden="true"> ↗</span></a></li>
           </ul>
         </nav>
         <LangMenu page={page} />
@@ -136,7 +134,6 @@ export function Header({ page }: { page: Page }) {
             {PAGES.map((p) => (
               <li key={p.href}><a href={href(p.href)} onClick={close} aria-current={page === p.key ? 'page' : undefined}>{ui.nav[p.key]}{showEn && <span lang="en">{p.en}</span>}</a></li>
             ))}
-            <li><a href={LINKS.aikit} target="_blank" rel="noopener" onClick={close}>AIKit<span lang="en">aikit.pro ↗</span></a></li>
           </ul>
           <ul className="menu-sheet__langs" aria-label={ui.language}>
             {LOCALES.map((l) => (
@@ -192,7 +189,6 @@ export function Footer() {
           <span lang="en">Agentware Studio · {footer.entity}</span>
         </div>
         <nav className="site-footer__links" aria-label={ui.follow}>
-          <a href={LINKS.aikit} target="_blank" rel="noopener">aikit.pro ↗</a>
           <a href={LINKS.github} target="_blank" rel="noopener">GitHub</a>
           <a href={LINKS.x} target="_blank" rel="noopener">X</a>
           <a href={LINKS.youtube} target="_blank" rel="noopener">YouTube</a>

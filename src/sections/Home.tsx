@@ -279,16 +279,18 @@ function Studio() {
           </Head>
           <div className="initiatives">
             {studio.items.map((it) => {
-              const ext = it.href.startsWith('http');
-              const to = ext ? it.href : href(it.href);
+              // an initiative without a live site yet (e.g. AIKit) is shown without a link
+              const ext = !!it.href?.startsWith('http');
               return (
                 <article className="initiative reveal" key={it.tag}>
                   <p className="initiative__tag mono">{it.tag}</p>
                   <h3 className="initiative__title">{it.title}</h3>
                   <p className="initiative__body">{it.body}</p>
-                  <a className="text-action mono" href={to} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>
-                    {it.action}
-                  </a>
+                  {it.href && it.action && (
+                    <a className="text-action mono" href={ext ? it.href : href(it.href)} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>
+                      {it.action}
+                    </a>
+                  )}
                 </article>
               );
             })}

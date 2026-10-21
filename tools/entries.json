@@ -1,27 +1,19 @@
 [
  "index.html",
  "learn\\index.html",
- "blog\\index.html",
  "404.html",
  "zh\\index.html",
  "zh\\learn\\index.html",
- "zh\\blog\\index.html",
  "ja\\index.html",
  "ja\\learn\\index.html",
- "ja\\blog\\index.html",
  "ko\\index.html",
  "ko\\learn\\index.html",
- "ko\\blog\\index.html",
  "es\\index.html",
  "es\\learn\\index.html",
- "es\\blog\\index.html",
  "fr\\index.html",
  "fr\\learn\\index.html",
- "fr\\blog\\index.html",
  "de\\index.html",
  "de\\learn\\index.html",
- "de\\blog\\index.html",
  "pt-br\\index.html",
- "pt-br\\learn\\index.html",
- "pt-br\\blog\\index.html"
+ "pt-br\\learn\\index.html"
 ]

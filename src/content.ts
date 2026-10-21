@@ -2,7 +2,6 @@
 // Headings use "|" between phrases (line may wrap there) and "\n" for a forced line break.
 
 export const LINKS = {
-  aikit: 'https://aikit.pro',
   github: 'https://github.com/AgentwareStudio',
   x: 'https://x.com/AgentwareStudio',
   youtube: 'https://www.youtube.com/@agentwarestudio',
@@ -203,27 +202,18 @@ export const studio = {
   sub: 'Agentware Studio 是围绕 Agentware 范式发起的独立研究与创作实验室。在软件从“操作界面”迈向“委托意图”的转折点上，我们致力于通过深度研究、开放课程与产品实验，推动这一范式的普及与演进：',
   items: [
     {
-      tag: '01 // OPEN CURRICULUM · learn.agentware.studio',
+      tag: '01 // OPEN CURRICULUM',
       title: 'AI 体系化公开课',
       body: '要从“操作软件”转向“委托软件”，首先需要升级人的认知与方法。我们正在制作系统性的 AI 教育讲座，从底层原理到实战搭建，帮助每一个人掌握 Agent 时代的核心能力。',
       action: '前往课程网站 ↗',
       href: LINKS.learn,
     },
     {
-      tag: '02 // RESEARCH & ESSAYS · /blog',
-      title: '范式研究与深度专栏',
-      body: '我们持续记录并发表关于 Agent 时代软件设计、记忆系统、人机协作契约以及工作方式变革的深度文章与实践笔记，为理解下一代软件提供清晰的思想框架。',
-      action: '阅读专栏与笔记 →',
-      href: '/blog/',
-    },
-    {
-      tag: '03 // USER TOOLS · aikit.pro',
+      tag: '02 // USER TOOLS',
       title: '面向用户的 AI 工具实验',
       body: '理念最终要由产品来验证。我们在 aikit.pro 持续设计与发布面向用户的 AI 工具与应用，探索“按意图行动的软件”在真实日常场景中的交互形态。',
-      action: '访问 aikit.pro ↗',
-      href: 'https://aikit.pro',
     },
-  ],
+  ] as { tag: string; title: string; body: string; action?: string; href?: string }[],
   seasons: [
     { no: '第一季', zh: '原理篇', en: 'Fundamentals', body: '剥离炒作，从接龙原理、Token、幻觉、上下文窗口讲到 RAG、工具调用与 Agent，弄懂“什么时候能信 AI，怎么把 AI 用进工作”。' },
     { no: '第二季', zh: '实战篇', en: 'AI Coding', body: '当代码变便宜、判断变贵，学习如何为 AI 编写项目说明书、如何先出方案再动代码、如何把个人经验沉淀为可复用的技能（Skills）。' },
@@ -237,8 +227,6 @@ export const join = {
   zh: '与我们一起，从操作界面走向委托意图。',
   actions: [
     { zh: '观看 AI 公开课', en: 'Start Learning', href: '/learn/' },
-    { zh: '阅读专栏与笔记', en: 'Read the Blog', href: '/blog/' },
-    { zh: '探索 AIKit 工具集', en: 'aikit.pro', href: 'https://aikit.pro' },
   ],
 };
 
@@ -262,39 +250,21 @@ export const learn = {
     langs: '课程语言',
   },
   seasons: [
-    { id: 'ai-fundamentals', no: '第一季', zh: '原理篇', en: 'Fundamentals', audience: ['对象', '全体员工'],
+    { id: 'ai-fundamentals', no: '第一季', zh: '原理篇', en: 'Fundamentals',
       body: '剥离炒作，从接龙原理、Token、幻觉、上下文窗口讲到 RAG、工具调用与 Agent，弄懂“什么时候能信 AI，怎么把 AI 用进工作”。' },
-    { id: 'ai-coding', no: '第二季', zh: '实战篇', en: 'AI Coding', audience: ['对象', '开发人员'],
+    { id: 'ai-coding', no: '第二季', zh: '实战篇', en: 'AI Coding',
       body: '当代码变便宜、判断变贵，学习如何为 AI 编写项目说明书、如何先出方案再动代码、如何把个人经验沉淀为可复用的技能（Skills）。' },
-    { id: 'building-ai-systems', no: '第三季', zh: '搭建篇', en: 'Building AI Systems', audience: ['对象', '要在团队里把 AI 搭成系统的业务骨干和工程师'],
+    { id: 'building-ai-systems', no: '第三季', zh: '搭建篇', en: 'Building AI Systems',
       body: '面向真实场景，从上下文工程、工作流编排（n8n / Dify）、MCP 服务开发，到多智能体协作、安全治理与评测上线，亲手把一项业务搭成系统。' },
-  ] as { id: string; no: string; zh: string; en: string; audience: [string, string]; body: string }[],
+  ] as { id: string; no: string; zh: string; en: string; body: string }[],
   cta: '视频在 YouTube 发布，|练习与问答在课程网站',
-};
-
-// /blog — from 02_讲座与博客内容规划.md
-export const blog = {
-  title: '范式研究与深度专栏',
-  en: 'Research & Essays',
-  lead: '我们持续记录并发表关于 Agent 时代软件设计、记忆系统、人机协作契约以及工作方式变革的深度文章与实践笔记，为理解下一代软件提供清晰的思想框架。',
-  status: '文章首发在本站，再转载到其他平台',
-  queueNote: '还没有发表的文章。下面三篇正在计划中，发表后会出现在这里。',
-  queue: ['From Interface to Intent', 'The Delegation as the Unit of Software', 'Autonomy Requires Governance'],
-  catsNote: '每篇文章署名并注明日期。个人笔记文末会注明“本文为作者个人观点”。',
-  cats: [
-    ['观点长文', 'essays', 'Studio 的观点长文，与宣言呼应。'],
-    ['个人笔记', 'notes', 'AI 时代的工作方式、学习方法与思考转变，用 AI 做事的真实经验与失败。'],
-    ['讲座配套', 'lectures', '讲座的配套文章与课后补充。'],
-    ['公告', 'news', '公告、讲座上新与活动。'],
-  ],
-  cta: '在第一篇文章发表前，|可以先读宣言',
 };
 
 // Interface strings (zh-CN). Other locales overwrite these from src/i18n/locales/<locale>.json.
 export const ui = {
   skip: '跳到正文', home: 'Agentware Studio 首页', mainNav: '主导航', menuOpen: '打开菜单', menuClose: '关闭菜单',
   follow: '关注', language: '语言',
-  nav: { paradigm: '范式', architecture: '架构', manifesto: '宣言', studio: 'Studio', learn: '公开课', blog: '专栏' },
+  nav: { paradigm: '范式', architecture: '架构', manifesto: '宣言', studio: 'Studio', learn: '公开课' },
   heroCta: '认识 Agentware', heroCta2: '阅读宣言', questionsAria: '软件的两个问题',
   markAria: 'AGENTWARE 标志：方括号代表授权边界，上升的路径代表可以调整的执行路径，终点的圆点代表必须可验证的结果。点击或按回车重新播放标志动画，上下方向键改变路径。',
   markAriaLight: 'AGENTWARE 标志',
@@ -325,7 +295,6 @@ export const ui = {
       verifyFail: '验收未通过：需要人的决定', handback: '停止行动，说明原因与已完成部分，交还人类',
     },
   },
-  learn: { seasonsAria: '三季课程', actions: ['进入课程', '在 YouTube 关注', '阅读专栏与笔记'] },
-  blog: { queueTitle: '首批研究文章', planned: '计划中', catsTitle: '四个栏目', actions: ['阅读宣言', '观看 AI 公开课', '在 X 关注'] },
-  nf: { title: '这个地址没有页面', lead: '链接可能已经改变。可以回到首页，或直接打开公开课与专栏。', actions: ['回到首页', 'AI 公开课', '专栏与笔记'] },
+  learn: { seasonsAria: '三季课程', actions: ['进入课程', '在 YouTube 关注'] },
+  nf: { title: '这个地址没有页面', lead: '链接可能已经改变。可以回到首页，或直接打开公开课。', actions: ['回到首页', 'AI 公开课'] },
 };

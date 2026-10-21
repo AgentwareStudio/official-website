@@ -8,14 +8,13 @@ import json, pathlib, html
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://agentware.studio'  # canonical origin used for hreflang alternates
 LOCALES = [('en', ''), ('zh-CN', 'zh'), ('ja', 'ja'), ('ko', 'ko'), ('es', 'es'), ('fr', 'fr'), ('de', 'de'), ('pt-BR', 'pt-br')]
-PAGES = [('home', ''), ('learn', 'learn/'), ('blog', 'blog/')]
+PAGES = [('home', ''), ('learn', 'learn/')]
 FONT = {'zh-CN': 'aw-sans-sc', 'ja': 'aw-sans-jp', 'ko': 'aw-sans-kr'}
 
 ZH = {
     'home': ('Agentware Studio — From Interface to Intent · 从操作界面，到委托意图',
              'Agentware 是为智能体时代而生的软件范式：你说明目标、划定边界、定义完成标准，系统在授权范围内组织行动，并交付可验证的结果。'),
     'learn': ('AI 体系化公开课 — Agentware Studio', 'We teach what we build. Agentware Studio 的 AI 体系化公开课。首门课程《AI 抽卡毕业课》分三季：原理篇、实战篇、搭建篇。'),
-    'blog': ('范式研究与深度专栏 — Agentware Studio', 'Agentware Studio 关于 Agent 时代软件设计、记忆系统、人机协作契约与工作方式变革的研究文章与实践笔记。'),
     'notfound': ('页面不存在 — Agentware Studio', '这个地址没有页面。'),
 }
 
@@ -75,7 +74,7 @@ def main():
             else:
                 m = meta[code]
                 title = m['nf' if page == 'notfound' else page]
-                desc = short({'home': data['hero']['intro'], 'learn': data['learn']['lead'], 'blog': data['blog']['lead'], 'notfound': data['ui']['nf']['title']}[page])
+                desc = short({'home': data['hero']['intro'], 'learn': data['learn']['lead'], 'notfound': data['ui']['nf']['title']}[page])
             if sub is None:
                 alts, out = '    <meta name="robots" content="noindex" />\n', ROOT / '404.html'
             else:

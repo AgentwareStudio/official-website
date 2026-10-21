@@ -22,7 +22,9 @@ npm run dev      # http://127.0.0.1:4810
 npm run build    # 输出到 dist/
 ```
 
-本站是多页面构建：`index.html`、`learn/index.html`、`blog/index.html`、`404.html` 各自对应一个入口。所以任何静态服务器都能直接打开 `/learn/` 和 `/blog/`，不需要 SPA 回退。
+本站是多页面构建：`index.html`、`learn/index.html`、`404.html` 各自对应一个入口。所以任何静态服务器都能直接打开 `/learn/`，不需要 SPA 回退。
+
+专栏（博客）和 AIKit 是单独的项目：本站暂不放专栏页，也不链接 aikit.pro；首页 Studio 部分对 AIKit 只做介绍。课程在 learn.agentware.studio，`/learn` 只介绍课程并链过去，不放分集目录。
 
 ## 目录
 
@@ -36,7 +38,7 @@ npm run build    # 输出到 dist/
 | `src/components/ExecutionLoop.tsx` | 运行时闭环控制台，可以运行一次委托或模拟超出边界 |
 | `src/components/Mark.tsx` | 标志动效：开场 Reveal、指针 Pivot、轻触 Working 位置 |
 | `src/components/Chrome.tsx` | 导航、移动端菜单、页脚 |
-| `src/sections/Pages.tsx` | `/learn`、`/blog`、404 |
+| `src/sections/Pages.tsx` | `/learn`、404 |
 | `src/styles.css` | 全部样式 |
 | `public/fonts/` | Inter、JetBrains Mono、Instrument Serif 斜体（仅宣言标题）的拉丁子集；中文是按站内用字子集化的 Noto Sans SC（均为 OFL） |
 | `public/brand/` | 直接复制的 VIS 正式文件 |
@@ -55,11 +57,11 @@ npm run build
 
 ## Languages (i18n)
 
-Eight locales: English at `/`, and `/zh/` (简体中文), `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/` (each with `learn/` and `blog/`).
+Eight locales: English at `/`, and `/zh/` (简体中文), `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/` (each with `learn/`).
 The header has a language menu (desktop) and a language row in the mobile menu; each link opens the same page in that language.
 
 - Copy source: `05_官网多语言文案定稿_Website_Copy_i18n.md` → `tools/parse_i18n.py` → `src/i18n/doc/<locale>.json`.
-- Interface strings, the demo-animation captions, the execution-loop texts and the /learn, /blog scaffolding are not in that
+- Interface strings, the demo-animation captions, the execution-loop texts and the /learn scaffolding are not in that
   document; they live in `tools/i18n_ui.py` (translated for the site — review before publishing).
 - `tools/build_locales.py` merges both into `src/i18n/locales/<locale>.json`, shaped like the objects in `src/content.ts`
   (zh-CN stays in `content.ts`). At boot `src/i18n.ts` reads `<body data-locale>`, loads that JSON and fills the objects.

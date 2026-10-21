@@ -307,25 +307,16 @@
   "sub": "Agentware Studio is an independent research and creation studio dedicated to the Agentware paradigm. At the inflection point where software shifts from \"operating interfaces\" to \"delegating intent,\" we advance the adoption and evolution of this paradigm through deep research, open curriculum, and product experiments:",
   "items": [
    {
-    "tag": "01 // OPEN CURRICULUM · learn.agentware.studio",
+    "tag": "01 // OPEN CURRICULUM",
     "title": "Open AI Engineering Curriculum",
     "body": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
     "action": "Go to the course site ↗",
     "href": "https://learn.agentware.studio"
    },
    {
-    "tag": "02 // RESEARCH & ESSAYS · /blog",
-    "title": "Paradigm Research & Essays",
-    "body": "We continuously document and publish in-depth essays and field notes on software design in the agentic era, memory architectures, human-agent collaboration contracts, and the future of work—offering a clear intellectual framework for understanding next-generation software.",
-    "action": "Read essays & notes →",
-    "href": "/blog/"
-   },
-   {
-    "tag": "03 // USER TOOLS · aikit.pro",
+    "tag": "02 // USER TOOLS",
     "title": "User-Facing AI Tool Experiments",
-    "body": "Ideas must ultimately be validated by products. At aikit.pro, we continuously design and ship user-facing AI tools and applications, exploring how \"software that acts on intent\" feels in everyday workflows.",
-    "action": "Visit aikit.pro ↗",
-    "href": "https://aikit.pro"
+    "body": "Ideas must ultimately be validated by products. At aikit.pro, we continuously design and ship user-facing AI tools and applications, exploring how \"software that acts on intent\" feels in everyday workflows."
    }
   ]
  },
@@ -349,67 +340,24 @@
     "no": "Season 1",
     "zh": "Fundamentals",
     "en": "",
-    "body": "Stripping away the hype—from next-token prediction, tokens, hallucinations, and context windows to RAG, tool calling, and Agents—understanding when to trust AI and how to put it to work.",
-    "audience": [
-     "Audience",
-     "Everyone at work"
-    ]
+    "body": "Stripping away the hype—from next-token prediction, tokens, hallucinations, and context windows to RAG, tool calling, and Agents—understanding when to trust AI and how to put it to work."
    },
    {
     "id": "ai-coding",
     "no": "Season 2",
     "zh": "AI Coding",
     "en": "",
-    "body": "When code becomes cheap and judgment becomes scarce, learn how to write specs for AI, design architecture before touching code, and distill personal expertise into reusable Skills.",
-    "audience": [
-     "Audience",
-     "Developers"
-    ]
+    "body": "When code becomes cheap and judgment becomes scarce, learn how to write specs for AI, design architecture before touching code, and distill personal expertise into reusable Skills."
    },
    {
     "id": "building-ai-systems",
     "no": "Season 3",
     "zh": "Building AI Systems",
     "en": "",
-    "body": "Grounded in real-world scenarios—covering context engineering, workflow orchestration (n8n / Dify), MCP server development, multi-agent collaboration, safety guardrails, and evaluation pipelines to turn real workflows into autonomous systems.",
-    "audience": [
-     "Audience",
-     "Team leads and engineers turning AI into working systems"
-    ]
+    "body": "Grounded in real-world scenarios—covering context engineering, workflow orchestration (n8n / Dify), MCP server development, multi-agent collaboration, safety guardrails, and evaluation pipelines to turn real workflows into autonomous systems."
    }
   ],
   "cta": "Videos on YouTube, |practice and Q&A on the course site"
- },
- "blog": {
-  "title": "Paradigm Research & Essays",
-  "en": "Research & Essays",
-  "lead": "We continuously document and publish in-depth essays and field notes on software design in the agentic era, memory architectures, human-agent collaboration contracts, and the future of work—offering a clear intellectual framework for understanding next-generation software.",
-  "status": "Essays are published here first, then syndicated elsewhere",
-  "queueNote": "Nothing has been published yet. The three essays below are planned and will appear here once published.",
-  "catsNote": "Every article is signed and dated. Personal notes end with “This article reflects the author’s personal views.”",
-  "cats": [
-   [
-    "Essays",
-    "essays",
-    "Long-form Studio essays, in dialogue with the manifesto."
-   ],
-   [
-    "Notes",
-    "notes",
-    "Ways of working, learning and thinking in the AI era — real experience and failures from doing things with AI."
-   ],
-   [
-    "Lectures",
-    "lectures",
-    "Companion articles and follow-ups for the lectures."
-   ],
-   [
-    "News",
-    "news",
-    "Announcements, new lectures and events."
-   ]
-  ],
-  "cta": "Before the first essay is out, start with the manifesto"
  },
  "ui": {
   "skip": "Skip to content",
@@ -424,8 +372,7 @@
    "architecture": "Architecture",
    "manifesto": "Manifesto",
    "studio": "Studio",
-   "learn": "Learn",
-   "blog": "Blog"
+   "learn": "Learn"
   },
   "heroCta": "Discover Agentware",
   "heroCta2": "Read the Manifesto",
@@ -508,27 +455,15 @@
    "seasonsAria": "Three seasons",
    "actions": [
     "Start the course",
-    "Follow on YouTube",
-    "Read the Blog"
-   ]
-  },
-  "blog": {
-   "queueTitle": "First essays",
-   "planned": "Planned",
-   "catsTitle": "Four categories",
-   "actions": [
-    "Read the Manifesto",
-    "Start Learning",
-    "Follow on X"
+    "Follow on YouTube"
    ]
   },
   "nf": {
    "title": "This address has no page",
-   "lead": "The link may have changed. Go back home, or open the curriculum or the blog.",
+   "lead": "The link may have changed. Go back home, or open the curriculum.",
    "actions": [
     "Back to home",
-    "Open Curriculum",
-    "Blog"
+    "Open Curriculum"
    ]
   }
  }

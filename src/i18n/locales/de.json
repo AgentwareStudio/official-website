@@ -307,25 +307,16 @@
   "sub": "Agentware Studio ist ein unabhängiges Forschungs- und Entwicklungslabor rund um das Agentware-Paradigma. An dem Wendepunkt, an dem sich Software von der „Bedienung von Oberflächen“ zur „Delegation von Absichten“ wandelt, treiben wir die Verbreitung und Weiterentwicklung dieses Paradigmas durch fundierte Forschung, offene Kurse und Produktexperimente voran:",
   "items": [
    {
-    "tag": "01 // OPEN CURRICULUM · learn.agentware.studio",
+    "tag": "01 // OPEN CURRICULUM",
     "title": "Systematischer Open-Access-KI-Kurs",
     "body": "Der Wechsel vom „Software bedienen“ zum „an Software delegieren“ beginnt mit einem Update des menschlichen Verständnisses und der Methodik. Wir entwickeln eine systematische KI-Vortragsreihe – von den Grundprinzipien bis zum praktischen Systemaufbau –, damit jeder die Kernkompetenzen des Agenten-Zeitalters meistern kann",
     "action": "Zur Kursseite ↗",
     "href": "https://learn.agentware.studio"
    },
    {
-    "tag": "02 // RESEARCH & ESSAYS · /blog",
-    "title": "Paradigmenforschung & Fachkolumnen",
-    "body": "Wir dokumentieren und veröffentlichen kontinuierlich tiefgehende Artikel und Praxisnotizen zu Softwaredesign im Agenten-Zeitalter, Gedächtnissystemen, Mensch-Maschine-Kooperationsverträgen und dem Wandel der Arbeitswelt – als klares gedankliches Fundament für die Software der nächsten Generation.",
-    "action": "Essays und Notizen lesen →",
-    "href": "/blog/"
-   },
-   {
-    "tag": "03 // USER TOOLS · aikit.pro",
+    "tag": "02 // USER TOOLS",
     "title": "Nutzerorientierte KI-Werkzeug-Experimente",
-    "body": "Ideen müssen sich letztlich in Produkten beweisen. Auf aikit.pro entwerfen und veröffentlichen wir laufend nutzerorientierte KI-Tools und Anwendungen, um zu erforschen, wie sich „Software, die nach Absicht handelt“ im realen Alltag anfühlt.",
-    "action": "aikit.pro besuchen ↗",
-    "href": "https://aikit.pro"
+    "body": "Ideen müssen sich letztlich in Produkten beweisen. Auf aikit.pro entwerfen und veröffentlichen wir laufend nutzerorientierte KI-Tools und Anwendungen, um zu erforschen, wie sich „Software, die nach Absicht handelt“ im realen Alltag anfühlt."
    }
   ]
  },
@@ -349,67 +340,24 @@
     "no": "Staffel 1",
     "zh": "Grundlagen",
     "en": "Fundamentals",
-    "body": "Jenseits des Hypes – von Next-Token-Prediction, Tokens, Halluzinationen und Kontextfenstern bis hin zu RAG, Tool-Aufrufen und Agenten. Verstehen, wann man KI vertrauen kann und wie man sie produktiv einsetzt.",
-    "audience": [
-     "Zielgruppe",
-     "Alle Mitarbeitenden"
-    ]
+    "body": "Jenseits des Hypes – von Next-Token-Prediction, Tokens, Halluzinationen und Kontextfenstern bis hin zu RAG, Tool-Aufrufen und Agenten. Verstehen, wann man KI vertrauen kann und wie man sie produktiv einsetzt."
    },
    {
     "id": "ai-coding",
     "no": "Staffel 2",
     "zh": "Praxis",
     "en": "AI Coding",
-    "body": "Wenn Code günstig und Urteilskraft kostbar wird: Lernen Sie, wie man Spezifikationen für KI verfasst, erst die Architektur entwirft, bevor Code geschrieben wird, und persönliche Erfahrung in wiederverwendbare Fähigkeiten (Skills) gießt.",
-    "audience": [
-     "Zielgruppe",
-     "Entwicklerinnen und Entwickler"
-    ]
+    "body": "Wenn Code günstig und Urteilskraft kostbar wird: Lernen Sie, wie man Spezifikationen für KI verfasst, erst die Architektur entwirft, bevor Code geschrieben wird, und persönliche Erfahrung in wiederverwendbare Fähigkeiten (Skills) gießt."
    },
    {
     "id": "building-ai-systems",
     "no": "Staffel 3",
     "zh": "Systemaufbau",
     "en": "Building AI Systems",
-    "body": "Für reale Anwendungsszenarien – von Context Engineering, Workflow-Orchestrierung (n8n / Dify) und MCP-Server-Entwicklung bis zu Multi-Agenten-Kollaboration, Sicherheits-Governance und Evaluierung im Produktivbetrieb.",
-    "audience": [
-     "Zielgruppe",
-     "Fachverantwortliche und Engineers, die KI im Team zu Systemen ausbauen"
-    ]
+    "body": "Für reale Anwendungsszenarien – von Context Engineering, Workflow-Orchestrierung (n8n / Dify) und MCP-Server-Entwicklung bis zu Multi-Agenten-Kollaboration, Sicherheits-Governance und Evaluierung im Produktivbetrieb."
    }
   ],
   "cta": "Videos auf YouTube, |Übungen und Fragen auf der Kursseite"
- },
- "blog": {
-  "title": "Paradigmenforschung & Fachkolumnen",
-  "en": "Research & Essays",
-  "lead": "Wir dokumentieren und veröffentlichen kontinuierlich tiefgehende Artikel und Praxisnotizen zu Softwaredesign im Agenten-Zeitalter, Gedächtnissystemen, Mensch-Maschine-Kooperationsverträgen und dem Wandel der Arbeitswelt – als klares gedankliches Fundament für die Software der nächsten Generation.",
-  "status": "Beiträge erscheinen zuerst hier und danach auf anderen Plattformen",
-  "queueNote": "Noch ist nichts erschienen. Die folgenden drei Essays sind geplant und erscheinen hier nach Veröffentlichung.",
-  "catsNote": "Jeder Beitrag ist namentlich gezeichnet und datiert. Persönliche Notizen enden mit „Dieser Beitrag gibt die persönliche Meinung des Autors wieder.“",
-  "cats": [
-   [
-    "Essays",
-    "essays",
-    "Längere Essays des Studios, im Dialog mit dem Manifest."
-   ],
-   [
-    "Persönliche Notizen",
-    "notes",
-    "Arbeits-, Lern- und Denkweisen im KI-Zeitalter; echte Erfahrungen und Fehlschläge bei der Arbeit mit KI."
-   ],
-   [
-    "Zu den Vorträgen",
-    "lectures",
-    "Begleittexte und Ergänzungen zu den Vorträgen."
-   ],
-   [
-    "Neuigkeiten",
-    "news",
-    "Ankündigungen, neue Vorträge und Veranstaltungen."
-   ]
-  ],
-  "cta": "Bis der erste Essay erscheint: zuerst das Manifest"
  },
  "ui": {
   "skip": "Zum Inhalt springen",
@@ -424,8 +372,7 @@
    "architecture": "Architektur",
    "manifesto": "Manifest",
    "studio": "Studio",
-   "learn": "Kurs",
-   "blog": "Blog"
+   "learn": "Kurs"
   },
   "heroCta": "Agentware entdecken",
   "heroCta2": "Manifest lesen",
@@ -508,27 +455,15 @@
    "seasonsAria": "Drei Staffeln",
    "actions": [
     "Zum Kurs",
-    "Auf YouTube folgen",
-    "Blog lesen"
-   ]
-  },
-  "blog": {
-   "queueTitle": "Erste Essays",
-   "planned": "Geplant",
-   "catsTitle": "Vier Rubriken",
-   "actions": [
-    "Manifest lesen",
-    "Zum KI-Kurs",
-    "Auf X folgen"
+    "Auf YouTube folgen"
    ]
   },
   "nf": {
    "title": "Unter dieser Adresse gibt es keine Seite",
-   "lead": "Der Link hat sich vielleicht geändert. Zurück zur Startseite oder direkt zum Kurs und zum Blog.",
+   "lead": "Der Link hat sich vielleicht geändert. Zurück zur Startseite oder direkt zum Kurs.",
    "actions": [
     "Zur Startseite",
-    "KI-Kurs",
-    "Blog"
+    "KI-Kurs"
    ]
   }
  }

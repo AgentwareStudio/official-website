@@ -157,7 +157,6 @@ em { font-style: normal; font-family: inherit; font-weight: inherit; letter-spac
 .site-nav a:hover, .site-nav a[aria-current='page'] { color: var(--fg); }
 .site-nav a[aria-current='page']::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--fg); }
 .site-nav__sep { width: 1px; height: 14px; background: var(--hair-2); }
-.site-nav__ext span { font-family: var(--mono); font-size: 12px; }
 .menu-btn { display: none; width: 44px; height: 44px; margin-right: -10px; align-items: center; justify-content: center; }
 .menu-btn__bars { position: relative; width: 20px; height: 10px; }
 .menu-btn__bars i { position: absolute; left: 0; right: 0; height: 1.5px; background: var(--fg); transition: transform .35s var(--ease), top .35s var(--ease); }
@@ -556,11 +555,6 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .page-hero--404 { min-height: 80vh; }
 .page-hero--404 .join__actions { margin-top: 28px; }
 
-.season-nav { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--col-gap); padding-top: 28px; padding-bottom: 28px; }
-.season-nav a { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding-top: 14px; border-top: 1px solid var(--hair-2); font-size: 15px; color: var(--slate); transition: color .2s ease, border-color .2s ease; }
-.season-nav a:hover { color: var(--fg); border-top-color: var(--fg); }
-.season-nav a .mono { font-size: 11px; color: var(--dim); }
-.season-nav a [lang='en'] { font-family: var(--mono); font-size: 11px; color: var(--dim); }
 .course { padding: clamp(72px, 9vw, 128px) 0; border-bottom: 1px solid var(--hair); }
 .course__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); }
 .course__side { grid-column: 1 / 6; }
@@ -572,38 +566,18 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .facts div { display: grid; grid-template-columns: 6em 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hair); font-size: 14px; }
 .facts dt { color: var(--dim); }
 .lessons { grid-column: 7 / 13; }
-.lessons__count { font-size: 11px; letter-spacing: .14em; color: var(--dim); padding-bottom: 14px; border-bottom: 1px solid var(--hair-2); }
 .lessons__unit h3 { font-size: 13px; font-weight: 500; color: var(--slate); padding: 28px 0 10px; letter-spacing: .02em; }
-.lesson { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--hair); align-items: baseline; }
 .season { padding: 32px 0; border-top: 1px solid var(--hair-2); }
 .season:last-child { border-bottom: 1px solid var(--hair-2); }
 .season .eyebrow { margin-bottom: 14px; }
 .lessons__unit.season h3 { padding: 0; font-size: clamp(22px, 2vw, 28px); font-weight: 500; color: var(--fg); letter-spacing: -0.01em; }
 .season h3 [lang='en'] { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--dim); }
 .season__body { margin-top: 14px; color: var(--slate); font-size: 15px; line-height: 1.85; font-weight: 300; }
-.season__audience { margin-top: 16px; display: grid; grid-template-columns: 6em 1fr; gap: 12px; font-size: 14px; }
-.season__audience span { color: var(--dim); }
 .course__go { margin-top: 36px; }
-.lesson__no { font-size: 11px; color: var(--dim); }
-.lesson__title { font-size: 16px; }
 .page-cta { padding: clamp(96px, 12vw, 160px) 0; }
 .page-cta__inner { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: end; }
 .page-cta__inner .h-section { grid-column: 1 / 8; }
 .page-cta__inner .join__actions { grid-column: 8 / 13; }
-.split { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); }
-.split > :first-child { grid-column: 1 / 6; }
-.split > :last-child { grid-column: 7 / 13; }
-.split__note { margin-top: 14px; color: var(--slate); font-size: 15px; line-height: 1.85; font-weight: 300; }
-.queue { border-top: 1px solid var(--hair-2); }
-.queue__item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--hair); }
-.queue__no { font-size: 11px; color: var(--dim); }
-.queue__title { font-size: clamp(18px, 1.7vw, 22px); font-weight: 500; letter-spacing: -0.01em; }
-.queue__state { font-size: 11px; color: var(--warn); }
-.cats { border-top: 1px solid var(--hair-2); }
-.cats div { display: grid; grid-template-columns: 10em 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--hair); }
-.cats dt { font-size: 17px; font-weight: 500; display: flex; flex-direction: column; }
-.cats code { font-family: var(--mono); font-size: 11px; color: var(--dim); font-weight: 400; }
-.cats dd { color: var(--slate); font-size: 15px; line-height: 1.8; font-weight: 300; }
 
 /* =====================================================================
    Screens: on desktop the home page is a sequence of full screens.
@@ -794,8 +768,7 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
 /* mono labels one step darker (quieter): dim → muted, muted → --faint */
 .eyebrow, .hero__tag, .era-card__meta, .readout__meta, .trace__head, .metrics dt, .console__top,
 .compare thead th span, .pillar__code, .pillars-x__no, .initiative__tag, .join-link__en,
-.menu-sheet__no, .menu-sheet__en, .menu-sheet__pages span, .season-nav a .mono, .season-nav a [lang='en'],
-.lessons__count, .lesson__no, .queue__no, .cats code, .compare td code { color: var(--muted); }
+.menu-sheet__no, .menu-sheet__en, .menu-sheet__pages span, .compare td code { color: var(--muted); }
 .screen--paper .eyebrow { color: var(--ink-slate); }
 .stage-frame__corner, .site-footer, .trace__t { color: var(--faint); }
 .shift-stage .lbl--tiny, .ln-lbl--tiny { fill: var(--muted); }
@@ -943,9 +916,8 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
   .page-hero__foot > :last-child { margin-top: 20px; }
   .course__side, .lessons { grid-column: 1 / -1; }
   .course__sticky { position: static; margin-bottom: 40px; }
-  .page-cta__inner .h-section, .page-cta__inner .join__actions, .split > :first-child, .split > :last-child { grid-column: 1 / -1; }
-  .page-cta__inner .join__actions, .split > :last-child { margin-top: 40px; }
-  .season-nav { grid-template-columns: 1fr; gap: 0; }
+  .page-cta__inner .h-section, .page-cta__inner .join__actions { grid-column: 1 / -1; }
+  .page-cta__inner .join__actions { margin-top: 40px; }
 }
 @media (max-width: 640px) {
   :root { --gutter: 20px; --header-h: 64px; }
@@ -977,9 +949,7 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
   .era-card__motto { font-size: 40px; }
   .join-link { grid-template-columns: 1fr auto; }
   .join-link__en { display: none; }
-  .cats div { grid-template-columns: 1fr; gap: 6px; }
   .facts div { grid-template-columns: 5em 1fr; }
-  .lesson { grid-template-columns: 52px 1fr; }
 }
 
 .hero .live-mark { cursor: pointer; }
