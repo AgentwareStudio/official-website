@@ -1,4 +1,4 @@
-"""Write the HTML entry for every page in every locale (zh-CN at the root, others under /<path>/).
+"""Write the HTML entry for every page in every locale (en at the root, others under /<path>/).
 
 Each entry sets <html lang>, <body data-locale>, a localized title and description, hreflang
 alternates and the font preloads that locale needs. Run after tools/build_locales.py.
@@ -7,7 +7,7 @@ import json, pathlib, html
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://agentware.studio'  # canonical origin used for hreflang alternates
-LOCALES = [('zh-CN', ''), ('en', 'en'), ('ja', 'ja'), ('ko', 'ko'), ('es', 'es'), ('fr', 'fr'), ('de', 'de'), ('pt-BR', 'pt-br')]
+LOCALES = [('en', ''), ('zh-CN', 'zh'), ('ja', 'ja'), ('ko', 'ko'), ('es', 'es'), ('fr', 'fr'), ('de', 'de'), ('pt-BR', 'pt-br')]
 PAGES = [('home', ''), ('learn', 'learn/'), ('blog', 'blog/')]
 FONT = {'zh-CN': 'aw-sans-sc', 'ja': 'aw-sans-jp', 'ko': 'aw-sans-kr'}
 
@@ -21,10 +21,10 @@ ZH = {
 
 # Root home page only: on the first visit go to the browser's language (kept as aw-auto, so later visits to / land
 # in the same place); a language picked in the menu or the hint (aw-lang) always wins.
-# Crawlers and automation are left on the page so the Chinese root stays indexable.
+# Crawlers and automation are left on the page so the English root stays indexable.
 REDIRECT = '''    <script>(function(){try{
       var ua=navigator.userAgent||'';if(navigator.webdriver||/bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(ua))return;
-      var P={'zh-CN':'','en':'en','ja':'ja','ko':'ko','es':'es','fr':'fr','de':'de','pt-BR':'pt-br'};
+      var P={'en':'','zh-CN':'zh','ja':'ja','ko':'ko','es':'es','fr':'fr','de':'de','pt-BR':'pt-br'};
       var ls=window.localStorage,pick=ls.getItem('aw-lang'),seen=ls.getItem('aw-seen');ls.setItem('aw-seen','1');
       if(!pick&&seen)pick=ls.getItem('aw-auto');
       if(!pick){if(seen)return;var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
@@ -67,14 +67,15 @@ def main():
     written = []
     for code, path in LOCALES:
         data = None if code == 'zh-CN' else json.loads((ROOT / f'src/i18n/locales/{code}.json').read_text('utf-8'))
-        pages = PAGES + ([('notfound', None)] if code == 'zh-CN' else [])
+        # the single 404 page is written in the root locale and takes its language from the path at runtime
+        pages = PAGES + ([('notfound', None)] if not path else [])
         for page, sub in pages:
             if code == 'zh-CN':
                 title, desc = ZH[page]
             else:
                 m = meta[code]
-                title = m['home' if page == 'home' else page]
-                desc = short({'home': data['hero']['intro'], 'learn': data['learn']['lead'], 'blog': data['blog']['lead']}[page])
+                title = m['nf' if page == 'notfound' else page]
+                desc = short({'home': data['hero']['intro'], 'learn': data['learn']['lead'], 'blog': data['blog']['lead'], 'notfound': data['ui']['nf']['title']}[page])
             if sub is None:
                 alts, out = '    <meta name="robots" content="noindex" />\n', ROOT / '404.html'
             else:
@@ -83,9 +84,9 @@ def main():
                 out = ROOT / (f'{path}/' if path else '') / sub / 'index.html'
                 alts = f'    <link rel="canonical" href="{SITE}/{path + "/" if path else ""}{sub}" />\n' + alts
             font = f'    <link rel="preload" href="/fonts/{FONT[code]}.woff2" as="font" type="font/woff2" crossorigin />\n' if code in FONT else ''
-            dl = '' if code == 'zh-CN' else f' data-locale="{code}"'
+            dl = '' if sub is None else f' data-locale="{code}"'
             out.parent.mkdir(parents=True, exist_ok=True)
-            redir = REDIRECT if (code == 'zh-CN' and page == 'home') else ''
+            redir = REDIRECT if (not path and page == 'home') else ''
             out.write_text(TPL.format(lang=code, title=html.escape(title), desc=html.escape(desc), alts=alts, font=font, redir=redir, page=page, dl=dl), 'utf-8')
             written.append(str(out.relative_to(ROOT)))
     (ROOT / 'tools/entries.json').write_text(json.dumps(written, indent=1), 'utf-8')

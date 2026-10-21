@@ -46,7 +46,7 @@ if __name__ == '__main__':
     ap.add_argument('--jp', default=str(LAB / 'dl' / 'NotoSansJP-VF.ttf'))
     ap.add_argument('--kr', default=str(LAB / 'dl' / 'NotoSansKR-VF.ttf'))
     a = ap.parse_args()
-    zh_html = [ROOT / 'index.html', ROOT / 'learn/index.html', ROOT / 'blog/index.html', ROOT / '404.html']
+    zh_html = [*ROOT.glob('zh/**/index.html')]
     zh = read([*ROOT.glob('src/**/*.ts'), *ROOT.glob('src/**/*.tsx'), *zh_html])
     ja = read([ROOT / 'src/i18n/locales/ja.json', *ROOT.glob('ja/**/index.html'), ROOT / 'src/i18n.ts'])
     ko = read([ROOT / 'src/i18n/locales/ko.json', *ROOT.glob('ko/**/index.html'), ROOT / 'src/i18n.ts'])

@@ -1,5 +1,6 @@
 /*
-  Locale runtime. zh-CN is the base language and lives in content.ts; every other locale is a JSON
+  Locale runtime. English is served at the site root and zh-CN under /zh/. zh-CN is the source language
+  and lives in content.ts; every other locale is a JSON
   file in src/i18n/locales/ whose top-level keys mirror the objects exported from content.ts.
   The HTML entry for each locale sets <body data-locale="..">; we load that file before rendering
   and copy its fields into the shared objects, so components keep importing from content.ts.
@@ -8,8 +9,8 @@ import * as C from './content';
 
 export type Locale = 'zh-CN' | 'en' | 'ja' | 'es' | 'de' | 'fr' | 'pt-BR' | 'ko';
 export const LOCALES: { code: Locale; path: string; label: string }[] = [
-  { code: 'en', path: 'en', label: 'English' },
-  { code: 'zh-CN', path: '', label: '简体中文' },
+  { code: 'en', path: '', label: 'English' },
+  { code: 'zh-CN', path: 'zh', label: '简体中文' },
   { code: 'ja', path: 'ja', label: '日本語' },
   { code: 'es', path: 'es', label: 'Español' },
   { code: 'de', path: 'de', label: 'Deutsch' },
@@ -23,7 +24,7 @@ function detect(): Locale {
   if (set) return set;
   // the single 404 page serves every path: take the locale from the first path segment
   const seg = location.pathname.split('/')[1]?.toLowerCase();
-  return LOCALES.find((l) => l.path && l.path === seg)?.code ?? 'zh-CN';
+  return LOCALES.find((l) => l.path && l.path === seg)?.code ?? 'en';
 }
 export const locale = detect();
 export const isZh = locale === 'zh-CN';

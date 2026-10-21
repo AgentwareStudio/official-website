@@ -15,7 +15,7 @@ const PAGES = [
   { href: '/blog/', key: 'blog', en: 'Blog' },
 ] as const;
 const showEn = locale !== 'en';
-const SHORT: Record<string, string> = { 'zh-CN': '中文', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
+const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
 const pagePath = (page: Page) => (page === 'learn' ? '/learn/' : page === 'blog' ? '/blog/' : '/');
 
 /** Language switch: links to the same page in each locale. */

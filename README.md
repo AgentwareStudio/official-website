@@ -55,7 +55,7 @@ npm run build
 
 ## Languages (i18n)
 
-Eight locales: 简体中文 at `/`, and `/en/`, `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/` (each with `learn/` and `blog/`).
+Eight locales: English at `/`, and `/zh/` (简体中文), `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/` (each with `learn/` and `blog/`).
 The header has a language menu (desktop) and a language row in the mobile menu; each link opens the same page in that language.
 
 - Copy source: `05_官网多语言文案定稿_Website_Copy_i18n.md` → `tools/parse_i18n.py` → `src/i18n/doc/<locale>.json`.
