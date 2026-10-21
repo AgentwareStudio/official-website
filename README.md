@@ -1,79 +1,107 @@
-# Agentware Studio 官网 — final_demo_website
+# Agentware Studio
 
-这是在三版方案基础上整合的最终版。以 gemini 版为基础，吸收了 astra 版的排版对齐和 opus 版的图形与交互。文案依据 `../04_官网文案定稿_Website_Copy.md`（v3.1，第一部分 01–07 和第二部分阶段 A）。
+Official website source for **Agentware Studio**: defining Agentware as a class of software for the agentic era, from operating interfaces to delegating intent.
 
-技术栈：Vite + React + TypeScript，没有其他运行时依赖。字体全部本地托管，不请求第三方。
+Website: https://agentware.studio *(pending deployment)*  
+Courses: https://learn.agentware.studio *(pending deployment)*  
+GitHub Org: https://github.com/AgentwareStudio
 
-## 本地预览
+## About
 
-已构建好的静态站点在 `dist/`，任何静态服务器都能打开：
+Agentware is software you entrust with a goal: within authorized bounds it organizes actions, executes tasks, and delivers verifiable outcomes.  
+Core framing on this site:
 
-```powershell
-python -m http.server 4810 --bind 127.0.0.1 --directory dist
-```
+- Intent & Delegation
+- Planning & Execution
+- Governance & Guardrails
+- Evolving Memory
 
-然后打开 <http://127.0.0.1:4810/>。
+The home page walks through the paradigm shift (tool era → copilot era → delegation era), what Agentware is not, the architecture, a runnable execution-loop demo, the four pillars, the manifesto, and Agentware Studio itself.
 
-## 开发与构建
+`/learn` introduces the open curriculum and its first course, *Graduating from AI Gacha*, and links to the course site at learn.agentware.studio. Episode lists live on the course site, not here.
+
+The blog and AIKit are separate projects: this site has no blog page and does not link to aikit.pro yet.
+
+## Tech Stack
+
+- React 18 + TypeScript
+- Vite 6 (multi-page build)
+- Plain CSS, no UI or animation libraries
+- Self-hosted fonts (Inter, JetBrains Mono, Instrument Serif, subsetted Noto Sans SC / JP / KR); no third-party requests
+
+## Local Development
 
 ```bash
 npm install
-npm run dev      # http://127.0.0.1:4810
-npm run build    # 输出到 dist/
+npm run dev
 ```
 
-本站是多页面构建：`index.html`、`learn/index.html`、`404.html` 各自对应一个入口。所以任何静态服务器都能直接打开 `/learn/`，不需要 SPA 回退。
+The app runs on `http://127.0.0.1:4810`.
 
-专栏（博客）和 AIKit 是单独的项目：本站暂不放专栏页，也不链接 aikit.pro；首页 Studio 部分对 AIKit 只做介绍。课程在 learn.agentware.studio，`/learn` 只介绍课程并链过去，不放分集目录。
-
-## 目录
-
-| 路径 | 内容 |
-|---|---|
-| `src/content.ts` | 全部文案，改文案只改这里 |
-| `src/sections/Home.tsx` | 首页各屏：主张、边界声明、架构、运行时闭环、四大支柱、宣言、Studio 与页脚 |
-| `src/pager.ts` | 桌面端一屏一屏翻页（缓动曲线、惯性吸收、长屏内滚动） |
-| `src/sections/Shift.tsx` | 02 范式转移：标题固定，左侧动画和右侧卡片随滚动切换 01 → 02 → 03 |
-| `src/components/ShiftStage.tsx` | 范式转移的三段动画 |
-| `src/components/ExecutionLoop.tsx` | 运行时闭环控制台，可以运行一次委托或模拟超出边界 |
-| `src/components/Mark.tsx` | 标志动效：开场 Reveal、指针 Pivot、轻触 Working 位置 |
-| `src/components/Chrome.tsx` | 导航、移动端菜单、页脚 |
-| `src/sections/Pages.tsx` | `/learn`、404 |
-| `src/styles.css` | 全部样式 |
-| `public/fonts/` | Inter、JetBrains Mono、Instrument Serif 斜体（仅宣言标题）的拉丁子集；中文是按站内用字子集化的 Noto Sans SC（均为 OFL） |
-| `public/brand/` | 直接复制的 VIS 正式文件 |
-| `tools/fonts.py` | 改文案后重新子集化中文字体 |
-
-## 修改文案后
-
-如果新文案用到了新的汉字，需要重新生成中文字体子集（需要 `fonttools` 和 `brotli`）：
+## Build
 
 ```bash
-python3 tools/fonts.py <NotoSansSC[wght].ttf>
+npm run build
+npm run preview
+```
+
+The build is multi-page: every page in every language has its own HTML entry (`index.html`, `learn/index.html`, `zh/index.html`, …, plus a single `404.html`), so any static server can serve `/ja/learn/` directly without an SPA fallback.
+
+## Deploy on Cloudflare
+
+The site is fully static and is deployed from GitHub with Cloudflare Pages.
+
+1. In Cloudflare, create a Pages project and connect this repository.
+2. Framework preset: `Vite` (or none).
+3. Build command: `npm run build`.
+4. Build output directory: `dist`.
+5. Add the custom domain `agentware.studio`.
+
+Missing paths are served `dist/404.html`, which picks its language from the URL.
+
+## Languages
+
+Eight locales: English at `/`, Simplified Chinese at `/zh/`, and `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/`, each with `learn/`.  
+On a first visit, the root page redirects to the browser's language; a language picked in the menu is remembered. Crawlers stay on the English root.
+
+- Simplified Chinese is the source language and lives in `src/content.ts`.
+- Other locales are generated into `src/i18n/locales/<locale>.json`, shaped like the objects in `src/content.ts`. At boot, `src/i18n.ts` reads `<body data-locale>`, loads that JSON and fills the objects.
+- Translated copy comes from the multilingual copy document in the Agentware repository (`04_Agentware_Studio/05_*_Website_Copy_i18n.md`), parsed by `tools/parse_i18n.py` into `src/i18n/doc/<locale>.json`.
+- Interface strings, demo captions, the execution-loop texts and the `/learn` scaffolding are not in that document; they live in `tools/i18n_ui.py`.
+- `tools/build_locales.py` merges both into the locale JSON files.
+- `tools/gen_html.py` writes every HTML entry (lang, title, description, canonical and hreflang links, font preloads), `public/sitemap.xml`, `public/robots.txt`, and `tools/entries.json`, which `vite.config.ts` uses as the build input list.
+
+## Editing Copy
+
+```bash
+python3 tools/parse_i18n.py <path/to/the/i18n/copy/document.md>   # only if the document changed
+python3 tools/build_locales.py
+python3 tools/gen_html.py
+python3 tools/fonts.py --sc <NotoSansSC[wght].ttf> --jp <NotoSansJP[wght].ttf> --kr <NotoSansKR[wght].ttf>
 npm run build
 ```
 
-中文字体源文件：google/fonts 仓库的 `ofl/notosanssc/NotoSansSC[wght].ttf`。
+`tools/fonts.py` subsets the CJK fonts to the characters each locale actually uses (`public/fonts/aw-sans-sc|jp|kr.woff2`), so re-run it whenever copy adds new Chinese, Japanese or Korean characters. It needs `fonttools` and `brotli`; the source fonts are `ofl/notosanssc`, `ofl/notosansjp` and `ofl/notosanskr` in the google/fonts repository. Latin locales use Inter and JetBrains Mono as they are.
 
-## Languages (i18n)
+## Project Structure
 
-Eight locales: English at `/`, and `/zh/` (简体中文), `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/` (each with `learn/`).
-The header has a language menu (desktop) and a language row in the mobile menu; each link opens the same page in that language.
+| Path | Contents |
+|---|---|
+| `src/content.ts` | All copy (Simplified Chinese) and external links |
+| `src/sections/Home.tsx` | Home page screens |
+| `src/sections/Shift.tsx` | Paradigm shift section: pinned title, animation and cards that switch on scroll |
+| `src/sections/Pages.tsx` | `/learn` and 404 |
+| `src/components/Chrome.tsx` | Header, language menu, mobile menu, footer |
+| `src/components/ShiftStage.tsx` | Paradigm shift animations |
+| `src/components/ExecutionLoop.tsx` | Execution-loop console: run a delegation or simulate going out of bounds |
+| `src/components/Mark.tsx` | Logo mark animation |
+| `src/pager.ts` | Screen-by-screen paging on desktop |
+| `src/i18n.ts` | Locale detection, paths and loading |
+| `src/styles.css` | All styles; per-language font stacks and line breaking are at the end |
+| `public/brand/` | Official brand files |
+| `public/fonts/` | Self-hosted, subsetted fonts |
+| `tools/` | Copy, HTML entry and font generation scripts |
 
-- Copy source: `05_官网多语言文案定稿_Website_Copy_i18n.md` → `tools/parse_i18n.py` → `src/i18n/doc/<locale>.json`.
-- Interface strings, the demo-animation captions, the execution-loop texts and the /learn scaffolding are not in that
-  document; they live in `tools/i18n_ui.py` (translated for the site — review before publishing).
-- `tools/build_locales.py` merges both into `src/i18n/locales/<locale>.json`, shaped like the objects in `src/content.ts`
-  (zh-CN stays in `content.ts`). At boot `src/i18n.ts` reads `<body data-locale>`, loads that JSON and fills the objects.
-- `tools/gen_html.py` writes every HTML entry (lang, title, description, hreflang alternates, font preloads) and
-  `tools/entries.json`, which `vite.config.ts` uses as the build input list. The single `404.html` picks its language from the URL.
-- Fonts: `tools/fonts.py` subsets Noto Sans SC / JP / KR per locale (`aw-sans-sc|jp|kr.woff2`); Latin locales use Inter and
-  JetBrains Mono as they are. Per-language stacks and line breaking are at the end of `src/styles.css` (“i18n”).
+## License
 
-After editing copy:
-
-```
-python3 tools/parse_i18n.py <path/to/05_官网多语言文案定稿_Website_Copy_i18n.md>   # only if the doc changed
-python3 tools/build_locales.py && python3 tools/gen_html.py && python3 tools/fonts.py
-npm run build
-```
+No license file yet. The bundled fonts (Inter, JetBrains Mono, Instrument Serif, Noto Sans SC / JP / KR) are under the SIL Open Font License.
