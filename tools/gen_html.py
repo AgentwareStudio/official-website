@@ -87,7 +87,7 @@ def main():
             out.parent.mkdir(parents=True, exist_ok=True)
             redir = REDIRECT if (not path and page == 'home') else ''
             out.write_text(TPL.format(lang=code, title=html.escape(title), desc=html.escape(desc), alts=alts, font=font, redir=redir, page=page, dl=dl), 'utf-8')
-            written.append(str(out.relative_to(ROOT)))
+            written.append(out.relative_to(ROOT).as_posix())
     (ROOT / 'tools/entries.json').write_text(json.dumps(written, indent=1), 'utf-8')
     write_sitemap()
     print(len(written), 'entries')
