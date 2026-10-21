@@ -307,11 +307,11 @@
   "sub": "Agentware Studio ist ein unabhängiges Forschungs- und Entwicklungslabor rund um das Agentware-Paradigma. An dem Wendepunkt, an dem sich Software von der „Bedienung von Oberflächen“ zur „Delegation von Absichten“ wandelt, treiben wir die Verbreitung und Weiterentwicklung dieses Paradigmas durch fundierte Forschung, offene Kurse und Produktexperimente voran:",
   "items": [
    {
-    "tag": "01 // OPEN CURRICULUM · /learn",
+    "tag": "01 // OPEN CURRICULUM · learn.agentware.studio",
     "title": "Systematischer Open-Access-KI-Kurs",
     "body": "Der Wechsel vom „Software bedienen“ zum „an Software delegieren“ beginnt mit einem Update des menschlichen Verständnisses und der Methodik. Wir entwickeln eine systematische KI-Vortragsreihe – von den Grundprinzipien bis zum praktischen Systemaufbau –, damit jeder die Kernkompetenzen des Agenten-Zeitalters meistern kann",
-    "action": "Die drei Staffeln ansehen →",
-    "href": "/learn/"
+    "action": "Zur Kursseite ↗",
+    "href": "https://learn.agentware.studio"
    },
    {
     "tag": "02 // RESEARCH & ESSAYS · /blog",
@@ -337,7 +337,12 @@
    "Wir lehren, was wir selbst bauen."
   ],
   "lead": "Der Wechsel vom „Software bedienen“ zum „an Software delegieren“ beginnt mit einem Update des menschlichen Verständnisses und der Methodik. Wir entwickeln eine systematische KI-Vortragsreihe – von den Grundprinzipien bis zum praktischen Systemaufbau –, damit jeder die Kernkompetenzen des Agenten-Zeitalters meistern kann",
-  "status": "In Produktion – die Lektionen erscheinen auf dieser Seite",
+  "status": "Erster Kurs: Graduating from AI Gacha",
+  "course": {
+   "name": "Graduating from AI Gacha",
+   "langs": "Kurssprachen",
+   "body": "Schluss mit dem Glücksspiel mit KI. In drei Staffeln führt der Kurs von der Funktionsweise großer Sprachmodelle über das Programmieren mit KI bis dahin, einen echten Arbeitsablauf selbst als System aufzubauen. Auf der Kursseite gibt es Übungsspiele und einen KI-Assistenten, der nur auf Grundlage der Kursinhalte antwortet."
+  },
   "seasons": [
    {
     "id": "ai-fundamentals",
@@ -345,92 +350,9 @@
     "zh": "Grundlagen",
     "en": "Fundamentals",
     "body": "Jenseits des Hypes – von Next-Token-Prediction, Tokens, Halluzinationen und Kontextfenstern bis hin zu RAG, Tool-Aufrufen und Agenten. Verstehen, wann man KI vertrauen kann und wie man sie produktiv einsetzt.",
-    "facts": [
-     [
-      "Zielgruppe",
-      "Alle Mitarbeitenden"
-     ],
-     [
-      "Folgen",
-      "Einführung + 13 Folgen, je 5–8 Min."
-     ],
-     [
-      "Format",
-      "Animierte Erklärungen + Übungsspiele"
-     ]
-    ],
-    "units": [
-     [
-      "Einheit 1　Wie KI Inhalte erzeugt",
-      [
-       [
-        "00",
-        "Einführung: Dieselbe KI, andere Ergebnisse"
-       ],
-       [
-        "01",
-        "Sprachmodelle können nur eines: das Nächste vorhersagen"
-       ],
-       [
-        "02",
-        "Wie viele r hat „strawberry“?"
-       ],
-       [
-        "03",
-        "Selbstbewusst falsch"
-       ]
-      ]
-     ],
-     [
-      "Einheit 2　Der KI die richtigen Informationen geben",
-      [
-       [
-        "04",
-        "Der Schreibtisch der KI"
-       ],
-       [
-        "05",
-        "Warum lange Chats sie schlechter machen"
-       ],
-       [
-        "06",
-        "Ein neuer Kollege am ersten Tag"
-       ],
-       [
-        "07",
-        "Lass sie zuerst einen Entwurf machen"
-       ],
-       [
-        "08",
-        "Gib ihr ein Nachschlagewerk"
-       ]
-      ]
-     ],
-     [
-      "Einheit 3　KI in die Arbeit bringen",
-      [
-       [
-        "09",
-        "Gib ihr Hände"
-       ],
-       [
-        "10",
-        "Gib ihr ein Handbuch"
-       ],
-       [
-        "11",
-        "Vom Plaudern zum Arbeiten"
-       ],
-       [
-        "12",
-        "Wann kann man ihr trauen?"
-       ],
-       [
-        "13",
-        "KI in deine Arbeit einbauen"
-       ]
-      ]
-     ]
+    "audience": [
+     "Zielgruppe",
+     "Alle Mitarbeitenden"
     ]
    },
    {
@@ -439,54 +361,9 @@
     "zh": "Praxis",
     "en": "AI Coding",
     "body": "Wenn Code günstig und Urteilskraft kostbar wird: Lernen Sie, wie man Spezifikationen für KI verfasst, erst die Architektur entwirft, bevor Code geschrieben wird, und persönliche Erfahrung in wiederverwendbare Fähigkeiten (Skills) gießt.",
-    "facts": [
-     [
-      "Zielgruppe",
-      "Entwicklerinnen und Entwickler"
-     ],
-     [
-      "Folgen",
-      "7 Folgen, je 6–10 Min."
-     ],
-     [
-      "Format",
-      "Animation + Produktdemos + Übungsspiele"
-     ]
-    ],
-    "units": [
-     [
-      "",
-      [
-       [
-        "S2-1",
-        "Code wurde billig, Urteilsvermögen teuer"
-       ],
-       [
-        "S2-2",
-        "Drei Arten von KI im Editor"
-       ],
-       [
-        "S2-3",
-        "Welche Dateien sieht sie?"
-       ],
-       [
-        "S2-4",
-        "Eine Projektbeschreibung für die KI"
-       ],
-       [
-        "S2-5",
-        "Erst planen, dann coden"
-       ],
-       [
-        "S2-6",
-        "Arbeitsweisen zu Skills machen"
-       ],
-       [
-        "S2-7",
-        "Regeln und Werkzeuge des Teams anbinden"
-       ]
-      ]
-     ]
+    "audience": [
+     "Zielgruppe",
+     "Entwicklerinnen und Entwickler"
     ]
    },
    {
@@ -495,123 +372,13 @@
     "zh": "Systemaufbau",
     "en": "Building AI Systems",
     "body": "Für reale Anwendungsszenarien – von Context Engineering, Workflow-Orchestrierung (n8n / Dify) und MCP-Server-Entwicklung bis zu Multi-Agenten-Kollaboration, Sicherheits-Governance und Evaluierung im Produktivbetrieb.",
-    "facts": [
-     [
-      "Zielgruppe",
-      "Fachverantwortliche und Engineers, die KI im Team zu Systemen ausbauen"
-     ],
-     [
-      "Folgen",
-      "17 Folgen, je ca. 30 Min. Video + ca. 60 Min. Mitmachen"
-     ],
-     [
-      "Format",
-      "Grundlagen + Bildschirm-Walkthroughs + Vorlagen und Code + Tests + Abschlussprojekt"
-     ]
-    ],
-    "units": [
-     [
-      "Einheit A　Design",
-      [
-       [
-        "S3-01",
-        "Zuerst die Karte zeichnen"
-       ],
-       [
-        "S3-02",
-        "Context Engineering"
-       ],
-       [
-        "S3-03",
-        "Modelle und Bereitstellung wählen"
-       ]
-      ]
-     ],
-     [
-      "Einheit B　Low-Code",
-      [
-       [
-        "S3-04",
-        "n8n (1): Routinearbeit zu Abläufen verketten"
-       ],
-       [
-        "S3-05",
-        "n8n (2): KI-Agenten im Ablauf"
-       ],
-       [
-        "S3-06",
-        "Dify (1): Ein Assistent, der recherchiert und Quellen nennt"
-       ],
-       [
-        "S3-07",
-        "Dify (2): Workflows, Agenten und Plugins"
-       ],
-       [
-        "S3-08",
-        "n8n oder Dify – und Self-Hosting"
-       ]
-      ]
-     ],
-     [
-      "Einheit C　Engineering",
-      [
-       [
-        "S3-09",
-        "Einen eigenen MCP-Server bauen"
-       ],
-       [
-        "S3-10",
-        "Agenten in Code schreiben"
-       ]
-      ]
-     ],
-     [
-      "Einheit D　Zusammenarbeit & Protokolle",
-      [
-       [
-        "S3-11",
-        "Mehrere Agenten arbeiten zusammen"
-       ],
-       [
-        "S3-12",
-        "Web und Agenten: Bildschirmsteuerung und WebMCP"
-       ],
-       [
-        "S3-13",
-        "A2A: Mit Agenten anderer Unternehmen arbeiten"
-       ]
-      ]
-     ],
-     [
-      "Einheit E　Produktivbetrieb",
-      [
-       [
-        "S3-14",
-        "Sicherheit und Governance"
-       ],
-       [
-        "S3-15",
-        "Evaluierung, Monitoring und Kosten"
-       ]
-      ]
-     ],
-     [
-      "Einheit F　Einführung",
-      [
-       [
-        "S3-16",
-        "Im Team ausrollen: Rechnung, Pilot, Verbreitung"
-       ],
-       [
-        "S3-17",
-        "Abschlussprojekt: Einen echten Prozess zum System machen"
-       ]
-      ]
-     ]
+    "audience": [
+     "Zielgruppe",
+     "Fachverantwortliche und Engineers, die KI im Team zu Systemen ausbauen"
     ]
    }
   ],
-  "cta": "Sobald sie fertig sind, erscheinen die Lektionen zuerst auf YouTube und auf dieser Seite"
+  "cta": "Videos auf YouTube, |Übungen und Fragen auf der Kursseite"
  },
  "blog": {
   "title": "Paradigmenforschung & Fachkolumnen",
@@ -739,11 +506,10 @@
   },
   "learn": {
    "seasonsAria": "Drei Staffeln",
-   "count": "{n} LEKTIONEN · IN PRODUKTION",
    "actions": [
+    "Zum Kurs",
     "Auf YouTube folgen",
-    "Blog lesen",
-    "Manifest lesen"
+    "Blog lesen"
    ]
   },
   "blog": {

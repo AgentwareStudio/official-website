@@ -307,11 +307,11 @@
   "sub": "Agentware Studio is an independent research and creation studio dedicated to the Agentware paradigm. At the inflection point where software shifts from \"operating interfaces\" to \"delegating intent,\" we advance the adoption and evolution of this paradigm through deep research, open curriculum, and product experiments:",
   "items": [
    {
-    "tag": "01 // OPEN CURRICULUM · /learn",
+    "tag": "01 // OPEN CURRICULUM · learn.agentware.studio",
     "title": "Open AI Engineering Curriculum",
     "body": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
-    "action": "Browse the three seasons →",
-    "href": "/learn/"
+    "action": "Go to the course site ↗",
+    "href": "https://learn.agentware.studio"
    },
    {
     "tag": "02 // RESEARCH & ESSAYS · /blog",
@@ -337,7 +337,12 @@
    ""
   ],
   "lead": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
-  "status": "In production — lessons will be published on this page",
+  "status": "First course: Graduating from AI Gacha",
+  "course": {
+   "name": "Graduating from AI Gacha",
+   "langs": "Course languages",
+   "body": "Stop rolling the dice with AI. Across three seasons, the course goes from how large language models work, to coding with AI, to building a real piece of work into a system yourself. The course site has practice games and an AI assistant that answers only from the course itself."
+  },
   "seasons": [
    {
     "id": "ai-fundamentals",
@@ -345,92 +350,9 @@
     "zh": "Fundamentals",
     "en": "",
     "body": "Stripping away the hype—from next-token prediction, tokens, hallucinations, and context windows to RAG, tool calling, and Agents—understanding when to trust AI and how to put it to work.",
-    "facts": [
-     [
-      "Audience",
-      "Everyone at work"
-     ],
-     [
-      "Episodes",
-      "Intro + 13 episodes, 5–8 min each"
-     ],
-     [
-      "Format",
-      "Animated explainers + practice games"
-     ]
-    ],
-    "units": [
-     [
-      "Unit 1　How AI generates content",
-      [
-       [
-        "00",
-        "Intro: same AI, different results"
-       ],
-       [
-        "01",
-        "LLMs do one thing: predict what comes next"
-       ],
-       [
-        "02",
-        "How many r’s are in “strawberry”?"
-       ],
-       [
-        "03",
-        "Confidently wrong"
-       ]
-      ]
-     ],
-     [
-      "Unit 2　Giving AI the right information",
-      [
-       [
-        "04",
-        "The AI’s desk"
-       ],
-       [
-        "05",
-        "Why long chats make it worse"
-       ],
-       [
-        "06",
-        "A new colleague on day one"
-       ],
-       [
-        "07",
-        "Let it draft first"
-       ],
-       [
-        "08",
-        "Give it a reference book"
-       ]
-      ]
-     ],
-     [
-      "Unit 3　Putting AI to work",
-      [
-       [
-        "09",
-        "Give it hands"
-       ],
-       [
-        "10",
-        "Give it a manual"
-       ],
-       [
-        "11",
-        "From chatting to doing"
-       ],
-       [
-        "12",
-        "When can you trust it?"
-       ],
-       [
-        "13",
-        "Put AI to work in your job"
-       ]
-      ]
-     ]
+    "audience": [
+     "Audience",
+     "Everyone at work"
     ]
    },
    {
@@ -439,54 +361,9 @@
     "zh": "AI Coding",
     "en": "",
     "body": "When code becomes cheap and judgment becomes scarce, learn how to write specs for AI, design architecture before touching code, and distill personal expertise into reusable Skills.",
-    "facts": [
-     [
-      "Audience",
-      "Developers"
-     ],
-     [
-      "Episodes",
-      "7 episodes, 6–10 min each"
-     ],
-     [
-      "Format",
-      "Animation + product walkthroughs + practice games"
-     ]
-    ],
-    "units": [
-     [
-      "",
-      [
-       [
-        "S2-1",
-        "Code got cheap, judgment got expensive"
-       ],
-       [
-        "S2-2",
-        "Three kinds of AI in your editor"
-       ],
-       [
-        "S2-3",
-        "Which files can it see?"
-       ],
-       [
-        "S2-4",
-        "A project brief written for AI"
-       ],
-       [
-        "S2-5",
-        "Plan first, then code"
-       ],
-       [
-        "S2-6",
-        "Turn your methods into skills"
-       ],
-       [
-        "S2-7",
-        "Plug in your team’s rules and tools"
-       ]
-      ]
-     ]
+    "audience": [
+     "Audience",
+     "Developers"
     ]
    },
    {
@@ -495,123 +372,13 @@
     "zh": "Building AI Systems",
     "en": "",
     "body": "Grounded in real-world scenarios—covering context engineering, workflow orchestration (n8n / Dify), MCP server development, multi-agent collaboration, safety guardrails, and evaluation pipelines to turn real workflows into autonomous systems.",
-    "facts": [
-     [
-      "Audience",
-      "Team leads and engineers turning AI into working systems"
-     ],
-     [
-      "Episodes",
-      "17 episodes, ~30 min video + ~60 min follow-along each"
-     ],
-     [
-      "Format",
-      "Concepts + screen-recorded walkthroughs + templates and code + unit quizzes + capstone"
-     ]
-    ],
-    "units": [
-     [
-      "Unit A　Design",
-      [
-       [
-        "S3-01",
-        "Draw the map first"
-       ],
-       [
-        "S3-02",
-        "Context engineering"
-       ],
-       [
-        "S3-03",
-        "Choosing models and deployment"
-       ]
-      ]
-     ],
-     [
-      "Unit B　Low-code",
-      [
-       [
-        "S3-04",
-        "n8n (1): turning repetitive work into flows"
-       ],
-       [
-        "S3-05",
-        "n8n (2): AI agents inside flows"
-       ],
-       [
-        "S3-06",
-        "Dify (1): an assistant that researches and cites"
-       ],
-       [
-        "S3-07",
-        "Dify (2): workflows, agents and plugins"
-       ],
-       [
-        "S3-08",
-        "n8n vs. Dify, and self-hosting"
-       ]
-      ]
-     ],
-     [
-      "Unit C　Engineering",
-      [
-       [
-        "S3-09",
-        "Build your own MCP server"
-       ],
-       [
-        "S3-10",
-        "Writing agents in code"
-       ]
-      ]
-     ],
-     [
-      "Unit D　Collaboration & protocols",
-      [
-       [
-        "S3-11",
-        "Agents working together"
-       ],
-       [
-        "S3-12",
-        "Web and agents: computer use and WebMCP"
-       ],
-       [
-        "S3-13",
-        "A2A: working with other companies’ agents"
-       ]
-      ]
-     ],
-     [
-      "Unit E　Going live",
-      [
-       [
-        "S3-14",
-        "Security and governance"
-       ],
-       [
-        "S3-15",
-        "Evaluation, monitoring and cost"
-       ]
-      ]
-     ],
-     [
-      "Unit F　Adoption",
-      [
-       [
-        "S3-16",
-        "Rolling out in your team: ROI, pilots, adoption"
-       ],
-       [
-        "S3-17",
-        "Capstone: build a real workflow into a system"
-       ]
-      ]
-     ]
+    "audience": [
+     "Audience",
+     "Team leads and engineers turning AI into working systems"
     ]
    }
   ],
-  "cta": "Once ready, the lessons will be published first on YouTube and on this page"
+  "cta": "Videos on YouTube, |practice and Q&A on the course site"
  },
  "blog": {
   "title": "Paradigm Research & Essays",
@@ -739,11 +506,10 @@
   },
   "learn": {
    "seasonsAria": "Three seasons",
-   "count": "{n} LESSONS · IN PRODUCTION",
    "actions": [
+    "Start the course",
     "Follow on YouTube",
-    "Read the Blog",
-    "Read the Manifesto"
+    "Read the Blog"
    ]
   },
   "blog": {

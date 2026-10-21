@@ -1,6 +1,6 @@
 import { LINKS, blog, learn, ui } from '../content';
 import { T } from '../lib';
-import { fmt, href, locale } from '../i18n';
+import { href, locale } from '../i18n';
 
 const showEn = locale !== 'en';
 function JoinLink({ to, label, en, primary = false }: { to: string; label: string; en: string; primary?: boolean }) {
@@ -39,61 +39,52 @@ function PageHero({ crumb, title, en, lead, status, motto }: { crumb: string; ti
   );
 }
 
+// The course is taught in these three languages only, whatever the page locale. Each name keeps its own
+// lang so it renders in that language's font (the ja/ko subsets cannot show simplified Chinese).
+const COURSE_NAMES = [['zh-CN', 'AI 抽卡毕业课'], ['ja', 'AIガチャ卒業講座'], ['en', 'Graduating from AI Gacha']] as const;
+const COURSE_LANGS = [['zh-CN', '中文'], ['ja', '日本語'], ['en', 'English']] as const;
+const dotted = (items: readonly (readonly [string, string])[]) =>
+  items.map(([l, t], i) => <span key={l} lang={l}>{i > 0 && ' · '}{t}</span>);
+
 export function LearnPage() {
+  const c = learn.course;
   return (
     <>
       <PageHero crumb="OPEN CURRICULUM" title={learn.title} en={learn.en} lead={learn.lead} status={learn.status} motto={learn.motto} />
-      <nav className="wrap season-nav" aria-label={ui.learn.seasonsAria}>
-        {learn.seasons.map((s, i) => (
-          <a key={s.id} href={`#${s.id}`}>
-            <span className="mono">0{i + 1}</span>{s.no} · {s.zh}{s.en && <span lang="en">{s.en}</span>}
-          </a>
-        ))}
-      </nav>
-      {learn.seasons.map((s) => {
-        const count = s.units.reduce((a, [, l]) => a + l.length, 0);
-        return (
-          <section className="course" id={s.id} key={s.id} aria-labelledby={`${s.id}-t`}>
-            <div className="wrap course__grid">
-              <div className="course__side">
-                <div className="course__sticky">
-                  <p className="eyebrow">{s.no} // {(s.en || s.zh).toUpperCase()}</p>
-                  <h2 className="course__title" id={`${s.id}-t`}>{s.zh}{s.en && <em lang="en">{s.en}</em>}</h2>
-                  <p className="course__desc">{s.body}</p>
-                  <dl className="facts">
-                    {s.facts.map(([k, v]) => (
-                      <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
-                    ))}
-                  </dl>
-                </div>
-              </div>
-              <div className="lessons">
-                <p className="lessons__count mono">{fmt(ui.learn.count, { n: count })}</p>
-                {s.units.map(([unit, lessons]) => (
-                  <div className="lessons__unit" key={unit || 'all'}>
-                    {unit && <h3>{unit}</h3>}
-                    <ol>
-                      {lessons.map(([no, title]) => (
-                        <li className="lesson" key={no}>
-                          <span className="lesson__no mono">{no}</span>
-                          <span className="lesson__title">{title}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                ))}
-              </div>
+      <section className="course" id="ai-gacha" aria-labelledby="ai-gacha-t">
+        <div className="wrap course__grid">
+          <div className="course__side">
+            <div className="course__sticky">
+              <p className="eyebrow">COURSE 01 // AI GACHA</p>
+              <h2 className="course__title" id="ai-gacha-t">{c.name}<em>{dotted(COURSE_NAMES.filter(([, n]) => n !== c.name))}</em></h2>
+              <p className="course__desc">{c.body}</p>
+              <dl className="facts">
+                <div><dt>{c.langs}</dt><dd>{dotted(COURSE_LANGS)}</dd></div>
+              </dl>
+              <ul className="join__actions course__go">
+                <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} en="learn.agentware.studio" />
+              </ul>
             </div>
-          </section>
-        );
-      })}
+          </div>
+          <div className="lessons" aria-label={ui.learn.seasonsAria}>
+            {learn.seasons.map((s) => (
+              <div className="lessons__unit season" id={s.id} key={s.id}>
+                <p className="eyebrow">{s.no} // {(s.en || s.zh).toUpperCase()}</p>
+                <h3>{s.zh}{s.en && <span lang="en"> · {s.en}</span>}</h3>
+                <p className="season__body">{s.body}</p>
+                <p className="season__audience"><span>{s.audience[0]}</span>{s.audience[1]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="page-cta">
         <div className="wrap page-cta__inner">
           <h2 className="h-section"><T>{learn.cta}</T></h2>
           <ul className="join__actions">
-            <JoinLink primary to={LINKS.youtube} label={ui.learn.actions[0]} en="YouTube" />
-            <JoinLink to="/blog/" label={ui.learn.actions[1]} en="Read the Blog" />
-            <JoinLink to="/#manifesto" label={ui.learn.actions[2]} en="The Manifesto" />
+            <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} en="Start the Course" />
+            <JoinLink to={LINKS.youtube} label={ui.learn.actions[1]} en="YouTube" />
+            <JoinLink to="/blog/" label={ui.learn.actions[2]} en="Read the Blog" />
           </ul>
         </div>
       </section>

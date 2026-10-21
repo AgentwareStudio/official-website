@@ -5,7 +5,9 @@ export const LINKS = {
   aikit: 'https://aikit.pro',
   github: 'https://github.com/AgentwareStudio',
   x: 'https://x.com/AgentwareStudio',
-  youtube: 'https://www.youtube.com/@Agentware-u7w',
+  youtube: 'https://www.youtube.com/@agentwarestudio',
+  // all courses live under this one site (the first: /ai-gacha/), so the official site links to its root only
+  learn: 'https://learn.agentware.studio',
 };
 
 export const hero = {
@@ -201,11 +203,11 @@ export const studio = {
   sub: 'Agentware Studio 是围绕 Agentware 范式发起的独立研究与创作实验室。在软件从“操作界面”迈向“委托意图”的转折点上，我们致力于通过深度研究、开放课程与产品实验，推动这一范式的普及与演进：',
   items: [
     {
-      tag: '01 // OPEN CURRICULUM · /learn',
+      tag: '01 // OPEN CURRICULUM · learn.agentware.studio',
       title: 'AI 体系化公开课',
       body: '要从“操作软件”转向“委托软件”，首先需要升级人的认知与方法。我们正在制作系统性的 AI 教育讲座，从底层原理到实战搭建，帮助每一个人掌握 Agent 时代的核心能力。',
-      action: '浏览三季课程目录 →',
-      href: '/learn/',
+      action: '前往课程网站 ↗',
+      href: LINKS.learn,
     },
     {
       tag: '02 // RESEARCH & ESSAYS · /blog',
@@ -246,56 +248,28 @@ export const footer = {
   signature: '[ A↗• ] AGENTWARE CONTROL PLANE INITIALIZED',
 };
 
-// /learn — from Learn/00_课程目录与网址.md
+// /learn — the open curriculum. Lesson lists live on the course site (learn.agentware.studio), not here,
+// so this page only names the course and its seasons and does not need updating when episodes change.
 export const learn = {
   title: 'AI 体系化公开课',
   en: 'Open Curriculum',
   motto: ['We teach what we build.', '我们所教，即我们所践。'],
   lead: '要从“操作软件”转向“委托软件”，首先需要升级人的认知与方法。我们正在制作系统性的 AI 教育讲座，从底层原理到实战搭建，帮助每一个人掌握 Agent 时代的核心能力。',
-  status: '课程制作中，上线后在本页公开',
+  status: '首门课程：AI 抽卡毕业课',
+  course: {
+    name: 'AI 抽卡毕业课',
+    body: '别再把 AI 当抽卡、靠运气。三季课程从大模型的原理讲起，到用 AI 写代码，再到亲手把一项业务搭成系统。课程网站上有练习小游戏，还有只依据课程内容回答的 AI 问答助手。',
+    langs: '课程语言',
+  },
   seasons: [
-    {
-      id: 'ai-fundamentals',
-      no: '第一季',
-      zh: '原理篇',
-      en: 'Fundamentals',
-      body: '剥离炒作，从接龙原理、Token、幻觉、上下文窗口讲到 RAG、工具调用与 Agent，弄懂“什么时候能信 AI，怎么把 AI 用进工作”。',
-      facts: [['对象', '全体员工'], ['集数', '导入 + 13 集，每集 5–8 分钟'], ['学习方式', '动画讲解 + 练习小游戏']],
-      units: [
-        ['第一单元　AI 怎样生成内容', [['00', '导入：同一个 AI，差在哪'], ['01', '大模型只会一件事：接龙'], ['02', 'strawberry 里有几个 r？'], ['03', '一本正经地胡说八道']]],
-        ['第二单元　给 AI 正确的信息', [['04', 'AI 的桌面'], ['05', '聊久了，它就变笨了'], ['06', '第一天上班的新同事'], ['07', '让它先打草稿'], ['08', '给它一本参考书']]],
-        ['第三单元　让 AI 干活并用进工作', [['09', '给它装上手'], ['10', '给它一本操作手册'], ['11', '从聊天到干活'], ['12', '什么时候能信它'], ['13', '把 AI 用进你的工作']]],
-      ] as [string, string[][]][],
-    },
-    {
-      id: 'ai-coding',
-      no: '第二季',
-      zh: '实战篇',
-      en: 'AI Coding',
-      body: '当代码变便宜、判断变贵，学习如何为 AI 编写项目说明书、如何先出方案再动代码、如何把个人经验沉淀为可复用的技能（Skills）。',
-      facts: [['对象', '开发人员'], ['集数', '7 集，每集 6–10 分钟'], ['学习方式', '动画 + 产品界面演示 + 练习小游戏']],
-      units: [
-        ['', [['S2-1', '代码变便宜了，判断变贵了'], ['S2-2', '编辑器里的三种 AI'], ['S2-3', '它看得见哪些文件'], ['S2-4', '写给 AI 的项目说明书'], ['S2-5', '先出方案，再动代码'], ['S2-6', '把做法写成技能'], ['S2-7', '把团队的规矩和工具接进来']]],
-      ] as [string, string[][]][],
-    },
-    {
-      id: 'building-ai-systems',
-      no: '第三季',
-      zh: '搭建篇',
-      en: 'Building AI Systems',
-      body: '面向真实场景，从上下文工程、工作流编排（n8n / Dify）、MCP 服务开发，到多智能体协作、安全治理与评测上线，亲手把一项业务搭成系统。',
-      facts: [['对象', '要在团队里把 AI 搭成系统的业务骨干和工程师'], ['集数', '17 集，每集视频约 30 分钟，含跟做约 60 分钟'], ['学习方式', '原理讲解 + 录屏跟做 + 模板与代码 + 单元测验 + 结业项目']],
-      units: [
-        ['单元 A　设计', [['S3-01', '先画地图'], ['S3-02', '上下文工程'], ['S3-03', '选模型和部署方式']]],
-        ['单元 B　低代码', [['S3-04', 'n8n（一）：把重复工作串成流程'], ['S3-05', 'n8n（二）：流程里的 AI 代理'], ['S3-06', 'Dify（一）：会查资料、给出处的助手'], ['S3-07', 'Dify（二）：工作流、代理和插件'], ['S3-08', 'n8n 和 Dify 怎么分工，以及自己托管']]],
-        ['单元 C　工程', [['S3-09', '自己做一个 MCP 服务器'], ['S3-10', '用代码写代理']]],
-        ['单元 D　协作与协议', [['S3-11', '几个代理一起干活'], ['S3-12', '网页和代理：看屏幕操作与 WebMCP'], ['S3-13', 'A2A：和别家公司的代理打交道']]],
-        ['单元 E　上线', [['S3-14', '安全和治理'], ['S3-15', '评测、监控和成本']]],
-        ['单元 F　落地', [['S3-16', '在团队里推开：算账、试点、推广'], ['S3-17', '结业项目：把一项业务搭成系统']]],
-      ] as [string, string[][]][],
-    },
-  ],
-  cta: '课程上线后，|会首先在 YouTube 与本页公开',
+    { id: 'ai-fundamentals', no: '第一季', zh: '原理篇', en: 'Fundamentals', audience: ['对象', '全体员工'],
+      body: '剥离炒作，从接龙原理、Token、幻觉、上下文窗口讲到 RAG、工具调用与 Agent，弄懂“什么时候能信 AI，怎么把 AI 用进工作”。' },
+    { id: 'ai-coding', no: '第二季', zh: '实战篇', en: 'AI Coding', audience: ['对象', '开发人员'],
+      body: '当代码变便宜、判断变贵，学习如何为 AI 编写项目说明书、如何先出方案再动代码、如何把个人经验沉淀为可复用的技能（Skills）。' },
+    { id: 'building-ai-systems', no: '第三季', zh: '搭建篇', en: 'Building AI Systems', audience: ['对象', '要在团队里把 AI 搭成系统的业务骨干和工程师'],
+      body: '面向真实场景，从上下文工程、工作流编排（n8n / Dify）、MCP 服务开发，到多智能体协作、安全治理与评测上线，亲手把一项业务搭成系统。' },
+  ] as { id: string; no: string; zh: string; en: string; audience: [string, string]; body: string }[],
+  cta: '视频在 YouTube 发布，|练习与问答在课程网站',
 };
 
 // /blog — from 02_讲座与博客内容规划.md
@@ -351,7 +325,7 @@ export const ui = {
       verifyFail: '验收未通过：需要人的决定', handback: '停止行动，说明原因与已完成部分，交还人类',
     },
   },
-  learn: { seasonsAria: '三季课程', count: '{n} LESSONS · 课程制作中', actions: ['在 YouTube 关注', '阅读专栏与笔记', '阅读宣言'] },
+  learn: { seasonsAria: '三季课程', actions: ['进入课程', '在 YouTube 关注', '阅读专栏与笔记'] },
   blog: { queueTitle: '首批研究文章', planned: '计划中', catsTitle: '四个栏目', actions: ['阅读宣言', '观看 AI 公开课', '在 X 关注'] },
   nf: { title: '这个地址没有页面', lead: '链接可能已经改变。可以回到首页，或直接打开公开课与专栏。', actions: ['回到首页', 'AI 公开课', '专栏与笔记'] },
 };

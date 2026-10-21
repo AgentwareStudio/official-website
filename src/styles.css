@@ -575,6 +575,15 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .lessons__count { font-size: 11px; letter-spacing: .14em; color: var(--dim); padding-bottom: 14px; border-bottom: 1px solid var(--hair-2); }
 .lessons__unit h3 { font-size: 13px; font-weight: 500; color: var(--slate); padding: 28px 0 10px; letter-spacing: .02em; }
 .lesson { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--hair); align-items: baseline; }
+.season { padding: 32px 0; border-top: 1px solid var(--hair-2); }
+.season:last-child { border-bottom: 1px solid var(--hair-2); }
+.season .eyebrow { margin-bottom: 14px; }
+.lessons__unit.season h3 { padding: 0; font-size: clamp(22px, 2vw, 28px); font-weight: 500; color: var(--fg); letter-spacing: -0.01em; }
+.season h3 [lang='en'] { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--dim); }
+.season__body { margin-top: 14px; color: var(--slate); font-size: 15px; line-height: 1.85; font-weight: 300; }
+.season__audience { margin-top: 16px; display: grid; grid-template-columns: 6em 1fr; gap: 12px; font-size: 14px; }
+.season__audience span { color: var(--dim); }
+.course__go { margin-top: 36px; }
 .lesson__no { font-size: 11px; color: var(--dim); }
 .lesson__title { font-size: 16px; }
 .page-cta { padding: clamp(96px, 12vw, 160px) 0; }
@@ -1006,6 +1015,8 @@ html:lang(en), html:lang(es), html:lang(de), html:lang(fr), html:lang(pt) {
 [lang='zh-CN'] { --sans: 'Inter', 'AW Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; }
 [lang='ja'] { --sans: 'Inter', 'AW Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif; }
 [lang='ko'] { --sans: 'Inter', 'AW Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
+/* course names and course languages on /learn: re-resolve the stack on the span itself */
+.course__title em [lang], .facts dd [lang] { font-family: var(--sans); }
 
 html:lang(ja) :is(h1, h2, h3, .questions__q, .shift-closing, .lead-line) { word-break: auto-phrase; }
 html:lang(ko) :is(h1, h2, h3, h4, p, li, dd, td, th, dt) { word-break: keep-all; overflow-wrap: break-word; }

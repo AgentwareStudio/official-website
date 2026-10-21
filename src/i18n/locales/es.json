@@ -307,11 +307,11 @@
   "sub": "Agentware Studio es un laboratorio independiente de investigación y creación impulsado en torno al paradigma Agentware. En el punto de inflexión en el que el software pasa de «operar interfaces» a «delegar intenciones», nos dedicamos a impulsar la adopción y evolución de este paradigma mediante investigación profunda, cursos abiertos y experimentos de producto:",
   "items": [
    {
-    "tag": "01 // OPEN CURRICULUM · /learn",
+    "tag": "01 // OPEN CURRICULUM · learn.agentware.studio",
     "title": "Curso Abierto y Sistemático de IA",
     "body": "Para pasar de «operar software» a «delegar en el software», primero es necesario actualizar nuestra mentalidad y metodología. Estamos produciendo una serie sistemática de lecciones sobre IA, desde los principios fundamentales hasta la construcción práctica, para ayudar a cualquier persona a dominar las capacidades esenciales de la era de los agentes",
-    "action": "Ver las tres temporadas →",
-    "href": "/learn/"
+    "action": "Ir al sitio del curso ↗",
+    "href": "https://learn.agentware.studio"
    },
    {
     "tag": "02 // RESEARCH & ESSAYS · /blog",
@@ -337,7 +337,12 @@
    "Enseñamos lo que construimos."
   ],
   "lead": "Para pasar de «operar software» a «delegar en el software», primero es necesario actualizar nuestra mentalidad y metodología. Estamos produciendo una serie sistemática de lecciones sobre IA, desde los principios fundamentales hasta la construcción práctica, para ayudar a cualquier persona a dominar las capacidades esenciales de la era de los agentes",
-  "status": "En producción: las lecciones se publicarán en esta página",
+  "status": "Primer curso: Graduating from AI Gacha",
+  "course": {
+   "name": "Graduating from AI Gacha",
+   "langs": "Idiomas del curso",
+   "body": "Deja de usar la IA como si fuera una tragaperras. En tres temporadas, el curso va desde cómo funcionan los grandes modelos de lenguaje hasta programar con IA y convertir tú mismo un proceso real en un sistema. El sitio del curso incluye minijuegos de práctica y un asistente de IA que responde solo a partir del contenido del curso."
+  },
   "seasons": [
    {
     "id": "ai-fundamentals",
@@ -345,92 +350,9 @@
     "zh": "Fundamentos",
     "en": "Fundamentals",
     "body": "Más allá del ruido mediático, desde la predicción de tokens, alucinaciones y ventanas de contexto hasta RAG, uso de herramientas y Agentes, para entender cuándo confiar en la IA y cómo integrarla en el trabajo.",
-    "facts": [
-     [
-      "Para",
-      "Todo el personal"
-     ],
-     [
-      "Episodios",
-      "Introducción + 13 episodios, de 5–8 min"
-     ],
-     [
-      "Formato",
-      "Animaciones explicativas + minijuegos de práctica"
-     ]
-    ],
-    "units": [
-     [
-      "Unidad 1　Cómo genera contenido la IA",
-      [
-       [
-        "00",
-        "Introducción: la misma IA, resultados distintos"
-       ],
-       [
-        "01",
-        "Los LLM solo hacen una cosa: predecir lo que sigue"
-       ],
-       [
-        "02",
-        "¿Cuántas erres tiene “strawberry”?"
-       ],
-       [
-        "03",
-        "Equivocarse con total seguridad"
-       ]
-      ]
-     ],
-     [
-      "Unidad 2　Darle a la IA la información correcta",
-      [
-       [
-        "04",
-        "El escritorio de la IA"
-       ],
-       [
-        "05",
-        "Por qué empeora en conversaciones largas"
-       ],
-       [
-        "06",
-        "Un compañero nuevo en su primer día"
-       ],
-       [
-        "07",
-        "Que haga primero un borrador"
-       ],
-       [
-        "08",
-        "Darle un libro de consulta"
-       ]
-      ]
-     ],
-     [
-      "Unidad 3　Poner a trabajar a la IA",
-      [
-       [
-        "09",
-        "Darle manos"
-       ],
-       [
-        "10",
-        "Darle un manual de uso"
-       ],
-       [
-        "11",
-        "De conversar a trabajar"
-       ],
-       [
-        "12",
-        "¿Cuándo puedes confiar en ella?"
-       ],
-       [
-        "13",
-        "Lleva la IA a tu trabajo"
-       ]
-      ]
-     ]
+    "audience": [
+     "Para",
+     "Todo el personal"
     ]
    },
    {
@@ -439,54 +361,9 @@
     "zh": "Práctica",
     "en": "AI Coding",
     "body": "Cuando escribir código se abarata y el criterio se vuelve valioso, aprende a redactar especificaciones para la IA, diseñar la arquitectura antes de tocar el código y destilar la experiencia personal en habilidades reutilizables (Skills).",
-    "facts": [
-     [
-      "Para",
-      "Desarrolladores"
-     ],
-     [
-      "Episodios",
-      "7 episodios, de 6–10 min"
-     ],
-     [
-      "Formato",
-      "Animación + demostraciones de producto + minijuegos de práctica"
-     ]
-    ],
-    "units": [
-     [
-      "",
-      [
-       [
-        "S2-1",
-        "El código se abarató, el criterio se encareció"
-       ],
-       [
-        "S2-2",
-        "Tres tipos de IA en tu editor"
-       ],
-       [
-        "S2-3",
-        "¿Qué archivos puede ver?"
-       ],
-       [
-        "S2-4",
-        "Un documento de proyecto escrito para la IA"
-       ],
-       [
-        "S2-5",
-        "Primero el plan, después el código"
-       ],
-       [
-        "S2-6",
-        "Convierte tus métodos en skills"
-       ],
-       [
-        "S2-7",
-        "Conecta las reglas y herramientas de tu equipo"
-       ]
-      ]
-     ]
+    "audience": [
+     "Para",
+     "Desarrolladores"
     ]
    },
    {
@@ -495,123 +372,13 @@
     "zh": "Construcción",
     "en": "Building AI Systems",
     "body": "Orientada a escenarios reales, desde ingeniería de contexto, orquestación de flujos de trabajo (n8n / Dify) y desarrollo de servidores MCP, hasta colaboración multiagente, gobernanza de seguridad y evaluación en producción.",
-    "facts": [
-     [
-      "Para",
-      "Responsables de negocio e ingenieros que convierten la IA en sistemas para su equipo"
-     ],
-     [
-      "Episodios",
-      "17 episodios: ~30 min de vídeo + ~60 min de práctica cada uno"
-     ],
-     [
-      "Formato",
-      "Conceptos + prácticas grabadas + plantillas y código + cuestionarios + proyecto final"
-     ]
-    ],
-    "units": [
-     [
-      "Unidad A　Diseño",
-      [
-       [
-        "S3-01",
-        "Primero, dibuja el mapa"
-       ],
-       [
-        "S3-02",
-        "Ingeniería de contexto"
-       ],
-       [
-        "S3-03",
-        "Elegir modelos y despliegue"
-       ]
-      ]
-     ],
-     [
-      "Unidad B　Low-code",
-      [
-       [
-        "S3-04",
-        "n8n (1): convertir el trabajo repetitivo en flujos"
-       ],
-       [
-        "S3-05",
-        "n8n (2): agentes de IA dentro de los flujos"
-       ],
-       [
-        "S3-06",
-        "Dify (1): un asistente que investiga y cita fuentes"
-       ],
-       [
-        "S3-07",
-        "Dify (2): flujos, agentes y plugins"
-       ],
-       [
-        "S3-08",
-        "n8n o Dify, y el autoalojamiento"
-       ]
-      ]
-     ],
-     [
-      "Unidad C　Ingeniería",
-      [
-       [
-        "S3-09",
-        "Construye tu propio servidor MCP"
-       ],
-       [
-        "S3-10",
-        "Escribir agentes con código"
-       ]
-      ]
-     ],
-     [
-      "Unidad D　Colaboración y protocolos",
-      [
-       [
-        "S3-11",
-        "Varios agentes trabajando juntos"
-       ],
-       [
-        "S3-12",
-        "Web y agentes: uso de pantalla y WebMCP"
-       ],
-       [
-        "S3-13",
-        "A2A: trabajar con agentes de otras empresas"
-       ]
-      ]
-     ],
-     [
-      "Unidad E　Puesta en producción",
-      [
-       [
-        "S3-14",
-        "Seguridad y gobernanza"
-       ],
-       [
-        "S3-15",
-        "Evaluación, monitorización y costes"
-       ]
-      ]
-     ],
-     [
-      "Unidad F　Adopción",
-      [
-       [
-        "S3-16",
-        "Extenderlo al equipo: números, pilotos y adopción"
-       ],
-       [
-        "S3-17",
-        "Proyecto final: convertir un proceso real en un sistema"
-       ]
-      ]
-     ]
+    "audience": [
+     "Para",
+     "Responsables de negocio e ingenieros que convierten la IA en sistemas para su equipo"
     ]
    }
   ],
-  "cta": "Cuando estén listas, las lecciones se publicarán primero en YouTube y en esta página"
+  "cta": "Vídeos en YouTube, |práctica y preguntas en el sitio del curso"
  },
  "blog": {
   "title": "Investigación de Paradigma y Ensayos",
@@ -739,11 +506,10 @@
   },
   "learn": {
    "seasonsAria": "Tres temporadas",
-   "count": "{n} LECCIONES · EN PRODUCCIÓN",
    "actions": [
+    "Empezar el curso",
     "Seguir en YouTube",
-    "Leer el blog",
-    "Leer el manifiesto"
+    "Leer el blog"
    ]
   },
   "blog": {
