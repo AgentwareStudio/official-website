@@ -1,0 +1,237 @@
+{
+ "heroTitle": "De l'interface à l'intention.",
+ "heroTag": "Le logiciel qui agit selon l'intention.",
+ "questions": [
+  {
+   "pre": "Au cours des quarante dernières années, le logiciel ne vous a posé qu'une seule question :",
+   "q": "Sur quel bouton cliquez-vous ?"
+  },
+  {
+   "pre": "Aujourd'hui, le logiciel commence à répondre à une tout autre question :",
+   "q": "Quel résultat souhaitez-vous obtenir ?"
+  }
+ ],
+ "definition": "Agentware est le paradigme logiciel conçu pour l'ère des agents. Vous ne manipulez plus une interface étape par étape ; vous confiez une délégation au logiciel — en précisant l'objectif, en traçant les limites et en définissant les critères de validation. Dans le périmètre autorisé, le système comprend le contexte, organise ses actions de manière autonome, s'adapte aux imprévus et livre des résultats vérifiables.",
+ "shiftTitle": "Hier, l'humain opérait le logiciel. Aujourd'hui, l'humain délègue au logiciel.",
+ "shiftIntro": [
+  "Pendant des décennies, les logiciels ont été construits autour de « fonctionnalités (Features) ». Le logiciel fournissait des boutons et des formulaires, et l'être humain jouait le rôle d'unique centre de coordination : il fallait savoir quelle application ouvrir, sur quel bouton cliquer, quel formulaire remplir et dans quel ordre procéder. Le logiciel offrait des capacités fragmentées ; l'humain devait les assembler pour produire un résultat.",
+  "Les agents ont bouleversé cette relation et réécrit le contrat de répartition des tâches entre l'humain et la machine :"
+ ],
+ "eras": [
+  {
+   "ver": "1.0",
+   "era": "L'ère des Outils",
+   "en": "Software as Functions",
+   "local": "Le logiciel comme fonction",
+   "motto": "Humans Operate",
+   "body": "Les parcours sont figés à l'avance. L'humain clique étape par étape ; le logiciel répond passivement."
+  },
+  {
+   "ver": "2.0",
+   "era": "L'ère des Copilotes",
+   "en": "Software as Copilots",
+   "local": "Le logiciel comme copilote",
+   "motto": "Humans Prompt",
+   "body": "L'IA accélère des tâches ponctuelles (rédiger, illustrer, coder), mais l'humain doit toujours relier chaque étape bout à bout."
+  },
+  {
+   "ver": "3.0",
+   "era": "L'ère de la Délégation",
+   "en": "Software as Delegation",
+   "local": "Le logiciel comme délégation",
+   "motto": "Humans Delegate",
+   "body": "L'humain confie des objectifs et des contraintes ; le logiciel comprend la mission, planifie de façon autonome, exécute les actions, observe les retours et s'ajuste dynamiquement jusqu'à la livraison du résultat."
+  }
+ ],
+ "shiftClosing": "Cette mutation ne consiste pas à greffer de l'IA sur tous les logiciels existants, mais à réécrire le logiciel lui-même.",
+ "notTitle": "Ajouter de l'IA ne suffit pas à faire un Agentware.",
+ "notLead": "La différence ne tient ni à l'appel d'un grand modèle de langage, ni à la présence d'une fenêtre de discussion, mais à la manière dont le logiciel fonctionne dans ses fondations.",
+ "notItems": [
+  {
+   "name": "AI Feature",
+   "body": "Le résumé, la traduction, la recherche ou la saisie semi-automatique ne sont que des fonctionnalités d'IA au sein d'un logiciel traditionnel. L'efficacité augmente, mais le travail reste piloté et accompli par l'humain."
+  },
+  {
+   "name": "Chatbot Wrapper",
+   "body": "Ajouter un volet de chat à un logiciel existant ou habiller une API de modèle d'une simple interface laisse intact, en profondeur, l'ancien logiciel qui attend toujours les clics successifs de l'utilisateur."
+  },
+  {
+   "name": "Rigid Workflow",
+   "body": "Un enchaînement figé A → B → C → D relève de l'automatisation classique. Un flux qui se bloque dès que la réalité s'écarte du scénario prévu est dépourvu d'adaptation au contexte et aux retours d'expérience."
+  },
+  {
+   "name": "Ungoverned Agent",
+   "body": "Un agent sauvage qui tourne en boucle à l'aveugle dans une boîte noire, aux coûts incontrôlés et aux résultats invérifiables, n'est qu'un jouet expérimental — pas un logiciel exploitable."
+  }
+ ],
+ "archSub": "Cœur déterministe. Plan de contrôle agentique.",
+ "archBody": "Agentware ne remplace pas le code déterministe ; il prend en charge la logique de contrôle de plus haut niveau. Le socle reste constitué de bases de données rigoureuses, d'API et de règles métier ; au sommet, les « parcours d'exécution préprogrammés » cèdent la place à « l'organisation dynamique d'actions autour d'un objectif à l'exécution ».",
+ "tableHead": [
+  "Dimension",
+  "Logiciel Traditionnel (Traditional Software)",
+  "Système Agentware (Agentware System)"
+ ],
+ "tableRows": [
+  [
+   "Rôle de l'humain",
+   "Opérateur (Operator)",
+   "Délégant (Delegator)"
+  ],
+  [
+   "Unité de conception",
+   "Fonctionnalité (Feature)",
+   "Délégation (Delegation)"
+  ],
+  [
+   "Parcours d'exécution",
+   "Figé à l'avance (Input → Function → Output)",
+   "Généré dynamiquement à l'exécution (Intent → Plan → Act → Adapt → Verify)"
+  ],
+  [
+   "État du système",
+   "Session unique, repart de zéro à chaque fois",
+   "Mémoire à long terme capitalisée en continu"
+  ],
+  [
+   "Valeur centrale",
+   "Fournir des fonctionnalités utilisables",
+   "Livrer des résultats vérifiables"
+  ],
+  [
+   "Mode de contrôle",
+   "Implicite dans les menus et les droits d'accès",
+   "Gouvernance explicite, auditable, interruptible à tout instant"
+  ]
+ ],
+ "loopTitle": "Le parcours est généré à l'exécution ; le résultat est vérifié avant la livraison.",
+ "loopFlow": [
+  "Comprendre la délégation",
+  "Acquérir le contexte",
+  "Planifier l'action",
+  "Appeler les outils et exécuter",
+  "Observer les retours",
+  "Ajuster dynamiquement",
+  "Vérifier le résultat",
+  "Livrer (ou rendre la main à l'humain hors périmètre)"
+ ],
+ "loopPrinciple": "Les objectifs peuvent être délégués et les parcours peuvent s'adapter ; mais les permissions doivent être explicites, les résultats vérifiables et les processus gouvernables.",
+ "pillarsLead": "Pour qu'un logiciel puisse véritablement recevoir une délégation, il doit reposer sur quatre piliers fondamentaux :",
+ "pillars": [
+  {
+   "en": "Intent & Delegation",
+   "local": "Intention et Délégation",
+   "lead": "L'unité fondamentale du logiciel passe de la fonctionnalité à la délégation.",
+   "body": "Un logiciel traditionnel se conçoit en demandant « quelle fonctionnalité créer » ; Agentware se conçoit en demandant « quel résultat confier au système ». Une délégation claire ne définit que quatre éléments : le résultat attendu, les limites à respecter, les critères d'acceptation et le moment où rendre la main à l'humain.",
+   "points": []
+  },
+  {
+   "en": "Planning & Execution",
+   "local": "Planification et Exécution",
+   "lead": "Ne pas seulement donner des réponses, mais mener le travail à bien.",
+   "body": "On n'exige plus de l'humain qu'il écrive chaque étape à l'avance. Le système détermine la prochaine action selon l'objectif et l'état actuel, agit sur le monde réel via de véritables outils (API, MCP, ligne de commande, navigateur, base de données, progiciels) et progresse dans une boucle fermée : Planifier → Agir → Observer → Ajuster.",
+   "points": []
+  },
+  {
+   "en": "Governance & Guardrails",
+   "local": "Gouvernance et Garde-fous",
+   "lead": "Plus l'autonomie est grande, plus la gouvernance est essentielle.",
+   "body": "Agentware n'est pas un agent à l'autonomie illimitée, mais un logiciel doté d'une capacité d'exécution à l'intérieur de frontières d'autorisation explicites. La gouvernance est aussi cruciale que l'exécution — chaque délégation doit établir clairement : ce qu'elle est autorisée à faire, ce qu'elle a réellement accompli, quel coût elle a engagé, qui peut l'arrêter à tout moment et comment revenir en arrière en toute sécurité en cas d'erreur.",
+   "points": []
+  },
+  {
+   "en": "Evolving Memory",
+   "local": "Mémoire Évolutive",
+   "lead": "La mémoire transforme le logiciel d'un outil jetable en un système en évolution continue.",
+   "body": "Un logiciel sans mémoire repart de zéro à chaque utilisation ; la recherche documentaire classique (RAG) n'est qu'une consultation passive. Le système de mémoire d'Agentware ne sert pas uniquement à répondre aux questions : il participe directement à la planification, à la décision et à l'action :",
+   "points": [
+    [
+     "Capitalisation à double canal",
+     "Conserve à la fois le fil complet des missions passées (mémoire épisodique) et les règles cognitives abstraites (mémoire sémantique)."
+    ],
+    [
+     "Consolidation et révision",
+     "Décompose les connaissances en unités minimales intelligibles, puis déduplique, fusionne, corrige et affine automatiquement au fil des nouvelles informations."
+    ],
+    [
+     "Vérification traçable",
+     "Chaque connaissance distillée peut être rattachée à sa source d'origine — auditable et digne de confiance."
+    ]
+   ]
+  }
+ ],
+ "manifestoIntro": "Le logiciel était autrefois un outil attendant d'être manipulé. Il fournissait des fonctions ; l'humain devait l'apprendre, l'orchestrer et assumer la responsabilité du résultat. Aujourd'hui, pour la première fois, on peut déléguer du travail au logiciel. Il ne s'agit pas d'ajouter de l'IA aux anciens logiciels, mais de redéfinir ce que doit être le logiciel à l'ère des agents.",
+ "manifesto": [
+  {
+   "n": "I",
+   "en": "Software should understand intent, not just input.",
+   "local": "Le logiciel doit comprendre l'intention, et non simplement recevoir des saisies.",
+   "body": "Hier, l'humain devait traduire son objectif en une succession de clics et de formulaires. Désormais, l'humain exprime ce qu'il veut et ce qu'il refuse ; au logiciel de le comprendre."
+  },
+  {
+   "n": "II",
+   "en": "Software should execute goals, not just expose functions.",
+   "local": "Le logiciel doit accomplir des objectifs, et non simplement exposer des fonctions.",
+   "body": "Quel que soit le nombre de fonctionnalités, c'était toujours à l'humain de les relier pour obtenir un résultat. La valeur d'un logiciel ne se mesure pas au nombre de fonctions proposées, mais aux résultats livrés."
+  },
+  {
+   "n": "III",
+   "en": "Paths may adapt. Outcomes must remain verifiable.",
+   "local": "Les parcours peuvent s'adapter. Les résultats doivent rester vérifiables.",
+   "body": "La réalité ne se déroule jamais selon un schéma figé ; le parcours d'exécution doit évoluer avec l'environnement et les retours. Plus le parcours est libre, plus l'objectif et les critères d'acceptation doivent être explicites."
+  },
+  {
+   "n": "IV",
+   "en": "Autonomy requires governance.",
+   "local": "L'autonomie exige de la gouvernance.",
+   "body": "Nous ne recherchons pas des systèmes à l'autonomie sans limites. Chaque délégation doit définir des responsabilités claires, offrir une traçabilité complète et toujours préserver le pouvoir humain d'intervenir, d'annuler et de reprendre la main."
+  },
+  {
+   "n": "V",
+   "en": "Memory turns software from a tool into an evolving system.",
+   "local": "La mémoire transforme le logiciel d'un simple outil en un système évolutif.",
+   "body": "Un exécutant sans mémoire repart toujours de zéro. Un logiciel capable de retenir le contexte, de capitaliser l'expérience et de se corriger comprend de mieux en mieux les personnes et l'organisation au fil de son utilisation."
+  },
+  {
+   "n": "VI",
+   "en": "The future unit of software is not the feature. It is the delegation.",
+   "local": "L'unité fondamentale du logiciel de demain n'est pas la fonctionnalité. C'est la délégation.",
+   "body": "Hier, concevoir un logiciel revenait à demander : « Quelle fonctionnalité mettre ici ? » Aujourd'hui, concevoir un logiciel revient à demander : « Quel résultat lui confier ? » Énoncez clairement l'objectif, les limites et les critères de validation ; le système se charge du reste."
+  }
+ ],
+ "studioTitleEn": "Exploring the paradigm. Sharing the knowledge. Building the tools.",
+ "studioTitle": "Explorer le nouveau paradigme logiciel, diffuser la culture de l'ingénierie IA et bâtir la prochaine génération d'outils pratiques.",
+ "studioIntro": "Agentware Studio est un laboratoire indépendant de recherche et de création dédié au paradigme Agentware. Au point de bascule où le logiciel passe de « la manipulation d'interfaces » à « la délégation d'intentions », nous œuvrons à la diffusion et à l'évolution de ce paradigme par la recherche approfondie, des cours en libre accès et des expérimentations produits :",
+ "studioItems": [
+  {
+   "title": "Recherche sur le Paradigme et Essais",
+   "motto": "",
+   "body": "Nous publions régulièrement des analyses de fond et des notes de terrain sur la conception logicielle à l'ère des agents, les architectures de mémoire, les contrats de collaboration humain-machine et la transformation du travail, offrant un cadre de pensée clair pour appréhender les logiciels de nouvelle génération.",
+   "seasons": []
+  },
+  {
+   "title": "Cursus Ouvert et Structuré sur l'IA",
+   "motto": "We teach what we build. Nous enseignons ce que nous bâtissons.",
+   "body": "Passer de « manipuler un logiciel » à « déléguer à un logiciel » exige d'abord de faire évoluer nos modèles mentaux et nos méthodes. Nous réalisons un cursus pédagogique complet sur l'IA, des principes fondamentaux jusqu'à la construction pratique, afin d'aider chacun à maîtriser les compétences clés de l'ère des agents :",
+   "seasons": [
+    [
+     "Saison 1 · Fondamentaux (Fundamentals)",
+     "Au-delà du battage médiatique — de la prédiction du mot suivant, des tokens, des hallucinations et des fenêtres de contexte jusqu'au RAG, à l'appel d'outils et aux Agents — comprendre quand faire confiance à l'IA et comment l'intégrer dans son travail."
+    ],
+    [
+     "Saison 2 · Pratique (AI Coding)",
+     "Lorsque produire du code devient abordable et que le discernement devient précieux, apprendre à rédiger des spécifications pour l'IA, à concevoir l'architecture avant de toucher au code et à transformer son expertise en compétences réutilisables (Skills)."
+    ],
+    [
+     "Saison 3 · Construction (Building AI Systems)",
+     "Ancrée dans des cas réels — de l'ingénierie du contexte, de l'orchestration de flux (n8n / Dify) et du développement de serveurs MCP jusqu'à la collaboration multi-agents, la gouvernance de sécurité et l'évaluation en production."
+    ]
+   ]
+  },
+  {
+   "title": "Expérimentations d'Outils IA Grand Public",
+   "motto": "",
+   "body": "Une vision doit finalement être validée par des produits. Sur aikit.pro, nous concevons et publions en continu des outils et applications d'IA destinés aux utilisateurs, afin d'explorer concrètement l'expérience d'un « logiciel qui agit selon l'intention » au quotidien.",
+   "seasons": []
+  }
+ ]
+}

@@ -2,15 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta
-      name="description"
-      content="Agentware Studio defines the next software paradigm through agentic execution, memory, planning, tools, feedback, and governance."
-    />
-    <title>Agentware Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07080C" />
+    <meta name="color-scheme" content="dark" />
+    <title>Agentware Studio — From Interface to Intent</title>
+    <meta name="description" content="Agentware is a class of software designed for the agentic era. You entrust it with a goal; within authorized bounds it organizes actions, executes tasks…" />
+    <link rel="canonical" href="https://agentware.studio/" />
+    <link rel="alternate" hreflang="en" href="https://agentware.studio/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://agentware.studio/zh/" />
+    <link rel="alternate" hreflang="ja" href="https://agentware.studio/ja/" />
+    <link rel="alternate" hreflang="ko" href="https://agentware.studio/ko/" />
+    <link rel="alternate" hreflang="es" href="https://agentware.studio/es/" />
+    <link rel="alternate" hreflang="fr" href="https://agentware.studio/fr/" />
+    <link rel="alternate" hreflang="de" href="https://agentware.studio/de/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://agentware.studio/pt-br/" />
+    <link rel="alternate" hreflang="x-default" href="https://agentware.studio/" />
+    <link rel="icon" type="image/svg+xml" href="/brand/agentware_favicon_dark.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/agentware_favicon_dark_32.png" />
+    <link rel="apple-touch-icon" href="/brand/agentware_icon_app_dark_180.png" />
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <script>(function(){try{
+      var ua=navigator.userAgent||'';if(navigator.webdriver||/bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(ua))return;
+      var P={'en':'','zh-CN':'zh','ja':'ja','ko':'ko','es':'es','fr':'fr','de':'de','pt-BR':'pt-br'};
+      var ls=window.localStorage,pick=ls.getItem('aw-lang'),seen=ls.getItem('aw-seen');ls.setItem('aw-seen','1');
+      if(!pick&&seen)pick=ls.getItem('aw-auto');
+      if(!pick){if(seen)return;var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
+        pick='en';for(var i=0;i<L.length;i++){var t=String(L[i]).toLowerCase(),b=t.split('-')[0];
+          if(b==='zh'){pick='zh-CN';break}if(b==='pt'){pick='pt-BR';break}if(/^(en|ja|ko|es|fr|de)$/.test(b)){pick=b;break}}ls.setItem('aw-auto',pick)}
+      var path=P[pick];if(path)location.replace('/'+path+'/'+location.search+location.hash);
+    }catch(e){}})();</script>
+    <script>try{document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-pending')}catch(e){}</script>
   </head>
-  <body>
+  <body data-page="home" data-locale="en">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

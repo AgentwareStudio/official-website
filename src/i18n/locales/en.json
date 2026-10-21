@@ -1,0 +1,470 @@
+{
+ "hero": {
+  "intro": "Agentware is a class of software designed for the agentic era. You entrust it with a goal; within authorized bounds it organizes actions, executes tasks, and delivers verifiable outcomes.",
+  "zh": "",
+  "tagZh": "Software that acts on intent",
+  "questions": [
+   {
+    "when": "",
+    "who": "For the past forty years, software only asked you one question:",
+    "q": "Which button do you click?"
+   },
+   {
+    "when": "",
+    "who": "Now, software is beginning to answer a different question:",
+    "q": "What outcome do you want?"
+   }
+  ],
+  "btnWord": "button"
+ },
+ "shift": {
+  "title": [
+   "In the past, humans operated software",
+   "Now, humans delegate to software"
+  ],
+  "intro": [
+   "For decades, software was built around Features. Software provided buttons and forms, while humans acted as the sole dispatch center—you had to know which app to open, which button to click, which form to fill out, and in what order. Software offered fragmented capabilities; humans were responsible for stringing those capabilities together into outcomes.",
+   "Agents have transformed this relationship and rewritten the division-of-labor contract between humans and machines:"
+  ],
+  "eras": [
+   {
+    "no": "01",
+    "ver": "1.0",
+    "era": "The Tool Era",
+    "en": "Software as Functions",
+    "zh": "",
+    "motto": "Humans Operate",
+    "body": "Paths are hard-coded in advance. Humans click step by step; software passively responds.",
+    "role": "OPERATOR"
+   },
+   {
+    "no": "02",
+    "ver": "2.0",
+    "era": "The Copilot Era",
+    "en": "Software as Copilots",
+    "zh": "",
+    "motto": "Humans Prompt",
+    "body": "AI accelerates single-point tasks (writing, drawing, coding), but humans still have to stitch every step together.",
+    "role": "PROMPTER"
+   },
+   {
+    "no": "03",
+    "ver": "3.0",
+    "era": "The Delegation Era",
+    "en": "Software as Delegation",
+    "zh": "",
+    "motto": "Humans Delegate",
+    "body": "Humans entrust goals and constraints; software understands the task, plans autonomously, executes actions, observes feedback, and adapts dynamically until the outcome is delivered.",
+    "role": "DELEGATOR"
+   }
+  ],
+  "closing": [
+   "This shift is not about bolting AI onto every piece of software—",
+   "it is about rewriting software itself."
+  ]
+ },
+ "notAgentware": {
+  "title": "Adding AI does not make it Agentware",
+  "lead": "The difference lies not in whether a large language model is called, nor in whether there is a chat window, but in how the software operates beneath the surface.",
+  "items": [
+   {
+    "name": "AI Feature",
+    "body": "Summarization, translation, search, and autocomplete are merely AI features inside traditional software. Efficiency improves, but the work is still operated and completed by humans."
+   },
+   {
+    "name": "Chatbot Wrapper",
+    "body": "Adding a chat sidebar to legacy software, or wrapping a thin shell around a model API, still leaves old software underneath waiting for humans to click step by step."
+   },
+   {
+    "name": "Rigid Workflow",
+    "body": "Fixed A → B → C → D pipelines are traditional automation. A workflow that freezes the moment reality deviates from presets lacks the ability to adapt to context and feedback."
+   },
+   {
+    "name": "Ungoverned Agent",
+    "body": "Wild agents that loop blindly inside a black box with runaway costs and unverifiable outputs are experimental toys—not production-ready software."
+   }
+  ]
+ },
+ "architecture": {
+  "titleZh": "",
+  "body": "Agentware does not replace deterministic code; it takes over the highest-level control logic. Beneath the surface remain rigorous databases, APIs, and business rules; at the top, \"pre-written operation paths\" give way to \"organizing actions around goals at runtime.\"",
+  "table": {
+   "head": [
+    "Dimension",
+    "Traditional Software",
+    "Agentware System"
+   ],
+   "headEn": [
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Human Role",
+     "Operator",
+     "Delegator"
+    ],
+    [
+     "Unit of Design",
+     "Feature",
+     "Delegation"
+    ],
+    [
+     "Execution Path",
+     "Pre-coded|Input → Function → Output",
+     "Generated dynamically at runtime|Intent → Plan → Act → Adapt → Verify"
+    ],
+    [
+     "System State",
+     "Stateless across sessions; resets every time",
+     "Continuously accumulated long-term memory"
+    ],
+    [
+     "Core Value",
+     "Provides usable features",
+     "Delivers verifiable outcomes"
+    ],
+    [
+     "Control Mechanism",
+     "Implicit in menus and permissions",
+     "Explicit governance, auditable, interruptible at any time"
+    ]
+   ]
+  }
+ },
+ "loop": {
+  "title": "Paths are generated at runtime; outcomes are verified before delivery",
+  "principle": [
+   "Goals can be delegated, and paths can be adaptive; ",
+   "permissions must be explicit, outcomes must be verifiable, and processes must be governable."
+  ],
+  "steps": [
+   {
+    "en": "Intent",
+    "zh": "Understand Delegation",
+    "text": "Make clear what outcome is wanted, within what boundaries to act, and what counts as done.",
+    "code": "goal · constraints · acceptance"
+   },
+   {
+    "en": "Context",
+    "zh": "Gather Context",
+    "text": "Gather the facts and experience relevant to the goal from the current environment and accumulated memory.",
+    "code": "context · memory · evidence"
+   },
+   {
+    "en": "Plan",
+    "zh": "Plan Actions",
+    "text": "Organize actions around the goal and the current state, generating the execution path at runtime.",
+    "code": "state → next action"
+   },
+   {
+    "en": "Act",
+    "zh": "Invoke Tools",
+    "text": "Within explicit authorization, call APIs, MCP, browsers and databases so actions take effect in real systems.",
+    "code": "tools · APIs · deterministic core"
+   },
+   {
+    "en": "Observe",
+    "zh": "Observe Feedback",
+    "text": "Read the results and changes an action produces, and check the actual state against what was expected.",
+    "code": "action → feedback → state"
+   },
+   {
+    "en": "Adapt",
+    "zh": "Adapt Dynamically",
+    "text": "Revise the plan with new information. When permission or risk boundaries are reached, return the decision to a human.",
+    "code": "replan · adapt · escalate"
+   },
+   {
+    "en": "Verify",
+    "zh": "Verify Outcome",
+    "text": "Check the result against the acceptance criteria defined in the delegation, keeping traceable evidence.",
+    "code": "acceptance criteria → evidence"
+   },
+   {
+    "en": "Deliver",
+    "zh": "Deliver",
+    "text": "Deliver a verifiable outcome; if the goal cannot be met within scope, explain clearly and hand back to a human.",
+    "code": "verified outcome / human handoff"
+   }
+  ],
+  "handback": {
+   "en": "Hand back",
+   "zh": "Hand back to a human",
+   "text": "Out of bounds: the system stops acting, explains why and what it has completed, and returns the decision to a human.",
+   "code": "out of scope → human decision"
+  }
+ },
+ "pillars": {
+  "titleZh": "",
+  "lead": "For software to truly accept delegations, it must be built upon four foundational pillars:",
+  "items": [
+   {
+    "code": "01 / DELEGATION",
+    "en": "",
+    "zh": "Intent & Delegation",
+    "lead": "The fundamental unit of software shifts from features to delegations.",
+    "body": "Traditional software starts by asking \"what feature to build\"; Agentware starts by asking \"what outcome to entrust to the system.\" A clear delegation defines just four things: what outcome is desired, within what boundaries to act, what qualifies as acceptance, and when to hand control back to a human.",
+    "points": []
+   },
+   {
+    "code": "02 / EXECUTION",
+    "en": "",
+    "zh": "Planning & Execution",
+    "lead": "Not just giving answers, but getting the job done.",
+    "body": "Humans are no longer required to script every step in advance. The system determines the next move based on the goal and current state, acts upon the real world through real tools (APIs, MCP, CLI, browsers, databases, software systems), and advances through a closed loop of Plan → Act → Observe → Adapt.",
+    "points": []
+   },
+   {
+    "code": "03 / GOVERNANCE",
+    "en": "",
+    "zh": "Governance & Guardrails",
+    "lead": "The greater the autonomy, the more vital the governance.",
+    "body": "Agentware is not an unconstrained autonomous agent, but software equipped with execution power inside explicit authorization boundaries. Governance is just as critical as execution—every delegation must make clear: what it is permitted to do, what it actually did, how much cost it incurred, who can halt it at any moment, and how to roll back safely when errors occur.",
+    "points": []
+   },
+   {
+    "code": "04 / MEMORY",
+    "en": "",
+    "zh": "Evolving Memory",
+    "lead": "Memory transforms software from a one-off tool into a continuously evolving system.",
+    "body": "Software without memory starts from zero every time; traditional retrieval (RAG) is merely passive document lookup. Agentware's memory system does more than answer questions—it directly participates in planning, decision-making, and action:",
+    "points": [
+     [
+      "Dual-Channel Accumulation",
+      "Preserves both the full context of specific tasks (episodic memory) and abstracted cognitive rules (semantic memory)."
+     ],
+     [
+      "Consolidation & Revision",
+      "Breaks knowledge down into minimal intelligible units, automatically deduplicating, merging, revising, and distilling as new information arrives."
+     ],
+     [
+      "Traceable Verification",
+      "Every distilled memory can be traced back to its original source—auditable and trustworthy."
+     ]
+    ]
+   }
+  ]
+ },
+ "manifesto": {
+  "intro": "Software used to be a tool waiting to be operated. It provided functions; humans had to learn it, orchestrate it, and take responsibility for the results. Now, for the first time, software can be delegated work. This is not about bolting AI onto legacy software—it is about redefining what software should be in the age of agents.",
+  "items": [
+   [
+    "I",
+    [
+     "Software should understand intent, not just input"
+    ],
+    "",
+    "In the past, humans had to translate their goals into a sequence of clicks and forms. Now, humans state what they want and what they won't accept—and software is responsible for understanding."
+   ],
+   [
+    "II",
+    [
+     "Software should execute goals, not just expose functions"
+    ],
+    "",
+    "No matter how many features exist, humans still had to string them together into outcomes. The value of software lies not in how many functions it exposes, but in what outcomes it delivers."
+   ],
+   [
+    "III",
+    [
+     "Paths may adapt",
+     "Outcomes must remain verifiable"
+    ],
+    "",
+    "Reality rarely unfolds according to preset workflows; execution paths must adapt to environment and feedback. The freer the path, the clearer the goal and acceptance criteria must be."
+   ],
+   [
+    "IV",
+    [
+     "Autonomy requires governance"
+    ],
+    "",
+    "We do not pursue unbounded autonomy. Every delegation must have explicit accountability and an auditable trail, always preserving human authority to intervene, roll back, and take over."
+   ],
+   [
+    "V",
+    [
+     "Memory turns software from a tool into an evolving system"
+    ],
+    "",
+    "A one-off executor starts from scratch every single time. Software that remembers context, accumulates experience, and refines itself grows to understand its people and organization better with every use."
+   ],
+   [
+    "VI",
+    [
+     "The future unit of software is not the feature",
+     "It is the delegation"
+    ],
+    "",
+    "In the past, designing software meant asking, \"What feature goes here?\" Today, designing software means asking, \"What outcome should be entrusted to it?\" Define the goal, boundaries, and acceptance criteria—and let the system complete the rest."
+   ]
+  ]
+ },
+ "studio": {
+  "title": "Exploring the paradigm\nSharing the knowledge\nBuilding the tools",
+  "sub": "Agentware Studio is an independent research and creation studio dedicated to the Agentware paradigm. At the inflection point where software shifts from \"operating interfaces\" to \"delegating intent,\" we advance the adoption and evolution of this paradigm through deep research, open curriculum, and product experiments:",
+  "items": [
+   {
+    "tag": "01 // OPEN CURRICULUM",
+    "title": "Open AI Engineering Curriculum",
+    "body": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
+    "action": "Go to the course site ↗",
+    "href": "https://learn.agentware.studio"
+   },
+   {
+    "tag": "02 // USER TOOLS",
+    "title": "User-Facing AI Tool Experiments",
+    "body": "Ideas must ultimately be validated by products. At aikit.pro, we continuously design and ship user-facing AI tools and applications, exploring how \"software that acts on intent\" feels in everyday workflows."
+   }
+  ]
+ },
+ "learn": {
+  "title": "Open AI Engineering Curriculum",
+  "en": "Open Curriculum",
+  "motto": [
+   "We teach what we build.",
+   ""
+  ],
+  "lead": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
+  "status": "First course: Graduating from AI Gacha",
+  "course": {
+   "name": "Graduating from AI Gacha",
+   "langs": "Course languages",
+   "body": "Stop rolling the dice with AI. Across three seasons, the course goes from how large language models work, to coding with AI, to building a real piece of work into a system yourself. The course site has practice games and an AI assistant that answers only from the course itself."
+  },
+  "seasons": [
+   {
+    "id": "ai-fundamentals",
+    "no": "Season 1",
+    "zh": "Fundamentals",
+    "en": "",
+    "body": "Stripping away the hype—from next-token prediction, tokens, hallucinations, and context windows to RAG, tool calling, and Agents—understanding when to trust AI and how to put it to work."
+   },
+   {
+    "id": "ai-coding",
+    "no": "Season 2",
+    "zh": "AI Coding",
+    "en": "",
+    "body": "When code becomes cheap and judgment becomes scarce, learn how to write specs for AI, design architecture before touching code, and distill personal expertise into reusable Skills."
+   },
+   {
+    "id": "building-ai-systems",
+    "no": "Season 3",
+    "zh": "Building AI Systems",
+    "en": "",
+    "body": "Grounded in real-world scenarios—covering context engineering, workflow orchestration (n8n / Dify), MCP server development, multi-agent collaboration, safety guardrails, and evaluation pipelines to turn real workflows into autonomous systems."
+   }
+  ],
+  "cta": "Videos on YouTube, |practice and Q&A on the course site"
+ },
+ "ui": {
+  "skip": "Skip to content",
+  "home": "Agentware Studio home",
+  "mainNav": "Main navigation",
+  "menuOpen": "Open menu",
+  "menuClose": "Close menu",
+  "follow": "Follow",
+  "language": "Language",
+  "nav": {
+   "paradigm": "Paradigm",
+   "architecture": "Architecture",
+   "manifesto": "Manifesto",
+   "studio": "Studio",
+   "learn": "Learn"
+  },
+  "heroCta": "Discover Agentware",
+  "heroCta2": "Read the Manifesto",
+  "questionsAria": "Two questions software asks",
+  "markAria": "AGENTWARE mark: the brackets are the authorized boundary, the rising path an execution path that can adapt, the point an outcome that must be verifiable. Click or press Enter to replay; use the arrow keys to move the path.",
+  "markAriaLight": "AGENTWARE mark",
+  "erasAria": "Three eras",
+  "eraOf": "Era {n} of 3",
+  "compareAria": "Traditional software vs. Agentware system",
+  "dimension": "Dimension",
+  "pillarsAria": "The four pillars",
+  "stage": {
+   "human": "",
+   "outcome": "",
+   "manual": "Stitched by hand",
+   "verified": "Verifiable outcome",
+   "n1": "Humans click step by step",
+   "n1done": "The result is stitched by hand",
+   "n2ai": "AI speeds up a single task",
+   "n2manual": "A human does this step",
+   "n2done": "Humans still stitch every step together",
+   "intent": "Goal · Boundaries · Acceptance",
+   "blocked": "Blocked, re-routing",
+   "verify": "Verified",
+   "boundary": "",
+   "aria": [
+    "1.0 The Tool Era: a cursor opens four function windows one by one, and the human stitches the result together by hand.",
+    "2.0 The Copilot Era: two of the functions are accelerated by AI, but every prompt starts from the human and returns to the human, who still links every step.",
+    "3.0 The Delegation Era: the human hands over one intent; inside the authorized boundary the system plans a path, re-routes around a blocked step, verifies the result and delivers a verifiable outcome."
+   ]
+  },
+  "loop": {
+   "local": "",
+   "running": "",
+   "delivered": "",
+   "handback": "",
+   "idle": "",
+   "aria": "The execution loop: understand the delegation and gather context, then plan, act, observe and adapt inside the authorized boundary, verify the result and deliver it or hand it back to a human. Below sits the deterministic core: memory, database, APIs and business rules.",
+   "boundary": "",
+   "handbackLabel": "",
+   "core": "",
+   "blocks": [
+    "",
+    "",
+    "",
+    ""
+   ],
+   "human": "",
+   "outcome": "",
+   "outcomeDone": "Verifiable outcome",
+   "inspect": "View step {n}: {name}",
+   "traceAria": "Execution trace",
+   "traceEmpty": "Waiting for a delegation.",
+   "inside": "Within scope",
+   "touched": "Boundary reached",
+   "out": "Out of scope · handed back",
+   "run": "Run a delegation",
+   "rerun": "Run it again",
+   "simulate": "Simulate out of bounds",
+   "hint": "After a run, select any step in the diagram to read about it.",
+   "logs": {
+    "intent": "Delegation received: goal, boundaries and acceptance criteria set",
+    "context": "Reading the current environment and relevant memory",
+    "plan1": "Path generated → next: query data",
+    "act1": "Tool call: read the database",
+    "observe1": "Feedback: result differs from expectation",
+    "adapt": "Plan revised: switching to another path",
+    "plan2": "Re-planned → next: call the API",
+    "act2ok": "Tool call: API · MCP (within scope)",
+    "observe2ok": "Feedback: state matches expectation",
+    "verifyOk": "Checked against acceptance criteria: passed, evidence kept",
+    "deliver": "Verifiable outcome delivered",
+    "act2warn": "Requested action is outside the boundary; not executed",
+    "observe2warn": "Feedback: goal cannot be met within scope",
+    "verifyFail": "Acceptance failed: a human decision is needed",
+    "handback": "Stopped; reported why and what was done; handed back"
+   }
+  },
+  "learn": {
+   "seasonsAria": "Three seasons",
+   "actions": [
+    "Start the course",
+    "Follow on YouTube"
+   ]
+  },
+  "nf": {
+   "title": "This address has no page",
+   "lead": "The link may have changed. Go back home, or open the curriculum.",
+   "actions": [
+    "Back to home",
+    "Open Curriculum"
+   ]
+  }
+ }
+}

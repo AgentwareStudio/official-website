@@ -1,0 +1,237 @@
+{
+ "heroTitle": "Von der Oberfläche zur Absicht.",
+ "heroTag": "Software, die nach Absicht handelt.",
+ "questions": [
+  {
+   "pre": "In den vergangenen vierzig Jahren hat Software Ihnen nur eine einzige Frage gestellt:",
+   "q": "Welchen Button klicken Sie?"
+  },
+  {
+   "pre": "Jetzt beginnt Software, eine andere Frage zu beantworten:",
+   "q": "Welches Ergebnis wollen Sie erreichen?"
+  }
+ ],
+ "definition": "Agentware ist das Software-Paradigma für das Zeitalter der Agenten. Sie bedienen Benutzeroberflächen nicht mehr Schritt für Schritt, sondern erteilen der Software einen Auftrag (Delegation) – Sie beschreiben das Ziel, stecken die Grenzen ab und definieren die Abnahmekriterien. Innerhalb des autorisierten Rahmens versteht das System den Kontext, organisiert eigenständig Maßnahmen, passt sich Veränderungen an und liefert überprüfbare Ergebnisse.",
+ "shiftTitle": "Früher bedienten Menschen Software. Heute delegieren Menschen an Software.",
+ "shiftIntro": [
+  "Jahrzehntelang wurde Software rund um „Funktionen (Features)“ gebaut. Software stellte Buttons und Formulare bereit, während der Mensch als einzige Schaltzentrale fungierte – man musste wissen, welches Programm man öffnet, welchen Button man klickt, welches Formular man ausfüllt und in welcher Reihenfolge. Software lieferte isolierte Fähigkeiten; der Mensch war dafür verantwortlich, diese Fähigkeiten zu einem Ergebnis zusammenzufügen.",
+  "Agenten haben dieses Verhältnis verändert und den Vertrag zur Arbeitsteilung zwischen Mensch und Maschine neu geschrieben:"
+ ],
+ "eras": [
+  {
+   "ver": "1.0",
+   "era": "Ära der Werkzeuge",
+   "en": "Software as Functions",
+   "local": "Software als Funktion",
+   "motto": "Humans Operate",
+   "body": "Die Pfade sind fest programmiert. Der Mensch klickt Schritt für Schritt; die Software reagiert passiv."
+  },
+  {
+   "ver": "2.0",
+   "era": "Ära der Copiloten",
+   "en": "Software as Copilots",
+   "local": "Software als Assistenz",
+   "motto": "Humans Prompt",
+   "body": "KI beschleunigt Einzelaufgaben (Schreiben, Zeichnen, Programmieren), doch der Mensch muss weiterhin jeden Schritt selbst verknüpfen."
+  },
+  {
+   "ver": "3.0",
+   "era": "Ära der Delegation",
+   "en": "Software as Delegation",
+   "local": "Software als Delegation",
+   "motto": "Humans Delegate",
+   "body": "Der Mensch übergibt Ziele und Rahmenbedingungen; die Software versteht die Aufgabe, plant eigenständig, führt Aktionen aus, beobachtet das Feedback und passt sich dynamisch an, bis das Ergebnis geliefert ist."
+  }
+ ],
+ "shiftClosing": "Dieser Wandel bedeutet nicht, jede bestehende Software mit KI nachzurüsten – sondern Software selbst neu zu schreiben.",
+ "notTitle": "KI hinzuzufügen macht noch keine Agentware.",
+ "notLead": "Der Unterschied liegt weder darin, ob ein großes Sprachmodell aufgerufen wird, noch darin, ob ein Chatfenster existiert, sondern in der grundlegenden Funktionsweise der Software unter der Oberfläche.",
+ "notItems": [
+  {
+   "name": "AI Feature",
+   "body": "Zusammenfassen, Übersetzen, Suchen oder Autovervollständigung sind lediglich KI-Funktionen innerhalb klassischer Software. Die Effizienz steigt, aber die eigentliche Arbeit wird weiterhin vom Menschen bedient und erledigt."
+  },
+  {
+   "name": "Chatbot Wrapper",
+   "body": "Einer herkömmlichen Software eine Chat-Seitenleiste hinzuzufügen oder eine Modell-API mit einer dünnen Hülle zu versehen, lässt im Kern noch immer alte Software zurück, die Schritt für Schritt auf menschliche Klicks wartet."
+  },
+  {
+   "name": "Rigid Workflow",
+   "body": "Starre A → B → C → D-Ketten sind klassische Automatisierung. Ein Ablauf, der sofort blockiert, sobald die Realität von den Vorgaben abweicht, besitzt keine Fähigkeit zur kontext- und feedbackbasierten Anpassung."
+  },
+  {
+   "name": "Ungoverned Agent",
+   "body": "Unkontrollierte Agenten, die in einer Blackbox blind in Schleifen laufen, deren Kosten explodieren und deren Ergebnisse nicht überprüfbar sind, sind experimentelles Spielzeug – keine ernstzunehmende Software."
+  }
+ ],
+ "archSub": "Deterministischer Kern. Agentische Steuerungsebene.",
+ "archBody": "Agentware ersetzt keinen deterministischen Code, sondern übernimmt die oberste Steuerungslogik. Das Fundament bilden weiterhin präzise Datenbanken, APIs und Geschäftsregeln; an der Spitze jedoch wird das „Vorprogrammieren starrer Bedienpfade“ abgelöst durch das „zielgerichtete Organisieren von Handlungen zur Laufzeit“.",
+ "tableHead": [
+  "Dimension",
+  "Klassische Software (Traditional Software)",
+  "Agentware-System (Agentware System)"
+ ],
+ "tableRows": [
+  [
+   "Rolle des Menschen",
+   "Bediener (Operator)",
+   "Auftraggeber (Delegator)"
+  ],
+  [
+   "Designeinheit",
+   "Funktion (Feature)",
+   "Delegation (Delegation)"
+  ],
+  [
+   "Ausführungspfad",
+   "Vorab fest codiert (Input → Function → Output)",
+   "Zur Laufzeit dynamisch generiert (Intent → Plan → Act → Adapt → Verify)"
+  ],
+  [
+   "Systemzustand",
+   "Einzelsitzung, beginnt jedes Mal bei null",
+   "Kontinuierlich wachsendes Langzeitgedächtnis"
+  ],
+  [
+   "Kernwert",
+   "Nutzbare Funktionen bereitstellen",
+   "Überprüfbare Ergebnisse liefern"
+  ],
+  [
+   "Steuerungsweise",
+   "Implizit in Menüs und Berechtigungen verborgen",
+   "Explizite Governance, prüfbar, jederzeit eingreifbar"
+  ]
+ ],
+ "loopTitle": "Pfade entstehen zur Laufzeit, Ergebnisse werden vor der Übergabe verifiziert.",
+ "loopFlow": [
+  "Delegation verstehen",
+  "Kontext erfassen",
+  "Maßnahmen planen",
+  "Werkzeuge aufrufen & ausführen",
+  "Feedback beobachten",
+  "Dynamisch anpassen",
+  "Ergebnis verifizieren",
+  "Ausliefern (oder bei Grenzüberschreitung an den Menschen zurückgeben)"
+ ],
+ "loopPrinciple": "Ziele lassen sich delegieren, Pfade können sich anpassen; Berechtigungen müssen jedoch eindeutig, Ergebnisse überprüfbar und Prozesse steuerbar sein.",
+ "pillarsLead": "Damit Software tatsächlich Delegationen übernehmen kann, muss sie auf vier tragenden Säulen ruhen:",
+ "pillars": [
+  {
+   "en": "Intent & Delegation",
+   "local": "Absicht & Delegation",
+   "lead": "Die Grundeinheit von Software wandelt sich von der Funktion zur Delegation.",
+   "body": "Klassische Software beginnt beim Design mit der Frage „Welche Funktion bauen wir?“; Agentware beginnt mit der Frage „Welches Ergebnis übergeben wir dem System?“. Eine klare Delegation definiert genau vier Dinge: welches Ergebnis gewünscht ist, innerhalb welcher Grenzen gehandelt werden darf, wann das Ergebnis als erfolgreich gilt und wann an den Menschen zurückgegeben werden muss.",
+   "points": []
+  },
+  {
+   "en": "Planning & Execution",
+   "local": "Planung & Ausführung",
+   "lead": "Nicht nur Antworten geben, sondern Aufgaben zu Ende bringen.",
+   "body": "Vom Menschen wird nicht länger verlangt, jeden einzelnen Schritt im Voraus festzulegen. Das System bestimmt auf Basis des Ziels und des aktuellen Zustands den nächsten Schritt, wirkt über reale Werkzeuge (APIs, MCP, Kommandozeile, Browser, Datenbanken, Softwaresysteme) auf die reale Welt ein und arbeitet sich im geschlossenen Kreislauf aus Planen → Handeln → Beobachten → Anpassen voran.",
+   "points": []
+  },
+  {
+   "en": "Governance & Guardrails",
+   "local": "Governance & Leitplanken",
+   "lead": "Je größer die Autonomie, desto wichtiger die Governance.",
+   "body": "Agentware ist kein grenzenlos autonomer Agent, sondern Software mit Ausführungskompetenz innerhalb klar autorisierter Grenzen. Governance ist ebenso wichtig wie Ausführung – bei jeder Delegation muss transparent sein: was erlaubt ist, was tatsächlich getan wurde, welche Kosten entstanden sind, wer jederzeit stoppen kann und wie im Fehlerfall sicher zurückgerollt wird.",
+   "points": []
+  },
+  {
+   "en": "Evolving Memory",
+   "local": "Evolvierendes Gedächtnis",
+   "lead": "Das Gedächtnis verwandelt Software von einem Einmal-Werkzeug in ein sich kontinuierlich weiterentwickelndes System.",
+   "body": "Software ohne Gedächtnis fängt bei jeder Nutzung wieder bei null an; auch klassische Informationsabfrage (RAG) ist lediglich passives Nachschlagen. Das Gedächtnissystem von Agentware dient nicht nur der Beantwortung von Fragen, sondern wirkt direkt an Planung, Entscheidung und Handlung mit:",
+   "points": [
+    [
+     "Zweikanal-Konsolidierung",
+     "Bewahrt sowohl den konkreten Verlauf spezifischer Aufgaben (episodisches Gedächtnis) als auch abstrahierte kognitive Regeln (semantisches Gedächtnis)."
+    ],
+    [
+     "Integration & Korrektur",
+     "Zerlegt Wissen in kleinste verständliche Einheiten und dedupliziert, verschmilzt, korrigiert und verdichtet diese automatisch mit dem Eintreffen neuer Informationen."
+    ],
+    [
+     "Nachvollziehbare Verifikation",
+     "Jede verdichtete Erinnerung lässt sich bis zu ihrer ursprünglichen Quelle zurückverfolgen – revisionssicher und vertrauenswürdig."
+    ]
+   ]
+  }
+ ],
+ "manifestoIntro": "Software war einst ein Werkzeug, das darauf wartete, bedient zu werden. Sie stellte Funktionen bereit; der Mensch musste sie erlernen, orchestrieren und die Verantwortung für das Ergebnis tragen. Heute kann Software zum ersten Mal mit Arbeit betraut werden. Dabei geht es nicht darum, alter Software KI aufzusetzen, sondern neu zu definieren, was Software im Zeitalter der Agenten sein sollte.",
+ "manifesto": [
+  {
+   "n": "I",
+   "en": "Software should understand intent, not just input.",
+   "local": "Software sollte Absichten verstehen, nicht nur Eingaben entgegennehmen.",
+   "body": "Früher musste der Mensch seine Ziele in eine Abfolge von Klicks und Formularen übersetzen. Heute spricht der Mensch aus, was er will und was er nicht akzeptiert – und die Software hat die Aufgabe, dies zu verstehen."
+  },
+  {
+   "n": "II",
+   "en": "Software should execute goals, not just expose functions.",
+   "local": "Software sollte Ziele erfüllen, nicht bloß Funktionen bereitstellen.",
+   "body": "So zahlreich Funktionen auch sein mögen: Es war immer der Mensch, der sie zu einem Ergebnis verknüpfen musste. Der Wert von Software bemisst sich nicht daran, wie viele Funktionen sie bietet, sondern welche Ergebnisse sie liefert."
+  },
+  {
+   "n": "III",
+   "en": "Paths may adapt. Outcomes must remain verifiable.",
+   "local": "Pfade dürfen sich anpassen. Ergebnisse müssen überprüfbar bleiben.",
+   "body": "Die Realität hält sich nicht an vorab gezeichnete Abläufe; Ausführungspfade müssen sich mit Umfeld und Feedback verändern. Je freier der Pfad, desto klarer müssen Ziel und Abnahmekriterien definiert sein."
+  },
+  {
+   "n": "IV",
+   "en": "Autonomy requires governance.",
+   "local": "Autonomie erfordert Governance.",
+   "body": "Wir streben keine grenzenlos autonomen Systeme an. Jede Delegation braucht klare Verantwortlichkeiten, nachvollziehbare Prozesse und muss dem Menschen jederzeit das Recht vorbehalten, einzugreifen, zurückzurollen und die Kontrolle zu übernehmen."
+  },
+  {
+   "n": "V",
+   "en": "Memory turns software from a tool into an evolving system.",
+   "local": "Gedächtnis verwandelt Software von einem Werkzeug in ein evolvierendes System.",
+   "body": "Ein einmaliger Ausführer beginnt jedes Mal bei null. Software hingegen, die sich Kontext merkt, Erfahrungen sammelt und sich selbst korrigiert, versteht Menschen und Organisationen mit jedem Einsatz besser."
+  },
+  {
+   "n": "VI",
+   "en": "The future unit of software is not the feature. It is the delegation.",
+   "local": "Die zukünftige Grundeinheit von Software ist nicht die Funktion. Sie ist die Delegation.",
+   "body": "Früher lautete die Frage beim Softwaredesign: „Welche Funktion platzieren wir hier?“ Heute lautet sie: „Welches Ergebnis vertrauen wir ihr an?“ Definieren Sie Ziel, Grenzen und Abnahmekriterien – den Rest erledigt das System."
+  }
+ ],
+ "studioTitleEn": "Exploring the paradigm. Sharing the knowledge. Building the tools.",
+ "studioTitle": "Das neue Software-Paradigma erforschen, KI-Engineering-Wissen vermitteln, praxisnahe Werkzeuge der nächsten Generation entwickeln.",
+ "studioIntro": "Agentware Studio ist ein unabhängiges Forschungs- und Entwicklungslabor rund um das Agentware-Paradigma. An dem Wendepunkt, an dem sich Software von der „Bedienung von Oberflächen“ zur „Delegation von Absichten“ wandelt, treiben wir die Verbreitung und Weiterentwicklung dieses Paradigmas durch fundierte Forschung, offene Kurse und Produktexperimente voran:",
+ "studioItems": [
+  {
+   "title": "Paradigmenforschung & Fachkolumnen",
+   "motto": "",
+   "body": "Wir dokumentieren und veröffentlichen kontinuierlich tiefgehende Artikel und Praxisnotizen zu Softwaredesign im Agenten-Zeitalter, Gedächtnissystemen, Mensch-Maschine-Kooperationsverträgen und dem Wandel der Arbeitswelt – als klares gedankliches Fundament für die Software der nächsten Generation.",
+   "seasons": []
+  },
+  {
+   "title": "Systematischer Open-Access-KI-Kurs",
+   "motto": "We teach what we build. Wir lehren, was wir selbst bauen.",
+   "body": "Der Wechsel vom „Software bedienen“ zum „an Software delegieren“ beginnt mit einem Update des menschlichen Verständnisses und der Methodik. Wir entwickeln eine systematische KI-Vortragsreihe – von den Grundprinzipien bis zum praktischen Systemaufbau –, damit jeder die Kernkompetenzen des Agenten-Zeitalters meistern kann:",
+   "seasons": [
+    [
+     "Staffel 1 · Grundlagen (Fundamentals)",
+     "Jenseits des Hypes – von Next-Token-Prediction, Tokens, Halluzinationen und Kontextfenstern bis hin zu RAG, Tool-Aufrufen und Agenten. Verstehen, wann man KI vertrauen kann und wie man sie produktiv einsetzt."
+    ],
+    [
+     "Staffel 2 · Praxis (AI Coding)",
+     "Wenn Code günstig und Urteilskraft kostbar wird: Lernen Sie, wie man Spezifikationen für KI verfasst, erst die Architektur entwirft, bevor Code geschrieben wird, und persönliche Erfahrung in wiederverwendbare Fähigkeiten (Skills) gießt."
+    ],
+    [
+     "Staffel 3 · Systemaufbau (Building AI Systems)",
+     "Für reale Anwendungsszenarien – von Context Engineering, Workflow-Orchestrierung (n8n / Dify) und MCP-Server-Entwicklung bis zu Multi-Agenten-Kollaboration, Sicherheits-Governance und Evaluierung im Produktivbetrieb."
+    ]
+   ]
+  },
+  {
+   "title": "Nutzerorientierte KI-Werkzeug-Experimente",
+   "motto": "",
+   "body": "Ideen müssen sich letztlich in Produkten beweisen. Auf aikit.pro entwerfen und veröffentlichen wir laufend nutzerorientierte KI-Tools und Anwendungen, um zu erforschen, wie sich „Software, die nach Absicht handelt“ im realen Alltag anfühlt.",
+   "seasons": []
+  }
+ ]
+}

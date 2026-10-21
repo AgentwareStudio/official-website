@@ -1,0 +1,470 @@
+{
+ "hero": {
+  "intro": "Agentware es un tipo de software diseñado para la era de los agentes. Le confías un objetivo; dentro de los límites autorizados organiza acciones, ejecuta tareas y entrega resultados verificables.",
+  "zh": "De la interfaz a la intención",
+  "tagZh": "Software que actúa según tu intención",
+  "questions": [
+   {
+    "when": "",
+    "who": "Durante los últimos cuarenta años, el software solo te hacía una pregunta:",
+    "q": "¿Qué botón quieres pulsar?"
+   },
+   {
+    "when": "",
+    "who": "Ahora, el software empieza a responder a otra pregunta:",
+    "q": "¿Qué resultado quieres obtener?"
+   }
+  ],
+  "btnWord": "botón"
+ },
+ "shift": {
+  "title": [
+   "Antes, las personas operaban el software",
+   "Ahora, las personas delegan en el software"
+  ],
+  "intro": [
+   "Durante décadas, el software se construyó en torno a «Funciones (Features)». El software ofrecía botones y formularios, y el ser humano actuaba como único centro de coordinación: tenías que saber qué aplicación abrir, qué botón pulsar, qué formulario rellenar y en qué orden hacerlo. El software proporcionaba capacidades fragmentadas; las personas se encargaban de unirlas para lograr un resultado.",
+   "Los agentes han transformado esta relación y han reescrito el contrato de división del trabajo entre humanos y máquinas:"
+  ],
+  "eras": [
+   {
+    "no": "01",
+    "ver": "1.0",
+    "era": "Era de las Herramientas",
+    "en": "Software as Functions",
+    "zh": "El software como función",
+    "motto": "Humans Operate",
+    "body": "Las rutas están preprogramadas. El humano hace clic paso a paso; el software responde de forma pasiva.",
+    "role": "OPERATOR"
+   },
+   {
+    "no": "02",
+    "ver": "2.0",
+    "era": "Era del Copiloto",
+    "en": "Software as Copilots",
+    "zh": "El software como copiloto",
+    "motto": "Humans Prompt",
+    "body": "La IA acelera tareas puntuales (escribir, ilustrar, programar), pero el humano sigue teniendo que conectar cada paso.",
+    "role": "PROMPTER"
+   },
+   {
+    "no": "03",
+    "ver": "3.0",
+    "era": "Era de la Delegación",
+    "en": "Software as Delegation",
+    "zh": "El software como delegación",
+    "motto": "Humans Delegate",
+    "body": "El humano confía objetivos y restricciones; el software comprende la tarea, planifica de forma autónoma, ejecuta acciones, observa la retroalimentación y se ajusta dinámicamente hasta entregar el resultado.",
+    "role": "DELEGATOR"
+   }
+  ],
+  "closing": [
+   "Esta transformación no consiste en añadir IA a todo el software existente,",
+   "sino en reescribir el software mismo."
+  ]
+ },
+ "notAgentware": {
+  "title": "Añadir IA no lo convierte en Agentware",
+  "lead": "La diferencia no radica en si se invoca un gran modelo lingüístico ni en si existe una ventana de chat, sino en cómo funciona el software en su arquitectura profunda.",
+  "items": [
+   {
+    "name": "AI Feature",
+    "body": "Resumir, traducir, buscar o autocompletar son solo funciones de IA dentro del software tradicional. Mejoran la eficiencia, pero el trabajo sigue siendo operado y completado por personas."
+   },
+   {
+    "name": "Chatbot Wrapper",
+    "body": "Añadir una barra lateral de chat al software tradicional o envolver la API de un modelo en una interfaz superficial sigue dejando debajo el mismo software antiguo que espera clics humanos paso a paso."
+   },
+   {
+    "name": "Rigid Workflow",
+    "body": "Las tuberías fijas A → B → C → D son automatización tradicional. Un flujo que se bloquea en cuanto la realidad se desvía de lo preestablecido carece de capacidad para adaptarse al contexto y a la retroalimentación."
+   },
+   {
+    "name": "Ungoverned Agent",
+    "body": "Un agente descontrolado que entra en bucles ciegos dentro de una caja negra, con costes disparados y resultados imposibles de verificar, es un juguete experimental, no software verdaderamente utilizable."
+   }
+  ]
+ },
+ "architecture": {
+  "titleZh": "Núcleo determinista · Plano de control agéntico",
+  "body": "Agentware no reemplaza el código determinista, sino que asume la lógica de control del nivel superior. En la base siguen existiendo bases de datos rigurosas, API y reglas de negocio; en la cima, las «rutas de operación preescritas» pasan a ser «acciones organizadas en torno a objetivos en tiempo de ejecución».",
+  "table": {
+   "head": [
+    "Dimensión",
+    "Software Tradicional",
+    "Sistema Agentware"
+   ],
+   "headEn": [
+    "",
+    "Traditional Software",
+    "Agentware System"
+   ],
+   "rows": [
+    [
+     "Rol humano",
+     "Operador (Operator)",
+     "Delegador (Delegator)"
+    ],
+    [
+     "Unidad de diseño",
+     "Función (Feature)",
+     "Delegación (Delegation)"
+    ],
+    [
+     "Ruta de ejecución",
+     "Preprogramada|Input → Function → Output",
+     "Generada dinámicamente en tiempo de ejecución|Intent → Plan → Act → Adapt → Verify"
+    ],
+    [
+     "Estado del sistema",
+     "Sesión única, se reinicia desde cero cada vez",
+     "Memoria a largo plazo en continua acumulación"
+    ],
+    [
+     "Valor central",
+     "Ofrecer funciones utilizables",
+     "Entregar resultados verificables"
+    ],
+    [
+     "Modo de control",
+     "Implícito en menús y permisos",
+     "Gobernanza explícita, auditable e intervenible en todo momento"
+    ]
+   ]
+  }
+ },
+ "loop": {
+  "title": "Las rutas se generan en tiempo de ejecución; los resultados se verifican antes de la entrega",
+  "principle": [
+   "Los objetivos se pueden delegar y las rutas pueden adaptarse; ",
+   "pero los permisos deben ser explícitos, los resultados verificables y los procesos gobernables."
+  ],
+  "steps": [
+   {
+    "en": "Intent",
+    "zh": "Comprender la delegación",
+    "text": "Aclarar qué resultado se quiere, dentro de qué límites actuar y qué se considera terminado.",
+    "code": "goal · constraints · acceptance"
+   },
+   {
+    "en": "Context",
+    "zh": "Obtener contexto",
+    "text": "Obtener del entorno actual y de la memoria acumulada los hechos y la experiencia relevantes para el objetivo.",
+    "code": "context · memory · evidence"
+   },
+   {
+    "en": "Plan",
+    "zh": "Planificar acciones",
+    "text": "Organizar las acciones en torno al objetivo y al estado actual, generando la ruta de ejecución en tiempo real.",
+    "code": "state → next action"
+   },
+   {
+    "en": "Act",
+    "zh": "Invocar herramientas",
+    "text": "Dentro de una autorización explícita, llamar a APIs, MCP, navegadores y bases de datos para actuar sobre sistemas reales.",
+    "code": "tools · APIs · deterministic core"
+   },
+   {
+    "en": "Observe",
+    "zh": "Observar retroalimentación",
+    "text": "Leer los resultados y cambios que produce cada acción y comparar el estado real con lo esperado.",
+    "code": "action → feedback → state"
+   },
+   {
+    "en": "Adapt",
+    "zh": "Ajustar dinámicamente",
+    "text": "Corregir el plan con la nueva información. Al tocar límites de permisos o de riesgo, devolver la decisión a una persona.",
+    "code": "replan · adapt · escalate"
+   },
+   {
+    "en": "Verify",
+    "zh": "Verificar el resultado",
+    "text": "Comprobar el resultado frente a los criterios de aceptación definidos en la delegación, conservando evidencia trazable.",
+    "code": "acceptance criteria → evidence"
+   },
+   {
+    "en": "Deliver",
+    "zh": "Entregar",
+    "text": "Entregar un resultado verificable; si el objetivo no se puede cumplir dentro del alcance, explicarlo con claridad y devolverlo a una persona.",
+    "code": "verified outcome / human handoff"
+   }
+  ],
+  "handback": {
+   "en": "Hand back",
+   "zh": "Devolver al humano",
+   "text": "Fuera de límites: el sistema deja de actuar, explica por qué y qué ha completado, y devuelve la decisión a una persona.",
+   "code": "out of scope → human decision"
+  }
+ },
+ "pillars": {
+  "titleZh": "Los cuatro pilares",
+  "lead": "Para que el software pueda aceptar verdaderas delegaciones, debe construirse sobre cuatro elementos fundamentales:",
+  "items": [
+   {
+    "code": "01 / DELEGATION",
+    "en": "Intent & Delegation",
+    "zh": "Intención y Delegación",
+    "lead": "La unidad básica del software pasa de ser la función a ser la delegación.",
+    "body": "El software tradicional empieza diseñando «qué función construir»; Agentware empieza diseñando «qué resultado confiar al sistema». Una delegación clara define solo cuatro cosas: qué resultado se desea, dentro de qué límites actuar, qué se considera aceptable y cuándo devolver el control a una persona.",
+    "points": []
+   },
+   {
+    "code": "02 / EXECUTION",
+    "en": "Planning & Execution",
+    "zh": "Planificación y Ejecución",
+    "lead": "No solo dar respuestas, sino terminar el trabajo.",
+    "body": "Ya no se exige que el ser humano escriba cada paso por adelantado. El sistema decide el siguiente movimiento según el objetivo y el estado actual, actúa sobre el mundo real mediante herramientas reales (API, MCP, línea de comandos, navegadores, bases de datos, sistemas empresariales) y avanza en un ciclo cerrado de Planificar → Actuar → Observar → Ajustar.",
+    "points": []
+   },
+   {
+    "code": "03 / GOVERNANCE",
+    "en": "Governance & Guardrails",
+    "zh": "Gobernanza y Límites",
+    "lead": "Cuanta más autonomía, más importante es la gobernanza.",
+    "body": "Agentware no es un agente con autonomía ilimitada, sino software dotado de capacidad de ejecución dentro de límites de autorización explícitos. La gobernanza es tan importante como la ejecución: en cada delegación debe quedar claro qué tiene permitido hacer, qué hizo realmente, cuánto coste consumió, quién puede detenerlo en cualquier momento y cómo revertir de forma segura en caso de error.",
+    "points": []
+   },
+   {
+    "code": "04 / MEMORY",
+    "en": "Evolving Memory",
+    "zh": "Memoria en Evolución",
+    "lead": "La memoria transforma el software de una herramienta de un solo uso en un sistema en continua evolución.",
+    "body": "El software sin memoria empieza desde cero en cada uso, y la recuperación tradicional (RAG) es solo una búsqueda pasiva de documentos. El sistema de memoria de Agentware no solo sirve para responder preguntas, sino que participa directamente en la planificación, la toma de decisiones y la acción:",
+    "points": [
+     [
+      "Acumulación de doble canal",
+      "Conserva tanto el contexto completo de tareas específicas (memoria episódica) como reglas cognitivas abstractas (memoria semántica)."
+     ],
+     [
+      "Consolidación y revisión",
+      "Descompone el conocimiento en unidades mínimas comprensibles, deduplicando, fusionando, corrigiendo y destilando automáticamente a medida que llega nueva información."
+     ],
+     [
+      "Verificación trazable",
+      "Cada recuerdo destilado puede rastrearse hasta su fuente original, siendo auditable y digno de confianza."
+     ]
+    ]
+   }
+  ]
+ },
+ "manifesto": {
+  "intro": "El software solía ser una herramienta que esperaba a ser operada. Ofrecía funciones, y las personas debían aprenderlo, organizarlo y responsabilizarse del resultado. Ahora, por primera vez, se puede delegar trabajo en el software. No se trata de añadir IA al software antiguo, sino de redefinir qué debe ser el software en la era de los agentes.",
+  "items": [
+   [
+    "I",
+    [
+     "Software should understand intent, not just input"
+    ],
+    "El software debe comprender la intención, no solo recibir entradas",
+    "Antes, las personas tenían que traducir sus objetivos en una secuencia de clics y formularios. Ahora, las personas expresan qué quieren y qué no aceptan, y el software se encarga de comprenderlo."
+   ],
+   [
+    "II",
+    [
+     "Software should execute goals, not just expose functions"
+    ],
+    "El software debe cumplir objetivos, no solo exponer funciones",
+    "Por muchas funciones que existan, quien las unía para lograr un resultado seguía siendo el ser humano. El valor del software no reside en cuántas funciones ofrece, sino en qué resultados entrega."
+   ],
+   [
+    "III",
+    [
+     "Paths may adapt",
+     "Outcomes must remain verifiable"
+    ],
+    "Las rutas pueden cambiar; los resultados deben poder verificarse",
+    "La realidad no ocurre según flujos preestablecidos; la ruta de ejecución debe cambiar con el entorno y la retroalimentación. Cuanto más libre sea la ruta, más claros deben ser el objetivo y los criterios de aceptación."
+   ],
+   [
+    "IV",
+    [
+     "Autonomy requires governance"
+    ],
+    "La autonomía requiere gobernanza",
+    "No buscamos sistemas de autonomía ilimitada. Cada delegación debe tener responsabilidades claras, procesos auditables y preservar siempre para el ser humano el poder de intervenir, revertir y tomar el control."
+   ],
+   [
+    "V",
+    [
+     "Memory turns software from a tool into an evolving system"
+    ],
+    "La memoria convierte al software de una herramienta en un sistema en evolución",
+    "Un ejecutor de un solo uso empieza siempre desde cero. El software capaz de recordar el contexto, acumular experiencia y corregirse a sí mismo comprende mejor a las personas y a la organización con cada uso."
+   ],
+   [
+    "VI",
+    [
+     "The future unit of software is not the feature",
+     "It is the delegation"
+    ],
+    "La unidad futura del software no es la función; es la delegación",
+    "Antes, diseñar software era preguntarse «qué función ponemos aquí». Hoy, diseñar software es preguntarse «qué resultado vamos a confiarle». Define con claridad el objetivo, los límites y los criterios de aceptación; el sistema se encarga del resto."
+   ]
+  ]
+ },
+ "studio": {
+  "title": "Explorando el nuevo paradigma del software,\ndifundiendo la ingeniería de IA y creando herramientas prácticas de próxima generación",
+  "sub": "Agentware Studio es un laboratorio independiente de investigación y creación impulsado en torno al paradigma Agentware. En el punto de inflexión en el que el software pasa de «operar interfaces» a «delegar intenciones», nos dedicamos a impulsar la adopción y evolución de este paradigma mediante investigación profunda, cursos abiertos y experimentos de producto:",
+  "items": [
+   {
+    "tag": "01 // OPEN CURRICULUM",
+    "title": "Curso Abierto y Sistemático de IA",
+    "body": "Para pasar de «operar software» a «delegar en el software», primero es necesario actualizar nuestra mentalidad y metodología. Estamos produciendo una serie sistemática de lecciones sobre IA, desde los principios fundamentales hasta la construcción práctica, para ayudar a cualquier persona a dominar las capacidades esenciales de la era de los agentes",
+    "action": "Ir al sitio del curso ↗",
+    "href": "https://learn.agentware.studio"
+   },
+   {
+    "tag": "02 // USER TOOLS",
+    "title": "Experimentos de Herramientas de IA para Usuarios",
+    "body": "Las ideas deben validarse finalmente a través de productos. En aikit.pro diseñamos y lanzamos continuamente herramientas y aplicaciones de IA orientadas al usuario, explorando cómo interactúa el «software que actúa según la intención» en escenarios cotidianos reales."
+   }
+  ]
+ },
+ "learn": {
+  "title": "Curso Abierto y Sistemático de IA",
+  "en": "Open Curriculum",
+  "motto": [
+   "We teach what we build.",
+   "Enseñamos lo que construimos."
+  ],
+  "lead": "Para pasar de «operar software» a «delegar en el software», primero es necesario actualizar nuestra mentalidad y metodología. Estamos produciendo una serie sistemática de lecciones sobre IA, desde los principios fundamentales hasta la construcción práctica, para ayudar a cualquier persona a dominar las capacidades esenciales de la era de los agentes",
+  "status": "Primer curso: Graduating from AI Gacha",
+  "course": {
+   "name": "Graduating from AI Gacha",
+   "langs": "Idiomas del curso",
+   "body": "Deja de usar la IA como si fuera una tragaperras. En tres temporadas, el curso va desde cómo funcionan los grandes modelos de lenguaje hasta programar con IA y convertir tú mismo un proceso real en un sistema. El sitio del curso incluye minijuegos de práctica y un asistente de IA que responde solo a partir del contenido del curso."
+  },
+  "seasons": [
+   {
+    "id": "ai-fundamentals",
+    "no": "Temporada 1",
+    "zh": "Fundamentos",
+    "en": "Fundamentals",
+    "body": "Más allá del ruido mediático, desde la predicción de tokens, alucinaciones y ventanas de contexto hasta RAG, uso de herramientas y Agentes, para entender cuándo confiar en la IA y cómo integrarla en el trabajo."
+   },
+   {
+    "id": "ai-coding",
+    "no": "Temporada 2",
+    "zh": "Práctica",
+    "en": "AI Coding",
+    "body": "Cuando escribir código se abarata y el criterio se vuelve valioso, aprende a redactar especificaciones para la IA, diseñar la arquitectura antes de tocar el código y destilar la experiencia personal en habilidades reutilizables (Skills)."
+   },
+   {
+    "id": "building-ai-systems",
+    "no": "Temporada 3",
+    "zh": "Construcción",
+    "en": "Building AI Systems",
+    "body": "Orientada a escenarios reales, desde ingeniería de contexto, orquestación de flujos de trabajo (n8n / Dify) y desarrollo de servidores MCP, hasta colaboración multiagente, gobernanza de seguridad y evaluación en producción."
+   }
+  ],
+  "cta": "Vídeos en YouTube, |práctica y preguntas en el sitio del curso"
+ },
+ "ui": {
+  "skip": "Saltar al contenido",
+  "home": "Inicio de Agentware Studio",
+  "mainNav": "Navegación principal",
+  "menuOpen": "Abrir menú",
+  "menuClose": "Cerrar menú",
+  "follow": "Síguenos",
+  "language": "Idioma",
+  "nav": {
+   "paradigm": "Paradigma",
+   "architecture": "Arquitectura",
+   "manifesto": "Manifiesto",
+   "studio": "Studio",
+   "learn": "Curso"
+  },
+  "heroCta": "Conoce Agentware",
+  "heroCta2": "Leer el manifiesto",
+  "questionsAria": "Las dos preguntas del software",
+  "markAria": "Marca AGENTWARE: los corchetes son el límite autorizado, la línea ascendente una ruta de ejecución que puede cambiar y el punto un resultado que debe ser verificable. Haz clic o pulsa Intro para repetir la animación; usa las flechas para mover la ruta.",
+  "markAriaLight": "Marca AGENTWARE",
+  "erasAria": "Tres eras",
+  "eraOf": "Era {n} de 3",
+  "compareAria": "Software tradicional frente a sistema Agentware",
+  "dimension": "Dimensión",
+  "pillarsAria": "Los cuatro pilares",
+  "stage": {
+   "human": "Humano",
+   "outcome": "Resultado",
+   "manual": "Unido a mano",
+   "verified": "Resultado verificable",
+   "n1": "El humano hace clic paso a paso",
+   "n1done": "El resultado se une a mano",
+   "n2ai": "La IA acelera una tarea puntual",
+   "n2manual": "Un humano hace este paso",
+   "n2done": "El humano sigue uniendo cada paso",
+   "intent": "Objetivo · Límites · Criterios",
+   "blocked": "Bloqueado, cambiando de ruta",
+   "verify": "Verificado",
+   "boundary": "Límite autorizado",
+   "aria": [
+    "1.0 Era de las herramientas: un cursor abre cuatro ventanas de funciones una a una y el humano une el resultado a mano.",
+    "2.0 Era del copiloto: dos funciones las acelera la IA, pero cada instrucción sale del humano y vuelve a él, que sigue conectando cada paso.",
+    "3.0 Era de la delegación: el humano entrega una sola intención; dentro del límite autorizado, el sistema planifica, rodea un paso bloqueado, verifica y entrega un resultado verificable."
+   ]
+  },
+  "loop": {
+   "local": "Bucle de ejecución",
+   "running": "En ejecución",
+   "delivered": "Entregado",
+   "handback": "Devuelto al humano",
+   "idle": "Listo",
+   "aria": "El bucle de ejecución: comprender la delegación y obtener contexto; después planificar, actuar, observar y ajustar dentro del límite autorizado; verificar el resultado y entregarlo o devolverlo a una persona. Debajo está el núcleo determinista: memoria, base de datos, APIs y reglas de negocio.",
+   "boundary": "Límite autorizado",
+   "handbackLabel": "Fuera de límites, se devuelve al humano",
+   "core": "Núcleo determinista",
+   "blocks": [
+    "Memoria",
+    "Base de datos",
+    "Interfaces",
+    "Reglas"
+   ],
+   "human": "Delegador",
+   "outcome": "Entrega",
+   "outcomeDone": "Resultado verificable",
+   "inspect": "Ver el paso {n}: {name}",
+   "traceAria": "Registro de ejecución",
+   "traceEmpty": "Esperando una delegación.",
+   "inside": "Dentro del alcance",
+   "touched": "Límite alcanzado",
+   "out": "Fuera de alcance · devuelto",
+   "run": "Ejecutar una delegación",
+   "rerun": "Ejecutar de nuevo",
+   "simulate": "Simular fuera de límites",
+   "hint": "Tras la ejecución, selecciona cualquier paso del diagrama para ver su explicación.",
+   "logs": {
+    "intent": "Delegación recibida: objetivo, límites y criterios definidos",
+    "context": "Leyendo el entorno actual y la memoria relevante",
+    "plan1": "Ruta generada → siguiente: consultar datos",
+    "act1": "Herramienta: leer la base de datos",
+    "observe1": "Retroalimentación: el resultado difiere de lo esperado",
+    "adapt": "Plan corregido: se cambia a otra ruta",
+    "plan2": "Replanificado → siguiente: llamar a la API",
+    "act2ok": "Herramienta: API · MCP (dentro del alcance)",
+    "observe2ok": "Retroalimentación: el estado es el esperado",
+    "verifyOk": "Verificado con los criterios: aprobado, evidencia guardada",
+    "deliver": "Resultado verificable entregado",
+    "act2warn": "La acción solicitada excede el límite; no se ejecuta",
+    "observe2warn": "Retroalimentación: el objetivo no se puede cumplir dentro del alcance",
+    "verifyFail": "Aceptación fallida: se necesita una decisión humana",
+    "handback": "Se detiene, explica motivos y lo hecho, y lo devuelve"
+   }
+  },
+  "learn": {
+   "seasonsAria": "Tres temporadas",
+   "actions": [
+    "Empezar el curso",
+    "Seguir en YouTube"
+   ]
+  },
+  "nf": {
+   "title": "Esta dirección no tiene página",
+   "lead": "Puede que el enlace haya cambiado. Vuelve al inicio o abre el curso.",
+   "actions": [
+    "Volver al inicio",
+    "Curso de IA"
+   ]
+  }
+ }
+}
