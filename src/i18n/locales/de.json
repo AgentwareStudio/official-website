@@ -1,0 +1,769 @@
+{
+ "hero": {
+  "intro": "Agentware ist eine Klasse von Software, die für das Zeitalter der Agenten entworfen ist. Sie übergeben ihr ein Ziel; innerhalb autorisierter Grenzen organisiert sie Handlungen, führt Aufgaben aus und liefert überprüfbare Ergebnisse.",
+  "zh": "Von der Oberfläche zur Absicht",
+  "tagZh": "Software, die nach Absicht handelt",
+  "questions": [
+   {
+    "when": "",
+    "who": "In den vergangenen vierzig Jahren hat Software Ihnen nur eine einzige Frage gestellt:",
+    "q": "Welchen Button klicken Sie?"
+   },
+   {
+    "when": "",
+    "who": "Jetzt beginnt Software, eine andere Frage zu beantworten:",
+    "q": "Welches Ergebnis wollen Sie erreichen?"
+   }
+  ],
+  "btnWord": "Button"
+ },
+ "shift": {
+  "title": [
+   "Früher bedienten Menschen Software",
+   "Heute delegieren Menschen an Software"
+  ],
+  "intro": [
+   "Jahrzehntelang wurde Software rund um „Funktionen (Features)“ gebaut. Software stellte Buttons und Formulare bereit, während der Mensch als einzige Schaltzentrale fungierte – man musste wissen, welches Programm man öffnet, welchen Button man klickt, welches Formular man ausfüllt und in welcher Reihenfolge. Software lieferte isolierte Fähigkeiten; der Mensch war dafür verantwortlich, diese Fähigkeiten zu einem Ergebnis zusammenzufügen.",
+   "Agenten haben dieses Verhältnis verändert und den Vertrag zur Arbeitsteilung zwischen Mensch und Maschine neu geschrieben:"
+  ],
+  "eras": [
+   {
+    "no": "01",
+    "ver": "1.0",
+    "era": "Ära der Werkzeuge",
+    "en": "Software as Functions",
+    "zh": "Software als Funktion",
+    "motto": "Humans Operate",
+    "body": "Die Pfade sind fest programmiert. Der Mensch klickt Schritt für Schritt; die Software reagiert passiv.",
+    "role": "OPERATOR"
+   },
+   {
+    "no": "02",
+    "ver": "2.0",
+    "era": "Ära der Copiloten",
+    "en": "Software as Copilots",
+    "zh": "Software als Assistenz",
+    "motto": "Humans Prompt",
+    "body": "KI beschleunigt Einzelaufgaben (Schreiben, Zeichnen, Programmieren), doch der Mensch muss weiterhin jeden Schritt selbst verknüpfen.",
+    "role": "PROMPTER"
+   },
+   {
+    "no": "03",
+    "ver": "3.0",
+    "era": "Ära der Delegation",
+    "en": "Software as Delegation",
+    "zh": "Software als Delegation",
+    "motto": "Humans Delegate",
+    "body": "Der Mensch übergibt Ziele und Rahmenbedingungen; die Software versteht die Aufgabe, plant eigenständig, führt Aktionen aus, beobachtet das Feedback und passt sich dynamisch an, bis das Ergebnis geliefert ist.",
+    "role": "DELEGATOR"
+   }
+  ],
+  "closing": [
+   "Dieser Wandel bedeutet nicht, jede bestehende Software mit KI nachzurüsten –",
+   "sondern Software selbst neu zu schreiben."
+  ]
+ },
+ "notAgentware": {
+  "title": "KI hinzuzufügen macht noch keine Agentware",
+  "lead": "Der Unterschied liegt weder darin, ob ein großes Sprachmodell aufgerufen wird, noch darin, ob ein Chatfenster existiert, sondern in der grundlegenden Funktionsweise der Software unter der Oberfläche.",
+  "items": [
+   {
+    "name": "AI Feature",
+    "body": "Zusammenfassen, Übersetzen, Suchen oder Autovervollständigung sind lediglich KI-Funktionen innerhalb klassischer Software. Die Effizienz steigt, aber die eigentliche Arbeit wird weiterhin vom Menschen bedient und erledigt."
+   },
+   {
+    "name": "Chatbot Wrapper",
+    "body": "Einer herkömmlichen Software eine Chat-Seitenleiste hinzuzufügen oder eine Modell-API mit einer dünnen Hülle zu versehen, lässt im Kern noch immer alte Software zurück, die Schritt für Schritt auf menschliche Klicks wartet."
+   },
+   {
+    "name": "Rigid Workflow",
+    "body": "Starre A → B → C → D-Ketten sind klassische Automatisierung. Ein Ablauf, der sofort blockiert, sobald die Realität von den Vorgaben abweicht, besitzt keine Fähigkeit zur kontext- und feedbackbasierten Anpassung."
+   },
+   {
+    "name": "Ungoverned Agent",
+    "body": "Unkontrollierte Agenten, die in einer Blackbox blind in Schleifen laufen, deren Kosten explodieren und deren Ergebnisse nicht überprüfbar sind, sind experimentelles Spielzeug – keine ernstzunehmende Software."
+   }
+  ]
+ },
+ "architecture": {
+  "titleZh": "Deterministischer Kern · Agentische Steuerungsebene",
+  "body": "Agentware ersetzt keinen deterministischen Code, sondern übernimmt die oberste Steuerungslogik. Das Fundament bilden weiterhin präzise Datenbanken, APIs und Geschäftsregeln; an der Spitze jedoch wird das „Vorprogrammieren starrer Bedienpfade“ abgelöst durch das „zielgerichtete Organisieren von Handlungen zur Laufzeit“.",
+  "table": {
+   "head": [
+    "Dimension",
+    "Klassische Software",
+    "Agentware-System"
+   ],
+   "headEn": [
+    "",
+    "Traditional Software",
+    "Agentware System"
+   ],
+   "rows": [
+    [
+     "Rolle des Menschen",
+     "Bediener (Operator)",
+     "Auftraggeber (Delegator)"
+    ],
+    [
+     "Designeinheit",
+     "Funktion (Feature)",
+     "Delegation (Delegation)"
+    ],
+    [
+     "Ausführungspfad",
+     "Vorab fest codiert|Input → Function → Output",
+     "Zur Laufzeit dynamisch generiert|Intent → Plan → Act → Adapt → Verify"
+    ],
+    [
+     "Systemzustand",
+     "Einzelsitzung, beginnt jedes Mal bei null",
+     "Kontinuierlich wachsendes Langzeitgedächtnis"
+    ],
+    [
+     "Kernwert",
+     "Nutzbare Funktionen bereitstellen",
+     "Überprüfbare Ergebnisse liefern"
+    ],
+    [
+     "Steuerungsweise",
+     "Implizit in Menüs und Berechtigungen verborgen",
+     "Explizite Governance, prüfbar, jederzeit eingreifbar"
+    ]
+   ]
+  }
+ },
+ "loop": {
+  "title": "Pfade entstehen zur Laufzeit, Ergebnisse werden vor der Übergabe verifiziert",
+  "principle": [
+   "Ziele lassen sich delegieren, Pfade können sich anpassen; ",
+   "Berechtigungen müssen jedoch eindeutig, Ergebnisse überprüfbar und Prozesse steuerbar sein."
+  ],
+  "steps": [
+   {
+    "en": "Intent",
+    "zh": "Delegation verstehen",
+    "text": "Klären, welches Ergebnis gewünscht ist, in welchen Grenzen gehandelt wird und wann es als erledigt gilt.",
+    "code": "goal · constraints · acceptance"
+   },
+   {
+    "en": "Context",
+    "zh": "Kontext erfassen",
+    "text": "Aus der aktuellen Umgebung und dem angesammelten Gedächtnis die für das Ziel relevanten Fakten und Erfahrungen holen.",
+    "code": "context · memory · evidence"
+   },
+   {
+    "en": "Plan",
+    "zh": "Maßnahmen planen",
+    "text": "Handlungen um Ziel und aktuellen Zustand organisieren und den Ausführungspfad zur Laufzeit erzeugen.",
+    "code": "state → next action"
+   },
+   {
+    "en": "Act",
+    "zh": "Werkzeuge aufrufen & ausführen",
+    "text": "Innerhalb expliziter Autorisierung APIs, MCP, Browser und Datenbanken aufrufen, damit Handlungen in echten Systemen wirken.",
+    "code": "tools · APIs · deterministic core"
+   },
+   {
+    "en": "Observe",
+    "zh": "Feedback beobachten",
+    "text": "Ergebnisse und Veränderungen einer Handlung auslesen und den tatsächlichen Zustand mit der Erwartung abgleichen.",
+    "code": "action → feedback → state"
+   },
+   {
+    "en": "Adapt",
+    "zh": "Dynamisch anpassen",
+    "text": "Den Plan mit neuen Informationen korrigieren. Werden Berechtigungs- oder Risikogrenzen berührt, geht die Entscheidung an einen Menschen zurück.",
+    "code": "replan · adapt · escalate"
+   },
+   {
+    "en": "Verify",
+    "zh": "Ergebnis verifizieren",
+    "text": "Das Ergebnis gegen die bei der Delegation festgelegten Abnahmekriterien prüfen und nachvollziehbare Belege sichern.",
+    "code": "acceptance criteria → evidence"
+   },
+   {
+    "en": "Deliver",
+    "zh": "Ausliefern",
+    "text": "Ein überprüfbares Ergebnis liefern; ist das Ziel im Rahmen nicht erreichbar, klar begründen und an einen Menschen zurückgeben.",
+    "code": "verified outcome / human handoff"
+   }
+  ],
+  "handback": {
+   "en": "Hand back",
+   "zh": "An den Menschen zurückgeben",
+   "text": "Außerhalb der Grenze: Das System stoppt, erklärt die Gründe und das bereits Erledigte und gibt die Entscheidung an einen Menschen zurück.",
+   "code": "out of scope → human decision"
+  }
+ },
+ "pillars": {
+  "titleZh": "Die vier Säulen",
+  "lead": "Damit Software tatsächlich Delegationen übernehmen kann, muss sie auf vier tragenden Säulen ruhen:",
+  "items": [
+   {
+    "code": "01 / DELEGATION",
+    "en": "Intent & Delegation",
+    "zh": "Absicht & Delegation",
+    "lead": "Die Grundeinheit von Software wandelt sich von der Funktion zur Delegation.",
+    "body": "Klassische Software beginnt beim Design mit der Frage „Welche Funktion bauen wir?“; Agentware beginnt mit der Frage „Welches Ergebnis übergeben wir dem System?“. Eine klare Delegation definiert genau vier Dinge: welches Ergebnis gewünscht ist, innerhalb welcher Grenzen gehandelt werden darf, wann das Ergebnis als erfolgreich gilt und wann an den Menschen zurückgegeben werden muss.",
+    "points": []
+   },
+   {
+    "code": "02 / EXECUTION",
+    "en": "Planning & Execution",
+    "zh": "Planung & Ausführung",
+    "lead": "Nicht nur Antworten geben, sondern Aufgaben zu Ende bringen.",
+    "body": "Vom Menschen wird nicht länger verlangt, jeden einzelnen Schritt im Voraus festzulegen. Das System bestimmt auf Basis des Ziels und des aktuellen Zustands den nächsten Schritt, wirkt über reale Werkzeuge (APIs, MCP, Kommandozeile, Browser, Datenbanken, Softwaresysteme) auf die reale Welt ein und arbeitet sich im geschlossenen Kreislauf aus Planen → Handeln → Beobachten → Anpassen voran.",
+    "points": []
+   },
+   {
+    "code": "03 / GOVERNANCE",
+    "en": "Governance & Guardrails",
+    "zh": "Governance & Leitplanken",
+    "lead": "Je größer die Autonomie, desto wichtiger die Governance.",
+    "body": "Agentware ist kein grenzenlos autonomer Agent, sondern Software mit Ausführungskompetenz innerhalb klar autorisierter Grenzen. Governance ist ebenso wichtig wie Ausführung – bei jeder Delegation muss transparent sein: was erlaubt ist, was tatsächlich getan wurde, welche Kosten entstanden sind, wer jederzeit stoppen kann und wie im Fehlerfall sicher zurückgerollt wird.",
+    "points": []
+   },
+   {
+    "code": "04 / MEMORY",
+    "en": "Evolving Memory",
+    "zh": "Evolvierendes Gedächtnis",
+    "lead": "Das Gedächtnis verwandelt Software von einem Einmal-Werkzeug in ein sich kontinuierlich weiterentwickelndes System.",
+    "body": "Software ohne Gedächtnis fängt bei jeder Nutzung wieder bei null an; auch klassische Informationsabfrage (RAG) ist lediglich passives Nachschlagen. Das Gedächtnissystem von Agentware dient nicht nur der Beantwortung von Fragen, sondern wirkt direkt an Planung, Entscheidung und Handlung mit:",
+    "points": [
+     [
+      "Zweikanal-Konsolidierung",
+      "Bewahrt sowohl den konkreten Verlauf spezifischer Aufgaben (episodisches Gedächtnis) als auch abstrahierte kognitive Regeln (semantisches Gedächtnis)."
+     ],
+     [
+      "Integration & Korrektur",
+      "Zerlegt Wissen in kleinste verständliche Einheiten und dedupliziert, verschmilzt, korrigiert und verdichtet diese automatisch mit dem Eintreffen neuer Informationen."
+     ],
+     [
+      "Nachvollziehbare Verifikation",
+      "Jede verdichtete Erinnerung lässt sich bis zu ihrer ursprünglichen Quelle zurückverfolgen – revisionssicher und vertrauenswürdig."
+     ]
+    ]
+   }
+  ]
+ },
+ "manifesto": {
+  "intro": "Software war einst ein Werkzeug, das darauf wartete, bedient zu werden. Sie stellte Funktionen bereit; der Mensch musste sie erlernen, orchestrieren und die Verantwortung für das Ergebnis tragen. Heute kann Software zum ersten Mal mit Arbeit betraut werden. Dabei geht es nicht darum, alter Software KI aufzusetzen, sondern neu zu definieren, was Software im Zeitalter der Agenten sein sollte.",
+  "items": [
+   [
+    "I",
+    [
+     "Software should understand intent, not just input"
+    ],
+    "Software sollte Absichten verstehen, nicht nur Eingaben entgegennehmen",
+    "Früher musste der Mensch seine Ziele in eine Abfolge von Klicks und Formularen übersetzen. Heute spricht der Mensch aus, was er will und was er nicht akzeptiert – und die Software hat die Aufgabe, dies zu verstehen."
+   ],
+   [
+    "II",
+    [
+     "Software should execute goals, not just expose functions"
+    ],
+    "Software sollte Ziele erfüllen, nicht bloß Funktionen bereitstellen",
+    "So zahlreich Funktionen auch sein mögen: Es war immer der Mensch, der sie zu einem Ergebnis verknüpfen musste. Der Wert von Software bemisst sich nicht daran, wie viele Funktionen sie bietet, sondern welche Ergebnisse sie liefert."
+   ],
+   [
+    "III",
+    [
+     "Paths may adapt",
+     "Outcomes must remain verifiable"
+    ],
+    "Pfade dürfen sich anpassen; Ergebnisse müssen überprüfbar bleiben",
+    "Die Realität hält sich nicht an vorab gezeichnete Abläufe; Ausführungspfade müssen sich mit Umfeld und Feedback verändern. Je freier der Pfad, desto klarer müssen Ziel und Abnahmekriterien definiert sein."
+   ],
+   [
+    "IV",
+    [
+     "Autonomy requires governance"
+    ],
+    "Autonomie erfordert Governance",
+    "Wir streben keine grenzenlos autonomen Systeme an. Jede Delegation braucht klare Verantwortlichkeiten, nachvollziehbare Prozesse und muss dem Menschen jederzeit das Recht vorbehalten, einzugreifen, zurückzurollen und die Kontrolle zu übernehmen."
+   ],
+   [
+    "V",
+    [
+     "Memory turns software from a tool into an evolving system"
+    ],
+    "Gedächtnis verwandelt Software von einem Werkzeug in ein evolvierendes System",
+    "Ein einmaliger Ausführer beginnt jedes Mal bei null. Software hingegen, die sich Kontext merkt, Erfahrungen sammelt und sich selbst korrigiert, versteht Menschen und Organisationen mit jedem Einsatz besser."
+   ],
+   [
+    "VI",
+    [
+     "The future unit of software is not the feature",
+     "It is the delegation"
+    ],
+    "Die zukünftige Grundeinheit von Software ist nicht die Funktion; sie ist die Delegation",
+    "Früher lautete die Frage beim Softwaredesign: „Welche Funktion platzieren wir hier?“ Heute lautet sie: „Welches Ergebnis vertrauen wir ihr an?“ Definieren Sie Ziel, Grenzen und Abnahmekriterien – den Rest erledigt das System."
+   ]
+  ]
+ },
+ "studio": {
+  "title": "Das neue Software-Paradigma erforschen,\nKI-Engineering-Wissen vermitteln, praxisnahe Werkzeuge der nächsten Generation entwickeln",
+  "sub": "Agentware Studio ist ein unabhängiges Forschungs- und Entwicklungslabor rund um das Agentware-Paradigma. An dem Wendepunkt, an dem sich Software von der „Bedienung von Oberflächen“ zur „Delegation von Absichten“ wandelt, treiben wir die Verbreitung und Weiterentwicklung dieses Paradigmas durch fundierte Forschung, offene Kurse und Produktexperimente voran:",
+  "items": [
+   {
+    "tag": "01 // OPEN CURRICULUM · /learn",
+    "title": "Systematischer Open-Access-KI-Kurs",
+    "body": "Der Wechsel vom „Software bedienen“ zum „an Software delegieren“ beginnt mit einem Update des menschlichen Verständnisses und der Methodik. Wir entwickeln eine systematische KI-Vortragsreihe – von den Grundprinzipien bis zum praktischen Systemaufbau –, damit jeder die Kernkompetenzen des Agenten-Zeitalters meistern kann",
+    "action": "Die drei Staffeln ansehen →",
+    "href": "/learn/"
+   },
+   {
+    "tag": "02 // RESEARCH & ESSAYS · /blog",
+    "title": "Paradigmenforschung & Fachkolumnen",
+    "body": "Wir dokumentieren und veröffentlichen kontinuierlich tiefgehende Artikel und Praxisnotizen zu Softwaredesign im Agenten-Zeitalter, Gedächtnissystemen, Mensch-Maschine-Kooperationsverträgen und dem Wandel der Arbeitswelt – als klares gedankliches Fundament für die Software der nächsten Generation.",
+    "action": "Essays und Notizen lesen →",
+    "href": "/blog/"
+   },
+   {
+    "tag": "03 // USER TOOLS · aikit.pro",
+    "title": "Nutzerorientierte KI-Werkzeug-Experimente",
+    "body": "Ideen müssen sich letztlich in Produkten beweisen. Auf aikit.pro entwerfen und veröffentlichen wir laufend nutzerorientierte KI-Tools und Anwendungen, um zu erforschen, wie sich „Software, die nach Absicht handelt“ im realen Alltag anfühlt.",
+    "action": "aikit.pro besuchen ↗",
+    "href": "https://aikit.pro"
+   }
+  ]
+ },
+ "learn": {
+  "title": "Systematischer Open-Access-KI-Kurs",
+  "en": "Open Curriculum",
+  "motto": [
+   "We teach what we build.",
+   "Wir lehren, was wir selbst bauen."
+  ],
+  "lead": "Der Wechsel vom „Software bedienen“ zum „an Software delegieren“ beginnt mit einem Update des menschlichen Verständnisses und der Methodik. Wir entwickeln eine systematische KI-Vortragsreihe – von den Grundprinzipien bis zum praktischen Systemaufbau –, damit jeder die Kernkompetenzen des Agenten-Zeitalters meistern kann",
+  "status": "In Produktion – die Lektionen erscheinen auf dieser Seite",
+  "seasons": [
+   {
+    "id": "ai-fundamentals",
+    "no": "Staffel 1",
+    "zh": "Grundlagen",
+    "en": "Fundamentals",
+    "body": "Jenseits des Hypes – von Next-Token-Prediction, Tokens, Halluzinationen und Kontextfenstern bis hin zu RAG, Tool-Aufrufen und Agenten. Verstehen, wann man KI vertrauen kann und wie man sie produktiv einsetzt.",
+    "facts": [
+     [
+      "Zielgruppe",
+      "Alle Mitarbeitenden"
+     ],
+     [
+      "Folgen",
+      "Einführung + 13 Folgen, je 5–8 Min."
+     ],
+     [
+      "Format",
+      "Animierte Erklärungen + Übungsspiele"
+     ]
+    ],
+    "units": [
+     [
+      "Einheit 1　Wie KI Inhalte erzeugt",
+      [
+       [
+        "00",
+        "Einführung: Dieselbe KI, andere Ergebnisse"
+       ],
+       [
+        "01",
+        "Sprachmodelle können nur eines: das Nächste vorhersagen"
+       ],
+       [
+        "02",
+        "Wie viele r hat „strawberry“?"
+       ],
+       [
+        "03",
+        "Selbstbewusst falsch"
+       ]
+      ]
+     ],
+     [
+      "Einheit 2　Der KI die richtigen Informationen geben",
+      [
+       [
+        "04",
+        "Der Schreibtisch der KI"
+       ],
+       [
+        "05",
+        "Warum lange Chats sie schlechter machen"
+       ],
+       [
+        "06",
+        "Ein neuer Kollege am ersten Tag"
+       ],
+       [
+        "07",
+        "Lass sie zuerst einen Entwurf machen"
+       ],
+       [
+        "08",
+        "Gib ihr ein Nachschlagewerk"
+       ]
+      ]
+     ],
+     [
+      "Einheit 3　KI in die Arbeit bringen",
+      [
+       [
+        "09",
+        "Gib ihr Hände"
+       ],
+       [
+        "10",
+        "Gib ihr ein Handbuch"
+       ],
+       [
+        "11",
+        "Vom Plaudern zum Arbeiten"
+       ],
+       [
+        "12",
+        "Wann kann man ihr trauen?"
+       ],
+       [
+        "13",
+        "KI in deine Arbeit einbauen"
+       ]
+      ]
+     ]
+    ]
+   },
+   {
+    "id": "ai-coding",
+    "no": "Staffel 2",
+    "zh": "Praxis",
+    "en": "AI Coding",
+    "body": "Wenn Code günstig und Urteilskraft kostbar wird: Lernen Sie, wie man Spezifikationen für KI verfasst, erst die Architektur entwirft, bevor Code geschrieben wird, und persönliche Erfahrung in wiederverwendbare Fähigkeiten (Skills) gießt.",
+    "facts": [
+     [
+      "Zielgruppe",
+      "Entwicklerinnen und Entwickler"
+     ],
+     [
+      "Folgen",
+      "7 Folgen, je 6–10 Min."
+     ],
+     [
+      "Format",
+      "Animation + Produktdemos + Übungsspiele"
+     ]
+    ],
+    "units": [
+     [
+      "",
+      [
+       [
+        "S2-1",
+        "Code wurde billig, Urteilsvermögen teuer"
+       ],
+       [
+        "S2-2",
+        "Drei Arten von KI im Editor"
+       ],
+       [
+        "S2-3",
+        "Welche Dateien sieht sie?"
+       ],
+       [
+        "S2-4",
+        "Eine Projektbeschreibung für die KI"
+       ],
+       [
+        "S2-5",
+        "Erst planen, dann coden"
+       ],
+       [
+        "S2-6",
+        "Arbeitsweisen zu Skills machen"
+       ],
+       [
+        "S2-7",
+        "Regeln und Werkzeuge des Teams anbinden"
+       ]
+      ]
+     ]
+    ]
+   },
+   {
+    "id": "building-ai-systems",
+    "no": "Staffel 3",
+    "zh": "Systemaufbau",
+    "en": "Building AI Systems",
+    "body": "Für reale Anwendungsszenarien – von Context Engineering, Workflow-Orchestrierung (n8n / Dify) und MCP-Server-Entwicklung bis zu Multi-Agenten-Kollaboration, Sicherheits-Governance und Evaluierung im Produktivbetrieb.",
+    "facts": [
+     [
+      "Zielgruppe",
+      "Fachverantwortliche und Engineers, die KI im Team zu Systemen ausbauen"
+     ],
+     [
+      "Folgen",
+      "17 Folgen, je ca. 30 Min. Video + ca. 60 Min. Mitmachen"
+     ],
+     [
+      "Format",
+      "Grundlagen + Bildschirm-Walkthroughs + Vorlagen und Code + Tests + Abschlussprojekt"
+     ]
+    ],
+    "units": [
+     [
+      "Einheit A　Design",
+      [
+       [
+        "S3-01",
+        "Zuerst die Karte zeichnen"
+       ],
+       [
+        "S3-02",
+        "Context Engineering"
+       ],
+       [
+        "S3-03",
+        "Modelle und Bereitstellung wählen"
+       ]
+      ]
+     ],
+     [
+      "Einheit B　Low-Code",
+      [
+       [
+        "S3-04",
+        "n8n (1): Routinearbeit zu Abläufen verketten"
+       ],
+       [
+        "S3-05",
+        "n8n (2): KI-Agenten im Ablauf"
+       ],
+       [
+        "S3-06",
+        "Dify (1): Ein Assistent, der recherchiert und Quellen nennt"
+       ],
+       [
+        "S3-07",
+        "Dify (2): Workflows, Agenten und Plugins"
+       ],
+       [
+        "S3-08",
+        "n8n oder Dify – und Self-Hosting"
+       ]
+      ]
+     ],
+     [
+      "Einheit C　Engineering",
+      [
+       [
+        "S3-09",
+        "Einen eigenen MCP-Server bauen"
+       ],
+       [
+        "S3-10",
+        "Agenten in Code schreiben"
+       ]
+      ]
+     ],
+     [
+      "Einheit D　Zusammenarbeit & Protokolle",
+      [
+       [
+        "S3-11",
+        "Mehrere Agenten arbeiten zusammen"
+       ],
+       [
+        "S3-12",
+        "Web und Agenten: Bildschirmsteuerung und WebMCP"
+       ],
+       [
+        "S3-13",
+        "A2A: Mit Agenten anderer Unternehmen arbeiten"
+       ]
+      ]
+     ],
+     [
+      "Einheit E　Produktivbetrieb",
+      [
+       [
+        "S3-14",
+        "Sicherheit und Governance"
+       ],
+       [
+        "S3-15",
+        "Evaluierung, Monitoring und Kosten"
+       ]
+      ]
+     ],
+     [
+      "Einheit F　Einführung",
+      [
+       [
+        "S3-16",
+        "Im Team ausrollen: Rechnung, Pilot, Verbreitung"
+       ],
+       [
+        "S3-17",
+        "Abschlussprojekt: Einen echten Prozess zum System machen"
+       ]
+      ]
+     ]
+    ]
+   }
+  ],
+  "cta": "Sobald sie fertig sind, erscheinen die Lektionen zuerst auf YouTube und auf dieser Seite"
+ },
+ "blog": {
+  "title": "Paradigmenforschung & Fachkolumnen",
+  "en": "Research & Essays",
+  "lead": "Wir dokumentieren und veröffentlichen kontinuierlich tiefgehende Artikel und Praxisnotizen zu Softwaredesign im Agenten-Zeitalter, Gedächtnissystemen, Mensch-Maschine-Kooperationsverträgen und dem Wandel der Arbeitswelt – als klares gedankliches Fundament für die Software der nächsten Generation.",
+  "status": "Beiträge erscheinen zuerst hier und danach auf anderen Plattformen",
+  "queueNote": "Noch ist nichts erschienen. Die folgenden drei Essays sind geplant und erscheinen hier nach Veröffentlichung.",
+  "catsNote": "Jeder Beitrag ist namentlich gezeichnet und datiert. Persönliche Notizen enden mit „Dieser Beitrag gibt die persönliche Meinung des Autors wieder.“",
+  "cats": [
+   [
+    "Essays",
+    "essays",
+    "Längere Essays des Studios, im Dialog mit dem Manifest."
+   ],
+   [
+    "Persönliche Notizen",
+    "notes",
+    "Arbeits-, Lern- und Denkweisen im KI-Zeitalter; echte Erfahrungen und Fehlschläge bei der Arbeit mit KI."
+   ],
+   [
+    "Zu den Vorträgen",
+    "lectures",
+    "Begleittexte und Ergänzungen zu den Vorträgen."
+   ],
+   [
+    "Neuigkeiten",
+    "news",
+    "Ankündigungen, neue Vorträge und Veranstaltungen."
+   ]
+  ],
+  "cta": "Bis der erste Essay erscheint: zuerst das Manifest"
+ },
+ "ui": {
+  "skip": "Zum Inhalt springen",
+  "home": "Agentware Studio Startseite",
+  "mainNav": "Hauptnavigation",
+  "menuOpen": "Menü öffnen",
+  "menuClose": "Menü schließen",
+  "follow": "Folgen",
+  "language": "Sprache",
+  "nav": {
+   "paradigm": "Paradigma",
+   "architecture": "Architektur",
+   "manifesto": "Manifest",
+   "studio": "Studio",
+   "learn": "Kurs",
+   "blog": "Blog"
+  },
+  "heroCta": "Agentware entdecken",
+  "heroCta2": "Manifest lesen",
+  "questionsAria": "Die zwei Fragen der Software",
+  "markAria": "AGENTWARE-Zeichen: Die Klammern stehen für die autorisierte Grenze, der aufsteigende Pfad für einen anpassbaren Ausführungspfad, der Punkt für ein Ergebnis, das überprüfbar sein muss. Klicken oder Enter drücken, um die Animation erneut abzuspielen; mit den Pfeiltasten den Pfad bewegen.",
+  "markAriaLight": "AGENTWARE-Zeichen",
+  "erasAria": "Drei Ären",
+  "eraOf": "Ära {n} von 3",
+  "compareAria": "Klassische Software im Vergleich zum Agentware-System",
+  "dimension": "Dimension",
+  "pillarsAria": "Die vier Säulen",
+  "stage": {
+   "human": "Mensch",
+   "outcome": "Ergebnis",
+   "manual": "Von Hand verbunden",
+   "verified": "Überprüfbares Ergebnis",
+   "n1": "Der Mensch klickt Schritt für Schritt",
+   "n1done": "Das Ergebnis wird von Hand zusammengesetzt",
+   "n2ai": "KI beschleunigt eine Einzelaufgabe",
+   "n2manual": "Diesen Schritt macht ein Mensch",
+   "n2done": "Der Mensch verbindet noch jeden Schritt",
+   "intent": "Ziel · Grenzen · Abnahme",
+   "blocked": "Blockiert, neue Route",
+   "verify": "Verifiziert",
+   "boundary": "Autorisierte Grenze",
+   "aria": [
+    "1.0 Ära der Werkzeuge: Ein Cursor öffnet nacheinander vier Funktionsfenster, und der Mensch setzt das Ergebnis von Hand zusammen.",
+    "2.0 Ära der Copiloten: Zwei Funktionen beschleunigt die KI, doch jeder Prompt geht vom Menschen aus und kehrt zu ihm zurück; er verbindet weiterhin jeden Schritt.",
+    "3.0 Ära der Delegation: Der Mensch übergibt eine einzige Absicht; innerhalb der autorisierten Grenze plant das System, umgeht einen blockierten Schritt, verifiziert und liefert ein überprüfbares Ergebnis."
+   ]
+  },
+  "loop": {
+   "local": "Ausführungszyklus",
+   "running": "Läuft",
+   "delivered": "Geliefert",
+   "handback": "An Menschen zurück",
+   "idle": "Bereit",
+   "aria": "Der Ausführungszyklus: Delegation verstehen und Kontext erfassen, dann innerhalb der autorisierten Grenze planen, handeln, beobachten und anpassen, das Ergebnis verifizieren und ausliefern oder an einen Menschen zurückgeben. Darunter liegt der deterministische Kern: Gedächtnis, Datenbank, APIs und Geschäftsregeln.",
+   "boundary": "Autorisierte Grenze",
+   "handbackLabel": "Außerhalb der Grenze zurück an den Menschen",
+   "core": "Deterministischer Kern",
+   "blocks": [
+    "Gedächtnis",
+    "Datenbank",
+    "Schnittstellen",
+    "Regeln"
+   ],
+   "human": "Auftraggeber",
+   "outcome": "Lieferung",
+   "outcomeDone": "Überprüfbares Ergebnis",
+   "inspect": "Schritt {n} ansehen: {name}",
+   "traceAria": "Ausführungsprotokoll",
+   "traceEmpty": "Wartet auf eine Delegation.",
+   "inside": "Im Rahmen",
+   "touched": "Grenze erreicht",
+   "out": "Außerhalb · zurückgegeben",
+   "run": "Eine Delegation ausführen",
+   "rerun": "Erneut ausführen",
+   "simulate": "Grenzüberschreitung simulieren",
+   "hint": "Nach einem Durchlauf einen beliebigen Schritt im Diagramm wählen, um die Erklärung zu sehen.",
+   "logs": {
+    "intent": "Delegation erhalten: Ziel, Grenzen und Abnahmekriterien stehen fest",
+    "context": "Aktuelle Umgebung und relevantes Gedächtnis werden gelesen",
+    "plan1": "Pfad erzeugt → nächster Schritt: Daten abfragen",
+    "act1": "Werkzeug: Datenbank lesen",
+    "observe1": "Feedback: Ergebnis weicht von der Erwartung ab",
+    "adapt": "Plan korrigiert: Wechsel auf einen anderen Pfad",
+    "plan2": "Neu geplant → nächster Schritt: API aufrufen",
+    "act2ok": "Werkzeug: API · MCP (im Rahmen)",
+    "observe2ok": "Feedback: Zustand entspricht der Erwartung",
+    "verifyOk": "Gegen Abnahmekriterien geprüft: bestanden, Nachweis gesichert",
+    "deliver": "Überprüfbares Ergebnis geliefert",
+    "act2warn": "Angefragte Aktion liegt außerhalb der Grenze; nicht ausgeführt",
+    "observe2warn": "Feedback: Ziel im Rahmen nicht erreichbar",
+    "verifyFail": "Abnahme fehlgeschlagen: Entscheidung eines Menschen nötig",
+    "handback": "Gestoppt, Gründe und Erledigtes gemeldet, zurückgegeben"
+   }
+  },
+  "learn": {
+   "seasonsAria": "Drei Staffeln",
+   "count": "{n} LEKTIONEN · IN PRODUKTION",
+   "actions": [
+    "Auf YouTube folgen",
+    "Blog lesen",
+    "Manifest lesen"
+   ]
+  },
+  "blog": {
+   "queueTitle": "Erste Essays",
+   "planned": "Geplant",
+   "catsTitle": "Vier Rubriken",
+   "actions": [
+    "Manifest lesen",
+    "Zum KI-Kurs",
+    "Auf X folgen"
+   ]
+  },
+  "nf": {
+   "title": "Unter dieser Adresse gibt es keine Seite",
+   "lead": "Der Link hat sich vielleicht geändert. Zurück zur Startseite oder direkt zum Kurs und zum Blog.",
+   "actions": [
+    "Zur Startseite",
+    "KI-Kurs",
+    "Blog"
+   ]
+  }
+ }
+}

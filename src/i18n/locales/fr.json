@@ -1,0 +1,769 @@
+{
+ "hero": {
+  "intro": "Agentware est une catégorie de logiciels conçue pour l’ère des agents. Vous lui confiez un objectif ; dans les limites autorisées, il organise les actions, exécute les tâches et livre des résultats vérifiables.",
+  "zh": "De l'interface à l'intention",
+  "tagZh": "Le logiciel qui agit selon l'intention",
+  "questions": [
+   {
+    "when": "",
+    "who": "Au cours des quarante dernières années, le logiciel ne vous a posé qu'une seule question :",
+    "q": "Sur quel bouton cliquez-vous ?"
+   },
+   {
+    "when": "",
+    "who": "Aujourd'hui, le logiciel commence à répondre à une tout autre question :",
+    "q": "Quel résultat souhaitez-vous obtenir ?"
+   }
+  ],
+  "btnWord": "bouton"
+ },
+ "shift": {
+  "title": [
+   "Hier, l'humain opérait le logiciel",
+   "Aujourd'hui, l'humain délègue au logiciel"
+  ],
+  "intro": [
+   "Pendant des décennies, les logiciels ont été construits autour de « fonctionnalités (Features) ». Le logiciel fournissait des boutons et des formulaires, et l'être humain jouait le rôle d'unique centre de coordination : il fallait savoir quelle application ouvrir, sur quel bouton cliquer, quel formulaire remplir et dans quel ordre procéder. Le logiciel offrait des capacités fragmentées ; l'humain devait les assembler pour produire un résultat.",
+   "Les agents ont bouleversé cette relation et réécrit le contrat de répartition des tâches entre l'humain et la machine :"
+  ],
+  "eras": [
+   {
+    "no": "01",
+    "ver": "1.0",
+    "era": "L'ère des Outils",
+    "en": "Software as Functions",
+    "zh": "Le logiciel comme fonction",
+    "motto": "Humans Operate",
+    "body": "Les parcours sont figés à l'avance. L'humain clique étape par étape ; le logiciel répond passivement.",
+    "role": "OPERATOR"
+   },
+   {
+    "no": "02",
+    "ver": "2.0",
+    "era": "L'ère des Copilotes",
+    "en": "Software as Copilots",
+    "zh": "Le logiciel comme copilote",
+    "motto": "Humans Prompt",
+    "body": "L'IA accélère des tâches ponctuelles (rédiger, illustrer, coder), mais l'humain doit toujours relier chaque étape bout à bout.",
+    "role": "PROMPTER"
+   },
+   {
+    "no": "03",
+    "ver": "3.0",
+    "era": "L'ère de la Délégation",
+    "en": "Software as Delegation",
+    "zh": "Le logiciel comme délégation",
+    "motto": "Humans Delegate",
+    "body": "L'humain confie des objectifs et des contraintes ; le logiciel comprend la mission, planifie de façon autonome, exécute les actions, observe les retours et s'ajuste dynamiquement jusqu'à la livraison du résultat.",
+    "role": "DELEGATOR"
+   }
+  ],
+  "closing": [
+   "Cette mutation ne consiste pas à greffer de l'IA sur tous les logiciels existants,",
+   "mais à réécrire le logiciel lui-même."
+  ]
+ },
+ "notAgentware": {
+  "title": "Ajouter de l'IA ne suffit pas à faire un Agentware",
+  "lead": "La différence ne tient ni à l'appel d'un grand modèle de langage, ni à la présence d'une fenêtre de discussion, mais à la manière dont le logiciel fonctionne dans ses fondations.",
+  "items": [
+   {
+    "name": "AI Feature",
+    "body": "Le résumé, la traduction, la recherche ou la saisie semi-automatique ne sont que des fonctionnalités d'IA au sein d'un logiciel traditionnel. L'efficacité augmente, mais le travail reste piloté et accompli par l'humain."
+   },
+   {
+    "name": "Chatbot Wrapper",
+    "body": "Ajouter un volet de chat à un logiciel existant ou habiller une API de modèle d'une simple interface laisse intact, en profondeur, l'ancien logiciel qui attend toujours les clics successifs de l'utilisateur."
+   },
+   {
+    "name": "Rigid Workflow",
+    "body": "Un enchaînement figé A → B → C → D relève de l'automatisation classique. Un flux qui se bloque dès que la réalité s'écarte du scénario prévu est dépourvu d'adaptation au contexte et aux retours d'expérience."
+   },
+   {
+    "name": "Ungoverned Agent",
+    "body": "Un agent sauvage qui tourne en boucle à l'aveugle dans une boîte noire, aux coûts incontrôlés et aux résultats invérifiables, n'est qu'un jouet expérimental — pas un logiciel exploitable."
+   }
+  ]
+ },
+ "architecture": {
+  "titleZh": "Cœur déterministe · Plan de contrôle agentique",
+  "body": "Agentware ne remplace pas le code déterministe ; il prend en charge la logique de contrôle de plus haut niveau. Le socle reste constitué de bases de données rigoureuses, d'API et de règles métier ; au sommet, les « parcours d'exécution préprogrammés » cèdent la place à « l'organisation dynamique d'actions autour d'un objectif à l'exécution ».",
+  "table": {
+   "head": [
+    "Dimension",
+    "Logiciel Traditionnel",
+    "Système Agentware"
+   ],
+   "headEn": [
+    "",
+    "Traditional Software",
+    "Agentware System"
+   ],
+   "rows": [
+    [
+     "Rôle de l'humain",
+     "Opérateur (Operator)",
+     "Délégant (Delegator)"
+    ],
+    [
+     "Unité de conception",
+     "Fonctionnalité (Feature)",
+     "Délégation (Delegation)"
+    ],
+    [
+     "Parcours d'exécution",
+     "Figé à l'avance|Input → Function → Output",
+     "Généré dynamiquement à l'exécution|Intent → Plan → Act → Adapt → Verify"
+    ],
+    [
+     "État du système",
+     "Session unique, repart de zéro à chaque fois",
+     "Mémoire à long terme capitalisée en continu"
+    ],
+    [
+     "Valeur centrale",
+     "Fournir des fonctionnalités utilisables",
+     "Livrer des résultats vérifiables"
+    ],
+    [
+     "Mode de contrôle",
+     "Implicite dans les menus et les droits d'accès",
+     "Gouvernance explicite, auditable, interruptible à tout instant"
+    ]
+   ]
+  }
+ },
+ "loop": {
+  "title": "Le parcours est généré à l'exécution ; le résultat est vérifié avant la livraison",
+  "principle": [
+   "Les objectifs peuvent être délégués et les parcours peuvent s'adapter ; ",
+   "mais les permissions doivent être explicites, les résultats vérifiables et les processus gouvernables."
+  ],
+  "steps": [
+   {
+    "en": "Intent",
+    "zh": "Comprendre la délégation",
+    "text": "Préciser le résultat voulu, les limites dans lesquelles agir et ce qui vaut pour terminé.",
+    "code": "goal · constraints · acceptance"
+   },
+   {
+    "en": "Context",
+    "zh": "Acquérir le contexte",
+    "text": "Tirer de l’environnement actuel et de la mémoire accumulée les faits et l’expérience utiles à l’objectif.",
+    "code": "context · memory · evidence"
+   },
+   {
+    "en": "Plan",
+    "zh": "Planifier l'action",
+    "text": "Organiser les actions autour de l’objectif et de l’état actuel, en générant le chemin d’exécution à l’exécution.",
+    "code": "state → next action"
+   },
+   {
+    "en": "Act",
+    "zh": "Appeler les outils et exécuter",
+    "text": "Dans une autorisation explicite, appeler API, MCP, navigateurs et bases de données pour agir sur des systèmes réels.",
+    "code": "tools · APIs · deterministic core"
+   },
+   {
+    "en": "Observe",
+    "zh": "Observer les retours",
+    "text": "Lire les résultats et les changements produits par une action, et comparer l’état réel à l’attendu.",
+    "code": "action → feedback → state"
+   },
+   {
+    "en": "Adapt",
+    "zh": "Ajuster dynamiquement",
+    "text": "Corriger le plan avec les nouvelles informations. Si une limite de permission ou de risque est atteinte, rendre la décision à un humain.",
+    "code": "replan · adapt · escalate"
+   },
+   {
+    "en": "Verify",
+    "zh": "Vérifier le résultat",
+    "text": "Vérifier le résultat selon les critères d’acceptation définis lors de la délégation, en conservant des preuves traçables.",
+    "code": "acceptance criteria → evidence"
+   },
+   {
+    "en": "Deliver",
+    "zh": "Livrer",
+    "text": "Livrer un résultat vérifiable ; si l’objectif est impossible dans le périmètre, l’expliquer clairement et rendre la main à un humain.",
+    "code": "verified outcome / human handoff"
+   }
+  ],
+  "handback": {
+   "en": "Hand back",
+   "zh": "Rendre la main à l’humain",
+   "text": "Hors limites : le système cesse d’agir, explique pourquoi et ce qu’il a accompli, et rend la décision à un humain.",
+   "code": "out of scope → human decision"
+  }
+ },
+ "pillars": {
+  "titleZh": "Les quatre piliers",
+  "lead": "Pour qu'un logiciel puisse véritablement recevoir une délégation, il doit reposer sur quatre piliers fondamentaux :",
+  "items": [
+   {
+    "code": "01 / DELEGATION",
+    "en": "Intent & Delegation",
+    "zh": "Intention et Délégation",
+    "lead": "L'unité fondamentale du logiciel passe de la fonctionnalité à la délégation.",
+    "body": "Un logiciel traditionnel se conçoit en demandant « quelle fonctionnalité créer » ; Agentware se conçoit en demandant « quel résultat confier au système ». Une délégation claire ne définit que quatre éléments : le résultat attendu, les limites à respecter, les critères d'acceptation et le moment où rendre la main à l'humain.",
+    "points": []
+   },
+   {
+    "code": "02 / EXECUTION",
+    "en": "Planning & Execution",
+    "zh": "Planification et Exécution",
+    "lead": "Ne pas seulement donner des réponses, mais mener le travail à bien.",
+    "body": "On n'exige plus de l'humain qu'il écrive chaque étape à l'avance. Le système détermine la prochaine action selon l'objectif et l'état actuel, agit sur le monde réel via de véritables outils (API, MCP, ligne de commande, navigateur, base de données, progiciels) et progresse dans une boucle fermée : Planifier → Agir → Observer → Ajuster.",
+    "points": []
+   },
+   {
+    "code": "03 / GOVERNANCE",
+    "en": "Governance & Guardrails",
+    "zh": "Gouvernance et Garde-fous",
+    "lead": "Plus l'autonomie est grande, plus la gouvernance est essentielle.",
+    "body": "Agentware n'est pas un agent à l'autonomie illimitée, mais un logiciel doté d'une capacité d'exécution à l'intérieur de frontières d'autorisation explicites. La gouvernance est aussi cruciale que l'exécution — chaque délégation doit établir clairement : ce qu'elle est autorisée à faire, ce qu'elle a réellement accompli, quel coût elle a engagé, qui peut l'arrêter à tout moment et comment revenir en arrière en toute sécurité en cas d'erreur.",
+    "points": []
+   },
+   {
+    "code": "04 / MEMORY",
+    "en": "Evolving Memory",
+    "zh": "Mémoire Évolutive",
+    "lead": "La mémoire transforme le logiciel d'un outil jetable en un système en évolution continue.",
+    "body": "Un logiciel sans mémoire repart de zéro à chaque utilisation ; la recherche documentaire classique (RAG) n'est qu'une consultation passive. Le système de mémoire d'Agentware ne sert pas uniquement à répondre aux questions : il participe directement à la planification, à la décision et à l'action :",
+    "points": [
+     [
+      "Capitalisation à double canal",
+      "Conserve à la fois le fil complet des missions passées (mémoire épisodique) et les règles cognitives abstraites (mémoire sémantique)."
+     ],
+     [
+      "Consolidation et révision",
+      "Décompose les connaissances en unités minimales intelligibles, puis déduplique, fusionne, corrige et affine automatiquement au fil des nouvelles informations."
+     ],
+     [
+      "Vérification traçable",
+      "Chaque connaissance distillée peut être rattachée à sa source d'origine — auditable et digne de confiance."
+     ]
+    ]
+   }
+  ]
+ },
+ "manifesto": {
+  "intro": "Le logiciel était autrefois un outil attendant d'être manipulé. Il fournissait des fonctions ; l'humain devait l'apprendre, l'orchestrer et assumer la responsabilité du résultat. Aujourd'hui, pour la première fois, on peut déléguer du travail au logiciel. Il ne s'agit pas d'ajouter de l'IA aux anciens logiciels, mais de redéfinir ce que doit être le logiciel à l'ère des agents.",
+  "items": [
+   [
+    "I",
+    [
+     "Software should understand intent, not just input"
+    ],
+    "Le logiciel doit comprendre l'intention, et non simplement recevoir des saisies",
+    "Hier, l'humain devait traduire son objectif en une succession de clics et de formulaires. Désormais, l'humain exprime ce qu'il veut et ce qu'il refuse ; au logiciel de le comprendre."
+   ],
+   [
+    "II",
+    [
+     "Software should execute goals, not just expose functions"
+    ],
+    "Le logiciel doit accomplir des objectifs, et non simplement exposer des fonctions",
+    "Quel que soit le nombre de fonctionnalités, c'était toujours à l'humain de les relier pour obtenir un résultat. La valeur d'un logiciel ne se mesure pas au nombre de fonctions proposées, mais aux résultats livrés."
+   ],
+   [
+    "III",
+    [
+     "Paths may adapt",
+     "Outcomes must remain verifiable"
+    ],
+    "Les parcours peuvent s'adapter ; les résultats doivent rester vérifiables",
+    "La réalité ne se déroule jamais selon un schéma figé ; le parcours d'exécution doit évoluer avec l'environnement et les retours. Plus le parcours est libre, plus l'objectif et les critères d'acceptation doivent être explicites."
+   ],
+   [
+    "IV",
+    [
+     "Autonomy requires governance"
+    ],
+    "L'autonomie exige de la gouvernance",
+    "Nous ne recherchons pas des systèmes à l'autonomie sans limites. Chaque délégation doit définir des responsabilités claires, offrir une traçabilité complète et toujours préserver le pouvoir humain d'intervenir, d'annuler et de reprendre la main."
+   ],
+   [
+    "V",
+    [
+     "Memory turns software from a tool into an evolving system"
+    ],
+    "La mémoire transforme le logiciel d'un simple outil en un système évolutif",
+    "Un exécutant sans mémoire repart toujours de zéro. Un logiciel capable de retenir le contexte, de capitaliser l'expérience et de se corriger comprend de mieux en mieux les personnes et l'organisation au fil de son utilisation."
+   ],
+   [
+    "VI",
+    [
+     "The future unit of software is not the feature",
+     "It is the delegation"
+    ],
+    "L'unité fondamentale du logiciel de demain n'est pas la fonctionnalité ; c'est la délégation",
+    "Hier, concevoir un logiciel revenait à demander : « Quelle fonctionnalité mettre ici ? » Aujourd'hui, concevoir un logiciel revient à demander : « Quel résultat lui confier ? » Énoncez clairement l'objectif, les limites et les critères de validation ; le système se charge du reste."
+   ]
+  ]
+ },
+ "studio": {
+  "title": "Explorer le nouveau paradigme logiciel,\ndiffuser la culture de l'ingénierie IA et bâtir la prochaine génération d'outils pratiques",
+  "sub": "Agentware Studio est un laboratoire indépendant de recherche et de création dédié au paradigme Agentware. Au point de bascule où le logiciel passe de « la manipulation d'interfaces » à « la délégation d'intentions », nous œuvrons à la diffusion et à l'évolution de ce paradigme par la recherche approfondie, des cours en libre accès et des expérimentations produits :",
+  "items": [
+   {
+    "tag": "01 // OPEN CURRICULUM · /learn",
+    "title": "Cursus Ouvert et Structuré sur l'IA",
+    "body": "Passer de « manipuler un logiciel » à « déléguer à un logiciel » exige d'abord de faire évoluer nos modèles mentaux et nos méthodes. Nous réalisons un cursus pédagogique complet sur l'IA, des principes fondamentaux jusqu'à la construction pratique, afin d'aider chacun à maîtriser les compétences clés de l'ère des agents",
+    "action": "Voir les trois saisons →",
+    "href": "/learn/"
+   },
+   {
+    "tag": "02 // RESEARCH & ESSAYS · /blog",
+    "title": "Recherche sur le Paradigme et Essais",
+    "body": "Nous publions régulièrement des analyses de fond et des notes de terrain sur la conception logicielle à l'ère des agents, les architectures de mémoire, les contrats de collaboration humain-machine et la transformation du travail, offrant un cadre de pensée clair pour appréhender les logiciels de nouvelle génération.",
+    "action": "Lire les essais et notes →",
+    "href": "/blog/"
+   },
+   {
+    "tag": "03 // USER TOOLS · aikit.pro",
+    "title": "Expérimentations d'Outils IA Grand Public",
+    "body": "Une vision doit finalement être validée par des produits. Sur aikit.pro, nous concevons et publions en continu des outils et applications d'IA destinés aux utilisateurs, afin d'explorer concrètement l'expérience d'un « logiciel qui agit selon l'intention » au quotidien.",
+    "action": "Visiter aikit.pro ↗",
+    "href": "https://aikit.pro"
+   }
+  ]
+ },
+ "learn": {
+  "title": "Cursus Ouvert et Structuré sur l'IA",
+  "en": "Open Curriculum",
+  "motto": [
+   "We teach what we build.",
+   "Nous enseignons ce que nous bâtissons."
+  ],
+  "lead": "Passer de « manipuler un logiciel » à « déléguer à un logiciel » exige d'abord de faire évoluer nos modèles mentaux et nos méthodes. Nous réalisons un cursus pédagogique complet sur l'IA, des principes fondamentaux jusqu'à la construction pratique, afin d'aider chacun à maîtriser les compétences clés de l'ère des agents",
+  "status": "En production : les leçons seront publiées sur cette page",
+  "seasons": [
+   {
+    "id": "ai-fundamentals",
+    "no": "Saison 1",
+    "zh": "Fondamentaux",
+    "en": "Fundamentals",
+    "body": "Au-delà du battage médiatique — de la prédiction du mot suivant, des tokens, des hallucinations et des fenêtres de contexte jusqu'au RAG, à l'appel d'outils et aux Agents — comprendre quand faire confiance à l'IA et comment l'intégrer dans son travail.",
+    "facts": [
+     [
+      "Public",
+      "Tous les collaborateurs"
+     ],
+     [
+      "Épisodes",
+      "Introduction + 13 épisodes de 5 à 8 min"
+     ],
+     [
+      "Format",
+      "Explications animées + mini-jeux d’exercice"
+     ]
+    ],
+    "units": [
+     [
+      "Unité 1　Comment l’IA produit du contenu",
+      [
+       [
+        "00",
+        "Introduction : la même IA, des résultats différents"
+       ],
+       [
+        "01",
+        "Les LLM ne font qu’une chose : prédire la suite"
+       ],
+       [
+        "02",
+        "Combien de r dans « strawberry » ?"
+       ],
+       [
+        "03",
+        "Se tromper avec aplomb"
+       ]
+      ]
+     ],
+     [
+      "Unité 2　Donner à l’IA les bonnes informations",
+      [
+       [
+        "04",
+        "Le bureau de l’IA"
+       ],
+       [
+        "05",
+        "Pourquoi elle se dégrade dans les longues conversations"
+       ],
+       [
+        "06",
+        "Un nouveau collègue le premier jour"
+       ],
+       [
+        "07",
+        "Lui faire d’abord un brouillon"
+       ],
+       [
+        "08",
+        "Lui donner un ouvrage de référence"
+       ]
+      ]
+     ],
+     [
+      "Unité 3　Mettre l’IA au travail",
+      [
+       [
+        "09",
+        "Lui donner des mains"
+       ],
+       [
+        "10",
+        "Lui donner un mode d’emploi"
+       ],
+       [
+        "11",
+        "De la conversation au travail"
+       ],
+       [
+        "12",
+        "Quand peut-on lui faire confiance ?"
+       ],
+       [
+        "13",
+        "Intégrer l’IA à votre travail"
+       ]
+      ]
+     ]
+    ]
+   },
+   {
+    "id": "ai-coding",
+    "no": "Saison 2",
+    "zh": "Pratique",
+    "en": "AI Coding",
+    "body": "Lorsque produire du code devient abordable et que le discernement devient précieux, apprendre à rédiger des spécifications pour l'IA, à concevoir l'architecture avant de toucher au code et à transformer son expertise en compétences réutilisables (Skills).",
+    "facts": [
+     [
+      "Public",
+      "Développeurs"
+     ],
+     [
+      "Épisodes",
+      "7 épisodes de 6 à 10 min"
+     ],
+     [
+      "Format",
+      "Animation + démonstrations produit + mini-jeux d’exercice"
+     ]
+    ],
+    "units": [
+     [
+      "",
+      [
+       [
+        "S2-1",
+        "Le code est devenu bon marché, le jugement précieux"
+       ],
+       [
+        "S2-2",
+        "Trois types d’IA dans votre éditeur"
+       ],
+       [
+        "S2-3",
+        "Quels fichiers voit-elle ?"
+       ],
+       [
+        "S2-4",
+        "Un cahier de projet écrit pour l’IA"
+       ],
+       [
+        "S2-5",
+        "D’abord le plan, ensuite le code"
+       ],
+       [
+        "S2-6",
+        "Transformer vos méthodes en skills"
+       ],
+       [
+        "S2-7",
+        "Brancher les règles et outils de l’équipe"
+       ]
+      ]
+     ]
+    ]
+   },
+   {
+    "id": "building-ai-systems",
+    "no": "Saison 3",
+    "zh": "Construction",
+    "en": "Building AI Systems",
+    "body": "Ancrée dans des cas réels — de l'ingénierie du contexte, de l'orchestration de flux (n8n / Dify) et du développement de serveurs MCP jusqu'à la collaboration multi-agents, la gouvernance de sécurité et l'évaluation en production.",
+    "facts": [
+     [
+      "Public",
+      "Responsables métier et ingénieurs qui transforment l’IA en systèmes pour leur équipe"
+     ],
+     [
+      "Épisodes",
+      "17 épisodes : environ 30 min de vidéo + 60 min de pratique chacun"
+     ],
+     [
+      "Format",
+      "Principes + tutoriels filmés + modèles et code + quiz + projet final"
+     ]
+    ],
+    "units": [
+     [
+      "Unité A　Conception",
+      [
+       [
+        "S3-01",
+        "D’abord, dessiner la carte"
+       ],
+       [
+        "S3-02",
+        "Ingénierie du contexte"
+       ],
+       [
+        "S3-03",
+        "Choisir modèles et déploiement"
+       ]
+      ]
+     ],
+     [
+      "Unité B　Low-code",
+      [
+       [
+        "S3-04",
+        "n8n (1) : enchaîner le travail répétitif en flux"
+       ],
+       [
+        "S3-05",
+        "n8n (2) : des agents IA dans les flux"
+       ],
+       [
+        "S3-06",
+        "Dify (1) : un assistant qui cherche et cite ses sources"
+       ],
+       [
+        "S3-07",
+        "Dify (2) : workflows, agents et plugins"
+       ],
+       [
+        "S3-08",
+        "n8n ou Dify, et l’auto-hébergement"
+       ]
+      ]
+     ],
+     [
+      "Unité C　Ingénierie",
+      [
+       [
+        "S3-09",
+        "Créer votre propre serveur MCP"
+       ],
+       [
+        "S3-10",
+        "Écrire des agents en code"
+       ]
+      ]
+     ],
+     [
+      "Unité D　Collaboration et protocoles",
+      [
+       [
+        "S3-11",
+        "Plusieurs agents qui travaillent ensemble"
+       ],
+       [
+        "S3-12",
+        "Web et agents : pilotage d’écran et WebMCP"
+       ],
+       [
+        "S3-13",
+        "A2A : travailler avec les agents d’autres entreprises"
+       ]
+      ]
+     ],
+     [
+      "Unité E　Mise en production",
+      [
+       [
+        "S3-14",
+        "Sécurité et gouvernance"
+       ],
+       [
+        "S3-15",
+        "Évaluation, supervision et coûts"
+       ]
+      ]
+     ],
+     [
+      "Unité F　Déploiement",
+      [
+       [
+        "S3-16",
+        "Déployer dans l’équipe : chiffrage, pilote, adoption"
+       ],
+       [
+        "S3-17",
+        "Projet final : transformer un vrai processus en système"
+       ]
+      ]
+     ]
+    ]
+   }
+  ],
+  "cta": "Dès qu’elles seront prêtes, les leçons paraîtront d’abord sur YouTube et sur cette page"
+ },
+ "blog": {
+  "title": "Recherche sur le Paradigme et Essais",
+  "en": "Research & Essays",
+  "lead": "Nous publions régulièrement des analyses de fond et des notes de terrain sur la conception logicielle à l'ère des agents, les architectures de mémoire, les contrats de collaboration humain-machine et la transformation du travail, offrant un cadre de pensée clair pour appréhender les logiciels de nouvelle génération.",
+  "status": "Les articles paraissent ici d’abord, puis sur d’autres plateformes",
+  "queueNote": "Aucun article n’est encore paru. Les trois essais ci-dessous sont prévus et apparaîtront ici dès leur publication.",
+  "catsNote": "Chaque article est signé et daté. Les notes personnelles se terminent par « Cet article reflète l’opinion personnelle de l’auteur. »",
+  "cats": [
+   [
+    "Essais",
+    "essays",
+    "Essais longs du Studio, en dialogue avec le manifeste."
+   ],
+   [
+    "Notes personnelles",
+    "notes",
+    "Façons de travailler, d’apprendre et de penser à l’ère de l’IA ; expériences et échecs réels en travaillant avec l’IA."
+   ],
+   [
+    "Conférences",
+    "lectures",
+    "Articles d’accompagnement et compléments des conférences."
+   ],
+   [
+    "Actualités",
+    "news",
+    "Annonces, nouvelles conférences et événements."
+   ]
+  ],
+  "cta": "Avant le premier essai, commencez par le manifeste"
+ },
+ "ui": {
+  "skip": "Aller au contenu",
+  "home": "Accueil Agentware Studio",
+  "mainNav": "Navigation principale",
+  "menuOpen": "Ouvrir le menu",
+  "menuClose": "Fermer le menu",
+  "follow": "Suivre",
+  "language": "Langue",
+  "nav": {
+   "paradigm": "Paradigme",
+   "architecture": "Architecture",
+   "manifesto": "Manifeste",
+   "studio": "Studio",
+   "learn": "Cours",
+   "blog": "Blog"
+  },
+  "heroCta": "Découvrir Agentware",
+  "heroCta2": "Lire le manifeste",
+  "questionsAria": "Les deux questions du logiciel",
+  "markAria": "Marque AGENTWARE : les crochets représentent la limite autorisée, le trait ascendant un chemin d’exécution adaptable, le point un résultat qui doit être vérifiable. Cliquez ou appuyez sur Entrée pour rejouer l’animation ; utilisez les flèches pour déplacer le chemin.",
+  "markAriaLight": "Marque AGENTWARE",
+  "erasAria": "Trois ères",
+  "eraOf": "Ère {n} sur 3",
+  "compareAria": "Logiciel traditionnel et système Agentware",
+  "dimension": "Dimension",
+  "pillarsAria": "Les quatre piliers",
+  "stage": {
+   "human": "Humain",
+   "outcome": "Résultat",
+   "manual": "Assemblé à la main",
+   "verified": "Résultat vérifiable",
+   "n1": "L’humain clique étape par étape",
+   "n1done": "Le résultat est assemblé à la main",
+   "n2ai": "L’IA accélère une tâche isolée",
+   "n2manual": "Un humain fait cette étape",
+   "n2done": "L’humain relie encore chaque étape",
+   "intent": "Objectif · Limites · Critères",
+   "blocked": "Bloqué, changement de route",
+   "verify": "Vérifié",
+   "boundary": "Limite autorisée",
+   "aria": [
+    "1.0 L’ère des outils : un curseur ouvre quatre fenêtres de fonctions une à une, et l’humain assemble le résultat à la main.",
+    "2.0 L’ère des copilotes : deux fonctions sont accélérées par l’IA, mais chaque requête part de l’humain et lui revient ; il relie toujours chaque étape.",
+    "3.0 L’ère de la délégation : l’humain confie une seule intention ; dans la limite autorisée, le système planifie, contourne une étape bloquée, vérifie et livre un résultat vérifiable."
+   ]
+  },
+  "loop": {
+   "local": "Boucle d’exécution",
+   "running": "En cours",
+   "delivered": "Livré",
+   "handback": "Rendu à l’humain",
+   "idle": "Prêt",
+   "aria": "La boucle d’exécution : comprendre la délégation et recueillir le contexte, puis planifier, agir, observer et ajuster dans la limite autorisée, vérifier le résultat et le livrer ou le rendre à un humain. En dessous se trouve le cœur déterministe : mémoire, base de données, API et règles métier.",
+   "boundary": "Limite autorisée",
+   "handbackLabel": "Hors limites, rendu à l’humain",
+   "core": "Cœur déterministe",
+   "blocks": [
+    "Mémoire",
+    "Base de données",
+    "Interfaces",
+    "Règles"
+   ],
+   "human": "Délégant",
+   "outcome": "Livraison",
+   "outcomeDone": "Résultat vérifiable",
+   "inspect": "Voir l’étape {n} : {name}",
+   "traceAria": "Journal d’exécution",
+   "traceEmpty": "En attente d’une délégation.",
+   "inside": "Dans le périmètre",
+   "touched": "Limite atteinte",
+   "out": "Hors périmètre · rendu",
+   "run": "Lancer une délégation",
+   "rerun": "Relancer",
+   "simulate": "Simuler un dépassement",
+   "hint": "Après l’exécution, sélectionnez une étape du schéma pour lire son explication.",
+   "logs": {
+    "intent": "Délégation reçue : objectif, limites et critères définis",
+    "context": "Lecture de l’environnement actuel et de la mémoire utile",
+    "plan1": "Chemin généré → suite : interroger les données",
+    "act1": "Outil : lecture de la base de données",
+    "observe1": "Retour : le résultat s’écarte de l’attendu",
+    "adapt": "Plan corrigé : passage à un autre chemin",
+    "plan2": "Replanifié → suite : appeler l’API",
+    "act2ok": "Outil : API · MCP (dans le périmètre)",
+    "observe2ok": "Retour : l’état est conforme",
+    "verifyOk": "Vérifié selon les critères : validé, preuves conservées",
+    "deliver": "Résultat vérifiable livré",
+    "act2warn": "L’action demandée dépasse la limite ; non exécutée",
+    "observe2warn": "Retour : objectif impossible dans le périmètre",
+    "verifyFail": "Validation échouée : une décision humaine est nécessaire",
+    "handback": "Arrêt, raisons et travail fait expliqués, rendu à l’humain"
+   }
+  },
+  "learn": {
+   "seasonsAria": "Trois saisons",
+   "count": "{n} LEÇONS · EN PRODUCTION",
+   "actions": [
+    "Suivre sur YouTube",
+    "Lire le blog",
+    "Lire le manifeste"
+   ]
+  },
+  "blog": {
+   "queueTitle": "Premiers essais",
+   "planned": "Prévu",
+   "catsTitle": "Quatre rubriques",
+   "actions": [
+    "Lire le manifeste",
+    "Voir le cours d’IA",
+    "Suivre sur X"
+   ]
+  },
+  "nf": {
+   "title": "Aucune page à cette adresse",
+   "lead": "Le lien a peut-être changé. Revenez à l’accueil, ou ouvrez le cours et le blog.",
+   "actions": [
+    "Retour à l’accueil",
+    "Cours d’IA",
+    "Blog"
+   ]
+  }
+ }
+}

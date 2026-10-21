@@ -1,0 +1,769 @@
+{
+ "hero": {
+  "intro": "Agentware é uma classe de software projetada para a era dos agentes. Você confia a ele um objetivo; dentro dos limites autorizados, ele organiza ações, executa tarefas e entrega resultados verificáveis.",
+  "zh": "Da interface à intenção",
+  "tagZh": "Software que age com base na intenção",
+  "questions": [
+   {
+    "when": "",
+    "who": "Nos últimos quarenta anos, o software só fazia uma pergunta a você:",
+    "q": "Em qual botão você quer clicar?"
+   },
+   {
+    "when": "",
+    "who": "Agora, o software começa a responder a outra pergunta:",
+    "q": "Qual resultado você deseja alcançar?"
+   }
+  ],
+  "btnWord": "botão"
+ },
+ "shift": {
+  "title": [
+   "No passado, humanos operavam o software",
+   "Agora, humanos delegam ao software"
+  ],
+  "intro": [
+   "Durante décadas, o software foi construído em torno de “Funcionalidades (Features)”. O software fornecia botões e formulários, enquanto o ser humano atuava como a única central de comando — você precisava saber qual aplicativo abrir, em qual botão clicar, qual formulário preencher e em que ordem fazer tudo. O software oferecia capacidades isoladas; as pessoas eram responsáveis por conectar essas capacidades para gerar um resultado.",
+   "Os agentes transformaram essa relação e reescreveram o contrato de divisão de trabalho entre humanos e máquinas:"
+  ],
+  "eras": [
+   {
+    "no": "01",
+    "ver": "1.0",
+    "era": "Era das Ferramentas",
+    "en": "Software as Functions",
+    "zh": "Software como Função",
+    "motto": "Humans Operate",
+    "body": "Os caminhos são pré-programados. O humano clica passo a passo; o software responde passivamente.",
+    "role": "OPERATOR"
+   },
+   {
+    "no": "02",
+    "ver": "2.0",
+    "era": "Era dos Copilotos",
+    "en": "Software as Copilots",
+    "zh": "Software como Copiloto",
+    "motto": "Humans Prompt",
+    "body": "A IA acelera tarefas pontuais (escrever, desenhar, programar), mas o humano ainda precisa conectar cada etapa.",
+    "role": "PROMPTER"
+   },
+   {
+    "no": "03",
+    "ver": "3.0",
+    "era": "Era da Delegação",
+    "en": "Software as Delegation",
+    "zh": "Software como Delegação",
+    "motto": "Humans Delegate",
+    "body": "O humano confia objetivos e restrições; o software compreende a tarefa, planeja de forma autônoma, executa ações, observa o feedback e se ajusta dinamicamente até entregar o resultado.",
+    "role": "DELEGATOR"
+   }
+  ],
+  "closing": [
+   "Essa transformação não consiste em adicionar IA a todos os softwares existentes,",
+   "mas em reescrever o próprio software."
+  ]
+ },
+ "notAgentware": {
+  "title": "Adicionar IA não o transforma em Agentware",
+  "lead": "A diferença não está em chamar ou não um grande modelo de linguagem, nem em ter ou não uma janela de chat, mas na forma como o software opera em sua base.",
+  "items": [
+   {
+    "name": "AI Feature",
+    "body": "Resumo, tradução, busca e preenchimento automático são apenas funcionalidades de IA dentro de softwares tradicionais. A eficiência aumenta, mas o trabalho continua sendo operado e concluído por pessoas."
+   },
+   {
+    "name": "Chatbot Wrapper",
+    "body": "Adicionar uma barra lateral de chat a um software tradicional ou colocar uma camada superficial sobre uma API de modelo mantém, por baixo, o mesmo software antigo esperando por cliques humanos passo a passo."
+   },
+   {
+    "name": "Rigid Workflow",
+    "body": "Fluxos fixos do tipo A → B → C → D são automação tradicional. Um processo que trava assim que a realidade foge do previsto não possui capacidade de se adaptar ao contexto e ao feedback."
+   },
+   {
+    "name": "Ungoverned Agent",
+    "body": "Um agente desgovernado que roda em loops cegos dentro de uma caixa-preta, com custos fora de controle e resultados impossíveis de verificar, é apenas um brinquedo experimental — não um software realmente utilizável."
+   }
+  ]
+ },
+ "architecture": {
+  "titleZh": "Núcleo determinístico · Plano de controle agêntico",
+  "body": "O Agentware não substitui o código determinístico; ele assume a lógica de controle do nível mais alto. Na base permanecem bancos de dados rigorosos, APIs e regras de negócio; no topo, os “caminhos de operação pré-escritos” dão lugar à “organização dinâmica de ações em torno de objetivos em tempo de execução”.",
+  "table": {
+   "head": [
+    "Dimensão",
+    "Software Tradicional",
+    "Sistema Agentware"
+   ],
+   "headEn": [
+    "",
+    "Traditional Software",
+    "Agentware System"
+   ],
+   "rows": [
+    [
+     "Papel Humano",
+     "Operador (Operator)",
+     "Delegante (Delegator)"
+    ],
+    [
+     "Unidade de Design",
+     "Funcionalidade (Feature)",
+     "Delegação (Delegation)"
+    ],
+    [
+     "Caminho de Execução",
+     "Pré-programado|Input → Function → Output",
+     "Gerado dinamicamente em execução|Intent → Plan → Act → Adapt → Verify"
+    ],
+    [
+     "Estado do Sistema",
+     "Sessão única, começa do zero a cada vez",
+     "Memória de longo prazo acumulada continuamente"
+    ],
+    [
+     "Valor Central",
+     "Oferecer funcionalidades utilizáveis",
+     "Entregar resultados verificáveis"
+    ],
+    [
+     "Forma de Controle",
+     "Implícita em menus e permissões",
+     "Governança explícita, auditável e passível de intervenção a qualquer momento"
+    ]
+   ]
+  }
+ },
+ "loop": {
+  "title": "Os caminhos são gerados em tempo de execução; os resultados são verificados antes da entrega",
+  "principle": [
+   "Objetivos podem ser delegados e caminhos podem se adaptar; ",
+   "porém, as permissões devem ser explícitas, os resultados verificáveis e os processos governáveis."
+  ],
+  "steps": [
+   {
+    "en": "Intent",
+    "zh": "Compreender a Delegação",
+    "text": "Deixar claro qual resultado se quer, dentro de quais limites agir e o que conta como concluído.",
+    "code": "goal · constraints · acceptance"
+   },
+   {
+    "en": "Context",
+    "zh": "Obter Contexto",
+    "text": "Buscar no ambiente atual e na memória acumulada os fatos e a experiência relevantes para o objetivo.",
+    "code": "context · memory · evidence"
+   },
+   {
+    "en": "Plan",
+    "zh": "Planejar Ações",
+    "text": "Organizar as ações em torno do objetivo e do estado atual, gerando o caminho de execução em tempo de execução.",
+    "code": "state → next action"
+   },
+   {
+    "en": "Act",
+    "zh": "Acionar Ferramentas e Executar",
+    "text": "Com autorização explícita, chamar APIs, MCP, navegadores e bancos de dados para que as ações tenham efeito em sistemas reais.",
+    "code": "tools · APIs · deterministic core"
+   },
+   {
+    "en": "Observe",
+    "zh": "Observar Feedback",
+    "text": "Ler os resultados e mudanças que cada ação produz e comparar o estado real com o esperado.",
+    "code": "action → feedback → state"
+   },
+   {
+    "en": "Adapt",
+    "zh": "Ajustar Dinamicamente",
+    "text": "Corrigir o plano com as novas informações. Ao tocar limites de permissão ou de risco, devolver a decisão a uma pessoa.",
+    "code": "replan · adapt · escalate"
+   },
+   {
+    "en": "Verify",
+    "zh": "Verificar Resultado",
+    "text": "Conferir o resultado com os critérios de aceite definidos na delegação, guardando evidências rastreáveis.",
+    "code": "acceptance criteria → evidence"
+   },
+   {
+    "en": "Deliver",
+    "zh": "Entregar",
+    "text": "Entregar um resultado verificável; se o objetivo não couber no escopo, explicar com clareza e devolver a uma pessoa.",
+    "code": "verified outcome / human handoff"
+   }
+  ],
+  "handback": {
+   "en": "Hand back",
+   "zh": "Devolver ao humano",
+   "text": "Fora do limite: o sistema para de agir, explica o motivo e o que já concluiu, e devolve a decisão a uma pessoa.",
+   "code": "out of scope → human decision"
+  }
+ },
+ "pillars": {
+  "titleZh": "Os quatro pilares",
+  "lead": "Para que o software possa realmente receber delegações, ele precisa ser construído sobre quatro elementos fundamentais:",
+  "items": [
+   {
+    "code": "01 / DELEGATION",
+    "en": "Intent & Delegation",
+    "zh": "Intenção e Delegação",
+    "lead": "A unidade básica do software deixa de ser a funcionalidade e passa a ser a delegação.",
+    "body": "O software tradicional começa projetando “qual funcionalidade criar”; o Agentware começa projetando “qual resultado confiar ao sistema”. Uma delegação clara define apenas quatro coisas: qual resultado é desejado, dentro de quais limites agir, o que caracteriza um resultado aceitável e quando devolver o controle a um humano.",
+    "points": []
+   },
+   {
+    "code": "02 / EXECUTION",
+    "en": "Planning & Execution",
+    "zh": "Planejamento e Execução",
+    "lead": "Não apenas dar respostas, mas concluir o trabalho.",
+    "body": "Não se exige mais que o ser humano escreva cada passo com antecedência. O sistema decide o próximo movimento com base no objetivo e no estado atual, atua sobre o mundo real por meio de ferramentas reais (APIs, MCP, linha de comando, navegadores, bancos de dados, sistemas corporativos) e avança em um ciclo fechado de Planejar → Agir → Observar → Ajustar.",
+    "points": []
+   },
+   {
+    "code": "03 / GOVERNANCE",
+    "en": "Governance & Guardrails",
+    "zh": "Governança e Limites",
+    "lead": "Quanto maior a autonomia, mais essencial é a governança.",
+    "body": "Agentware não é um agente com autonomia ilimitada, mas um software dotado de capacidade de execução dentro de limites de autorização explícitos. Governança é tão importante quanto execução — cada delegação deve deixar claro: o que lhe é permitido fazer, o que realmente fez, qual custo consumiu, quem pode interrompê-lo a qualquer momento e como reverter com segurança em caso de falha.",
+    "points": []
+   },
+   {
+    "code": "04 / MEMORY",
+    "en": "Evolving Memory",
+    "zh": "Memória em Evolução",
+    "lead": "A memória transforma o software de uma ferramenta descartável em um sistema em evolução contínua.",
+    "body": "Um software sem memória começa do zero a cada uso; a recuperação tradicional (RAG) é apenas uma consulta passiva de arquivos. O sistema de memória do Agentware não serve apenas para responder perguntas, mas participa diretamente do planejamento, da tomada de decisão e da ação:",
+    "points": [
+     [
+      "Acumulação de Canal Duplo",
+      "Preserva tanto o histórico completo de tarefas específicas (memória episódica) quanto regras cognitivas abstratas (memória semântica)."
+     ],
+     [
+      "Consolidação e Revisão",
+      "Decompõe o conhecimento em unidades mínimas compreensíveis, removendo duplicatas, mesclando, corrigindo e refinando automaticamente conforme novas informações chegam."
+     ],
+     [
+      "Verificação Rastreável",
+      "Cada memória refinada pode ser rastreada até sua fonte original — auditável e confiável."
+     ]
+    ]
+   }
+  ]
+ },
+ "manifesto": {
+  "intro": "O software costumava ser uma ferramenta esperando para ser operada. Ele oferecia funções, e cabia às pessoas aprendê-lo, organizá-lo e assumir a responsabilidade pelo resultado. Agora, pela primeira vez, é possível delegar trabalho ao software. Não se trata de colocar IA em softwares antigos, mas de redefinir o que o software deve ser na era dos agentes.",
+  "items": [
+   [
+    "I",
+    [
+     "Software should understand intent, not just input"
+    ],
+    "O software deve compreender a intenção, e não apenas receber entradas",
+    "No passado, as pessoas precisavam traduzir seus objetivos em uma sequência de cliques e formulários. Agora, as pessoas dizem o que querem e o que não aceitam, e cabe ao software compreender."
+   ],
+   [
+    "II",
+    [
+     "Software should execute goals, not just expose functions"
+    ],
+    "O software deve cumprir objetivos, e não apenas expor funções",
+    "Por mais funcionalidades que existam, quem as conectava para gerar um resultado ainda era o ser humano. O valor do software não está em quantas funções ele oferece, mas em quais resultados ele entrega."
+   ],
+   [
+    "III",
+    [
+     "Paths may adapt",
+     "Outcomes must remain verifiable"
+    ],
+    "Os caminhos podem mudar; os resultados precisam ser verificáveis",
+    "A realidade não acontece segundo fluxos pré-determinados; o caminho de execução deve mudar conforme o ambiente e o feedback. Quanto mais livre for o caminho, mais claros devem ser o objetivo e os critérios de aceitação."
+   ],
+   [
+    "IV",
+    [
+     "Autonomy requires governance"
+    ],
+    "A autonomia exige governança",
+    "Não buscamos sistemas de autonomia ilimitada. Cada delegação deve ter responsabilidades claras, processos auditáveis e preservar sempre para o ser humano o poder de intervir, reverter e assumir o controle."
+   ],
+   [
+    "V",
+    [
+     "Memory turns software from a tool into an evolving system"
+    ],
+    "A memória transforma o software de uma ferramenta em um sistema em evolução",
+    "Um executor de uso único começa sempre do zero. O software que lembra o contexto, acumula experiência e corrige a si mesmo passa a entender cada vez melhor as pessoas e a organização a cada uso."
+   ],
+   [
+    "VI",
+    [
+     "The future unit of software is not the feature",
+     "It is the delegation"
+    ],
+    "A unidade básica do software do futuro não é a funcionalidade; é a delegação",
+    "No passado, projetar software era perguntar “qual funcionalidade colocamos aqui?”. Agora, projetar software é perguntar “qual resultado vamos confiar a ele?”. Defina com clareza o objetivo, os limites e os critérios de aceitação; o sistema faz o resto."
+   ]
+  ]
+ },
+ "studio": {
+  "title": "Explorando o novo paradigma de software,\ndifundindo o conhecimento em engenharia de IA e construindo ferramentas práticas de próxima geração",
+  "sub": "O Agentware Studio é um laboratório independente de pesquisa e criação iniciado em torno do paradigma Agentware. No ponto de virada em que o software avança da “operação de interfaces” para a “delegação de intenções”, dedicamo-nos a impulsionar a adoção e a evolução desse paradigma por meio de pesquisa aprofundada, cursos abertos e experimentos de produto:",
+  "items": [
+   {
+    "tag": "01 // OPEN CURRICULUM · /learn",
+    "title": "Curso Aberto e Sistemático de IA",
+    "body": "Para passar de “operar software” para “delegar ao software”, é preciso primeiro atualizar a mentalidade e os métodos humanos. Estamos produzindo uma série sistemática de aulas sobre IA, dos princípios fundamentais à construção prática, ajudando qualquer pessoa a dominar as capacidades essenciais da era dos agentes",
+    "action": "Ver as três temporadas →",
+    "href": "/learn/"
+   },
+   {
+    "tag": "02 // RESEARCH & ESSAYS · /blog",
+    "title": "Pesquisa de Paradigma e Ensaios",
+    "body": "Registramos e publicamos continuamente artigos aprofundados e notas práticas sobre design de software na era dos agentes, sistemas de memória, contratos de colaboração humano-máquina e a transformação do trabalho, oferecendo uma estrutura intelectual clara para compreender a próxima geração de software.",
+    "action": "Ler ensaios e notas →",
+    "href": "/blog/"
+   },
+   {
+    "tag": "03 // USER TOOLS · aikit.pro",
+    "title": "Experimentos de Ferramentas de IA para Usuários",
+    "body": "Ideias precisam, no fim, ser validadas por produtos. Em aikit.pro projetamos e lançamos continuamente ferramentas e aplicações de IA voltadas ao usuário, explorando como o “software que age com base na intenção” funciona em cenários reais do dia a dia.",
+    "action": "Visitar aikit.pro ↗",
+    "href": "https://aikit.pro"
+   }
+  ]
+ },
+ "learn": {
+  "title": "Curso Aberto e Sistemático de IA",
+  "en": "Open Curriculum",
+  "motto": [
+   "We teach what we build.",
+   "Ensinamos aquilo que construímos."
+  ],
+  "lead": "Para passar de “operar software” para “delegar ao software”, é preciso primeiro atualizar a mentalidade e os métodos humanos. Estamos produzindo uma série sistemática de aulas sobre IA, dos princípios fundamentais à construção prática, ajudando qualquer pessoa a dominar as capacidades essenciais da era dos agentes",
+  "status": "Em produção: as aulas serão publicadas nesta página",
+  "seasons": [
+   {
+    "id": "ai-fundamentals",
+    "no": "Temporada 1",
+    "zh": "Fundamentos",
+    "en": "Fundamentals",
+    "body": "Sem exageros de marketing — da previsão do próximo token, alucinações e janelas de contexto até RAG, chamada de ferramentas e Agentes — entendendo quando confiar na IA e como aplicá-la no trabalho.",
+    "facts": [
+     [
+      "Para",
+      "Todos os colaboradores"
+     ],
+     [
+      "Episódios",
+      "Introdução + 13 episódios, de 5 a 8 min"
+     ],
+     [
+      "Formato",
+      "Explicações animadas + minijogos de prática"
+     ]
+    ],
+    "units": [
+     [
+      "Unidade 1　Como a IA gera conteúdo",
+      [
+       [
+        "00",
+        "Introdução: a mesma IA, resultados diferentes"
+       ],
+       [
+        "01",
+        "LLMs fazem uma coisa só: prever o que vem a seguir"
+       ],
+       [
+        "02",
+        "Quantos r tem “strawberry”?"
+       ],
+       [
+        "03",
+        "Errando com toda a confiança"
+       ]
+      ]
+     ],
+     [
+      "Unidade 2　Dar à IA as informações certas",
+      [
+       [
+        "04",
+        "A mesa de trabalho da IA"
+       ],
+       [
+        "05",
+        "Por que ela piora em conversas longas"
+       ],
+       [
+        "06",
+        "Um colega novo no primeiro dia"
+       ],
+       [
+        "07",
+        "Peça um rascunho primeiro"
+       ],
+       [
+        "08",
+        "Dê a ela um livro de consulta"
+       ]
+      ]
+     ],
+     [
+      "Unidade 3　Colocar a IA para trabalhar",
+      [
+       [
+        "09",
+        "Dê a ela mãos"
+       ],
+       [
+        "10",
+        "Dê a ela um manual"
+       ],
+       [
+        "11",
+        "Da conversa ao trabalho"
+       ],
+       [
+        "12",
+        "Quando dá para confiar?"
+       ],
+       [
+        "13",
+        "Leve a IA para o seu trabalho"
+       ]
+      ]
+     ]
+    ]
+   },
+   {
+    "id": "ai-coding",
+    "no": "Temporada 2",
+    "zh": "Prática",
+    "en": "AI Coding",
+    "body": "Quando escrever código fica barato e o discernimento fica valioso, aprenda a escrever especificações de projeto para a IA, desenhar a solução antes de mexer no código e transformar experiência pessoal em habilidades reutilizáveis (Skills).",
+    "facts": [
+     [
+      "Para",
+      "Desenvolvedores"
+     ],
+     [
+      "Episódios",
+      "7 episódios, de 6 a 10 min"
+     ],
+     [
+      "Formato",
+      "Animação + demonstrações de produto + minijogos de prática"
+     ]
+    ],
+    "units": [
+     [
+      "",
+      [
+       [
+        "S2-1",
+        "O código ficou barato, o julgamento ficou caro"
+       ],
+       [
+        "S2-2",
+        "Três tipos de IA no seu editor"
+       ],
+       [
+        "S2-3",
+        "Quais arquivos ela enxerga?"
+       ],
+       [
+        "S2-4",
+        "Um documento de projeto escrito para a IA"
+       ],
+       [
+        "S2-5",
+        "Primeiro o plano, depois o código"
+       ],
+       [
+        "S2-6",
+        "Transforme seus métodos em skills"
+       ],
+       [
+        "S2-7",
+        "Conecte as regras e ferramentas do time"
+       ]
+      ]
+     ]
+    ]
+   },
+   {
+    "id": "building-ai-systems",
+    "no": "Temporada 3",
+    "zh": "Construção",
+    "en": "Building AI Systems",
+    "body": "Voltada para cenários reais — da engenharia de contexto, orquestração de fluxos (n8n / Dify) e desenvolvimento de servidores MCP até colaboração multiagente, governança de segurança e avaliação em produção.",
+    "facts": [
+     [
+      "Para",
+      "Líderes de negócio e engenheiros que transformam IA em sistemas no time"
+     ],
+     [
+      "Episódios",
+      "17 episódios: cerca de 30 min de vídeo + 60 min de prática cada"
+     ],
+     [
+      "Formato",
+      "Conceitos + tutoriais gravados + modelos e código + quizzes + projeto final"
+     ]
+    ],
+    "units": [
+     [
+      "Unidade A　Design",
+      [
+       [
+        "S3-01",
+        "Primeiro, desenhe o mapa"
+       ],
+       [
+        "S3-02",
+        "Engenharia de contexto"
+       ],
+       [
+        "S3-03",
+        "Escolhendo modelos e implantação"
+       ]
+      ]
+     ],
+     [
+      "Unidade B　Low-code",
+      [
+       [
+        "S3-04",
+        "n8n (1): transformar trabalho repetitivo em fluxos"
+       ],
+       [
+        "S3-05",
+        "n8n (2): agentes de IA dentro dos fluxos"
+       ],
+       [
+        "S3-06",
+        "Dify (1): um assistente que pesquisa e cita fontes"
+       ],
+       [
+        "S3-07",
+        "Dify (2): workflows, agentes e plugins"
+       ],
+       [
+        "S3-08",
+        "n8n ou Dify, e auto-hospedagem"
+       ]
+      ]
+     ],
+     [
+      "Unidade C　Engenharia",
+      [
+       [
+        "S3-09",
+        "Crie seu próprio servidor MCP"
+       ],
+       [
+        "S3-10",
+        "Escrevendo agentes em código"
+       ]
+      ]
+     ],
+     [
+      "Unidade D　Colaboração e protocolos",
+      [
+       [
+        "S3-11",
+        "Vários agentes trabalhando juntos"
+       ],
+       [
+        "S3-12",
+        "Web e agentes: uso de tela e WebMCP"
+       ],
+       [
+        "S3-13",
+        "A2A: trabalhando com agentes de outras empresas"
+       ]
+      ]
+     ],
+     [
+      "Unidade E　Produção",
+      [
+       [
+        "S3-14",
+        "Segurança e governança"
+       ],
+       [
+        "S3-15",
+        "Avaliação, monitoramento e custo"
+       ]
+      ]
+     ],
+     [
+      "Unidade F　Adoção",
+      [
+       [
+        "S3-16",
+        "Levar para o time: contas, piloto e adoção"
+       ],
+       [
+        "S3-17",
+        "Projeto final: transformar um processo real em sistema"
+       ]
+      ]
+     ]
+    ]
+   }
+  ],
+  "cta": "Quando estiverem prontas, as aulas serão publicadas primeiro no YouTube e nesta página"
+ },
+ "blog": {
+  "title": "Pesquisa de Paradigma e Ensaios",
+  "en": "Research & Essays",
+  "lead": "Registramos e publicamos continuamente artigos aprofundados e notas práticas sobre design de software na era dos agentes, sistemas de memória, contratos de colaboração humano-máquina e a transformação do trabalho, oferecendo uma estrutura intelectual clara para compreender a próxima geração de software.",
+  "status": "Os artigos saem primeiro aqui e depois em outras plataformas",
+  "queueNote": "Ainda não há artigos publicados. Os três ensaios abaixo estão planejados e aparecerão aqui quando forem publicados.",
+  "catsNote": "Todo artigo é assinado e datado. As notas pessoais terminam com “Este artigo reflete a opinião pessoal do autor.”",
+  "cats": [
+   [
+    "Ensaios",
+    "essays",
+    "Ensaios longos do Studio, em diálogo com o manifesto."
+   ],
+   [
+    "Notas pessoais",
+    "notes",
+    "Formas de trabalhar, aprender e pensar na era da IA; experiências e fracassos reais trabalhando com IA."
+   ],
+   [
+    "Palestras",
+    "lectures",
+    "Artigos de apoio e complementos das palestras."
+   ],
+   [
+    "Novidades",
+    "news",
+    "Avisos, novas palestras e eventos."
+   ]
+  ],
+  "cta": "Antes do primeiro ensaio, comece pelo manifesto"
+ },
+ "ui": {
+  "skip": "Pular para o conteúdo",
+  "home": "Início da Agentware Studio",
+  "mainNav": "Navegação principal",
+  "menuOpen": "Abrir menu",
+  "menuClose": "Fechar menu",
+  "follow": "Siga",
+  "language": "Idioma",
+  "nav": {
+   "paradigm": "Paradigma",
+   "architecture": "Arquitetura",
+   "manifesto": "Manifesto",
+   "studio": "Studio",
+   "learn": "Curso",
+   "blog": "Blog"
+  },
+  "heroCta": "Conheça a Agentware",
+  "heroCta2": "Ler o manifesto",
+  "questionsAria": "As duas perguntas do software",
+  "markAria": "Marca AGENTWARE: os colchetes são o limite autorizado, o traço ascendente um caminho de execução que pode mudar, e o ponto um resultado que precisa ser verificável. Clique ou pressione Enter para repetir a animação; use as setas para mover o caminho.",
+  "markAriaLight": "Marca AGENTWARE",
+  "erasAria": "Três eras",
+  "eraOf": "Era {n} de 3",
+  "compareAria": "Software tradicional e sistema Agentware",
+  "dimension": "Dimensão",
+  "pillarsAria": "Os quatro pilares",
+  "stage": {
+   "human": "Humano",
+   "outcome": "Resultado",
+   "manual": "Montado à mão",
+   "verified": "Resultado verificável",
+   "n1": "O humano clica passo a passo",
+   "n1done": "O resultado é montado à mão",
+   "n2ai": "A IA acelera uma tarefa pontual",
+   "n2manual": "Um humano faz este passo",
+   "n2done": "O humano ainda liga cada passo",
+   "intent": "Objetivo · Limites · Critérios",
+   "blocked": "Bloqueado, mudando a rota",
+   "verify": "Verificado",
+   "boundary": "Limite autorizado",
+   "aria": [
+    "1.0 Era das ferramentas: um cursor abre quatro janelas de funções, uma a uma, e o humano monta o resultado à mão.",
+    "2.0 Era dos copilotos: duas funções são aceleradas pela IA, mas cada comando sai do humano e volta para ele, que ainda liga cada passo.",
+    "3.0 Era da delegação: o humano entrega uma única intenção; dentro do limite autorizado, o sistema planeja, contorna um passo bloqueado, verifica e entrega um resultado verificável."
+   ]
+  },
+  "loop": {
+   "local": "Loop de execução",
+   "running": "Executando",
+   "delivered": "Entregue",
+   "handback": "Devolvido ao humano",
+   "idle": "Pronto",
+   "aria": "O loop de execução: entender a delegação e obter contexto; depois planejar, agir, observar e ajustar dentro do limite autorizado; verificar o resultado e entregá-lo ou devolvê-lo a uma pessoa. Abaixo fica o núcleo determinístico: memória, banco de dados, APIs e regras de negócio.",
+   "boundary": "Limite autorizado",
+   "handbackLabel": "Fora do limite, devolve ao humano",
+   "core": "Núcleo determinístico",
+   "blocks": [
+    "Memória",
+    "Banco de dados",
+    "Interfaces",
+    "Regras"
+   ],
+   "human": "Delegante",
+   "outcome": "Entrega",
+   "outcomeDone": "Resultado verificável",
+   "inspect": "Ver o passo {n}: {name}",
+   "traceAria": "Registro de execução",
+   "traceEmpty": "Aguardando uma delegação.",
+   "inside": "Dentro do escopo",
+   "touched": "Limite atingido",
+   "out": "Fora do escopo · devolvido",
+   "run": "Executar uma delegação",
+   "rerun": "Executar de novo",
+   "simulate": "Simular fora do limite",
+   "hint": "Depois da execução, selecione qualquer passo do diagrama para ver a explicação.",
+   "logs": {
+    "intent": "Delegação recebida: objetivo, limites e critérios definidos",
+    "context": "Lendo o ambiente atual e a memória relevante",
+    "plan1": "Caminho gerado → próximo: consultar dados",
+    "act1": "Ferramenta: ler o banco de dados",
+    "observe1": "Retorno: o resultado difere do esperado",
+    "adapt": "Plano corrigido: mudando para outro caminho",
+    "plan2": "Replanejado → próximo: chamar a API",
+    "act2ok": "Ferramenta: API · MCP (dentro do escopo)",
+    "observe2ok": "Retorno: o estado está como esperado",
+    "verifyOk": "Conferido com os critérios: aprovado, evidência guardada",
+    "deliver": "Resultado verificável entregue",
+    "act2warn": "A ação pedida passa do limite; não executada",
+    "observe2warn": "Retorno: o objetivo não cabe no escopo",
+    "verifyFail": "Aceite reprovado: é preciso uma decisão humana",
+    "handback": "Parado; motivos e o que foi feito explicados; devolvido"
+   }
+  },
+  "learn": {
+   "seasonsAria": "Três temporadas",
+   "count": "{n} AULAS · EM PRODUÇÃO",
+   "actions": [
+    "Seguir no YouTube",
+    "Ler o blog",
+    "Ler o manifesto"
+   ]
+  },
+  "blog": {
+   "queueTitle": "Primeiros ensaios",
+   "planned": "Planejado",
+   "catsTitle": "Quatro seções",
+   "actions": [
+    "Ler o manifesto",
+    "Ver o curso de IA",
+    "Seguir no X"
+   ]
+  },
+  "nf": {
+   "title": "Não há página neste endereço",
+   "lead": "O link pode ter mudado. Volte ao início ou abra o curso e o blog.",
+   "actions": [
+    "Voltar ao início",
+    "Curso de IA",
+    "Blog"
+   ]
+  }
+ }
+}
