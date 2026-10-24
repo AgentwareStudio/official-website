@@ -33,7 +33,7 @@ export function browserCache(): Plugin {
             rules.set(`/${file.fileName.replace(/index\.html$|\.html$/, '')}`, 'public, max-age=0, must-revalidate');
           }
         }
-        if (rules.size > 100) this.error('Cloudflare Pages supports at most 100 header rules');
+        if (rules.size > 100) this.error('Cloudflare Static Assets supports at most 100 header rules');
         const source = '# Generated from existing build files; never replace with /assets/*.\n'
           + [...rules].sort(([a], [b]) => a.localeCompare(b))
             .map(([path, policy]) => `${path}\n  Cache-Control: ${policy}\n`).join('\n');

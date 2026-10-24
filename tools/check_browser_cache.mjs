@@ -8,11 +8,11 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
 function rulesOf(output) {
   const file = output.find((file) => file.fileName === '_headers');
-  assert.ok(file, 'Missing Cloudflare Pages _headers');
+  assert.ok(file, 'Missing Cloudflare Static Assets _headers');
   const rules = new Map();
   let path;
   for (const line of String(file.source).split('\n')) {
-    assert.ok(line.length <= 2000, 'Pages header line length limit');
+    assert.ok(line.length <= 2000, 'Static Assets header line length limit');
     if (!line || line.startsWith('#')) continue;
     if (!/^\s/.test(line)) {
       assert.ok(!/[*?:]/.test(line), 'Cache rules must use exact local paths');

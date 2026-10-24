@@ -51,15 +51,22 @@ Home, learn and 404 also have separate static JavaScript entries in `src/entries
 
 ## Deploy on Cloudflare
 
-The site is fully static and is deployed from GitHub with Cloudflare Pages.
+The site is fully static and is deployed as the Cloudflare Worker **`agentware-official`**, using Workers Static Assets and the custom domain `agentware.studio`.
 
-1. In Cloudflare, create a Pages project and connect this repository.
-2. Framework preset: `Vite` (or none).
-3. Build command: `npm run build`.
-4. Build output directory: `dist`.
-5. Add the custom domain `agentware.studio`.
+The root `wrangler.jsonc` serves `dist` with `html_handling: auto-trailing-slash` and `not_found_handling: 404-page`. Missing files use the nearest `404.html` with HTTP 404; the existing 404 entry determines its language from the requested URL. The site's pages have their own HTML entries, so missing paths must not use `single-page-application`, which would serve the homepage with HTTP 200. Static assets are served directly, without an application Worker script.
 
-Missing paths are served `dist/404.html`, which picks its language from the URL.
+For Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command, with this repository as the project root. The Worker name is `agentware-official`. Keep the existing custom domain associated with that Worker; the config leaves domain/route management in the dashboard and disables `workers.dev`. Before production deployment, compare the current dashboard configuration with this file, including any existing Worker script, bindings and routes. The local configuration does not prove which settings are currently deployed.
+
+To test locally with Wrangler and Node.js 22 or later:
+
+```bash
+npm run build
+npx wrangler@4.152.0 dev --local
+# In another terminal, use the origin printed by Wrangler:
+node tools/check_routes.mjs http://localhost:8787
+```
+
+Run `node tools/check_routes.mjs https://agentware.studio` after deploying. The check covers all language pages, their referenced assets, and missing pages/JS/CSS/fonts on first and repeated requests. It verifies status codes and the existing 404 entry, records cache headers and body fingerprints, and exits unsuccessfully on a regression. Random URLs and `CF-Cache-Status` do not by themselves prove a cache bypass. Keep production issues open until the deployed configuration and responses have been verified.
 
 ## Languages
 
@@ -87,13 +94,13 @@ npm run build
 
 Install the pinned font tooling into a Python virtual environment with `python3 -m pip install -r tools/requirements-fonts.txt`. The font command also generates small cross-language subsets in `src/fonts/` from the course names and language labels in `src/sections/Pages.tsx`. It retains the original metrics and available FreeType CJK hinting reference characters so that subsetting does not alter stroke alignment. To rebuild just these subsets from the committed WOFF2 fonts, run `python3 tools/fonts.py --shared-only`, then `python3 tools/check_fonts.py`. Commit the generated fonts and CSS with any label changes. Vite gives these assets content-hashed URLs for cache invalidation. Native-language text continues using the original full locale subset; cross-language course labels use the small subset with the original face as a fallback for new characters. Font weights and `font-display: swap` are retained.
 
-## Browser Caching on Cloudflare Pages
+## Browser Caching on Workers Static Assets
 
-Vite fingerprints JavaScript, CSS, fonts and imported brand images. `tools/browser_cache.ts` generates `dist/_headers` with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard, so unknown and obsolete asset URLs do not inherit a long cache lifetime. The build fails if it exceeds Pages' 100-rule limit.
+Vite fingerprints JavaScript, CSS, fonts and imported brand images. `tools/browser_cache.ts` generates `dist/_headers` with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard, so unknown and obsolete asset URLs do not inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
 
 Edit fonts and brand images in `src/assets/`; the build also copies their original bytes to the legacy `/fonts/` and `/brand/` URLs for existing links. Those unversioned copies retain the platform's default revalidation policy. Font preloads, CSS and image imports all point to the fingerprinted URLs used by the current build.
 
-Run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes. For response-header and browser-cache checks, serve `dist` using `wrangler pages dev dist`; generic static preview servers do not interpret Pages' `_headers` file. Production cache behavior must also be verified after deploying to Cloudflare Pages.
+Run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes. For response-header and browser-cache checks, serve `dist` using `wrangler dev --local` with the root config; generic static preview servers do not interpret Cloudflare's `_headers` file. Production cache behavior must also be verified after deploying to Workers Static Assets.
 
 ## Project Structure
 
