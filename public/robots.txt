@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://agentware.studio/sitemap.xml
+LLMs-Txt: https://agentware.studio/llms.txt

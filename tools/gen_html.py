@@ -106,7 +106,7 @@ def write_sitemap():
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
            + ''.join(rows) + '</urlset>\n')
     (ROOT / 'public/sitemap.xml').write_text(xml, 'utf-8')
-    (ROOT / 'public/robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n', 'utf-8')
+    (ROOT / 'public/robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\nLLMs-Txt: {SITE}/llms.txt\n', 'utf-8')
     print(len(rows), 'urls in sitemap')
 
 
