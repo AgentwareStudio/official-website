@@ -65,7 +65,7 @@ try {
   const brand = readFileSync(brandPath);
   const oldFont = oldOutput.find((file) => file.fileName.startsWith('assets/') && file.type === 'asset' && body(file).equals(font)).fileName;
   const oldBrand = oldOutput.find((file) => file.fileName.startsWith('assets/') && file.type === 'asset' && body(file).equals(brand)).fileName;
-  writeFileSync(join(fixture, 'src/assets/fonts/inter.woff2'), readFileSync(join(fixture, 'src/assets/fonts/jetbrains-mono.woff2')));
+  writeFileSync(join(fixture, 'src/assets/fonts/inter.woff2'), readFileSync(join(fixture, 'src/assets/fonts/aw-sans-sc.woff2')));
   writeFileSync(brandPath, String(brand).replace('</svg>', '<!-- cache version fixture --></svg>'));
   const next = await emit(fixture);
   const nextRules = rulesOf(next);

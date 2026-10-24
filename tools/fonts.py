@@ -7,7 +7,7 @@ Sources (google/fonts, OFL):
   ofl/notosansjp/NotoSansJP[wght].ttf  -> src/assets/fonts/aw-sans-jp.woff2  (src/i18n/locales/ja.json + ja HTML)
   ofl/notosanskr/NotoSansKR[wght].ttf  -> src/assets/fonts/aw-sans-kr.woff2  (src/i18n/locales/ko.json + ko HTML)
 Paths default to ../fontlab/; pass --sc/--jp/--kr to override. Re-run after changing copy.
-Latin locales use Inter / JetBrains Mono as they are (Latin-1 coverage is enough for en/es/de/fr/pt).
+Latin locales use Inter and local system monospace fonts (Latin-1 coverage is enough for en/es/de/fr/pt).
 
 Use --shared-only to rebuild cross-language subsets from the committed WOFF2 files,
 without downloading the original TTFs. Generated CSS/assets are processed and hashed by Vite.

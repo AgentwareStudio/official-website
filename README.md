@@ -27,7 +27,7 @@ The blog and AIKit are separate projects: this site has no blog page and does no
 - React 18 + TypeScript
 - Vite 6 (multi-page build)
 - Plain CSS, no UI or animation libraries
-- Self-hosted fonts (Inter, JetBrains Mono, Instrument Serif, subsetted Noto Sans SC / JP / KR); no third-party requests
+- Self-hosted fonts (Inter, subsetted Noto Sans SC / JP / KR) and local system monospace/italic serif stacks; no third-party requests
 
 ## Local Development
 
@@ -90,9 +90,11 @@ python3 tools/fonts.py --sc <NotoSansSC[wght].ttf> --jp <NotoSansJP[wght].ttf> -
 npm run build
 ```
 
-`tools/fonts.py` subsets the CJK fonts to the characters each locale actually uses (`src/assets/fonts/aw-sans-sc|jp|kr.woff2`), so re-run it whenever copy adds new Chinese, Japanese or Korean characters. It needs `fonttools` and `brotli`; the source fonts are `ofl/notosanssc`, `ofl/notosansjp` and `ofl/notosanskr` in the google/fonts repository. Latin locales use Inter and JetBrains Mono as they are.
+`tools/fonts.py` subsets the CJK fonts to the characters each locale actually uses (`src/assets/fonts/aw-sans-sc|jp|kr.woff2`), so re-run it whenever copy adds new Chinese, Japanese or Korean characters. It needs `fonttools` and `brotli`; the source fonts are `ofl/notosanssc`, `ofl/notosansjp` and `ofl/notosanskr` in the google/fonts repository. Latin locales use Inter; code and small labels use a local system monospace stack.
 
 Install the pinned font tooling into a Python virtual environment with `python3 -m pip install -r tools/requirements-fonts.txt`. The font command also generates small cross-language subsets in `src/fonts/` from the course names and language labels in `src/sections/Pages.tsx`. It retains the original metrics and available FreeType CJK hinting reference characters so that subsetting does not alter stroke alignment. To rebuild just these subsets from the committed WOFF2 fonts, run `python3 tools/fonts.py --shared-only`, then `python3 tools/check_fonts.py`. Commit the generated fonts and CSS with any label changes. Vite gives these assets content-hashed URLs for cache invalidation. Native-language text continues using the original full locale subset; cross-language course labels use the small subset with the original face as a fallback for new characters. Font weights and `font-display: swap` are retained.
+
+Code, small labels and diagram annotations use `ui-monospace`, SFMono-Regular, Menlo, Monaco, Consolas and Liberation Mono, with the locale's existing CJK font as a fallback where configured. The manifesto's italic word and numbers use Georgia, Times New Roman and `serif`. These system stacks replace JetBrains Mono and Instrument Serif; those font files, including the unused regular Instrument Serif, are no longer bundled. The system italic is horizontally condensed to approach the original display proportions; monospace cap height is normalized slightly taller with `font-size-adjust`, while sans-serif text retains its original sizing. Their appearance depends on the fonts installed on the visitor's device.
 
 ## Browser Caching on Workers Static Assets
 
@@ -123,4 +125,4 @@ Run `node tools/check_browser_cache.mjs` to check the generated policies, legacy
 
 ## License
 
-No license file yet. The bundled fonts (Inter, JetBrains Mono, Instrument Serif, Noto Sans SC / JP / KR) are under the SIL Open Font License.
+No license file yet. The bundled fonts (Inter, Noto Sans SC / JP / KR) are under the SIL Open Font License.
