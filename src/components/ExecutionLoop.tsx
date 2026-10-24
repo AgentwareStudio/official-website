@@ -163,6 +163,17 @@ export function ExecutionLoop() {
   const [inspect, setInspect] = useState<number | null>(null);
   const host = useRef<HTMLDivElement>(null);
   const paths = useRef<Record<string, SVGPathElement | null>>({});
+  // User-unit lengths survive font loading and CSS scaling. A changed d or a new
+  // path element (the wide/tall SVG is keyed) must be measured again.
+  const lengths = useMemo(() => new WeakMap<SVGPathElement, { d: string | null; length: number }>(), []);
+  const pathLength = (el: SVGPathElement) => {
+    const d = el.getAttribute('d');
+    const cached = lengths.get(el);
+    if (cached?.d === d) return cached.length;
+    const length = el.getTotalLength();
+    lengths.set(el, { d, length });
+    return length;
+  };
   const started = useRef(false);
   const raf = useRef(0);
 
@@ -254,7 +265,7 @@ export function ExecutionLoop() {
     if (cur.type === 'move') {
       const el = paths.current[cur.edge];
       if (el) {
-        const L = el.getTotalLength();
+        const L = pathLength(el);
         const k = easeInOut(curK);
         const p = el.getPointAtLength(L * k);
         packet = [p.x, p.y];
@@ -352,7 +363,7 @@ export function ExecutionLoop() {
             {Object.entries(EDGES).map(([id, d]) => {
               const k = litEdges[id] ?? 0;
               const el = paths.current[id];
-              const L = el ? el.getTotalLength() : 1000;
+              const L = el ? pathLength(el) : 1000;
               const warn = id === 'n7-h';
               return (
                 <g key={id} className={`ln-edge ${warn ? 'is-handback' : ''} ${id === 'n7-out' ? 'is-deliver' : ''}`}>

@@ -77,7 +77,6 @@ function armGate() {
 }
 
 function go(dir: 1 | -1) {
-  collect();
   const i = currentIndex();
   const s = stops[i];
   const cy = y();
@@ -167,6 +166,7 @@ function onKey(e: KeyboardEvent) {
   if (!dir) return;
   e.preventDefault();
   if (animating) return;
+  collect();
   go(dir);
 }
 
