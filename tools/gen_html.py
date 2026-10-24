@@ -50,7 +50,7 @@ TPL = '''<!doctype html>
   </head>
   <body data-page="{page}"{dl}>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/entries/{page}.tsx"></script>
   </body>
 </html>
 '''

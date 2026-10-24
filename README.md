@@ -47,6 +47,8 @@ npm run preview
 
 The build is multi-page: every page in every language has its own HTML entry (`index.html`, `learn/index.html`, `zh/index.html`, …, plus a single `404.html`), so any static server can serve `/ja/learn/` directly without an SPA fallback.
 
+Home, learn and 404 also have separate static JavaScript entries in `src/entries/`, sharing React, the site chrome and locale loading through `src/main.tsx`. Course and 404 pages do not load the home page demos or pager. Run `node tools/check_page_entries.mjs` to check the built dependency graphs without rewriting `dist`.
+
 ## Deploy on Cloudflare
 
 The site is fully static and is deployed from GitHub with Cloudflare Pages.
