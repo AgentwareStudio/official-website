@@ -2,6 +2,7 @@ import { defineConfig, normalizePath, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { browserCache } from './tools/browser_cache';
 
 // Multi-page build: every page in every locale has its own HTML entry (written by tools/gen_html.py),
 // so any static server (python -m http.server, nginx, GitHub Pages) can serve /ja/learn/ etc. directly.
@@ -34,8 +35,9 @@ function preloadLocale(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), preloadLocale()],
+  plugins: [react(), preloadLocale(), browserCache()],
   build: {
+    assetsInlineLimit: 0,
     rollupOptions: {
       input: Object.fromEntries(entries.map((e) => [e.replace(/\/?index\.html$|\.html$/, '').replace(/\//g, '_') || 'home', resolve(__dirname, e)])),
     },

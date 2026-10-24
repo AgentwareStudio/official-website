@@ -7,6 +7,7 @@ import { Footer } from '../components/Chrome';
 import { T } from '../lib';
 import { initPager } from '../pager';
 import { Shift } from './Shift';
+import lockupLight from '../assets/brand/agentware_lockup_on-light.svg';
 
 /*
   Every block below is one screen ([data-screen]). On desktop the page moves screen by screen
@@ -244,7 +245,7 @@ function Manifesto() {
               The Agentware <em className="serif-i">Manifesto</em>
             </h2>
           </div>
-          <img src="/brand/agentware_lockup_on-light.svg" alt="AGENTWARE" width="162" height="28" />
+          <img src={lockupLight} alt="AGENTWARE" width="162" height="28" />
         </div>
         <p className="mf-intro reveal">{manifesto.intro}</p>
         <ol className="mf-list">

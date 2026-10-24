@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { LINKS, footer, ui } from '../content';
 import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale } from '../i18n';
+import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg';
+import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg';
 
 type Page = 'home' | 'learn' | 'notfound';
 
@@ -87,7 +89,7 @@ export function Header({ page }: { page: Page }) {
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="wrap site-header__bar">
         <a className="brand" href={home ? '#top' : href('/')} aria-label={ui.home} onClick={close}>
-          <img src="/brand/agentware_lockup_on-dark.svg" alt="" width="139" height="24" />
+          <img src={lockupDark} alt="" width="139" height="24" />
           <span className="brand__studio" aria-hidden="true">STUDIO</span>
         </a>
         <nav className="site-nav" aria-label={ui.mainNav}>
@@ -185,7 +187,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="wrap site-footer__row">
         <div className="site-footer__brand">
-          <img src="/brand/agentware_wordmark_on-dark.svg" alt="AGENTWARE" width="131" height="14" />
+          <img src={wordmarkDark} alt="AGENTWARE" width="131" height="14" />
           <span lang="en">Agentware Studio · {footer.entity}</span>
         </div>
         <nav className="site-footer__links" aria-label={ui.follow}>

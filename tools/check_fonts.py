@@ -17,7 +17,7 @@ def check():
     chars = {ord(c) for p in fonts.SHARED_SOURCES for c in (ROOT / p).read_text(encoding='utf-8')}
     chars |= {ord(c) for c in fonts.HINTING_REFERENCE}
     for suffix in ('sc', 'jp'):
-        original = TTFont(ROOT / f'public/fonts/aw-sans-{suffix}.woff2')
+        original = TTFont(ROOT / f'src/assets/fonts/aw-sans-{suffix}.woff2')
         shared = TTFont(ROOT / f'src/fonts/aw-sans-{suffix}-shared.woff2')
         cmap, subset = original.getBestCmap(), shared.getBestCmap()
         assert subset.keys() == chars & cmap.keys(), f'{suffix}: stale shared glyph coverage'
@@ -44,8 +44,8 @@ def check():
     # Regenerate in isolation to catch stale assets and nondeterministic WOFF2 output.
     with tempfile.TemporaryDirectory() as tmp:
         root = pathlib.Path(tmp)
-        (root / 'public').symlink_to(ROOT / 'public', target_is_directory=True)
-        (root / 'src').mkdir()
+        (root / 'src/assets').mkdir(parents=True)
+        (root / 'src/assets/fonts').symlink_to(ROOT / 'src/assets/fonts', target_is_directory=True)
         sources = [str(ROOT / p) for p in fonts.SHARED_SOURCES]
         with patch.object(fonts, 'ROOT', root), patch.object(fonts, 'SHARED_SOURCES', sources):
             fonts.shared_subsets()
@@ -53,7 +53,7 @@ def check():
             assert path.read_bytes() == (root / 'src/fonts' / path.name).read_bytes(), f'{path.name}: stale or non-reproducible'
         shared = root / 'src/fonts/aw-sans-sc-shared.woff2'
         old_hash = hashlib.sha256(shared.read_bytes()).digest()
-        supported = TTFont(root / 'public/fonts/aw-sans-sc.woff2').getBestCmap()
+        supported = TTFont(root / 'src/assets/fonts/aw-sans-sc.woff2').getBestCmap()
         current = TTFont(shared).getBestCmap()
         new_codepoint = next(c for c in sorted(supported) if 0x4E00 <= c <= 0x9FFF and c not in current)
         label = root / 'new-label.tsx'

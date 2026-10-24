@@ -83,9 +83,17 @@ python3 tools/fonts.py --sc <NotoSansSC[wght].ttf> --jp <NotoSansJP[wght].ttf> -
 npm run build
 ```
 
-`tools/fonts.py` subsets the CJK fonts to the characters each locale actually uses (`public/fonts/aw-sans-sc|jp|kr.woff2`), so re-run it whenever copy adds new Chinese, Japanese or Korean characters. It needs `fonttools` and `brotli`; the source fonts are `ofl/notosanssc`, `ofl/notosansjp` and `ofl/notosanskr` in the google/fonts repository. Latin locales use Inter and JetBrains Mono as they are.
+`tools/fonts.py` subsets the CJK fonts to the characters each locale actually uses (`src/assets/fonts/aw-sans-sc|jp|kr.woff2`), so re-run it whenever copy adds new Chinese, Japanese or Korean characters. It needs `fonttools` and `brotli`; the source fonts are `ofl/notosanssc`, `ofl/notosansjp` and `ofl/notosanskr` in the google/fonts repository. Latin locales use Inter and JetBrains Mono as they are.
 
 Install the pinned font tooling into a Python virtual environment with `python3 -m pip install -r tools/requirements-fonts.txt`. The font command also generates small cross-language subsets in `src/fonts/` from the course names and language labels in `src/sections/Pages.tsx`. It retains the original metrics and available FreeType CJK hinting reference characters so that subsetting does not alter stroke alignment. To rebuild just these subsets from the committed WOFF2 fonts, run `python3 tools/fonts.py --shared-only`, then `python3 tools/check_fonts.py`. Commit the generated fonts and CSS with any label changes. Vite gives these assets content-hashed URLs for cache invalidation. Native-language text continues using the original full locale subset; cross-language course labels use the small subset with the original face as a fallback for new characters. Font weights and `font-display: swap` are retained.
+
+## Browser Caching on Cloudflare Pages
+
+Vite fingerprints JavaScript, CSS, fonts and imported brand images. `tools/browser_cache.ts` generates `dist/_headers` with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard, so unknown and obsolete asset URLs do not inherit a long cache lifetime. The build fails if it exceeds Pages' 100-rule limit.
+
+Edit fonts and brand images in `src/assets/`; the build also copies their original bytes to the legacy `/fonts/` and `/brand/` URLs for existing links. Those unversioned copies retain the platform's default revalidation policy. Font preloads, CSS and image imports all point to the fingerprinted URLs used by the current build.
+
+Run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes. For response-header and browser-cache checks, serve `dist` using `wrangler pages dev dist`; generic static preview servers do not interpret Pages' `_headers` file. Production cache behavior must also be verified after deploying to Cloudflare Pages.
 
 ## Project Structure
 
@@ -102,8 +110,8 @@ Install the pinned font tooling into a Python virtual environment with `python3 
 | `src/pager.ts` | Screen-by-screen paging on desktop |
 | `src/i18n.ts` | Locale detection, paths and loading |
 | `src/styles.css` | All styles; per-language font stacks and line breaking are at the end |
-| `public/brand/` | Official brand files |
-| `public/fonts/` | Self-hosted, subsetted fonts |
+| `src/assets/brand/` | Official brand files |
+| `src/assets/fonts/` | Self-hosted, subsetted fonts |
 | `tools/` | Copy, HTML entry and font generation scripts |
 
 ## License

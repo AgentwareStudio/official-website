@@ -42,10 +42,10 @@ TPL = '''<!doctype html>
     <meta name="color-scheme" content="dark" />
     <title>{title}</title>
     <meta name="description" content="{desc}" />
-{alts}    <link rel="icon" type="image/svg+xml" href="/brand/agentware_favicon_dark.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/brand/agentware_favicon_dark_32.png" />
-    <link rel="apple-touch-icon" href="/brand/agentware_icon_app_dark_180.png" />
-    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+{alts}    <link rel="icon" type="image/svg+xml" href="/src/assets/brand/agentware_favicon_dark.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/brand/agentware_favicon_dark_32.png" />
+    <link rel="apple-touch-icon" href="/src/assets/brand/agentware_icon_app_dark_180.png" />
+    <link rel="preload" href="/src/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 {font}{redir}    <script>try{{document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-pending')}}catch(e){{}}</script>
   </head>
   <body data-page="{page}"{dl}>
@@ -82,7 +82,7 @@ def main():
                 alts += f'    <link rel="alternate" hreflang="x-default" href="{SITE}/{sub}" />\n'
                 out = ROOT / (f'{path}/' if path else '') / sub / 'index.html'
                 alts = f'    <link rel="canonical" href="{SITE}/{path + "/" if path else ""}{sub}" />\n' + alts
-            font = f'    <link rel="preload" href="/fonts/{FONT[code]}.woff2" as="font" type="font/woff2" crossorigin />\n' if code in FONT else ''
+            font = f'    <link rel="preload" href="/src/assets/fonts/{FONT[code]}.woff2" as="font" type="font/woff2" crossorigin />\n' if code in FONT else ''
             dl = '' if sub is None else f' data-locale="{code}"'
             out.parent.mkdir(parents=True, exist_ok=True)
             redir = REDIRECT if (not path and page == 'home') else ''
