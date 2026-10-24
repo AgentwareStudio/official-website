@@ -6,6 +6,8 @@
    VIS v1.2.2 palette. Signal Orange marks the outcome only.
    ===================================================================== */
 
+@import './fonts/shared.css';
+
 @font-face { font-family: 'Inter'; src: url('/fonts/inter.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: 'Instrument Serif'; src: url('/fonts/instrument-serif-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: 'JetBrains Mono'; src: url('/fonts/jetbrains-mono.woff2') format('woff2'); font-weight: 100 800; font-display: swap; }
@@ -985,6 +987,10 @@ html:lang(en), html:lang(es), html:lang(de), html:lang(fr), html:lang(pt) {
 [lang='zh-CN'] { --sans: 'Inter', 'AW Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; }
 [lang='ja'] { --sans: 'Inter', 'AW Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif; }
 [lang='ko'] { --sans: 'Inter', 'AW Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
+/* Cross-language course labels use the same glyphs in smaller, content-hashed font files.
+   Native paragraphs keep their original face and shaping; new characters can fall back to it. */
+html:not(:lang(zh)) :is(.course__title em, .facts dd) [lang='zh-CN'] { --sans: 'Inter', 'AW Sans SC Shared', 'AW Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; }
+html:not(:lang(ja)) :is(.course__title em, .facts dd) [lang='ja'] { --sans: 'Inter', 'AW Sans JP Shared', 'AW Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif; }
 /* course names and course languages on /learn: re-resolve the stack on the span itself */
 .course__title em [lang], .facts dd [lang] { font-family: var(--sans); }
 
