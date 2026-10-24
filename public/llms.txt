@@ -9,6 +9,8 @@
 - **X (Twitter)**: https://x.com/AgentwareStudio
 - **YouTube**: https://www.youtube.com/@agentwarestudio
 
+The site provides a 32×32 ICO brand favicon at https://agentware.studio/favicon.ico alongside its SVG and PNG icons.
+
 ---
 
 ## 01 // Core Definition: From Interface to Intent

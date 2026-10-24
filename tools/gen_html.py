@@ -42,7 +42,8 @@ TPL = '''<!doctype html>
     <meta name="color-scheme" content="dark" />
     <title>{title}</title>
     <meta name="description" content="{desc}" />
-{alts}    <link rel="icon" type="image/svg+xml" href="/src/assets/brand/agentware_favicon_dark.svg" />
+{alts}    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/brand/agentware_favicon_dark.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/brand/agentware_favicon_dark_32.png" />
     <link rel="apple-touch-icon" href="/src/assets/brand/agentware_icon_app_dark_180.png" />
     <link rel="preload" href="/src/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
