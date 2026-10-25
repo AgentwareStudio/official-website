@@ -9,6 +9,10 @@
 - **X (Twitter)**: https://x.com/AgentwareStudio
 - **YouTube**: https://www.youtube.com/@agentwarestudio
 
+The site provides a 32×32 ICO brand favicon at https://agentware.studio/favicon.ico alongside its SVG and PNG icons.
+
+The multilingual homepage includes its styling directly in the generated HTML and preloads its header brand image. This preserves the existing layout and interactions while avoiding a separate render-blocking stylesheet request on homepage visits.
+
 ---
 
 ## 01 // Core Definition: From Interface to Intent

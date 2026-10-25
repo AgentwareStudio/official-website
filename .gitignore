@@ -4,3 +4,4 @@ dist/
 *.tsbuildinfo
 *.log
 __pycache__/
+/AGENTS.md
