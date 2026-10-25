@@ -44,7 +44,14 @@ async function check(path, kind, visit = 'first') {
       expect(response.status === 200, 'llms.txt must return HTTP 200');
       expect(/^text\/plain\s*;\s*charset=utf-8$/i.test(type), 'llms.txt must declare UTF-8 for browser navigation');
       expect(text.startsWith('# Agentware Studio'), 'Wrong llms.txt content');
+      expect(text.includes('https://agentware.studio/agentware.md'), 'llms.txt must link to agentware.md');
       expect(!text.includes('\uFFFD'), 'llms.txt contains invalid UTF-8 or replacement characters');
+    } else if (kind === 'agentware') {
+      expect(response.status === 200, 'agentware.md must return HTTP 200');
+      expect(/^text\/markdown\s*;\s*charset=utf-8$/i.test(type), 'agentware.md must declare UTF-8 Markdown for browser navigation');
+      expect(text.startsWith('# Agentware'), 'Wrong agentware.md content');
+      expect(text.includes('## 05 // The Execution Loop') && text.includes('## 06 // The Four Pillars') && text.includes('## 07 // The Agentware Manifesto'), 'Missing expected agentware.md guide sections');
+      expect(!text.includes('\uFFFD'), 'agentware.md contains invalid UTF-8 or replacement characters');
     } else if (kind === 'page') {
       expect(response.status === 200, 'Existing page must return HTTP 200');
       const page = path.includes('/learn/') ? 'learn' : 'home';
@@ -72,6 +79,7 @@ async function batch(items, run) {
 
 const pages = entries.filter((file) => file !== '404.html').map((file) => `/${file.replace(/index\.html$/, '')}`);
 await check('/llms.txt', 'llms');
+await check('/agentware.md', 'agentware');
 await batch(pages, (path) => check(path, 'page'));
 await batch([...assets].sort(), (path) => check(path, 'asset'));
 const missing = [

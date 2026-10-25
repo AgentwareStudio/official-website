@@ -26,10 +26,17 @@ function rulesOf(output) {
     }
   }
   assert.ok(rules.size <= 100);
-  assert.deepEqual(rules.get('/llms.txt'), { 'Content-Type': 'text/plain; charset=utf-8' });
+  const contentTypes = new Map([
+    ['/llms.txt', 'text/plain; charset=utf-8'],
+    ['/agentware.md', 'text/markdown; charset=utf-8'],
+  ]);
+  for (const [path, type] of contentTypes) {
+    assert.deepEqual(rules.get(path), { 'Content-Type': type });
+  }
   for (const [path, headers] of rules) {
-    if (path === '/llms.txt') continue;
+    if (contentTypes.has(path)) continue;
     const value = headers['Cache-Control'];
+    assert.ok(value, `Expected Cache-Control header for ${path}`);
     if (value.includes('immutable')) {
       assert.match(path, /^\/assets\/.+-[A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png)$/);
       assert.ok(output.some((file) => file.fileName === path.slice(1)), 'Immutable rule must name an existing build file');
@@ -84,7 +91,7 @@ try {
   assert.notEqual(css(oldOutput), css(next), 'Parent CSS hash must change after a font update');
   const main = (files) => files.find((file) => /^assets\/main-.*\.js$/.test(file.fileName)).fileName;
   assert.notEqual(main(oldOutput), main(next), 'Parent JS hash must change after a brand update');
-  console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((headers) => headers['Cache-Control']?.includes('immutable')).length, llmsUtf8: true, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
+  console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((headers) => headers['Cache-Control']?.includes('immutable')).length, llmsUtf8: true, agentwareUtf8: true, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
 } finally {
   rmSync(fixture, { recursive: true, force: true });
 }

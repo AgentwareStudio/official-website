@@ -1,0 +1,140 @@
+# Agentware
+
+> Agentware is a class of software designed for the agentic era—shifting human-computer interaction from operating interfaces to delegating intent (`[ A↗• ] AGENTWARE — SOFTWARE THAT ACTS ON INTENT`). Instead of operating interfaces step by step, you entrust software with a goal, define the boundaries, and specify the acceptance criteria; within its authorized scope, the system understands context, autonomously organizes actions, adapts to changes, and delivers verifiable outcomes.
+
+- **Official Website**: https://agentware.studio/
+- **Open Curriculum**: https://agentware.studio/learn/
+- **Course Platform**: https://learn.agentware.studio
+- **GitHub**: https://github.com/AgentwareStudio
+- **X (Twitter)**: https://x.com/AgentwareStudio
+- **YouTube**: https://www.youtube.com/@agentwarestudio
+
+---
+
+## 01 // Core Definition: From Interface to Intent
+
+- **The Past 40 Years**: Software only asked you one question: *"Which button do you click?"*
+- **Now**: Software is beginning to answer a different question: *"What outcome do you want?"*
+
+Agentware is the software paradigm built for the agentic era. Instead of operating interfaces step by step, you issue a delegation to software—defining the goal, setting the boundaries, and specifying the acceptance criteria. Within its authorized scope, the system understands context, autonomously organizes actions, adapts to changes, and delivers verifiable outcomes.
+
+---
+
+## 02 // The Paradigm Shift: From Operating Software to Delegating to Software
+
+For decades, software was built around **Features** (buttons and forms), while humans acted as the sole dispatch center stringing fragmented capabilities into outcomes. Agents rewrite the division-of-labor contract between humans and machines across three eras:
+
+1. **1.0 — The Tool Era (`Software as Functions` | Role: `OPERATOR` | Motto: *Humans Operate*)**
+   Paths are hard-coded in advance. Humans click step by step; software passively responds and humans stitch the result together by hand.
+2. **2.0 — The Copilot Era (`Software as Copilots` | Role: `PROMPTER` | Motto: *Humans Prompt*)**
+   AI accelerates single-point tasks (writing, drawing, coding), but every prompt starts from and returns to the human, who still has to stitch every step together.
+3. **3.0 — The Delegation Era (`Software as Delegation` | Role: `DELEGATOR` | Motto: *Humans Delegate*)**
+   Humans entrust goals and constraints; software understands the task, plans autonomously, executes actions, observes feedback, and adapts dynamically inside authorized boundaries until a verifiable outcome is delivered.
+
+> This shift is not about bolting AI onto every piece of software—it is about rewriting software itself.
+
+---
+
+## 03 // What Agentware Is Not
+
+Adding AI or calling a large language model does not make software Agentware. The difference lies in how the software operates beneath the surface:
+
+- **AI Feature != Agentware**: Summarization, translation, search, and autocomplete are merely AI features inside traditional software. Efficiency improves, but the work is still operated and completed by humans.
+- **Chatbot Wrapper != Agentware**: Adding a chat sidebar to legacy software, or wrapping a thin shell around a model API, still leaves old software underneath waiting for humans to click step by step.
+- **Rigid Workflow != Agentware**: Fixed `A -> B -> C -> D` pipelines are traditional automation. A workflow that freezes the moment reality deviates from presets lacks the ability to adapt to context and feedback.
+- **Ungoverned Agent != Agentware**: Wild agents that loop blindly inside a black box with runaway costs and unverifiable outputs are experimental toys—not production-ready software.
+
+---
+
+## 04 // Architecture & Runtime: Deterministic Core, Agentic Control Plane
+
+Agentware does not replace deterministic code; it takes over the highest-level control logic. Beneath the surface remain rigorous databases, APIs, and business rules (**Deterministic Core**); at the top, pre-written operation paths give way to organizing actions around goals at runtime (**Agentic Control Plane**).
+
+| Dimension | Traditional Software | Agentware System |
+| :--- | :--- | :--- |
+| **Human Role** | Operator | Delegator |
+| **Unit of Design** | Feature | Delegation |
+| **Execution Path** | Pre-coded (`Input -> Function -> Output`) | Generated dynamically at runtime (`Intent -> Plan -> Act -> Adapt -> Verify`) |
+| **System State** | Stateless across sessions; resets every time | Continuously accumulated long-term memory |
+| **Core Value** | Provides usable features | Delivers verifiable outcomes |
+| **Control Mechanism** | Implicit in menus and permissions | Explicit governance, auditable, interruptible at any time |
+
+---
+
+## 05 // The Execution Loop
+
+**Principle**: Goals can be delegated, and paths can be adaptive; permissions must be explicit, outcomes must be verifiable, and processes must be governable.
+
+1. **Intent (Understand Delegation)** — `goal · constraints · acceptance`: Make clear what outcome is wanted, within what boundaries to act, and what counts as done.
+2. **Context (Gather Context)** — `context · memory · evidence`: Gather the facts and experience relevant to the goal from the current environment and accumulated memory.
+3. **Plan (Plan Actions)** — `state -> next action`: Organize actions around the goal and the current state, generating the execution path at runtime.
+4. **Act (Invoke Tools)** — `tools · APIs · deterministic core`: Within explicit authorization, call APIs, MCP, browsers, and databases so actions take effect in real systems.
+5. **Observe (Observe Feedback)** — `action -> feedback -> state`: Read the results and changes an action produces, and check the actual state against what was expected.
+6. **Adapt (Adapt Dynamically)** — `replan · adapt · escalate`: Revise the plan with new information. When permission or risk boundaries are reached, return the decision to a human.
+7. **Verify (Verify Outcome)** — `acceptance criteria -> evidence`: Check the result against the acceptance criteria defined in the delegation, keeping traceable evidence.
+8. **Deliver (or Hand Back)** — `verified outcome / human handoff`: Deliver a verifiable outcome; if the goal cannot be met within authorized bounds (`out of scope -> human decision`), stop acting, explain why and what has been completed, and hand control back to a human.
+
+---
+
+## 06 // The Four Pillars
+
+For software to truly accept delegations, it must be built upon four foundational pillars:
+
+### 01 / DELEGATION — Intent & Delegation
+*The fundamental unit of software shifts from features to delegations.*
+Traditional software starts by asking "what feature to build"; Agentware starts by asking "what outcome to entrust to the system." A clear delegation defines four things:
+1. What outcome is desired
+2. Within what boundaries to act
+3. What qualifies as acceptance
+4. When to hand control back to a human
+
+### 02 / EXECUTION — Planning & Execution
+*Not just giving answers, but getting the job done.*
+Humans are no longer required to script every step in advance. The system determines the next move based on the goal and current state, acts upon the real world through real tools (APIs, MCP, CLI, browsers, databases, software systems), and advances through a closed loop of `Plan -> Act -> Observe -> Adapt`.
+
+### 03 / GOVERNANCE — Governance & Guardrails
+*The greater the autonomy, the more vital the governance.*
+Agentware is not an unconstrained autonomous agent, but software equipped with execution power inside explicit authorization boundaries. Every delegation must make clear: what it is permitted to do, what it actually did, how much cost it incurred, who can halt it at any moment, and how to roll back safely when errors occur.
+
+### 04 / MEMORY — Evolving Memory
+*Memory transforms software from a one-off tool into a continuously evolving system.*
+Unlike stateless tools or passive document lookup (traditional RAG), Agentware's memory system directly participates in planning, decision-making, and action through three mechanisms:
+- **Dual-Channel Accumulation**: Preserves both the full context of specific tasks (*episodic memory*) and abstracted cognitive rules (*semantic memory*).
+- **Consolidation & Revision**: Breaks knowledge down into minimal intelligible units, automatically deduplicating, merging, revising, and distilling as new information arrives.
+- **Traceable Verification**: Every distilled memory can be traced back to its original source—auditable and trustworthy.
+
+---
+
+## 07 // The Agentware Manifesto
+
+Software used to be a tool waiting to be operated. Now, for the first time, software can be delegated work. This is not about bolting AI onto legacy software—it is about redefining what software should be in the age of agents:
+
+- **I. Software should understand intent, not just input.**
+  In the past, humans had to translate their goals into a sequence of clicks and forms. Now, humans state what they want and what they won't accept—and software is responsible for understanding.
+- **II. Software should execute goals, not just expose functions.**
+  No matter how many features exist, humans still had to string them together into outcomes. The value of software lies not in how many functions it exposes, but in what outcomes it delivers.
+- **III. Paths may adapt. Outcomes must remain verifiable.**
+  Reality rarely unfolds according to preset workflows; execution paths must adapt to environment and feedback. The freer the path, the clearer the goal and acceptance criteria must be.
+- **IV. Autonomy requires governance.**
+  We do not pursue unbounded autonomy. Every delegation must have explicit accountability and an auditable trail, always preserving human authority to intervene, roll back, and take over.
+- **V. Memory turns software from a tool into an evolving system.**
+  A one-off executor starts from scratch every single time. Software that remembers context, accumulates experience, and refines itself grows to understand its people and organization better with every use.
+- **VI. The future unit of software is not the feature. It is the delegation.**
+  In the past, designing software meant asking, "What feature goes here?" Today, designing software means asking, "What outcome should be entrusted to it?" Define the goal, boundaries, and acceptance criteria—and let the system complete the rest.
+
+---
+
+## 08 // Agentware Studio & Initiatives
+
+**Agentware Studio** is an independent research and creation studio dedicated to the Agentware paradigm—advancing its adoption and evolution through deep research, open curriculum, and product experiments:
+
+### 1. Open AI Engineering Curriculum (`We teach what we build.`)
+- **Curriculum Overview**: https://agentware.studio/learn/
+- **Course Portal**: https://learn.agentware.studio
+- **First Course**: *Graduating from AI Gacha* — Stop rolling the dice with AI. Across three seasons, the course goes from how large language models work, to coding with AI, to building a real piece of work into a system yourself. The course site includes interactive practice games and an AI assistant grounded strictly in the course material.
+  - **Season 1 · Fundamentals (`ai-fundamentals`)**: Stripping away the hype—from next-token prediction, tokens, hallucinations, and context windows to RAG, tool calling, and Agents—understanding when to trust AI and how to put it to work.
+  - **Season 2 · AI Coding (`ai-coding`)**: When code becomes cheap and judgment becomes scarce, learn how to write specs for AI, design architecture before touching code, and distill personal expertise into reusable Skills.
+  - **Season 3 · Building AI Systems (`building-ai-systems`)**: Grounded in real-world scenarios—covering context engineering, workflow orchestration (n8n / Dify), MCP server development, multi-agent collaboration, safety guardrails, and evaluation pipelines to turn real workflows into autonomous systems.
+
+### 2. User-Facing AI Tool Experiments
+- Continuous design and shipping of user-facing AI tools and applications at `aikit.pro`, exploring how "software that acts on intent" feels in everyday workflows.

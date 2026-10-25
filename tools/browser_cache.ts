@@ -22,8 +22,9 @@ export function browserCache(): Plugin {
       order: 'post',
       handler(_, bundle) {
         const rules = new Map<string, Record<string, string>>();
-        // Plain-text navigations cannot use HTML's <meta charset> declaration.
+        // Plain-text and Markdown navigations cannot use HTML's <meta charset> declaration.
         rules.set('/llms.txt', { 'Content-Type': 'text/plain; charset=utf-8' });
+        rules.set('/agentware.md', { 'Content-Type': 'text/markdown; charset=utf-8' });
         for (const file of Object.values(bundle)) {
           if (file.fileName.startsWith('assets/')) {
             if (!/^assets\/.+-[A-Za-z0-9_-]{8,}\.(?:js|css|woff2|svg|png)$/.test(file.fileName)) {
