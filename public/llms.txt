@@ -2,7 +2,7 @@
 
 > Agentware Studio is an independent research and creation studio dedicated to Agentware—a class of software designed for the agentic era that shifts human-computer interaction from operating interfaces to delegating intent (`[ A↗• ] AGENTWARE — SOFTWARE THAT ACTS ON INTENT`).
 
-Instead of operating interfaces step by step, you entrust software with a goal, define the boundaries, and specify the acceptance criteria; within its authorized scope, the system understands context, autonomously organizes actions, adapts to changes, and delivers verifiable outcomes. Agentware Studio advances this paradigm through deep research, an open AI engineering curriculum, and user-facing product experiments.
+Instead of operating interfaces step by step, you entrust software with a goal, define the boundaries, and specify the acceptance criteria; within its authorized scope, the system understands context, autonomously organizes actions, adapts to changes, and delivers verifiable outcomes. Agentware Studio advances this paradigm through deep research, an open AI engineering curriculum, and user-facing product experiments. The studio focuses on delivering goal-driven Agentware for consumers and private, high-governance Agentware solutions for enterprises.
 
 ## Documentation
 
