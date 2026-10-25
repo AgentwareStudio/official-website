@@ -1,4 +1,4 @@
-# Authentication Policy for AI Agents
+# Auth.md - Authentication Policy for AI Agents
 
 This site is a publicly accessible website.
 
