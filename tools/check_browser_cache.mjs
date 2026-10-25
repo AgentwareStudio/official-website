@@ -18,14 +18,18 @@ function rulesOf(output) {
       assert.ok(!/[*?:]/.test(line), 'Cache rules must use exact local paths');
       assert.ok(!rules.has(line), 'Duplicate header path');
       path = line;
-      rules.set(path, '');
+      rules.set(path, {});
     } else {
-      assert.equal(rules.get(path), '', 'Duplicate Cache-Control header');
-      rules.set(path, line.trim().replace(/^Cache-Control: /, ''));
+      const [, name, value] = line.match(/^\s+([^:]+): (.+)$/);
+      assert.ok(!(name in rules.get(path)), `Duplicate ${name} header`);
+      rules.get(path)[name] = value;
     }
   }
   assert.ok(rules.size <= 100);
-  for (const [path, value] of rules) {
+  assert.deepEqual(rules.get('/llms.txt'), { 'Content-Type': 'text/plain; charset=utf-8' });
+  for (const [path, headers] of rules) {
+    if (path === '/llms.txt') continue;
+    const value = headers['Cache-Control'];
     if (value.includes('immutable')) {
       assert.match(path, /^\/assets\/.+-[A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png)$/);
       assert.ok(output.some((file) => file.fileName === path.slice(1)), 'Immutable rule must name an existing build file');
@@ -33,7 +37,7 @@ function rulesOf(output) {
   }
   for (const file of output.filter((file) => file.fileName.endsWith('.html'))) {
     for (const path of [`/${file.fileName}`, `/${file.fileName.replace(/index\.html$|\.html$/, '')}`]) {
-      assert.equal(rules.get(path), 'public, max-age=0, must-revalidate');
+      assert.equal(rules.get(path)['Cache-Control'], 'public, max-age=0, must-revalidate');
     }
   }
   for (const path of ['/missing', '/zh/missing', '/assets/missing.js', '/assets/missing.css', '/assets/missing.woff2', '/fonts/inter.woff2', '/brand/agentware_lockup_on-dark.svg']) {
@@ -80,7 +84,7 @@ try {
   assert.notEqual(css(oldOutput), css(next), 'Parent CSS hash must change after a font update');
   const main = (files) => files.find((file) => /^assets\/main-.*\.js$/.test(file.fileName)).fileName;
   assert.notEqual(main(oldOutput), main(next), 'Parent JS hash must change after a brand update');
-  console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((value) => value.includes('immutable')).length, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
+  console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((headers) => headers['Cache-Control']?.includes('immutable')).length, llmsUtf8: true, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
 } finally {
   rmSync(fixture, { recursive: true, force: true });
 }

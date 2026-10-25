@@ -96,9 +96,19 @@ Install the pinned font tooling into a Python virtual environment with `python3 
 
 Code, small labels and diagram annotations use `ui-monospace`, SFMono-Regular, Menlo, Monaco, Consolas and Liberation Mono, with the locale's existing CJK font as a fallback where configured. The manifesto's italic word and numbers use Georgia, Times New Roman and `serif`. These system stacks replace JetBrains Mono and Instrument Serif; those font files, including the unused regular Instrument Serif, are no longer bundled. The system italic is horizontally condensed to approach the original display proportions; monospace cap height is normalized slightly taller with `font-size-adjust`, while sans-serif text retains its original sizing. Their appearance depends on the fonts installed on the visitor's device.
 
+## Homepage Style Delivery
+
+`tools/home_styles.ts` embeds the final minified CSS into each of the eight homepage HTML entries. It uses the complete existing cascade so menus, responsive layouts, scrolling and animation states remain styled from the first render. Learn and 404 pages continue sharing the external, fingerprinted stylesheet. The CSS file is still emitted for those pages; homepage visits do not fetch it separately.
+
+This removes the homepage stylesheet request but increases each homepage HTML response by roughly 14 KiB compressed. A first navigation from home to learn may need to download the shared stylesheet because home no longer warms that cache. Compare first visits, revisits and language changes when evaluating the tradeoff. HTML still revalidates, and changing CSS or fonts updates the embedded styles automatically. Run `node tools/check_home_styles.mjs` to check cascade identity, asset URLs and page scope.
+
+Inter, native-language fonts and the current locale chunk retain their existing preload behavior. The header brand image also receives a low-priority preload using its actual fingerprinted URL; it is reused by the header rather than downloaded twice. The animated hero mark remains inline SVG.
+
 ## Browser Caching on Workers Static Assets
 
 Vite fingerprints JavaScript, CSS, fonts and imported brand images. `tools/browser_cache.ts` generates `dist/_headers` with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard, so unknown and obsolete asset URLs do not inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
+
+The generated headers also declare `Content-Type: text/plain; charset=utf-8` for `/llms.txt`. This file contains Unicode punctuation and symbols; without an HTTP charset, direct browser navigation can decode it as Windows-1252 and display garbled text. Keep the UTF-8 source characters and verify the response header after deploying.
 
 Edit fonts and brand images in `src/assets/`; the build also copies their original bytes to the legacy `/fonts/` and `/brand/` URLs for existing links. Those unversioned copies retain the platform's default revalidation policy. Font preloads, CSS and image imports all point to the fingerprinted URLs used by the current build.
 
