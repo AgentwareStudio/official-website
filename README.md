@@ -108,6 +108,8 @@ Inter, native-language fonts and the current locale chunk retain their existing 
 
 Vite fingerprints JavaScript, CSS, fonts and imported brand images. `tools/browser_cache.ts` generates `dist/_headers` with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard, so unknown and obsolete asset URLs do not inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
 
+The generated headers also declare `Content-Type: text/plain; charset=utf-8` for `/llms.txt`. This file contains Unicode punctuation and symbols; without an HTTP charset, direct browser navigation can decode it as Windows-1252 and display garbled text. Keep the UTF-8 source characters and verify the response header after deploying.
+
 Edit fonts and brand images in `src/assets/`; the build also copies their original bytes to the legacy `/fonts/` and `/brand/` URLs for existing links. Those unversioned copies retain the platform's default revalidation policy. Font preloads, CSS and image imports all point to the fingerprinted URLs used by the current build.
 
 Run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes. For response-header and browser-cache checks, serve `dist` using `wrangler dev --local` with the root config; generic static preview servers do not interpret Cloudflare's `_headers` file. Production cache behavior must also be verified after deploying to Workers Static Assets.

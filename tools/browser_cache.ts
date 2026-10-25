@@ -21,22 +21,24 @@ export function browserCache(): Plugin {
     generateBundle: {
       order: 'post',
       handler(_, bundle) {
-        const rules = new Map<string, string>();
+        const rules = new Map<string, Record<string, string>>();
+        // Plain-text navigations cannot use HTML's <meta charset> declaration.
+        rules.set('/llms.txt', { 'Content-Type': 'text/plain; charset=utf-8' });
         for (const file of Object.values(bundle)) {
           if (file.fileName.startsWith('assets/')) {
             if (!/^assets\/.+-[A-Za-z0-9_-]{8,}\.(?:js|css|woff2|svg|png)$/.test(file.fileName)) {
               this.error(`Cannot cache an unversioned asset: ${file.fileName}`);
             }
-            rules.set(`/${file.fileName}`, 'public, max-age=31536000, immutable');
+            rules.set(`/${file.fileName}`, { 'Cache-Control': 'public, max-age=31536000, immutable' });
           } else if (file.fileName.endsWith('.html')) {
-            rules.set(`/${file.fileName}`, 'public, max-age=0, must-revalidate');
-            rules.set(`/${file.fileName.replace(/index\.html$|\.html$/, '')}`, 'public, max-age=0, must-revalidate');
+            rules.set(`/${file.fileName}`, { 'Cache-Control': 'public, max-age=0, must-revalidate' });
+            rules.set(`/${file.fileName.replace(/index\.html$|\.html$/, '')}`, { 'Cache-Control': 'public, max-age=0, must-revalidate' });
           }
         }
         if (rules.size > 100) this.error('Cloudflare Static Assets supports at most 100 header rules');
         const source = '# Generated from existing build files; never replace with /assets/*.\n'
           + [...rules].sort(([a], [b]) => a.localeCompare(b))
-            .map(([path, policy]) => `${path}\n  Cache-Control: ${policy}\n`).join('\n');
+            .map(([path, headers]) => `${path}\n${Object.entries(headers).map(([name, value]) => `  ${name}: ${value}\n`).join('')}`).join('\n');
         this.emitFile({ type: 'asset', fileName: '_headers', source });
       },
     },
