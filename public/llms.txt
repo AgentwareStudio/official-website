@@ -8,7 +8,7 @@ Instead of operating interfaces step by step, you entrust software with a goal, 
 
 - [Agentware Guide](https://agentware.studio/agentware.md): Comprehensive standalone Markdown guide covering the core definition, paradigm shift (Tool, Copilot, and Delegation eras), what Agentware is not, deterministic core and agentic control plane architecture, the eight-step execution loop, the four pillars, the six manifesto principles, and studio initiatives.
 - [Agentware Studio](https://agentware.studio/): Official multilingual website presenting the Agentware paradigm, architecture comparison, interactive execution-loop walkthrough, four foundational pillars, and manifesto.
-- [Public Access Policy](https://agentware.studio/auth.md): All public pages and documentation are accessible anonymously, including by AI agents; no registration, credentials, or Authorization header is required.
+- [Public Access Policy](https://agentware.studio/auth.md): Audience, anonymous access policy, and GET request instructions for AI agents, bots, and automated clients; all public pages and documentation require no registration, credentials, or Authorization header.
 
 ## Curriculum
 
