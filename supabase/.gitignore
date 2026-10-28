@@ -6,3 +6,6 @@
 .env.keys
 .env.local
 .env.*.local
+
+# Supabase Studio saved snippets (local only)
+snippets

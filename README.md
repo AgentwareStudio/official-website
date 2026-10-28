@@ -120,6 +120,23 @@ CSS is minified with esbuild (`astro.config.mjs`): Vite 8's default minifier rew
 
 After `npm run build`, run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes (it builds a disposable copy twice). For response-header and browser-cache checks, serve `dist` using `wrangler dev --local` with the root config; generic static preview servers do not interpret Cloudflare's `_headers` file. Production cache behavior must also be verified after deploying to Workers Static Assets.
 
+## Blog Database
+
+Blog posts live in Supabase (Postgres), schema `blog`; publishing writes a row, so no article or draft is ever committed here. The schema is defined by migrations in `supabase/migrations/`.
+
+- `blog.posts` holds every language version (`zh`, `en`, `ja`) of every post, drafts and scheduled posts included.
+- `blog.published_posts` is the only thing the site reads: posts with `status = 'published'` whose `publish_at` has passed.
+- `blog_reader` (the site, through Hyperdrive) can read that view and nothing else, not even the table; `blog_writer` (the publish script) writes the table. Row level security is enabled on the table as a second line of defence. The `blog` schema is not exposed through the Supabase Data API.
+- The migration creates both roles without `LOGIN`. Give each environment its own passwords, never in Git: `alter role blog_reader with login password '…';` and the same for `blog_writer`.
+
+Locally (Docker required):
+
+```bash
+supabase start          # Postgres on 127.0.0.1:54322, Studio on 127.0.0.1:54323
+supabase db reset       # apply the migrations and supabase/seed.sql (local test posts and local-only passwords)
+supabase test db        # supabase/tests/: who can read and write what
+```
+
 ## Project Structure
 
 | Path | Contents |
