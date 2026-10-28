@@ -7,7 +7,7 @@ import { Footer } from '../components/Chrome';
 import { T } from '../lib';
 import { initPager } from '../pager';
 import { Shift } from './Shift';
-import lockupLight from '../assets/brand/agentware_lockup_on-light.svg';
+import lockupLight from '../assets/brand/agentware_lockup_on-light.svg?url';
 
 /*
   Every block below is one screen ([data-screen]). On desktop the page moves screen by screen

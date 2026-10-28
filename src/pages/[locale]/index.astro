@@ -1,0 +1,10 @@
+---
+import Page from '../../layouts/Page.astro';
+import { LOCALES } from '../../i18n';
+
+export function getStaticPaths() {
+  return LOCALES.filter((l) => l.path).map((l) => ({ params: { locale: l.path }, props: { code: l.code } }));
+}
+const { code } = Astro.props;
+---
+<Page page="home" code={code} />

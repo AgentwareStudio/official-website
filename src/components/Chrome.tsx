@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { LINKS, footer, ui } from '../content';
 import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale } from '../i18n';
-import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg';
-import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg';
+import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg?url';
+import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg?url';
 
 type Page = 'home' | 'learn' | 'notfound';
 
