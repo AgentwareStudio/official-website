@@ -2,6 +2,9 @@
   "name": "agentware-official",
   "compatibility_date": "2026-10-19",
   "workers_dev": false,
+  // Workers Builds runs `wrangler preview` for non-production branches; Previews need this block (it may be
+  // empty: the static assets settings stay at the top level). Preview URLs are public on workers.dev with noindex.
+  "previews": {},
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
