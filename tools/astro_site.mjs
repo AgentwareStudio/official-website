@@ -1,4 +1,4 @@
-// Post-build steps that the Vite plugins (tools/home_styles.ts, tools/browser_cache.ts) used to do:
+// Post-build steps for the static site:
 // - keep the existing download URLs /fonts/* and /brand/* (unversioned copies of src/assets/);
 // - inline the stylesheet into home pages, so the full cascade is there before the first render,
 //   and preload the header brand image;

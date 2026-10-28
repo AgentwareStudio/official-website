@@ -1,4 +1,4 @@
-// Page titles and descriptions per locale (ported from tools/gen_html.py).
+// Page titles and descriptions per locale.
 // zh-CN is the source language and has its own wording; other locales take the title from
 // tools/meta.json and the description from the page's lead copy, shortened for search results.
 import meta from '../tools/meta.json';

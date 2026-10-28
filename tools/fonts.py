@@ -3,16 +3,16 @@
 
 Usage:  python3 tools/fonts.py
 Sources (google/fonts, OFL):
-  ofl/notosanssc/NotoSansSC[wght].ttf  -> src/assets/fonts/aw-sans-sc.woff2  (zh-CN copy: src/**/*.ts(x) + zh HTML)
-  ofl/notosansjp/NotoSansJP[wght].ttf  -> src/assets/fonts/aw-sans-jp.woff2  (src/i18n/locales/ja.json + ja HTML)
-  ofl/notosanskr/NotoSansKR[wght].ttf  -> src/assets/fonts/aw-sans-kr.woff2  (src/i18n/locales/ko.json + ko HTML)
+  ofl/notosanssc/NotoSansSC[wght].ttf  -> src/assets/fonts/aw-sans-sc.woff2  (zh-CN copy and titles: src/**/*.ts(x))
+  ofl/notosansjp/NotoSansJP[wght].ttf  -> src/assets/fonts/aw-sans-jp.woff2  (src/i18n/locales/ja.json + ja titles in tools/meta.json)
+  ofl/notosanskr/NotoSansKR[wght].ttf  -> src/assets/fonts/aw-sans-kr.woff2  (src/i18n/locales/ko.json + ko titles in tools/meta.json)
 Paths default to ../fontlab/; pass --sc/--jp/--kr to override. Re-run after changing copy.
 Latin locales use Inter and local system monospace fonts (Latin-1 coverage is enough for en/es/de/fr/pt).
 
 Use --shared-only to rebuild cross-language subsets from the committed WOFF2 files,
-without downloading the original TTFs. Generated CSS/assets are processed and hashed by Vite.
+without downloading the original TTFs. Generated CSS/assets are processed and hashed by the build.
 """
-import argparse, pathlib
+import argparse, json, pathlib
 from fontTools import subset
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
@@ -40,6 +40,12 @@ def read(paths):
         if p.exists():
             s |= set(p.read_text(encoding='utf-8'))
     return s
+
+
+def titles(code):
+    """Characters in a locale's page titles (tools/meta.json; zh-CN titles live in src/meta.ts)."""
+    meta = json.loads((ROOT / 'tools/meta.json').read_text(encoding='utf-8'))
+    return set(''.join(meta[code].values()))
 
 
 def make(src, chars, out):
@@ -100,10 +106,9 @@ if __name__ == '__main__':
     ap.add_argument('--shared-only', action='store_true', help='Rebuild shared subsets from committed WOFF2s only')
     a = ap.parse_args()
     if not a.shared_only:
-        zh_html = [*ROOT.glob('zh/**/index.html')]
-        zh = read([*ROOT.glob('src/**/*.ts'), *ROOT.glob('src/**/*.tsx'), *zh_html])
-        ja = read([ROOT / 'src/i18n/locales/ja.json', *ROOT.glob('ja/**/index.html'), ROOT / 'src/i18n.ts'])
-        ko = read([ROOT / 'src/i18n/locales/ko.json', *ROOT.glob('ko/**/index.html'), ROOT / 'src/i18n.ts'])
+        zh = read([*ROOT.glob('src/**/*.ts'), *ROOT.glob('src/**/*.tsx')])
+        ja = read([ROOT / 'src/i18n/locales/ja.json', ROOT / 'src/i18n.ts']) | titles('ja')
+        ko = read([ROOT / 'src/i18n/locales/ko.json', ROOT / 'src/i18n.ts']) | titles('ko')
         make(a.sc, zh, 'aw-sans-sc.woff2')
         make(a.jp, ja, 'aw-sans-jp.woff2')
         make(a.kr, {c for c in ko if not ('一' <= c <= '鿿')} | set('한국어'), 'aw-sans-kr.woff2')

@@ -1,4 +1,4 @@
-// Every page in every locale, each entry listing all its language versions (formerly written by tools/gen_html.py).
+// Every page in every locale, each entry listing all its language versions.
 import { LOCALES } from '../i18n';
 import { ALTERNATES, pageUrl } from '../meta';
 
