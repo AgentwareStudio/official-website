@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 /** Chinese-aware text: "|" separates phrases (lines only wrap between them), "\n" forces a break. */
 export function T({ children }: { children: string }) {
@@ -36,14 +36,7 @@ export const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export function useReducedMotion() {
-  const [r, setR] = useState(prefersReducedMotion);
-  useEffect(() => {
-    const m = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const f = () => setR(m.matches);
-    m.addEventListener('change', f);
-    return () => m.removeEventListener('change', f);
-  }, []);
-  return r;
+  return useMedia('(prefers-reduced-motion: reduce)');
 }
 
 export function useInView<T extends Element>(opts: IntersectionObserverInit = { threshold: 0.2 }) {
@@ -60,16 +53,17 @@ export function useInView<T extends Element>(opts: IntersectionObserverInit = { 
   return [ref, inView] as const;
 }
 
+/**
+ * A media query's current value. Server-rendered HTML has no viewport, so the server snapshot is
+ * false; while hydrating, React uses that value and then re-renders with the browser's.
+ */
 export function useMedia(query: string) {
-  const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(query).matches);
-  useEffect(() => {
+  const subscribe = useCallback((onChange: () => void) => {
     const mq = window.matchMedia(query);
-    const f = () => setM(mq.matches);
-    f();
-    mq.addEventListener('change', f);
-    return () => mq.removeEventListener('change', f);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
   }, [query]);
-  return m;
+  return useSyncExternalStore(subscribe, () => window.matchMedia(query).matches, () => false);
 }
 
 /** Calm fade-up for elements with .reveal, once. */

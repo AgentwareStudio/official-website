@@ -15,7 +15,8 @@ const NAV = [
 const PAGES = [
   { href: '/learn/', key: 'learn', en: 'Learn' },
 ] as const;
-const showEn = locale !== 'en';
+// Read at render time: one build renders every locale in turn.
+const showEn = () => locale !== 'en';
 const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
 const pagePath = (page: Page) => (page === 'learn' ? '/learn/' : '/');
 
@@ -127,14 +128,14 @@ export function Header({ page }: { page: Page }) {
                 <a href={h(n.href)} onClick={close}>
                   <span className="menu-sheet__no">0{i + 1}</span>
                   <span>{ui.nav[n.key]}</span>
-                  {showEn && <span className="menu-sheet__en" lang="en">{n.en}</span>}
+                  {showEn() && <span className="menu-sheet__en" lang="en">{n.en}</span>}
                 </a>
               </li>
             ))}
           </ol>
           <ul className="menu-sheet__pages">
             {PAGES.map((p) => (
-              <li key={p.href}><a href={href(p.href)} onClick={close} aria-current={page === p.key ? 'page' : undefined}>{ui.nav[p.key]}{showEn && <span lang="en">{p.en}</span>}</a></li>
+              <li key={p.href}><a href={href(p.href)} onClick={close} aria-current={page === p.key ? 'page' : undefined}>{ui.nav[p.key]}{showEn() && <span lang="en">{p.en}</span>}</a></li>
             ))}
           </ul>
           <ul className="menu-sheet__langs" aria-label={ui.language}>

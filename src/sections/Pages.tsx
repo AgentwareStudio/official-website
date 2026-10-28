@@ -2,14 +2,15 @@ import { LINKS, learn, ui } from '../content';
 import { T } from '../lib';
 import { href, locale } from '../i18n';
 
-const showEn = locale !== 'en';
+// Read at render time: one build renders every locale in turn.
+const showEn = () => locale !== 'en';
 function JoinLink({ to, label, en, primary = false }: { to: string; label: string; en: string; primary?: boolean }) {
   const ext = to.startsWith('http');
   return (
     <li>
       <a className={`join-link ${primary ? 'is-primary' : ''}`} href={ext ? to : href(to)} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>
         <span className="join-link__zh">{label}</span>
-        {showEn && <span className="join-link__en" lang="en">{en}</span>}
+        {showEn() && <span className="join-link__en" lang="en">{en}</span>}
         <span className="join-link__arrow" aria-hidden="true">{ext ? '↗' : '→'}</span>
       </a>
     </li>
@@ -23,7 +24,7 @@ function PageHero({ crumb, title, en, lead, status, motto }: { crumb: string; ti
         <p className="eyebrow"><a href={href('/')}>AGENTWARE STUDIO</a> <span aria-hidden="true">//</span> {crumb}</p>
         <h1 className="page-hero__title">
           {title}
-          {showEn && <em lang="en">{en}</em>}
+          {showEn() && <em lang="en">{en}</em>}
         </h1>
         <div className="page-hero__foot">
           {motto ? (
@@ -95,7 +96,7 @@ export function NotFoundPage() {
     <section className="page-hero page-hero--404">
       <div className="wrap">
         <p className="eyebrow">404 // PATH NOT FOUND</p>
-        <h1 className="page-hero__title">{ui.nf.title}{showEn && <em lang="en">Path not found</em>}</h1>
+        <h1 className="page-hero__title">{ui.nf.title}{showEn() && <em lang="en">Path not found</em>}</h1>
         <div className="page-hero__foot">
           <span />
           <div>
