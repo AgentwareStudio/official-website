@@ -6,6 +6,12 @@ import type { Locale, Messages } from './i18n';
 
 export type Page = 'home' | 'learn' | 'notfound';
 
+export const SITE = 'https://agentware.studio';
+/** Language versions in the order the pages' hreflang links and the sitemap list them. */
+export const ALTERNATES: Locale[] = ['en', 'zh-CN', 'ja', 'ko', 'es', 'fr', 'de', 'pt-BR'];
+/** Absolute URL of a page (`sub`: '' or 'learn/') in the locale whose path segment is `path` ('' for English). */
+export const pageUrl = (path: string, sub: string) => `${SITE}/${path ? `${path}/` : ''}${sub}`;
+
 const ZH: Record<Page, [string, string]> = {
   home: [
     'Agentware Studio — From Interface to Intent · 从操作界面，到委托意图',

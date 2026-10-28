@@ -6,7 +6,7 @@ import HomeSite from '../site/HomeSite';
 import LearnSite from '../site/LearnSite';
 import NotFoundSite from '../site/NotFoundSite';
 import { LOCALES, messagesFor, type Locale } from '../i18n';
-import { pageMeta, type Page } from '../meta';
+import { ALTERNATES, pageMeta, pageUrl, type Page } from '../meta';
 import faviconSvg from '../assets/brand/agentware_favicon_dark.svg?url';
 import favicon32 from '../assets/brand/agentware_favicon_dark_32.png?url';
 import appleIcon from '../assets/brand/agentware_icon_app_dark_180.png?url';
@@ -20,16 +20,13 @@ interface Props {
   code: Locale;
 }
 const { page, code } = Astro.props;
-const SITE = 'https://agentware.studio';
 const FONT: Partial<Record<Locale, string>> = { 'zh-CN': sansSc, ja: sansJp, ko: sansKr };
 
 const messages = await messagesFor(code);
 const { title, description } = pageMeta(page, code, messages);
 const sub = page === 'learn' ? 'learn/' : '';
-const url = (path: string) => `${SITE}/${path ? `${path}/` : ''}${sub}`;
+const url = (path: string) => pageUrl(path, sub);
 const self = LOCALES.find((l) => l.code === code)!;
-// Alternates in the order the former generator wrote them (and the sitemap lists them).
-const ALTERNATES: Locale[] = ['en', 'zh-CN', 'ja', 'ko', 'es', 'fr', 'de', 'pt-BR'];
 
 // Root home page only: on the first visit go to the browser's language (kept as aw-auto, so later visits to / land
 // in the same place); a language picked in the menu or the hint (aw-lang) always wins.

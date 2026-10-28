@@ -1,28 +1,33 @@
 import assert from 'node:assert/strict';
-import { build } from 'vite';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const { output } = await build({ build: { write: false }, logLevel: 'silent' });
-const files = new Map(output.map((file) => [file.fileName, file]));
+// Inspect the built pages (run `npm run build` first): home pages carry the full cascade inline,
+// the other pages link the shared, cacheable stylesheet.
+const dist = fileURLToPath(new URL('../dist/', import.meta.url));
+const exists = (path) => readdirSync(join(dist, 'assets')).includes(path.replace(/^\/?assets\//, ''));
 let homes = 0;
 let otherPages = 0;
-for (const file of output.filter((file) => file.fileName.endsWith('.html'))) {
-  const html = String(file.source);
+for (const file of readdirSync(dist, { recursive: true }).filter((f) => f.endsWith('.html'))) {
+  const html = readFileSync(join(dist, file), 'utf8');
+  const head = html.slice(0, html.indexOf('</head>'));
   const styles = [...html.matchAll(/<style data-home-styles="([^"]+)">([\s\S]*?)<\/style>/g)];
-  const brandPreloads = [...html.matchAll(/<link\b[^>]*rel="preload"[^>]*href="(\/assets\/agentware_lockup_on-dark-[^"]+)"[^>]*>/g)];
+  const brandPreloads = [...html.matchAll(/<link\b[^>]*rel="preload"[^>]*href="(\/assets\/agentware_lockup_on-dark[.-][^"]+)"[^>]*>/g)];
   if (html.includes('data-page="home"')) {
     homes++;
-    assert.equal(styles.length, 1, `${file.fileName}: missing inline cascade`);
-    assert.ok(!html.includes('rel="stylesheet"'), `${file.fileName}: render-blocking stylesheet remains`);
-    assert.equal(styles[0][2], String(files.get(styles[0][1]).source), 'Inline and shared CSS must stay identical');
+    assert.equal(styles.length, 1, `${file}: missing inline cascade`);
+    assert.ok(!html.includes('rel="stylesheet"'), `${file}: render-blocking stylesheet remains`);
+    assert.equal(styles[0][2], readFileSync(join(dist, styles[0][1]), 'utf8'), 'Inline and shared CSS must stay identical');
     for (const [, url] of styles[0][2].matchAll(/url\(\s*["']?(\/assets\/[^)'"\s]+)/g)) {
-      assert.ok(files.has(url.slice(1)), `Broken inline CSS asset URL: ${url}`);
+      assert.ok(exists(url), `Broken inline CSS asset URL: ${url}`);
     }
     assert.equal(brandPreloads.length, 1);
-    assert.ok(files.has(brandPreloads[0][1].slice(1)));
+    assert.ok(exists(brandPreloads[0][1]));
     assert.ok(brandPreloads[0][0].includes('fetchpriority="low"'), 'Brand must not compete with LCP fonts at high priority');
-    assert.ok(html.indexOf(brandPreloads[0][0]) < html.indexOf('<script type="module"'));
-    const redirect = html.indexOf('if(navigator.webdriver');
-    if (redirect !== -1) assert.ok(redirect < html.indexOf(brandPreloads[0][0]), 'Keep the locale redirect ahead of added preloads');
+    assert.ok(head.includes(brandPreloads[0][0]), 'Brand preload belongs in <head>');
+    const redirect = head.indexOf('if(navigator.webdriver');
+    if (redirect !== -1) assert.ok(redirect < head.indexOf(brandPreloads[0][0]), 'Keep the locale redirect ahead of added preloads');
   } else {
     otherPages++;
     assert.equal(styles.length, 0);

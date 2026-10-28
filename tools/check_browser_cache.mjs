@@ -1,17 +1,18 @@
 import assert from 'node:assert/strict';
-import { build } from 'vite';
-import { cpSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { tmpdir } from 'node:os';
-import { fileURLToPath } from 'node:url';
+import { output, root, withFixture } from './astro_fixture.mjs';
 
-const root = fileURLToPath(new URL('../', import.meta.url));
-function rulesOf(output) {
-  const file = output.find((file) => file.fileName === '_headers');
-  assert.ok(file, 'Missing Cloudflare Static Assets _headers');
+// Inspect the built site (run `npm run build` first), then build a disposable copy twice to check that
+// a changed font or image gets a new URL and so do the files that reference it.
+// Inspect the built site (run `npm run build` first), then build a disposable copy twice to check that
+// a changed font or image gets a new URL and so do the files that reference it.
+function rulesOf(files) {
+  const source = files.get('_headers');
+  assert.ok(source, 'Missing Cloudflare Static Assets _headers');
   const rules = new Map();
   let path;
-  for (const line of String(file.source).split('\n')) {
+  for (const line of String(source).split('\n')) {
     assert.ok(line.length <= 2000, 'Static Assets header line length limit');
     if (!line || line.startsWith('#')) continue;
     if (!/^\s/.test(line)) {
@@ -38,12 +39,15 @@ function rulesOf(output) {
     const value = headers['Cache-Control'];
     assert.ok(value, `Expected Cache-Control header for ${path}`);
     if (value.includes('immutable')) {
-      assert.match(path, /^\/assets\/.+-[A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png)$/);
-      assert.ok(output.some((file) => file.fileName === path.slice(1)), 'Immutable rule must name an existing build file');
+      assert.match(path, /^\/assets\/.+[.-][A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png)$/);
+      assert.ok(files.has(path.slice(1)), 'Immutable rule must name an existing build file');
     } else assert.equal(value, 'public, max-age=0, must-revalidate');
   }
-  for (const file of output.filter((file) => file.fileName.endsWith('.html'))) {
-    for (const path of [`/${file.fileName}`, `/${file.fileName.replace(/index\.html$|\.html$/, '')}`]) {
+  for (const file of [...files.keys()].filter((f) => f.startsWith('assets/'))) {
+    assert.ok(rules.get(`/${file}`)?.['Cache-Control']?.includes('immutable'), `${file} must be cached as immutable`);
+  }
+  for (const file of [...files.keys()].filter((f) => f.endsWith('.html'))) {
+    for (const path of [`/${file}`, `/${file.replace(/index\.html$|\.html$/, '')}`]) {
       assert.equal(rules.get(path)['Cache-Control'], 'public, max-age=0, must-revalidate');
     }
   }
@@ -52,46 +56,41 @@ function rulesOf(output) {
   }
   return rules;
 }
-const emit = async (root) => (await build({ root, build: { write: false }, logLevel: 'silent' })).output;
-const current = await emit(root);
+
+const current = output(join(root, 'dist'));
 const rules = rulesOf(current);
-const body = (file) => Buffer.from(file.type === 'chunk' ? file.code : file.source);
 for (const kind of ['fonts', 'brand']) {
-  for (const file of current.filter((file) => file.fileName.startsWith(`${kind}/`))) {
-    assert.ok(body(file).equals(readFileSync(join(root, 'src/assets', file.fileName))), 'Legacy URL bytes changed');
+  for (const name of readdirSync(join(root, 'src/assets', kind))) {
+    assert.ok(current.get(`${kind}/${name}`)?.equals(readFileSync(join(root, 'src/assets', kind, name))), `Legacy URL /${kind}/${name} missing or changed`);
   }
 }
 
 // A second deployment must change both asset URLs and their parent references.
-// Build a disposable copy so the real preview and source files remain untouched.
-const fixture = mkdtempSync(join(tmpdir(), 'aw-cache-version-'));
-try {
-  const entries = JSON.parse(readFileSync(join(root, 'tools/entries.json'), 'utf8'));
-  const paths = new Set(['src', 'public', 'tools', 'vite.config.ts', 'tsconfig.json', 'package.json', 'package-lock.json', ...entries.map((file) => file.split('/')[0])]);
-  for (const path of paths) cpSync(join(root, path), join(fixture, path), { recursive: true });
-  symlinkSync(join(root, 'node_modules'), join(fixture, 'node_modules'), 'junction');
-  const oldOutput = await emit(fixture);
-  const font = readFileSync(join(fixture, 'src/assets/fonts/inter.woff2'));
-  const brandPath = join(fixture, 'src/assets/brand/agentware_lockup_on-dark.svg');
+// Build a disposable copy so the real build and source files remain untouched.
+await withFixture(async (fixture) => {
+  const oldOutput = await fixture.build();
+  const font = readFileSync(join(fixture.dir, 'src/assets/fonts/inter.woff2'));
+  const brandPath = join(fixture.dir, 'src/assets/brand/agentware_lockup_on-dark.svg');
   const brand = readFileSync(brandPath);
-  const oldFont = oldOutput.find((file) => file.fileName.startsWith('assets/') && file.type === 'asset' && body(file).equals(font)).fileName;
-  const oldBrand = oldOutput.find((file) => file.fileName.startsWith('assets/') && file.type === 'asset' && body(file).equals(brand)).fileName;
-  writeFileSync(join(fixture, 'src/assets/fonts/inter.woff2'), readFileSync(join(fixture, 'src/assets/fonts/aw-sans-sc.woff2')));
+  const assetWith = (files, bytes) => [...files].find(([name, body]) => name.startsWith('assets/') && body.equals(bytes))[0];
+  const oldFont = assetWith(oldOutput, font);
+  const oldBrand = assetWith(oldOutput, brand);
+  // Files that referenced the font and the image, to check that their own names change too.
+  const parents = (name) => [...oldOutput].filter(([file, body]) => file.startsWith('assets/') && /\.(css|js)$/.test(file) && body.includes(Buffer.from(name))).map(([file]) => file);
+  const oldParents = { font: parents(oldFont), brand: parents(oldBrand) };
+  assert.ok(oldParents.font.some((f) => f.endsWith('.css')), 'The stylesheet must reference the font');
+  assert.ok(oldParents.brand.some((f) => f.endsWith('.js')), 'A script must reference the header brand image');
+  writeFileSync(join(fixture.dir, 'src/assets/fonts/inter.woff2'), readFileSync(join(fixture.dir, 'src/assets/fonts/aw-sans-sc.woff2')));
   writeFileSync(brandPath, String(brand).replace('</svg>', '<!-- cache version fixture --></svg>'));
-  const next = await emit(fixture);
+  const next = await fixture.build();
   const nextRules = rulesOf(next);
   for (const name of [oldFont, oldBrand]) {
-    assert.ok(!next.some((file) => file.fileName === name), 'Old fingerprint retained unexpectedly');
+    assert.ok(!next.has(name), 'Old fingerprint retained unexpectedly');
     assert.ok(!nextRules.has(`/${name}`), 'An old/missing fingerprint must not get an immutable rule');
-    for (const file of next.filter((file) => /\.(html|css|js)$/.test(file.fileName))) {
-      assert.ok(!body(file).includes(Buffer.from(name)), `${file.fileName} still references old asset`);
+    for (const [file, body] of [...next].filter(([file]) => /\.(html|css|js)$/.test(file))) {
+      assert.ok(!body.includes(Buffer.from(name)), `${file} still references old asset`);
     }
   }
-  const css = (files) => files.find((file) => file.fileName.endsWith('.css')).fileName;
-  assert.notEqual(css(oldOutput), css(next), 'Parent CSS hash must change after a font update');
-  const main = (files) => files.find((file) => /^assets\/main-.*\.js$/.test(file.fileName)).fileName;
-  assert.notEqual(main(oldOutput), main(next), 'Parent JS hash must change after a brand update');
+  for (const file of [...oldParents.font, ...oldParents.brand]) assert.ok(!next.has(file), `Parent ${file} kept its name after its asset changed`);
   console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((headers) => headers['Cache-Control']?.includes('immutable')).length, llmsUtf8: true, agentwareUtf8: true, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
-} finally {
-  rmSync(fixture, { recursive: true, force: true });
-}
+});

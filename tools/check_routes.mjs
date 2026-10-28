@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import { createHash, randomUUID } from 'node:crypto';
 
 // Exercise the deployed server, rather than treating a local 404 file as proof
@@ -12,7 +11,6 @@ const base = new URL(target);
 if (!['https:', 'http:'].includes(base.protocol) || base.pathname !== '/' || base.search || base.hash || base.username || base.password) {
   throw new Error('Provide an HTTP(S) origin without a path, credentials, query or fragment');
 }
-const entries = JSON.parse(readFileSync(new URL('./entries.json', import.meta.url), 'utf8'));
 const checks = [];
 const assets = new Set();
 const nonce = `__aw_missing_${randomUUID()}__`;
@@ -58,7 +56,8 @@ async function check(path, kind, visit = 'first') {
       expect(text.includes(`data-page="${page}"`), 'Wrong HTML entry');
       expect(type.includes('text/html'), 'Page must be HTML');
       // Check the URLs actually shipped by this deployment, including older builds.
-      for (const [, href] of text.matchAll(/(?:src|href)="(\/(?:assets|fonts|brand)\/[^"?#]+)"/g)) assets.add(href);
+      // Island scripts are referenced by component-url / renderer-url rather than src.
+      for (const [, href] of text.matchAll(/(?:src|href|component-url|renderer-url)="(\/(?:assets|fonts|brand)\/[^"?#]+)"/g)) assets.add(href);
     } else {
       expect(response.status === 200, 'Referenced asset must return HTTP 200');
       expect(body.length > 0 && !type.includes('text/html') && !/^\s*<!doctype html/i.test(text), 'Referenced asset returned HTML or an empty body');
@@ -77,7 +76,17 @@ async function batch(items, run) {
   }));
 }
 
-const pages = entries.filter((file) => file !== '404.html').map((file) => `/${file.replace(/index\.html$/, '')}`);
+// The pages are the ones the deployed sitemap lists; it must list exactly the 16 localized pages.
+const LOCALE_PATHS = ['', 'zh/', 'ja/', 'ko/', 'es/', 'fr/', 'de/', 'pt-br/'];
+const expected = LOCALE_PATHS.flatMap((l) => [`/${l}`, `/${l}learn/`]).sort();
+const sitemapResponse = await fetch(new URL('/sitemap.xml', base), { redirect: 'manual', signal: AbortSignal.timeout(15000) });
+if (sitemapResponse.status !== 200 || !/xml/.test(sitemapResponse.headers.get('content-type') ?? '')) {
+  throw new Error(`/sitemap.xml must return XML with HTTP 200 (got ${sitemapResponse.status} ${sitemapResponse.headers.get('content-type')})`);
+}
+const locs = [...(await sitemapResponse.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, loc]) => new URL(loc));
+if (locs.some((u) => u.origin !== 'https://agentware.studio')) throw new Error('Sitemap URLs must use the canonical origin');
+const pages = locs.map((u) => u.pathname).sort();
+if (JSON.stringify(pages) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 16 localized pages: ${pages.join(' ')}`);
 await check('/llms.txt', 'llms');
 await check('/agentware.md', 'agentware');
 await batch(pages, (path) => check(path, 'page'));
