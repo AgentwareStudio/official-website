@@ -11,3 +11,6 @@ declare namespace App {
     cfContext: { waitUntil(promise: Promise<unknown>): void };
   }
 }
+
+/** The deployment that built the Worker (astro.config.mjs). */
+declare const __AW_BUILD__: string;

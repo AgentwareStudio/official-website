@@ -25,6 +25,9 @@ export default defineConfig({
   },
   integrations: [react(), siteFiles()],
   vite: {
+    // The deployment's identity for Worker-side caches (src/middleware.ts): a cached page from an earlier
+    // deployment is not served, as its asset URLs may be gone. Workers Builds provides the commit.
+    define: { __AW_BUILD__: JSON.stringify(process.env.WORKERS_CI_COMMIT_SHA || `local-${Date.now().toString(36)}`) },
     build: {
       assetsInlineLimit: 0,
       // Same CSS minifier as the former Vite 6 build. Vite 8's default (lightningcss) rewrites colours such as
