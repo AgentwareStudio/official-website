@@ -1,0 +1,13 @@
+---
+// The AGENTWARE mark (geometry from src/components/Mark.tsx), static: brackets, the rising path and the outcome point.
+// `lit` colours the point in Signal Orange; otherwise it follows the text colour until a script lights it.
+interface Props { size?: number; class?: string; lit?: boolean }
+const { size = 28, class: className, lit = false } = Astro.props;
+---
+<svg class:list={['bmark', className, { 'is-lit': lit }]} viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
+  <path d="M20,16 L24.679,16 L24.679,22.6 L20.6,22.6 L20.6,77.4 L24.679,77.4 L24.679,84 L20,84 L14,78 L14,22 Z" />
+  <path d="M80,16 L75.321,16 L75.321,22.6 L79.4,22.6 L79.4,77.4 L75.321,77.4 L75.321,84 L80,84 L86,78 L86,22 Z" />
+  <path d="M32.328,71.013 L45.039,28.987 L54.961,28.987 L67.672,71.013 L57.751,71.013 L50,45.387 L42.249,71.013 Z" />
+  <path class="bmark__path" d="M35.88,70.78 L70.28,47.58 L66.85,42.50 L32.45,65.69 Z" />
+  <circle class="bmark__dot" cx="68.566" cy="45.039" r="6.132" />
+</svg>

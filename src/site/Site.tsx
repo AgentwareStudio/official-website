@@ -1,19 +1,19 @@
 // The page shell shared by every page island: header, language hint, main and footer.
 // Each page type has its own island module (HomeSite, LearnSite, NotFoundSite), so a page only loads its sections.
 import React, { useEffect, useState } from 'react';
-import { Footer, Header, LangHint } from '../components/Chrome';
+import { Footer, Header, LangHint, type Alternates } from '../components/Chrome';
 import { useRevealOnScroll } from '../lib';
 import { ui } from '../content';
 import { loadLocale, setLocale, type Locale, type Messages } from '../i18n';
 import type { Page } from '../meta';
 
-function App({ page, children }: { page: Page; children: React.ReactNode }) {
+function App({ page, alternates, children }: { page: Page; alternates?: Alternates; children: React.ReactNode }) {
   useRevealOnScroll();
   return (
     <>
       <a className="skip-link" href="#main">{ui.skip}</a>
-      <Header page={page} />
-      <LangHint page={page} />
+      <Header page={page} alternates={alternates} />
+      <LangHint page={page} alternates={alternates} />
       <main id="main" tabIndex={-1}>
         {children}
       </main>
@@ -32,14 +32,14 @@ export interface PageProps {
 let applied: PageProps | null = null;
 
 /** A page rendered at build time and hydrated with the same locale and messages. */
-export function Site({ page, code, messages, children }: PageProps & { page: Page; children: React.ReactNode }) {
+export function Site({ page, code, messages, alternates, children }: PageProps & { page: Page; alternates?: Alternates; children: React.ReactNode }) {
   if (applied?.code !== code || applied.messages !== messages) {
     setLocale(code, messages);
     applied = { code, messages };
   }
   return (
     <React.StrictMode>
-      <App page={page}>{children}</App>
+      <App page={page} alternates={alternates}>{children}</App>
     </React.StrictMode>
   );
 }

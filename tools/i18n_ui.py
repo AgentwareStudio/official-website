@@ -12,7 +12,7 @@ UI['en'] = dict(
     ui=dict(
         skip='Skip to content', home='Agentware Studio home', mainNav='Main navigation', menuOpen='Open menu', menuClose='Close menu',
         follow='Follow', language='Language',
-        nav=dict(paradigm='Paradigm', architecture='Architecture', manifesto='Manifesto', studio='Studio', learn='Learn'),
+        nav=dict(paradigm='Paradigm', architecture='Architecture', manifesto='Manifesto', studio='Studio', learn='Learn', blog='Blog'),
         heroCta='Discover Agentware', heroCta2='Read the Manifesto', questionsAria='Two questions software asks',
         markAria='AGENTWARE mark: the brackets are the authorized boundary, the rising path an execution path that can adapt, the point an outcome that must be verifiable. Click or press Enter to replay; use the arrow keys to move the path.',
         markAriaLight='AGENTWARE mark',
@@ -60,7 +60,7 @@ UI['ja'] = dict(
     ui=dict(
         skip='本文へスキップ', home='Agentware Studio ホーム', mainNav='メインナビゲーション', menuOpen='メニューを開く', menuClose='メニューを閉じる',
         follow='フォロー', language='言語',
-        nav=dict(paradigm='パラダイム', architecture='アーキテクチャ', manifesto='マニフェスト', studio='Studio', learn='講座'),
+        nav=dict(paradigm='パラダイム', architecture='アーキテクチャ', manifesto='マニフェスト', studio='Studio', learn='講座', blog='ブログ'),
         heroCta='Agentware を知る', heroCta2='マニフェストを読む', questionsAria='ソフトウェアの2つの問い',
         markAria='AGENTWARE のマーク：角括弧は授権された境界、上昇する線は変化しうる実行経路、終点の点は検証可能でなければならない結果を表します。クリックまたは Enter でアニメーションを再生、上下キーで経路を動かせます。',
         markAriaLight='AGENTWARE のマーク',
@@ -108,7 +108,7 @@ UI['es'] = dict(
     ui=dict(
         skip='Saltar al contenido', home='Inicio de Agentware Studio', mainNav='Navegación principal', menuOpen='Abrir menú', menuClose='Cerrar menú',
         follow='Síguenos', language='Idioma',
-        nav=dict(paradigm='Paradigma', architecture='Arquitectura', manifesto='Manifiesto', studio='Studio', learn='Curso'),
+        nav=dict(paradigm='Paradigma', architecture='Arquitectura', manifesto='Manifiesto', studio='Studio', learn='Curso', blog='Blog'),
         heroCta='Conoce Agentware', heroCta2='Leer el manifiesto', questionsAria='Las dos preguntas del software',
         markAria='Marca AGENTWARE: los corchetes son el límite autorizado, la línea ascendente una ruta de ejecución que puede cambiar y el punto un resultado que debe ser verificable. Haz clic o pulsa Intro para repetir la animación; usa las flechas para mover la ruta.',
         markAriaLight='Marca AGENTWARE',
@@ -156,7 +156,7 @@ UI['de'] = dict(
     ui=dict(
         skip='Zum Inhalt springen', home='Agentware Studio Startseite', mainNav='Hauptnavigation', menuOpen='Menü öffnen', menuClose='Menü schließen',
         follow='Folgen', language='Sprache',
-        nav=dict(paradigm='Paradigma', architecture='Architektur', manifesto='Manifest', studio='Studio', learn='Kurs'),
+        nav=dict(paradigm='Paradigma', architecture='Architektur', manifesto='Manifest', studio='Studio', learn='Kurs', blog='Blog'),
         heroCta='Agentware entdecken', heroCta2='Manifest lesen', questionsAria='Die zwei Fragen der Software',
         markAria='AGENTWARE-Zeichen: Die Klammern stehen für die autorisierte Grenze, der aufsteigende Pfad für einen anpassbaren Ausführungspfad, der Punkt für ein Ergebnis, das überprüfbar sein muss. Klicken oder Enter drücken, um die Animation erneut abzuspielen; mit den Pfeiltasten den Pfad bewegen.',
         markAriaLight='AGENTWARE-Zeichen',
@@ -204,7 +204,7 @@ UI['fr'] = dict(
     ui=dict(
         skip='Aller au contenu', home='Accueil Agentware Studio', mainNav='Navigation principale', menuOpen='Ouvrir le menu', menuClose='Fermer le menu',
         follow='Suivre', language='Langue',
-        nav=dict(paradigm='Paradigme', architecture='Architecture', manifesto='Manifeste', studio='Studio', learn='Cours'),
+        nav=dict(paradigm='Paradigme', architecture='Architecture', manifesto='Manifeste', studio='Studio', learn='Cours', blog='Blog'),
         heroCta='Découvrir Agentware', heroCta2='Lire le manifeste', questionsAria='Les deux questions du logiciel',
         markAria='Marque AGENTWARE : les crochets représentent la limite autorisée, le trait ascendant un chemin d’exécution adaptable, le point un résultat qui doit être vérifiable. Cliquez ou appuyez sur Entrée pour rejouer l’animation ; utilisez les flèches pour déplacer le chemin.',
         markAriaLight='Marque AGENTWARE',
@@ -252,7 +252,7 @@ UI['pt-BR'] = dict(
     ui=dict(
         skip='Pular para o conteúdo', home='Início da Agentware Studio', mainNav='Navegação principal', menuOpen='Abrir menu', menuClose='Fechar menu',
         follow='Siga', language='Idioma',
-        nav=dict(paradigm='Paradigma', architecture='Arquitetura', manifesto='Manifesto', studio='Studio', learn='Curso'),
+        nav=dict(paradigm='Paradigma', architecture='Arquitetura', manifesto='Manifesto', studio='Studio', learn='Curso', blog='Blog'),
         heroCta='Conheça a Agentware', heroCta2='Ler o manifesto', questionsAria='As duas perguntas do software',
         markAria='Marca AGENTWARE: os colchetes são o limite autorizado, o traço ascendente um caminho de execução que pode mudar, e o ponto um resultado que precisa ser verificável. Clique ou pressione Enter para repetir a animação; use as setas para mover o caminho.',
         markAriaLight='Marca AGENTWARE',
@@ -300,7 +300,7 @@ UI['ko'] = dict(
     ui=dict(
         skip='본문으로 건너뛰기', home='Agentware Studio 홈', mainNav='주 메뉴', menuOpen='메뉴 열기', menuClose='메뉴 닫기',
         follow='팔로우', language='언어',
-        nav=dict(paradigm='패러다임', architecture='아키텍처', manifesto='선언문', studio='Studio', learn='강의'),
+        nav=dict(paradigm='패러다임', architecture='아키텍처', manifesto='선언문', studio='Studio', learn='강의', blog='블로그'),
         heroCta='Agentware 알아보기', heroCta2='선언문 읽기', questionsAria='소프트웨어의 두 가지 질문',
         markAria='AGENTWARE 마크: 대괄호는 권한의 경계, 올라가는 선은 바뀔 수 있는 실행 경로, 끝의 점은 반드시 검증 가능해야 하는 결과를 뜻합니다. 클릭하거나 Enter를 누르면 애니메이션이 다시 재생되고, 방향키로 경로를 움직일 수 있습니다.',
         markAriaLight='AGENTWARE 마크',

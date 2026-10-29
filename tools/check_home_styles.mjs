@@ -4,11 +4,13 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Inspect the built pages (run `npm run build` first): home pages carry the full cascade inline,
-// the other pages link the shared, cacheable stylesheet.
+// the other pages link the shared, cacheable stylesheet, and only blog pages add the blog stylesheet.
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const exists = (path) => readdirSync(join(dist, 'assets')).includes(path.replace(/^\/?assets\//, ''));
 let homes = 0;
 let otherPages = 0;
+let blogPages = 0;
+const shared = new Set();
 for (const file of readdirSync(dist, { recursive: true }).filter((f) => f.endsWith('.html'))) {
   const html = readFileSync(join(dist, file), 'utf8');
   const head = html.slice(0, html.indexOf('</head>'));
@@ -29,12 +31,17 @@ for (const file of readdirSync(dist, { recursive: true }).filter((f) => f.endsWi
     const redirect = head.indexOf('if(navigator.webdriver');
     if (redirect !== -1) assert.ok(redirect < head.indexOf(brandPreloads[0][0]), 'Keep the locale redirect ahead of added preloads');
   } else {
-    otherPages++;
+    const blog = /data-page="(?:blog|post)"/.test(html);
+    if (blog) blogPages++; else otherPages++;
     assert.equal(styles.length, 0);
     assert.equal(brandPreloads.length, 0);
-    assert.ok(html.includes('rel="stylesheet"'), 'Learn and 404 keep the cacheable stylesheet');
+    const sheets = [...head.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => m[1]);
+    assert.equal(sheets.length, blog ? 2 : 1, `${file}: learn and 404 link the shared stylesheet; blog pages add their own`);
+    shared.add(sheets[0]);
   }
 }
 assert.equal(homes, 8);
 assert.equal(otherPages, 9);
-console.log(JSON.stringify({ homes, otherPages, fullCascadeIdentical: true, inlineAssetURLsValid: true }));
+assert.ok(blogPages >= 3, 'Every blog language has an index page');
+assert.equal(shared.size, 1, 'All pages share one site stylesheet');
+console.log(JSON.stringify({ homes, otherPages, blogPages, fullCascadeIdentical: true, inlineAssetURLsValid: true }));

@@ -52,7 +52,7 @@ async function check(path, kind, visit = 'first') {
       expect(!text.includes('\uFFFD'), 'agentware.md contains invalid UTF-8 or replacement characters');
     } else if (kind === 'page') {
       expect(response.status === 200, 'Existing page must return HTTP 200');
-      const page = path.includes('/learn/') ? 'learn' : 'home';
+      const page = path.includes('/learn/') ? 'learn' : /\/blog\/$/.test(path) ? 'blog' : path.includes('/blog/') ? 'post' : 'home';
       expect(text.includes(`data-page="${page}"`), 'Wrong HTML entry');
       expect(type.includes('text/html'), 'Page must be HTML');
       // Check the URLs actually shipped by this deployment, including older builds.
@@ -76,7 +76,8 @@ async function batch(items, run) {
   }));
 }
 
-// The pages are the ones the deployed sitemap lists; it must list exactly the 16 localized pages.
+// The pages are the ones the deployed sitemap lists: exactly the 16 localized pages, plus the blog
+// (an index for each blog language and the posts, which change with publishing).
 const LOCALE_PATHS = ['', 'zh/', 'ja/', 'ko/', 'es/', 'fr/', 'de/', 'pt-br/'];
 const expected = LOCALE_PATHS.flatMap((l) => [`/${l}`, `/${l}learn/`]).sort();
 const sitemapResponse = await fetch(new URL('/sitemap.xml', base), { redirect: 'manual', signal: AbortSignal.timeout(15000) });
@@ -86,7 +87,11 @@ if (sitemapResponse.status !== 200 || !/xml/.test(sitemapResponse.headers.get('c
 const locs = [...(await sitemapResponse.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, loc]) => new URL(loc));
 if (locs.some((u) => u.origin !== 'https://agentware.studio')) throw new Error('Sitemap URLs must use the canonical origin');
 const pages = locs.map((u) => u.pathname).sort();
-if (JSON.stringify(pages) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 16 localized pages: ${pages.join(' ')}`);
+const isBlog = (p) => /^\/(?:zh\/|ja\/)?blog\/(?:[a-z0-9]+(?:-[a-z0-9]+)*\/)?$/.test(p);
+const site = pages.filter((p) => !isBlog(p));
+if (JSON.stringify(site) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 16 localized pages: ${site.join(' ')}`);
+for (const index of ['/blog/', '/zh/blog/', '/ja/blog/']) if (!pages.includes(index)) throw new Error(`Sitemap is missing ${index}`);
+if (new Set(pages).size !== pages.length) throw new Error('Duplicate sitemap URLs');
 await check('/llms.txt', 'llms');
 await check('/agentware.md', 'agentware');
 await batch(pages, (path) => check(path, 'page'));

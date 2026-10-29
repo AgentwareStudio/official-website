@@ -1,0 +1,13 @@
+---
+import Page from '../../../layouts/Page.astro';
+import BlogPost from '../../../blog/BlogPost.astro';
+import { postMeta } from '../../../blog/pages';
+import { allPosts, translations } from '../../../blog/source';
+
+export async function getStaticPaths() {
+  return (await allPosts()).filter((p) => p.lang === 'en').map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+const others = await translations(post);
+---
+<Page page="post" code="en" blog={postMeta(post, others)}><BlogPost post={post} others={others} /></Page>

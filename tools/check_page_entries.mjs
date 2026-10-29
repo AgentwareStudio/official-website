@@ -3,8 +3,8 @@ import { gzipSync } from 'node:zlib';
 import { withFixture } from './astro_fixture.mjs';
 
 // Build a disposable copy and inspect the actual module graph: each page loads only its own island, and the
-// home-only modules never reach the learn or 404 pages (not even through a shared chunk).
-const ISLAND = { home: 'HomeSite', learn: 'LearnSite', notfound: 'NotFoundSite' };
+// home-only modules never reach the other pages (not even through a shared chunk).
+const ISLAND = { home: 'HomeSite', learn: 'LearnSite', notfound: 'NotFoundSite', blog: 'BlogSite', post: 'BlogSite' };
 const homeOnly = [
   '/src/sections/Home.tsx', '/src/sections/Shift.tsx', '/src/components/ShiftStage.tsx',
   '/src/components/ExecutionLoop.tsx', '/src/components/Mark.tsx', '/src/pager.ts',
@@ -59,6 +59,7 @@ await withFixture(async (fixture) => {
       sourceModules: [...new Set(modules.filter((id) => id.includes('/src/')).map((id) => id.slice(id.lastIndexOf('/src/') + 1)))],
     });
   }
-  assert.equal(pages.length, 17, 'All 16 localized pages and the shared 404 must be checked');
+  assert.equal(pages.filter((p) => !['blog', 'post'].includes(p.page)).length, 17, 'All 16 localized pages and the shared 404 must be checked');
+  assert.ok(pages.filter((p) => p.page === 'blog').length >= 3, 'Every blog language has an index page');
   console.log(JSON.stringify({ pages }, null, 2));
 });

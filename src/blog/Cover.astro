@@ -1,0 +1,11 @@
+---
+// A post image in both formats: JPEG XL where the browser supports it, WebP otherwise.
+import type { Post } from './types';
+interface Props { cover: NonNullable<Post['cover']>; eager?: boolean }
+const { cover, eager } = Astro.props;
+---
+<picture>
+  {cover.jxl && <source type="image/jxl" srcset={cover.jxl} />}
+  <img src={cover.webp} alt={cover.alt} width={cover.width} height={cover.height}
+    loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" />
+</picture>

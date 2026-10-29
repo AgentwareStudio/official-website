@@ -4,7 +4,9 @@
 import meta from '../tools/meta.json';
 import type { Locale, Messages } from './i18n';
 
-export type Page = 'home' | 'learn' | 'notfound';
+export type Page = 'home' | 'learn' | 'notfound' | 'blog' | 'post';
+/** Pages whose title and description come from the site copy (blog pages bring their own). */
+export type SitePage = 'home' | 'learn' | 'notfound';
 
 export const SITE = 'https://agentware.studio';
 /** Language versions in the order the pages' hreflang links and the sitemap list them. */
@@ -12,7 +14,7 @@ export const ALTERNATES: Locale[] = ['en', 'zh-CN', 'ja', 'ko', 'es', 'fr', 'de'
 /** Absolute URL of a page (`sub`: '' or 'learn/') in the locale whose path segment is `path` ('' for English). */
 export const pageUrl = (path: string, sub: string) => `${SITE}/${path ? `${path}/` : ''}${sub}`;
 
-const ZH: Record<Page, [string, string]> = {
+const ZH: Record<SitePage, [string, string]> = {
   home: [
     'Agentware Studio — From Interface to Intent · 从操作界面，到委托意图',
     'Agentware 是为智能体时代而生的软件范式：你说明目标、划定边界、定义完成标准，系统在授权范围内组织行动，并交付可验证的结果。',
@@ -34,7 +36,7 @@ export function short(s: string, n = 158) {
   return (cut >= 0 ? head.slice(0, cut) : head).replace(/[，,、;；:：]+$/, '') + '…';
 }
 
-export function pageMeta(page: Page, code: Locale, messages: Messages | null): { title: string; description: string } {
+export function pageMeta(page: SitePage, code: Locale, messages: Messages | null): { title: string; description: string } {
   if (code === 'zh-CN') {
     const [title, description] = ZH[page];
     return { title, description };

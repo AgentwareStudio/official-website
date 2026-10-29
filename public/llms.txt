@@ -15,6 +15,12 @@ Instead of operating interfaces step by step, you entrust software with a goal, 
 - [Open Curriculum Overview](https://agentware.studio/learn/): Overview of the studio's open AI engineering curriculum (`We teach what we build.`) and the three seasons of its first course, *Graduating from AI Gacha* (`ai-fundamentals`, `ai-coding`, and `building-ai-systems`).
 - [Course Platform](https://learn.agentware.studio): Learning portal for *Graduating from AI Gacha* featuring interactive practice games and a course-grounded AI assistant.
 
+## Blog
+
+- [Blog (English)](https://agentware.studio/blog/): Studio essays on Agentware, agentic software, and what the studio is building, written conclusion first; each post links its other language versions and lists its tags.
+- [Blog (Chinese)](https://agentware.studio/zh/blog/): The Chinese edition of the blog.
+- [Blog (Japanese)](https://agentware.studio/ja/blog/): The Japanese edition of the blog.
+
 ## Optional
 
 - [GitHub](https://github.com/AgentwareStudio): Official Agentware Studio organization and open-source repositories.

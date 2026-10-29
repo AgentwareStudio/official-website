@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { LINKS, footer, ui } from '../content';
-import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale } from '../i18n';
+import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale, type Locale } from '../i18n';
 import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg?url';
+import lockupLight from '../assets/brand/agentware_lockup_on-light.svg?url';
 import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg?url';
+import type { Page } from '../meta';
 
-type Page = 'home' | 'learn' | 'notfound';
+/** The same page in other locales, when it differs from the per-page default (blog posts exist in some languages only). */
+export type Alternates = Partial<Record<Locale, string>>;
 
 const NAV = [
   { href: '/#shift', key: 'paradigm', en: 'Paradigm' },
@@ -14,14 +17,46 @@ const NAV = [
 ] as const;
 const PAGES = [
   { href: '/learn/', key: 'learn', en: 'Learn' },
+  { href: '/blog/', key: 'blog', en: 'Blog' },
 ] as const;
+// The blog is written in Chinese, English and Japanese; the other locales link to the English blog.
+const BLOG_LOCALES: Locale[] = ['zh-CN', 'en', 'ja'];
+export const blogHref = (code: Locale) => (BLOG_LOCALES.includes(code) ? localeHref(code, '/blog/') : '/blog/');
+const pageHref = (p: string) => (p === '/blog/' ? blogHref(locale) : href(p));
+const isCurrent = (page: Page, key: string) => page === key || (key === 'blog' && page === 'post');
 // Read at render time: one build renders every locale in turn.
 const showEn = () => locale !== 'en';
 const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
+const isBlog = (page: Page) => page === 'blog' || page === 'post';
 const pagePath = (page: Page) => (page === 'learn' ? '/learn/' : '/');
+/** Where a language link leads: the page's own version in that locale, else the locale's version of the page type. */
+const langHref = (code: Locale, page: Page, alternates?: Alternates) =>
+  alternates?.[code] ?? (isBlog(page) ? blogHref(code) : localeHref(code, pagePath(page)));
+
+const THEME_LABEL: Partial<Record<Locale, string>> = { 'zh-CN': '切换浅色/深色', ja: 'ライト/ダーク切り替え' };
+
+/**
+ * Blog pages only: light (paper) or dark. The head script in Page.astro applies the stored choice, else the system
+ * setting, before the first paint; the icons follow <html data-blog-mode> through CSS (src/blog/blog.css).
+ */
+function ThemeButton() {
+  const toggle = () => {
+    const root = document.documentElement;
+    const next = root.dataset.blogMode === 'paper' ? 'dark' : 'paper';
+    root.dataset.blogMode = next;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'paper' ? '#F4F3EF' : '#07080C');
+    try { localStorage.setItem('aw-blog-theme', next); } catch { /* storage unavailable: the choice lasts for this page */ }
+  };
+  return (
+    <button type="button" className="theme-btn" onClick={toggle} aria-label={THEME_LABEL[locale] ?? 'Switch light/dark'} title={THEME_LABEL[locale] ?? 'Switch light/dark'}>
+      <svg className="theme-btn__sun" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="3" /><path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M3.4 12.6l1.3-1.3M11.3 4.7l1.3-1.3" /></svg>
+      <svg className="theme-btn__moon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.2 10.1A5.6 5.6 0 0 1 5.9 2.8a5.6 5.6 0 1 0 7.3 7.3Z" /></svg>
+    </button>
+  );
+}
 
 /** Language switch: links to the same page in each locale. */
-function LangMenu({ page }: { page: Page }) {
+function LangMenu({ page, alternates }: { page: Page; alternates?: Alternates }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -43,7 +78,7 @@ function LangMenu({ page }: { page: Page }) {
         {LOCALES.map((l) => (
           <li key={l.code}>
             <a
-              href={localeHref(l.code, pagePath(page))}
+              href={langHref(l.code, page, alternates)}
               hrefLang={l.code}
               lang={l.code}
               aria-current={l.code === locale ? 'true' : undefined}
@@ -59,7 +94,7 @@ function LangMenu({ page }: { page: Page }) {
   );
 }
 
-export function Header({ page }: { page: Page }) {
+export function Header({ page, alternates }: { page: Page; alternates?: Alternates }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const btn = useRef<HTMLButtonElement>(null);
@@ -90,7 +125,15 @@ export function Header({ page }: { page: Page }) {
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="wrap site-header__bar">
         <a className="brand" href={home ? '#top' : href('/')} aria-label={ui.home} onClick={close}>
-          <img src={lockupDark} alt="" width="139" height="24" />
+          {isBlog(page) ? (
+            // Blog pages can switch to paper: the matching lockup is shown by src/blog/blog.css.
+            <>
+              <img className="brand__on-dark" src={lockupDark} alt="" width="139" height="24" />
+              <img className="brand__on-light" src={lockupLight} alt="" width="139" height="24" />
+            </>
+          ) : (
+            <img src={lockupDark} alt="" width="139" height="24" />
+          )}
           <span className="brand__studio" aria-hidden="true">STUDIO</span>
         </a>
         <nav className="site-nav" aria-label={ui.mainNav}>
@@ -102,11 +145,12 @@ export function Header({ page }: { page: Page }) {
           <span className="site-nav__sep" aria-hidden="true" />
           <ul className="site-nav__pages">
             {PAGES.map((p) => (
-              <li key={p.href}><a href={href(p.href)} aria-current={page === p.key ? 'page' : undefined}>{ui.nav[p.key]}</a></li>
+              <li key={p.href}><a href={pageHref(p.href)} aria-current={isCurrent(page, p.key) ? 'page' : undefined}>{ui.nav[p.key]}</a></li>
             ))}
           </ul>
         </nav>
-        <LangMenu page={page} />
+        <LangMenu page={page} alternates={alternates} />
+        {isBlog(page) && <ThemeButton />}
         <button
           ref={btn}
           className="menu-btn"
@@ -135,13 +179,13 @@ export function Header({ page }: { page: Page }) {
           </ol>
           <ul className="menu-sheet__pages">
             {PAGES.map((p) => (
-              <li key={p.href}><a href={href(p.href)} onClick={close} aria-current={page === p.key ? 'page' : undefined}>{ui.nav[p.key]}{showEn() && <span lang="en">{p.en}</span>}</a></li>
+              <li key={p.href}><a href={pageHref(p.href)} onClick={close} aria-current={isCurrent(page, p.key) ? 'page' : undefined}>{ui.nav[p.key]}{showEn() && <span lang="en">{p.en}</span>}</a></li>
             ))}
           </ul>
           <ul className="menu-sheet__langs" aria-label={ui.language}>
             {LOCALES.map((l) => (
               <li key={l.code}>
-                <a href={localeHref(l.code, pagePath(page))} hrefLang={l.code} lang={l.code} aria-current={l.code === locale ? 'true' : undefined} onClick={() => rememberLocale(l.code)}>{l.label}</a>
+                <a href={langHref(l.code, page, alternates)} hrefLang={l.code} lang={l.code} aria-current={l.code === locale ? 'true' : undefined} onClick={() => rememberLocale(l.code)}>{l.label}</a>
               </li>
             ))}
           </ul>
@@ -155,7 +199,7 @@ export function Header({ page }: { page: Page }) {
  * When the page is not in the visitor's browser language and they have not picked a language yet,
  * offer theirs in a small notice. Switching or dismissing both count as a choice and are remembered.
  */
-export function LangHint({ page }: { page: Page }) {
+export function LangHint({ page, alternates }: { page: Page; alternates?: Alternates }) {
   const [want, setWant] = useState<(typeof LOCALES)[number] | null>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {
@@ -163,6 +207,8 @@ export function LangHint({ page }: { page: Page }) {
     if (chosenLocale()) return;
     const pref = browserLocale();
     if (pref === locale) return;
+    // Only offer a version that exists (blog pages list theirs in `alternates`).
+    if (isBlog(page) && !alternates?.[pref]) return;
     const t = window.setTimeout(() => { setWant(LOCALES.find((l) => l.code === pref) ?? null); requestAnimationFrame(() => setShown(true)); }, 900);
     return () => window.clearTimeout(t);
   }, []);
@@ -172,7 +218,7 @@ export function LangHint({ page }: { page: Page }) {
   return (
     <div className={`lang-hint ${shown ? 'is-on' : ''}`} role="region" aria-label={h.text} lang={want.code}>
       <p className="lang-hint__text">{h.text}</p>
-      <a className="lang-hint__go" href={localeHref(want.code, pagePath(page)) + (page === 'home' ? location.hash : '')} hrefLang={want.code} onClick={() => rememberLocale(want.code)}>
+      <a className="lang-hint__go" href={langHref(want.code, page, alternates) + (page === 'home' ? location.hash : '')} hrefLang={want.code} onClick={() => rememberLocale(want.code)}>
         {h.go}<span aria-hidden="true"> →</span>
       </a>
       <button type="button" className="lang-hint__x" onClick={dismiss} aria-label={h.close}>

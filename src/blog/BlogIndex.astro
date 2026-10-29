@@ -1,0 +1,133 @@
+---
+// The post list of one blog language: the latest post as a framed feature, then a ledger by year that can be
+// filtered by tag (?tag=… in the URL, so a filter can be linked; without JavaScript every post is listed).
+import './blog.css';
+import Cover from './Cover.astro';
+import { BLOG_UI, dotted } from './strings';
+import { blogIndex, postPath, type BlogLang, type Post } from './types';
+interface Props { lang: BlogLang; posts: Post[] }
+const { lang, posts } = Astro.props;
+const ui = BLOG_UI[lang];
+const no = (i: number) => String(posts.length - i).padStart(2, '0');
+const lead = posts[0];
+const years = [...new Set(posts.map((p) => p.publish_at.getUTCFullYear()))].map((y) => ({
+  year: y,
+  posts: posts.map((p, i) => ({ p, i })).filter(({ p }) => p.publish_at.getUTCFullYear() === y),
+}));
+const tags = [...posts.flatMap((p) => p.tags).reduce((m, t) => m.set(t, (m.get(t) ?? 0) + 1), new Map<string, number>())]
+  .sort((a, b) => b[1] - a[1]);
+const tagHref = (t: string) => `${blogIndex(lang)}?tag=${encodeURIComponent(t)}`;
+---
+<h1 class="visually-hidden">{ui.title} · Agentware Studio</h1>
+
+{posts.length === 0 && <div class="wrap"><p class="bi-empty">{ui.empty}</p></div>}
+
+{lead && (
+  <section class="bi-feature" aria-label={ui.latest}>
+    <div class="wrap">
+      <article class="bi-feature__card reveal">
+        {lead.cover && (
+          <div class="bi-frame">
+            <span class="bi-frame__c" aria-hidden="true"></span>
+            <div class="bi-frame__img"><Cover cover={lead.cover} eager /></div>
+            <span class="bi-frame__tag mono" aria-hidden="true">N° {no(0)}</span>
+          </div>
+        )}
+        <div class="bi-feature__text">
+          <p class="bi-kicker mono"><span class="bi-kicker__live">{ui.latest}</span><span>N° {no(0)}</span><time datetime={lead.publish_at.toISOString()}>{dotted(lead.publish_at)}</time></p>
+          <h2 class="bi-feature__title"><a class="bi-stretch" href={postPath(lang, lead.slug)}>{lead.title}</a></h2>
+          <p class="bi-feature__summary">{lead.summary}</p>
+          {lead.tags.length > 0 && <p class="bi-tags">{lead.tags.map((t) => <a class="bi-tag mono" href={tagHref(t)} data-tag={t}>{t}</a>)}</p>}
+          <span class="bi-go" aria-hidden="true"><span>{ui.read}</span><i class="bi-go__line"></i></span>
+        </div>
+      </article>
+    </div>
+  </section>
+)}
+
+{posts.length > 0 && (
+  <section class="bi-ledger" aria-labelledby="bi-archive" data-ledger>
+    <div class="wrap">
+      <div class="bi-ledger__bar">
+        <h2 class="eyebrow bi-ledger__head" id="bi-archive">{ui.archive} <span>// Archive</span></h2>
+        <div class="bi-filter" role="group" aria-label={ui.filter}>
+          <a class="bi-chip" href={blogIndex(lang)} data-tag="" aria-current="true">{ui.all}<span class="mono">{posts.length}</span></a>
+          {tags.map(([t, n]) => <a class="bi-chip" href={tagHref(t)} data-tag={t}>{t}<span class="mono">{n}</span></a>)}
+        </div>
+        <p class="bi-filter__status mono" aria-live="polite" data-status></p>
+      </div>
+      {years.map(({ year, posts: list }) => (
+        <div class="bi-year" data-year data-lead-only={list.length === 1 && list[0].i === 0 ? '' : undefined}>
+          <p class="bi-year__label mono" aria-hidden="true">{year}</p>
+          <ol class="bi-rows">
+            {list.map(({ p, i }) => (
+              <li class="bi-row reveal" style={`--d:${Math.min(i, 6) * 60}ms`} data-tags={JSON.stringify(p.tags)} data-lead={i === 0 ? '' : undefined}>
+                <span class="bi-row__no mono" aria-hidden="true">{no(i)}</span>
+                <time class="bi-row__date mono" datetime={p.publish_at.toISOString()}>{dotted(p.publish_at)}</time>
+                <div class="bi-row__main">
+                  <h3 class="bi-row__title"><a class="bi-stretch" href={postPath(lang, p.slug)}>{p.title}</a></h3>
+                  <p class="bi-row__summary">{p.summary}</p>
+                  {p.tags.length > 0 && <p class="bi-tags">{p.tags.map((t) => <a class="bi-tag mono" href={tagHref(t)} data-tag={t}>{t}</a>)}</p>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      <p class="bi-empty bi-empty--filter" hidden data-none>{ui.none}</p>
+    </div>
+  </section>
+)}
+<span hidden data-filter-labels data-shown-tag={ui.shownTag('{n}', '{t}')}></span>
+
+<script>
+  // Tag filter. The feature stands for the latest post while the whole ledger is shown; under a filter it gives way
+  // and the ledger lists every match, the latest included.
+  const ledger = document.querySelector<HTMLElement>('[data-ledger]');
+  const feature = document.querySelector<HTMLElement>('.bi-feature');
+  const status = document.querySelector<HTMLElement>('[data-status]');
+  const none = document.querySelector<HTMLElement>('[data-none]');
+  const labels = document.querySelector<HTMLElement>('[data-filter-labels]')?.dataset;
+  const rows = [...document.querySelectorAll<HTMLElement>('.bi-row')];
+  const chips = [...document.querySelectorAll<HTMLAnchorElement>('.bi-chip')];
+
+  const apply = (tag: string) => {
+    if (!ledger) return;
+    if (tag && !chips.some((c) => c.dataset.tag === tag)) tag = '';
+    ledger.classList.toggle('is-filtered', !!tag);
+    if (feature) feature.hidden = !!tag;
+    let shown = 0;
+    rows.forEach((r) => {
+      const hit = !tag || (JSON.parse(r.dataset.tags ?? '[]') as string[]).includes(tag);
+      r.classList.toggle('is-out', !hit);
+      if (hit && (tag || !('lead' in r.dataset))) shown++;
+    });
+    ledger.querySelectorAll<HTMLElement>('[data-year]').forEach((y) => {
+      y.classList.toggle('is-out', !y.querySelector('.bi-row:not(.is-out)' + (tag ? '' : ':not([data-lead])')));
+    });
+    chips.forEach((c) => (c.dataset.tag === tag ? c.setAttribute('aria-current', 'true') : c.removeAttribute('aria-current')));
+    if (none) none.hidden = !tag || shown > 0;
+    if (status && labels) status.textContent = tag ? (labels.shownTag ?? '').replace('{n}', String(shown)).replace('{t}', tag) : '';
+  };
+
+  const fromUrl = () => new URLSearchParams(location.search).get('tag') ?? '';
+  const go = (tag: string, scroll: boolean) => {
+    const url = new URL(location.href);
+    if (tag) url.searchParams.set('tag', tag); else url.searchParams.delete('tag');
+    history.pushState(null, '', url);
+    apply(tag);
+    if (scroll) document.querySelector('.bi-ledger__bar')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  };
+
+  document.addEventListener('click', (e) => {
+    const a = (e.target as Element).closest?.<HTMLAnchorElement>('a[data-tag]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    const tag = a.dataset.tag ?? '';
+    // A tag on a post toggles; the chips select.
+    const next = a.classList.contains('bi-chip') ? tag : fromUrl() === tag ? '' : tag;
+    go(next, !a.classList.contains('bi-chip'));
+  });
+  addEventListener('popstate', () => apply(fromUrl()));
+  apply(fromUrl());
+</script>
