@@ -463,7 +463,7 @@ export function ExecutionLoop() {
               <span className="readout__no">{stepNo}</span>
               <span className="readout__en" lang="en">{step.en}</span>
             </div>
-            <h4 className="readout__title">{step.zh}</h4>
+            <h3 className="readout__title">{step.zh}</h3>
             <p className="readout__text">{step.text}</p>
             <code className="readout__code"><span aria-hidden="true">›</span> {step.code}</code>
           </div>

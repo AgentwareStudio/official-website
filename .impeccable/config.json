@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [
+      "kicker-above-heading",
+      "numbered-section-labels",
+      "hero-eyebrow-chip",
+      "italic-serif-display",
+      "wide-tracking"
+    ],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-29T15:18:33.941Z",
+        "reason": "Brand typeface (VIS): one sans throughout"
+      }
+    ]
+  }
+}
