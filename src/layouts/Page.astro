@@ -21,8 +21,8 @@ import sansKr from '../assets/fonts/aw-sans-kr.woff2?url';
 interface Props {
   page: Page;
   code: Locale;
-  /** Blog pages: title, description, the page's path and its language versions (paths, this page included). */
-  blog?: { title: string; description: string; path: string; alternates: Alternates };
+  /** Blog pages: title, description, the page's path, its language versions (paths, this page included) and its feed. */
+  blog?: { title: string; description: string; path: string; alternates: Alternates; rss: string };
 }
 const { page, code, blog } = Astro.props;
 const FONT: Partial<Record<Locale, string>> = { 'zh-CN': sansSc, ja: sansJp, ko: sansKr };
@@ -55,6 +55,7 @@ const redirect = page === 'home' && !self.path;
         <link rel="canonical" href={SITE + blog.path} />
         {blogVersions.map(([c, path]) => <link rel="alternate" hreflang={c} href={SITE + path} />)}
         {blog.alternates.en && <link rel="alternate" hreflang="x-default" href={SITE + blog.alternates.en} />}
+        <link rel="alternate" type="application/rss+xml" title={blog.title} href={SITE + blog.rss} />
       </>
     ) : (
       <>

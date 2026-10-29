@@ -2,7 +2,9 @@
 import Page from '../../layouts/Page.astro';
 import BlogIndex from '../../blog/BlogIndex.astro';
 import { indexMeta } from '../../blog/pages';
-import { listPosts } from '../../blog/source';
-const posts = await listPosts('en');
+import { indexData } from '../../blog/routes';
+
+export const prerender = false;
+const posts = await indexData('en');
 ---
 <Page page="blog" code="en" blog={indexMeta('en')}><BlogIndex lang="en" posts={posts} /></Page>

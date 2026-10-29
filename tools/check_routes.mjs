@@ -20,9 +20,15 @@ async function check(path, kind, visit = 'first') {
   const row = { path, kind, visit, pass: false };
   checks.push(row);
   try {
+    // Pages and missing paths are requested as a browser opens them: Static Assets treats navigations differently
+    // (an unmatched navigation gets the 404 page unless the path goes to the Worker first).
+    const navigate = kind === 'page' || kind === 'missing';
     const response = await fetch(new URL(path, base), {
       redirect: 'manual', signal: AbortSignal.timeout(15000),
-      headers: { 'User-Agent': 'Agentware-Route-Check/1.0' },
+      headers: {
+        'User-Agent': 'Agentware-Route-Check/1.0',
+        ...(navigate && { Accept: 'text/html,application/xhtml+xml', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Dest': 'document' }),
+      },
     });
     const body = Buffer.from(await response.arrayBuffer());
     const text = body.toString('utf8');

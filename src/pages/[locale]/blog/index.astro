@@ -2,13 +2,12 @@
 import Page from '../../../layouts/Page.astro';
 import BlogIndex from '../../../blog/BlogIndex.astro';
 import { indexMeta } from '../../../blog/pages';
-import { listPosts } from '../../../blog/source';
-import { BLOG_LANGS, type BlogLang } from '../../../blog/types';
+import { blogLang, indexData } from '../../../blog/routes';
+import { BLOG_LANGS } from '../../../blog/types';
 
-export function getStaticPaths() {
-  return (['zh', 'ja'] as BlogLang[]).map((lang) => ({ params: { locale: lang }, props: { lang } }));
-}
-const { lang } = Astro.props;
-const posts = await listPosts(lang);
+export const prerender = false;
+const lang = blogLang(Astro.params.locale);
+if (!lang) return new Response(null, { status: 404 });
+const posts = await indexData(lang);
 ---
 <Page page="blog" code={BLOG_LANGS[lang].locale} blog={indexMeta(lang)}><BlogIndex lang={lang} posts={posts} /></Page>

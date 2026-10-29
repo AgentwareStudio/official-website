@@ -2,12 +2,10 @@
 import Page from '../../../layouts/Page.astro';
 import BlogPost from '../../../blog/BlogPost.astro';
 import { postMeta } from '../../../blog/pages';
-import { allPosts, translations } from '../../../blog/source';
+import { postData } from '../../../blog/routes';
 
-export async function getStaticPaths() {
-  return (await allPosts()).filter((p) => p.lang === 'en').map((post) => ({ params: { slug: post.slug }, props: { post } }));
-}
-const { post } = Astro.props;
-const others = await translations(post);
+export const prerender = false;
+const data = await postData('en', Astro.params.slug);
+if (!data) return new Response(null, { status: 404 });
 ---
-<Page page="post" code="en" blog={postMeta(post, others)}><BlogPost post={post} others={others} /></Page>
+<Page page="post" code="en" blog={postMeta(data.post, data.others)}><BlogPost {...data} /></Page>

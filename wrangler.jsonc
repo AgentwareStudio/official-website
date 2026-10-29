@@ -1,13 +1,28 @@
 {
   "name": "agentware-official",
   "compatibility_date": "2026-10-19",
+  // pg (the blog's Postgres client, src/blog/source.ts) needs Node.js APIs.
+  "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
   // Workers Builds runs `wrangler preview` for non-production branches; Previews need this block (it may be
   // empty: the static assets settings stay at the top level). Preview URLs are public on workers.dev with noindex.
   "previews": {},
+  // The build (@astrojs/cloudflare) adds the Worker entry, the ASSETS binding and the assets directory (dist/client).
+  // Site pages are static assets. The blog and the sitemap render in the Worker: they must go to it first, because a
+  // browser navigation that matches no asset would otherwise get the 404 page without the Worker being invoked.
   "assets": {
-    "directory": "./dist",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/blog", "/blog/*", "/zh/blog", "/zh/blog/*", "/ja/blog", "/ja/blog/*", "/sitemap.xml"]
+  },
+  "hyperdrive": [
+    {
+      // Supabase as blog_reader (it can read blog.published_posts only).
+      "binding": "HYPERDRIVE",
+      "id": "TODO-hyperdrive-id",
+      // `astro dev` / `wrangler dev`: the local Supabase (`supabase start`), with the local-only password from
+      // supabase/seed.sql.
+      "localConnectionString": "postgresql://blog_reader:blog_reader_local@127.0.0.1:54322/postgres"
+    }
+  ]
 }

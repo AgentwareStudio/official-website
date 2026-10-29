@@ -6,16 +6,15 @@ import BlogMark from './BlogMark.astro';
 import Cover from './Cover.astro';
 import { BLOG_UI, LANG_LABEL, dotted, readingMinutes } from './strings';
 import { headings } from './pages';
-import { listPosts } from './source';
 import { blogIndex, postPath, type Post } from './types';
-interface Props { post: Post; others: Post[] }
-const { post, others } = Astro.props;
+/** `list`: every post in this language, newest first (for the number and the previous/next links). */
+interface Props { post: Post; others: Post[]; list: Post[] }
+const { post, others, list } = Astro.props;
 const ui = BLOG_UI[post.lang];
 const toc = headings(post.body_html);
 let n2 = 0;
 const tocItems = toc.map((h) => ({ ...h, no: h.level === 2 ? String(++n2).padStart(2, '0') : '' }));
 const edited = post.updated_at.getTime() - post.publish_at.getTime() > 86_400_000;
-const list = await listPosts(post.lang);
 const at = list.findIndex((p) => p.id === post.id);
 const no = String(list.length - at).padStart(2, '0');
 const newer = at > 0 ? list[at - 1] : null;

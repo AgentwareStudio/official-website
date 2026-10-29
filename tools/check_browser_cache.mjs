@@ -57,7 +57,7 @@ function rulesOf(files) {
   return rules;
 }
 
-const current = output(join(root, 'dist'));
+const current = output(join(root, 'dist/client'));
 const rules = rulesOf(current);
 for (const kind of ['fonts', 'brand']) {
   for (const name of readdirSync(join(root, 'src/assets', kind))) {

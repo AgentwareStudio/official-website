@@ -8,9 +8,9 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 export const root = fileURLToPath(new URL('../', import.meta.url));
-const INPUTS = ['src', 'public', 'tools', 'astro.config.mjs', 'tsconfig.json', 'package.json'];
+const INPUTS = ['src', 'public', 'tools', 'astro.config.mjs', 'tsconfig.json', 'package.json', 'wrangler.jsonc'];
 
-/** Built files as a map of path (relative to dist, "/"-separated) to contents. */
+/** Built files as a map of path (relative to the given directory, "/"-separated) to contents. */
 export function output(dist) {
   const files = new Map();
   for (const f of readdirSync(dist, { recursive: true, withFileTypes: true }).filter((f) => f.isFile())) {
@@ -40,7 +40,8 @@ export async function withFixture(fn) {
           cacheDir: join(dir, '.cache/astro'),
           vite: { cacheDir: join(dir, '.cache/vite'), plugins },
         });
-        return output(join(dir, 'dist'));
+        // The static files (the Worker is in dist/server).
+        return output(join(dir, 'dist/client'));
       },
     };
     return await fn(fixture);
