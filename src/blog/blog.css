@@ -5,6 +5,19 @@
    the path is the reading, and the Signal Orange point lights only when a result is reached.
    ===================================================================== */
 
+/* Full Chinese and Japanese fonts in unicode-range slices (tools/blog_fonts.py): posts use characters that the
+   site's subsets lack. They follow the subsets, so a page downloads only the slices for its missing characters. */
+@import './cjk-fonts.css';
+
+html:lang(zh-CN), [lang='zh-CN'] {
+  --sans: 'Inter', 'AW Sans SC', 'AW Sans SC Full', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  --mono: var(--mono-system), 'AW Sans SC', 'AW Sans SC Full', monospace;
+}
+html:lang(ja), [lang='ja'] {
+  --sans: 'Inter', 'AW Sans JP', 'AW Sans JP Full', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, system-ui, sans-serif;
+  --mono: var(--mono-system), 'AW Sans JP', 'AW Sans JP Full', monospace;
+}
+
 :root {
   --b-ink: #16181F;          /* body text on paper, 15.6:1 */
   --b-ink-2: #4A5060;        /* secondary text on paper, 7.3:1 */

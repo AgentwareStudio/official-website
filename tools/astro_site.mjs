@@ -49,6 +49,15 @@ function writeHeaders(out) {
       rules.set(`/${file.replace(/index\.html$|\.html$/, '')}`, { 'Cache-Control': 'public, max-age=0, must-revalidate' });
     }
   }
+  // The blog's CJK font slices (tools/blog_fonts.py) are too many for exact rules. Every one has a content hash, and
+  // wrangler.jsonc sends /fonts/cjk/* to the Worker first, so a missing slice gets the Worker's 404 response, not
+  // the static 404 page with this rule's headers.
+  const slices = files(join(out, 'fonts/cjk')).map((f) => relative(out, f).split('\\').join('/'));
+  if (!slices.length) throw new Error('Missing blog font slices (fonts/cjk)');
+  for (const file of slices) {
+    if (!/^fonts\/cjk\/(sc|jp)-\d{3}\.[0-9a-f]{10}\.woff2$/.test(file)) throw new Error(`Cannot cache an unversioned font slice: ${file}`);
+  }
+  rules.set('/fonts/cjk/*', { 'Cache-Control': 'public, max-age=31536000, immutable' });
   if (rules.size > 100) throw new Error('Cloudflare Static Assets supports at most 100 header rules');
   const source = '# Generated from existing build files; never replace with /assets/*.\n'
     + [...rules].sort(([a], [b]) => a.localeCompare(b))

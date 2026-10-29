@@ -3,7 +3,7 @@
 
 Usage:  python3 tools/fonts.py
 Sources (google/fonts, OFL):
-  ofl/notosanssc/NotoSansSC[wght].ttf  -> src/assets/fonts/aw-sans-sc.woff2  (zh-CN copy and titles: src/**/*.ts(x))
+  ofl/notosanssc/NotoSansSC[wght].ttf  -> src/assets/fonts/aw-sans-sc.woff2  (zh-CN copy and titles: src/**/*.ts(x), src/blog excluded)
   ofl/notosansjp/NotoSansJP[wght].ttf  -> src/assets/fonts/aw-sans-jp.woff2  (src/i18n/locales/ja.json + ja titles in tools/meta.json)
   ofl/notosanskr/NotoSansKR[wght].ttf  -> src/assets/fonts/aw-sans-kr.woff2  (src/i18n/locales/ko.json + ko titles in tools/meta.json)
 Paths default to ../fontlab/; pass --sc/--jp/--kr to override. Re-run after changing copy.
@@ -106,7 +106,9 @@ if __name__ == '__main__':
     ap.add_argument('--shared-only', action='store_true', help='Rebuild shared subsets from committed WOFF2s only')
     a = ap.parse_args()
     if not a.shared_only:
-        zh = read([*ROOT.glob('src/**/*.ts'), *ROOT.glob('src/**/*.tsx')])
+        # The blog has its own full fonts (tools/blog_fonts.py): its copy stays out of the site subset.
+        site = [p for p in [*ROOT.glob('src/**/*.ts'), *ROOT.glob('src/**/*.tsx')] if 'blog' not in p.relative_to(ROOT / 'src').parts]
+        zh = read(site)
         ja = read([ROOT / 'src/i18n/locales/ja.json', ROOT / 'src/i18n.ts']) | titles('ja')
         ko = read([ROOT / 'src/i18n/locales/ko.json', ROOT / 'src/i18n.ts']) | titles('ko')
         make(a.sc, zh, 'aw-sans-sc.woff2')

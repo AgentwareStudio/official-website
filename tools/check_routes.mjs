@@ -105,6 +105,8 @@ await batch([...assets].sort(), (path) => check(path, 'asset'));
 const missing = [
   '/.bashrc', `/${nonce}`, ...pages.filter((path) => !path.endsWith('/learn/')).map((path) => `${path}${nonce}/nested`),
   ...['js', 'css', 'woff2'].map((extension) => `/assets/${nonce}.${extension}`), `/fonts/${nonce}.woff2`,
+  // Under the blog font slices' immutable wildcard: the 404 must still revalidate.
+  `/fonts/cjk/sc-000.${nonce}.woff2`,
 ];
 // A unique path is not proof of a cold cache: retain actual cache headers for
 // both requests and leave origin/cache diagnosis to the deployment comparison.

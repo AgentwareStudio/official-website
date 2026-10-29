@@ -16,7 +16,8 @@ function rulesOf(files) {
     assert.ok(line.length <= 2000, 'Static Assets header line length limit');
     if (!line || line.startsWith('#')) continue;
     if (!/^\s/.test(line)) {
-      assert.ok(!/[*?:]/.test(line), 'Cache rules must use exact local paths');
+      // One wildcard: the blog's font slices, all content-hashed, behind run_worker_first (tools/astro_site.mjs).
+      assert.ok(line === '/fonts/cjk/*' || !/[*?:]/.test(line), 'Cache rules must use exact local paths');
       assert.ok(!rules.has(line), 'Duplicate header path');
       path = line;
       rules.set(path, {});
@@ -38,7 +39,12 @@ function rulesOf(files) {
     if (contentTypes.has(path)) continue;
     const value = headers['Cache-Control'];
     assert.ok(value, `Expected Cache-Control header for ${path}`);
-    if (value.includes('immutable')) {
+    if (path === '/fonts/cjk/*') {
+      assert.equal(value, 'public, max-age=31536000, immutable');
+      const slices = [...files.keys()].filter((f) => f.startsWith('fonts/cjk/'));
+      assert.ok(slices.length > 0, 'The font slice rule must cover existing files');
+      for (const f of slices) assert.match(f, /^fonts\/cjk\/(sc|jp)-\d{3}\.[0-9a-f]{10}\.woff2$/, `${f} must be content-hashed`);
+    } else if (value.includes('immutable')) {
       assert.match(path, /^\/assets\/.+[.-][A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png)$/);
       assert.ok(files.has(path.slice(1)), 'Immutable rule must name an existing build file');
     } else assert.equal(value, 'public, max-age=0, must-revalidate');
@@ -59,6 +65,9 @@ function rulesOf(files) {
 
 const current = output(join(root, 'dist/client'));
 const rules = rulesOf(current);
+// The slice wildcard is safe only while missing slices reach the Worker (its 404 does not carry the rule).
+const worker = JSON.parse(readFileSync(join(root, 'dist/server/wrangler.json'), 'utf8'));
+assert.ok(worker.assets?.run_worker_first?.includes('/fonts/cjk/*'), 'wrangler.jsonc must send /fonts/cjk/* to the Worker first');
 for (const kind of ['fonts', 'brand']) {
   for (const name of readdirSync(join(root, 'src/assets', kind))) {
     assert.ok(current.get(`${kind}/${name}`)?.equals(readFileSync(join(root, 'src/assets', kind, name))), `Legacy URL /${kind}/${name} missing or changed`);
