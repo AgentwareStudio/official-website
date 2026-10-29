@@ -4,6 +4,9 @@
   // pg (the blog's Postgres client, src/blog/source.ts) needs Node.js APIs.
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
+  // Workers Previews and version previews get workers.dev URLs (public, with noindex); the production Worker itself
+  // stays off workers.dev (workers_dev: false) and is served on agentware.studio only.
+  "preview_urls": true,
   // Workers Builds runs `wrangler preview` for non-production branches; Previews need this block (the static assets
   // settings stay at the top level). Preview URLs are public on workers.dev with noindex. Previews read the staging
   // database: bindings are not inherited from the top level.
