@@ -64,7 +64,7 @@ The root `wrangler.jsonc` serves `dist/client` with `html_handling: auto-trailin
 
 Blog responses are kept in the data center cache for five minutes (Cache API, `src/middleware.ts`; the key ignores the query string) and revalidate in browsers like the static HTML. The publish script purges the URLs it changes.
 
-The Worker needs the `HYPERDRIVE` binding: a Hyperdrive configuration for the environment's Supabase database, connecting as `blog_reader`. Set its `id` in `wrangler.jsonc` (`TODO-hyperdrive-id` until it exists; deploying fails without it). `nodejs_compat` is required by `pg`.
+The Worker needs the `HYPERDRIVE` binding, a Hyperdrive configuration connecting to Supabase as `blog_reader` through the Session pooler: `agentware-blog-prod` (Supabase `agentware-prod`) for production, and `agentware-blog-staging` (Supabase `agentware-staging`) in the `previews` block for Workers Previews, which do not inherit bindings. `nodejs_compat` is required by `pg`.
 
 For Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command, with this repository as the project root. The Worker name is `agentware-official`. Keep the existing custom domain associated with that Worker; the config leaves domain/route management in the dashboard and disables `workers.dev`. Before production deployment, compare the current dashboard configuration with this file, including any existing Worker script, bindings and routes. The local configuration does not prove which settings are currently deployed.
 
