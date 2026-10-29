@@ -246,6 +246,8 @@ html.js .bi-rows .reveal { transition-delay: var(--d, 0ms); }
 .tok-k { color: #C9CDD6; }
 .tok-s { color: #8FCBA5; }
 .tok-f { color: var(--fg); }
+.tok-n { color: #C9CDD6; }
+.tok-c { color: var(--dim); }
 .prose :not(pre) > code { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: .84em; padding: .14em .42em; background: var(--paper-2); border: 1px solid var(--b-hair); border-radius: 2px; color: var(--ink); }
 
 .prose figure { counter-increment: fig; margin: 2.6em 0; }
