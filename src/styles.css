@@ -237,7 +237,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .stage-frame::before, .stage-frame::after { content: ''; position: absolute; width: 10px; height: 10px; border: 1px solid var(--hair-2); }
 .stage-frame::before { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
 .stage-frame::after { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
-.stage-frame__corner { position: absolute; top: 14px; left: 18px; font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 10px; letter-spacing: .16em; color: var(--muted); }
+.stage-frame__corner { position: absolute; top: 14px; left: 18px; font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 11px; letter-spacing: .16em; color: var(--muted); }
 .shift-stage { width: 100%; height: auto; max-height: calc(100svh - 380px); overflow: visible; }
 
 .era-stack { display: grid; }
@@ -257,7 +257,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .era-tabs__bar { position: relative; height: 2px; background: var(--hair); overflow: hidden; }
 .era-tabs__bar i { position: absolute; inset: 0; background: var(--fg); transform-origin: left; transform: scaleX(0); }
 .era-tabs__no { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 11px; }
-.era-tabs__en { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 10px; letter-spacing: .04em; line-height: 1.4; }
+.era-tabs__en { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 11px; letter-spacing: .04em; line-height: 1.4; }
 
 .shift-list { display: grid; gap: 56px; }
 .shift-list__item { display: grid; gap: 28px; }
@@ -334,7 +334,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .compare table { width: 100%; border-collapse: collapse; min-width: 640px; }
 .compare th, .compare td { text-align: left; vertical-align: top; padding: 20px 0; border-bottom: 1px solid var(--hair); font-weight: 400; }
 .compare thead th { padding-top: 0; padding-bottom: 18px; border-bottom-color: var(--hair-2); font-size: 15px; font-weight: 500; color: var(--slate); }
-.compare thead th span { display: block; font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); margin-top: 4px; font-weight: 400; }
+.compare thead th span { display: block; font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); margin-top: 4px; font-weight: 400; }
 .compare thead th.is-aw { color: var(--fg); }
 .compare tbody th { width: 16.66%; font-size: 14px; color: var(--dim); padding-right: 24px; }
 .compare td { width: 41.66%; font-size: 16px; color: var(--slate); padding-right: 32px; line-height: 1.6; }
@@ -566,7 +566,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .course__title em { display: block; font-size: .56em; color: var(--slate); margin-top: 8px; }
 .course__desc { margin-top: 20px; color: var(--slate); font-size: 15px; line-height: 1.85; font-weight: 300; }
 .facts { margin-top: 28px; border-top: 1px solid var(--hair); }
-.facts div { display: grid; grid-template-columns: 6em 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hair); font-size: 14px; }
+.facts div { display: grid; grid-template-columns: minmax(6em, max-content) minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hair); font-size: 14px; }
 .facts dt { color: var(--dim); }
 .lessons { grid-column: 7 / 13; }
 .lessons__unit h3 { font-size: 13px; font-weight: 500; color: var(--slate); padding: 28px 0 10px; letter-spacing: .02em; }
@@ -618,7 +618,7 @@ html.paged { scroll-behavior: auto; scroll-padding-top: 0; }
 .screen--runtime .trace { margin-top: clamp(12px, 2vh, 24px); }
 .screen--runtime .trace__list { min-height: calc(5 * 1.5em + 5 * 6px); }
 .screen--runtime .metrics { margin-top: clamp(10px, 1.6vh, 18px); }
-.screen--runtime .metrics div { padding: 8px 0; }
+.screen--runtime .metrics div { padding-top: 8px; padding-bottom: 8px; }
 .screen--runtime .console__actions { margin-top: clamp(12px, 2vh, 20px); }
 .screen--runtime .console__hint { margin-top: 8px; }
 /* 05 pillars: list + detail */
@@ -848,7 +848,7 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
   .head__sub .lead-line { font-size: 17px; margin-bottom: 2px; }
   .console__readout .readout__step { height: 160px; }
   .screen--runtime .readout__code { margin-top: 8px; }
-  .screen--runtime .metrics div { padding: 6px 0; }
+  .screen--runtime .metrics div { padding-top: 6px; padding-bottom: 6px; }
   .screen--runtime .console__actions { margin-top: 10px; }
   .screen--runtime .console__readout { padding-top: 14px; padding-bottom: 12px; }
   .site-footer__brand p { margin-top: 8px; flex-direction: row; gap: 10px; }
@@ -932,7 +932,7 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
   .hero { padding-top: calc(var(--header-h) + 40px); padding-bottom: 56px; align-items: flex-start; }
   .hero__mark { gap: 14px; }
   .hero__mark .live-mark { width: 84px !important; height: 84px !important; }
-  .hero__tag { font-size: 9.5px; letter-spacing: .12em; }
+  .hero__tag { font-size: 11px; letter-spacing: .1em; }
   .hero__en { font-size: clamp(40px, 12vw, 56px); }
   .hero__en em { display: block; }
   .questions { display: block; }
@@ -955,7 +955,7 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
   .era-card__motto { font-size: 40px; }
   .join-link { grid-template-columns: 1fr auto; }
   .join-link__en { display: none; }
-  .facts div { grid-template-columns: 5em 1fr; }
+  .facts div { grid-template-columns: minmax(5em, max-content) minmax(0, 1fr); }
 }
 
 .hero .live-mark { cursor: pointer; }
@@ -1023,7 +1023,7 @@ html:not(:lang(zh)):not(:lang(ja)) :is(h1, h2, h3) { text-wrap: balance; }
 .lang__list a:hover { background: var(--surface-2); color: var(--fg); }
 .lang__list a[aria-current] { color: var(--fg); }
 .lang__list a[aria-current] .lang__code { color: var(--fg); }
-.lang__code { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 10px; letter-spacing: .12em; color: var(--faint); }
+.lang__code { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 11px; letter-spacing: .12em; color: var(--faint); }
 .menu-sheet__langs { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 28px 0 0; padding: 20px 0 0; list-style: none; border-top: 1px solid var(--hair); }
 .menu-sheet__langs a { font-size: 14px; color: var(--dim); text-decoration: none; }
 .menu-sheet__langs a[aria-current] { color: var(--fg); }
@@ -1185,3 +1185,8 @@ html:not(:lang(zh)) .shift-sticky .opening__copy p { font-size: 13.5px; line-hei
 .lang-hint__x svg { stroke: currentColor; stroke-width: 1.4; fill: none; }
 @media (max-width: 640px) { .lang-hint { left: 16px; right: 16px; bottom: 16px; max-width: none; } }
 @media (prefers-reduced-motion: reduce) { .lang-hint { transition: none; } }
+
+/* Latin-script locales: keep long paragraphs near 80 characters a line (the wide boxes above suit CJK line breaking).
+   Not on the chapters that must fit one desktop screen with longer copy (#not, #studio): narrower text overflows them. */
+html:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)) #architecture .head__sub p,
+html:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)) .mf-item__body { max-width: 56ch; }
