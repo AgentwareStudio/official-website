@@ -3,4 +3,3 @@ Allow: /
 
 Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Sitemap: https://agentware.studio/sitemap.xml
-LLMs-Txt: https://agentware.studio/llms.txt
