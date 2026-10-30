@@ -6,4 +6,4 @@ export function getStaticPaths() {
   return LOCALES.filter((l) => l.path).map((l) => ({ params: { locale: l.path }, props: { code: l.code } }));
 }
 export const GET: APIRoute = async ({ props }) =>
-  new Response(await pageMarkdown('learn', props.code as Locale), { headers: { 'Content-Type': MARKDOWN_TYPE } });
+  new Response(await pageMarkdown('home', props.code as Locale), { headers: { 'Content-Type': MARKDOWN_TYPE } });

@@ -15,7 +15,7 @@ const checks = [];
 const assets = new Set();
 const nonce = `__aw_missing_${randomUUID()}__`;
 /** A page's Markdown version (src/markdown.ts). */
-const markdownPath = (path) => (path === '/' ? '/index.md' : `${path.replace(/\/$/, '')}.md`);
+const markdownPath = (path) => `${path.replace(/\/?$/, '/')}index.md`;
 const fingerprint = (body) => createHash('sha256').update(body).digest('hex');
 
 async function check(path, kind, visit = 'first') {
@@ -52,7 +52,7 @@ async function check(path, kind, visit = 'first') {
       expect(/^text\/plain\s*;\s*charset=utf-8$/i.test(type), 'llms.txt must declare UTF-8 for browser navigation');
       expect(text.startsWith('# Agentware Studio'), 'Wrong llms.txt content');
       expect(text.includes('https://agentware.studio/agentware.md'), 'llms.txt must link to agentware.md');
-      expect(text.includes('https://agentware.studio/index.md') && text.includes('https://agentware.studio/blog.md'), 'llms.txt must link the pages\' Markdown versions');
+      expect(text.includes('https://agentware.studio/index.md') && text.includes('https://agentware.studio/blog/index.md'), 'llms.txt must link the pages\' Markdown versions');
       expect(!text.includes('\uFFFD'), 'llms.txt contains invalid UTF-8 or replacement characters');
     } else if (kind === 'llms-full') {
       expect(response.status === 200, 'llms-full.txt must return HTTP 200');
@@ -124,7 +124,7 @@ const missing = [
   ...['js', 'css', 'woff2'].map((extension) => `/assets/${nonce}.${extension}`), `/fonts/${nonce}.woff2`,
   // Under the blog font slices' immutable wildcard: the 404 must still revalidate.
   `/fonts/cjk/sc-000.${nonce}.woff2`,
-  `/${nonce}.md`, `/blog/${nonce}.md`, `/zh/blog/${nonce}.md`, '/es/blog.md',
+  `/${nonce}/index.md`, `/blog/${nonce}/index.md`, `/zh/blog/${nonce}/index.md`, '/es/blog/index.md',
 ];
 // A unique path is not proof of a cold cache: retain actual cache headers for
 // both requests and leave origin/cache diagnosis to the deployment comparison.

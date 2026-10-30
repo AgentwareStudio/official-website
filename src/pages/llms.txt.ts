@@ -31,7 +31,7 @@ export async function GET() {
   const languages = ALTERNATES.map((c) => {
     const l = LOCALES.find((x) => x.code === c)!;
     const base = l.path ? `/${l.path}/` : '/';
-    return `- [${l.label}](${md(base)}): the home page in ${l.label}; the curriculum page: ${md(`${base}learn/`)}`;
+    return `- [${l.label}](${md(base)}): the home page in ${l.label}\n- [${l.label}: curriculum](${md(`${base}learn/`)}): the open curriculum page in ${l.label}`;
   }).join('\n');
   const text = `# Agentware Studio
 
@@ -39,7 +39,7 @@ export async function GET() {
 
 Instead of operating interfaces step by step, you entrust software with a goal, define the boundaries, and specify the acceptance criteria; within its authorized scope, the system understands context, autonomously organizes actions, adapts to changes, and delivers verifiable outcomes. Agentware Studio advances this paradigm through deep research, an open AI engineering curriculum, and user-facing product experiments. The studio focuses on delivering goal-driven Agentware for consumers and private, high-governance Agentware solutions for enterprises.
 
-Every page has a Markdown version: its URL without the trailing slash plus \`.md\` (\`/index.md\` for the home page). Each HTML page also links it as \`<link rel="alternate" type="text/markdown">\`.
+Every page has a Markdown version at its URL plus \`index.md\` (\`/zh/learn/\` → \`/zh/learn/index.md\`). Each HTML page also links it as \`<link rel="alternate" type="text/markdown">\`.
 
 ## Documentation
 

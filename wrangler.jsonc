@@ -19,15 +19,14 @@
   // The build (@astrojs/cloudflare) adds the Worker entry, the ASSETS binding and the assets directory (dist/client).
   // Site pages are static assets. The blog and the sitemap render in the Worker: they must go to it first, because a
   // browser navigation that matches no asset would otherwise get the 404 page without the Worker being invoked.
-  // So do llms.txt and llms-full.txt (they list the posts) and the blog indexes' Markdown versions (/blog.md; the
-  // posts' /blog/<slug>.md fall under /blog/*). The blog's font slices go to it first too: their wildcard cache
-  // rule (tools/astro_site.mjs) must not reach the static 404 page served for a missing slice.
+  // So do llms.txt and llms-full.txt (they list the posts); the blog's Markdown versions (/blog/index.md, …) fall
+  // under /blog/*. The blog's font slices go to it first too: their wildcard cache rule (tools/astro_site.mjs) must
+  // not reach the static 404 page served for a missing slice.
   "assets": {
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
     "run_worker_first": [
-      "/blog", "/blog/*", "/zh/blog", "/zh/blog/*", "/ja/blog", "/ja/blog/*", "/blog.md", "/zh/blog.md", "/ja/blog.md",
-      "/sitemap.xml", "/llms.txt", "/llms-full.txt", "/fonts/cjk/*"
+      "/blog", "/blog/*", "/zh/blog", "/zh/blog/*", "/ja/blog", "/ja/blog/*", "/sitemap.xml", "/llms.txt", "/llms-full.txt", "/fonts/cjk/*"
     ]
   },
   "hyperdrive": [

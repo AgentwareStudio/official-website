@@ -1,5 +1,5 @@
-// Markdown versions of the pages, for agents and AI search: a page's URL without its trailing slash plus .md
-// (/index.md for the root). Site pages and the Agentware guide (/agentware.md) are built from the same copy as the
+// Markdown versions of the pages, for agents and AI search: a page's URL plus index.md (/zh/learn/index.md), as
+// llmstxt.org proposes for URLs without a file name. Site pages and the Agentware guide (/agentware.md) are built from the same copy as the
 // HTML (content.ts with the locale's messages), never converted from the HTML; blog pages come from the stored
 // Markdown (src/blog/markdown.ts).
 import * as C from './content';
@@ -8,8 +8,8 @@ import { ALTERNATES, SITE, pageMeta, pageUrl } from './meta';
 
 export const MARKDOWN_TYPE = 'text/markdown; charset=utf-8';
 
-/** The Markdown path of a page path: /zh/learn/ → /zh/learn.md, / → /index.md. */
-export const markdownPath = (path: string) => (path === '/' ? '/index.md' : `${path.replace(/\/$/, '')}.md`);
+/** The Markdown path of a page path: /zh/learn/ → /zh/learn/index.md, / → /index.md. */
+export const markdownPath = (path: string) => `${path.replace(/\/?$/, '/')}index.md`;
 
 /** Text for a link label: brackets would end it early. */
 export const label = (s: string) => s.replace(/([[\]\\])/g, '\\$1');

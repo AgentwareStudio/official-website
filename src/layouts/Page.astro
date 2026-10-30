@@ -70,6 +70,7 @@ const redirect = page === 'home' && !self.path;
       </>
     )}
     {markdown && <link rel="alternate" type="text/markdown" href={markdown} />}
+    {markdown && <link rel="describedby" type="text/plain" href={`${SITE}/llms.txt`} />}
     {page !== 'notfound' && <script is:inline type="application/ld+json" set:html={jsonLd(blog?.graph)} />}
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />

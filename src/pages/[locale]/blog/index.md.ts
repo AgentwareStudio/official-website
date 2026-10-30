@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
-import { indexMarkdown, markdownResponse } from '../../blog/markdown';
-import { blogLang, indexData } from '../../blog/routes';
+import { indexMarkdown, markdownResponse } from '../../../blog/markdown';
+import { blogLang, indexData } from '../../../blog/routes';
 
 export const prerender = false;
 export const GET: APIRoute = async ({ params }) => {

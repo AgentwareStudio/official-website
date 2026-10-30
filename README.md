@@ -132,14 +132,14 @@ After `npm run build`, run `node tools/check_browser_cache.mjs` to check the gen
 
 ## For Agents and AI Search
 
-Every page has a Markdown version at its URL without the trailing slash plus `.md` (`/index.md` for the English home page, `/zh.md`, `/zh/learn.md`, `/blog.md`, `/ja/blog/<slug>.md`), and each HTML page links its own as `<link rel="alternate" type="text/markdown">`.
+Every page has a Markdown version at its URL plus `index.md`, the [llmstxt.org](https://llmstxt.org/) convention for URLs without a file name (`/index.md`, `/zh/index.md`, `/zh/learn/index.md`, `/blog/index.md`, `/ja/blog/<slug>/index.md`). Each HTML page links its own as `<link rel="alternate" type="text/markdown">` and `/llms.txt` as `rel="describedby"`.
 
 - Site pages (`src/markdown.ts`): built with the static pages from the same copy as the HTML (`content.ts` and the locale's messages), section by section; they are not converted from the HTML. `/agentware.md`, the standalone English guide, is the home page and the curriculum page in one document.
 - Blog pages (`src/blog/markdown.ts`): rendered in the Worker from the stored Markdown (`body_md`) under a header with title, summary, author, dates, the page URL and the other languages. A blog index lists its posts.
 - `/llms.txt` ([llmstxt.org](https://llmstxt.org/)) links the Markdown versions and the 20 newest posts; `/llms-full.txt` is `/agentware.md` followed by every published post. Both render in the Worker, so they follow publishing without a build, and share the blog's five-minute edge cache (the publish script purges them).
 - Structured data (`src/structured.ts`): every page carries the studio (`Organization`) and the site (`WebSite`) as JSON-LD; a post adds `BlogPosting` and a `BreadcrumbList`.
 
-`wrangler.jsonc` sends `/blog.md`, `/zh/blog.md`, `/ja/blog.md`, `/llms.txt` and `/llms-full.txt` to the Worker first (posts' `.md` fall under `/blog/*`). `tools/check_routes.mjs` checks every sitemap page's Markdown version, its alternate link and its structured data.
+`wrangler.jsonc` sends `/llms.txt` and `/llms-full.txt` to the Worker first (the blog's Markdown falls under `/blog/*`). `tools/check_routes.mjs` checks every sitemap page's Markdown version, its alternate link and its structured data.
 
 ## Blog Database
 

@@ -30,7 +30,7 @@ function rulesOf(files) {
   assert.ok(rules.size <= 100);
   // Every static Markdown file (the pages' .md versions, agentware.md, auth.md) declares UTF-8; nothing else does.
   const contentTypes = new Map([...files.keys()].filter((f) => f.endsWith('.md')).map((f) => [`/${f}`, 'text/markdown; charset=utf-8']));
-  for (const page of ['/index.md', '/zh/learn.md', '/agentware.md']) assert.ok(contentTypes.has(page), `Missing ${page}`);
+  for (const page of ['/index.md', '/zh/learn/index.md', '/agentware.md']) assert.ok(contentTypes.has(page), `Missing ${page}`);
   for (const [path, type] of contentTypes) {
     assert.deepEqual(rules.get(path), { 'Content-Type': type });
   }
