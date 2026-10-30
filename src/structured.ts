@@ -16,7 +16,7 @@ const organization = {
   // An unversioned copy of src/assets/brand (tools/astro_site.mjs), so the URL stays stable.
   logo: { '@type': 'ImageObject', url: `${SITE}/brand/agentware_icon_app_dark_180.png`, width: 180, height: 180 },
   email: 'dev@agentware.studio',
-  sameAs: [LINKS.github, LINKS.x, LINKS.youtube],
+  sameAs: [LINKS.github, LINKS.x, LINKS.youtube, ...Object.values(LINKS.youtubeByLocale)],
 };
 
 const website = { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: AUTHOR, publisher: { '@id': ORG }, inLanguage: ALTERNATES };

@@ -308,9 +308,10 @@
   "items": [
    {
     "tag": "01 // OPEN CURRICULUM",
-    "title": "Cursus Ouvert et Structuré sur l'IA",
-    "body": "Passer de « manipuler un logiciel » à « déléguer à un logiciel » exige d'abord de faire évoluer nos modèles mentaux et nos méthodes. Nous réalisons un cursus pédagogique complet sur l'IA, des principes fondamentaux jusqu'à la construction pratique, afin d'aider chacun à maîtriser les compétences clés de l'ère des agents",
-    "action": "Aller sur le site du cours ↗",
+    "title": "AI Courses & Labs",
+    "body": "A good technical course should be a solid piece of work in its own right. Built by practicing engineers, pairing visual animations with interactive web labs and runnable templates.",
+    "action": "Visit Course Site ↗",
+    "lang": "en",
     "href": "https://learn.agentware.studio"
    },
    {
@@ -321,46 +322,47 @@
   ]
  },
  "learn": {
-  "title": "Cursus Ouvert et Structuré sur l'IA",
+  "title": "AI Courses & Labs",
   "en": "Open Curriculum",
   "motto": [
-   "We teach what we build.",
-   "Nous enseignons ce que nous bâtissons."
+   "Built by engineers. Crafted to last.",
+   ""
   ],
-  "lead": "Passer de « manipuler un logiciel » à « déléguer à un logiciel » exige d'abord de faire évoluer nos modèles mentaux et nos méthodes. Nous réalisons un cursus pédagogique complet sur l'IA, des principes fondamentaux jusqu'à la construction pratique, afin d'aider chacun à maîtriser les compétences clés de l'ère des agents",
-  "status": "Premier cours : Graduating from AI Gacha",
+  "lead": "A good technical course should be a solid piece of work in its own right. Every course at Agentware Studio is written and built by practicing engineers—turning abstract mechanics into clear visual intuition, pinning every demo to real models and versions, and pairing every lesson with interactive web labs and runnable templates you can put to work right away.",
+  "status": "Course 01 \"Graduating from AI Gacha\" now streaming · More engineering courses in production",
   "course": {
    "name": "Graduating from AI Gacha",
-   "langs": "Langues du cours",
-   "body": "Arrêtez de jouer à la loterie avec l’IA. En trois saisons, le cours va du fonctionnement des grands modèles de langage au code avec l’IA, jusqu’à transformer vous-même un vrai processus en système. Le site du cours propose des mini-jeux d’entraînement et un assistant IA qui répond uniquement à partir du contenu du cours."
+   "langs": "Course languages",
+   "body": "Does using AI still feel like pulling a slot machine? When a model gives you bad output, the problem is usually what you put on its desk. Across three seasons, this course takes you from how large language models actually work, to coding with AI in your editor, to turning a real workflow into a working system. Every episode comes with a hands-on web game and an AI assistant that answers strictly from course materials with exact citations."
   },
   "seasons": [
    {
     "id": "ai-fundamentals",
-    "no": "Saison 1",
-    "zh": "Fondamentaux",
-    "en": "Fundamentals",
-    "specs": "",
-    "body": "Au-delà du battage médiatique — de la prédiction du mot suivant, des tokens, des hallucinations et des fenêtres de contexte jusqu'au RAG, à l'appel d'outils et aux Agents — comprendre quand faire confiance à l'IA et comment l'intégrer dans son travail."
+    "no": "Season 01",
+    "zh": "Fundamentals",
+    "en": "",
+    "specs": "Free · 14 animated episodes (incl. trailer) · No coding required",
+    "body": "Using a desk and a gacha machine, we visualize how large language models work under the hood: how they predict one token tile at a time, why long chats make them lose track, how to hand them reference books and tools, and when you can trust their output. Each episode takes 5–8 minutes and leaves you with one concrete habit you can use the same day."
    },
    {
     "id": "ai-coding",
-    "no": "Saison 2",
-    "zh": "Pratique",
-    "en": "AI Coding",
-    "specs": "",
-    "body": "Lorsque produire du code devient abordable et que le discernement devient précieux, apprendre à rédiger des spécifications pour l'IA, à concevoir l'architecture avant de toucher au code et à transformer son expertise en compétences réutilisables (Skills)."
+    "no": "Season 02",
+    "zh": "AI Coding",
+    "en": "",
+    "specs": "Free · 7 episodes · For developers",
+    "body": "Writing code has gotten cheap; judging whether that code is right has gotten harder. Using VS Code (GitHub Copilot) and Claude Code side by side, we cover what files the agent actually sees, how to write project instructions (AGENTS.md / CLAUDE.md), how to review a plan before touching code, and how to package recurring team workflows into reusable Skills and automated hooks."
    },
    {
     "id": "building-ai-systems",
-    "no": "Saison 3",
-    "zh": "Construction",
-    "en": "Building AI Systems",
-    "specs": "",
-    "body": "Ancrée dans des cas réels — de l'ingénierie du contexte, de l'orchestration de flux (n8n / Dify) et du développement de serveurs MCP jusqu'à la collaboration multi-agents, la gouvernance de sécurité et l'évaluation en production."
+    "no": "Season 03",
+    "zh": "Building AI Systems",
+    "en": "",
+    "specs": "Pro · 17 hands-on builds · For business leads & engineers",
+    "body": "Built around six real workflows at a mid-sized company—weekly report automation, customer email triage, policy Q&A, an internal MCP server, multi-agent research, and cross-company agent handoffs. Step by step, you will sketch the architecture, engineer the context, build with n8n, Dify, or code, and run red-team safety tests, pass-rate evaluations, and ROI checks to ship a system ready for sign-off."
    }
   ],
-  "cta": "Vidéos sur YouTube, |exercices et questions sur le site du cours"
+  "cta": "Interactive labs and an AI tutor come with every course—|try them hands-⁠on right now",
+  "lang": "en"
  },
  "ui": {
   "skip": "Aller au contenu",
@@ -458,8 +460,8 @@
   "learn": {
    "seasonsAria": "Trois saisons",
    "actions": [
-    "Commencer le cours",
-    "Suivre sur YouTube"
+    "Enter Course Site",
+    "Subscribe on YouTube"
    ]
   },
   "nf": {

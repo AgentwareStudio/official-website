@@ -66,6 +66,8 @@ ${languages}
 - [GitHub](${LINKS.github}): Official Agentware Studio organization and open-source repositories.
 - [X (Twitter)](${LINKS.x}): Official X profile for studio updates and research notes.
 - [YouTube](${LINKS.youtube}): Official Agentware Studio YouTube channel.
+- [YouTube (Chinese)](${LINKS.youtubeByLocale['zh-CN']}): The Chinese-language channel.
+- [YouTube (Japanese)](${LINKS.youtubeByLocale.ja}): The Japanese-language channel.
 `;
   return new Response(text, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }

@@ -59,6 +59,9 @@ export function setLocale(code: Locale, messages: Messages | null) {
 }
 setLocale(locale, null);
 
+/** The YouTube channel in the current page's language (the main channel for the others). */
+export const youtubeLink = () => C.LINKS.youtubeByLocale[locale] ?? C.LINKS.youtube;
+
 /** Prefix a site path ("/learn/", "/#manifesto") with the current locale. */
 export const href = (p: string) => (p.startsWith('/') ? `${base}${p}` : p);
 /** The same page in another locale. */

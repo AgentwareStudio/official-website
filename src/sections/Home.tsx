@@ -283,7 +283,7 @@ function Studio() {
               // an initiative without a live site yet (e.g. AIKit) is shown without a link
               const ext = !!it.href?.startsWith('http');
               return (
-                <article className="initiative reveal" key={it.tag}>
+                <article className="initiative reveal" key={it.tag} lang={it.lang}>
                   <p className="initiative__tag mono">{it.tag}</p>
                   <h3 className="initiative__title">{it.title}</h3>
                   <p className="initiative__body">{it.body}</p>

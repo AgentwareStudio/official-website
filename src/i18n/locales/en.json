@@ -360,7 +360,7 @@
     "body": "Built around six real workflows at a mid-sized company—weekly report automation, customer email triage, policy Q&A, an internal MCP server, multi-agent research, and cross-company agent handoffs. Step by step, you will sketch the architecture, engineer the context, build with n8n, Dify, or code, and run red-team safety tests, pass-rate evaluations, and ROI checks to ship a system ready for sign-off."
    }
   ],
-  "cta": "Interactive labs and an AI tutor come with every course—|try them hands-on right now"
+  "cta": "Interactive labs and an AI tutor come with every course—|try them hands-⁠on right now"
  },
  "ui": {
   "skip": "Skip to content",

@@ -164,6 +164,10 @@ def build(loc: str):
     # Locales with their own course copy (i18n_ui learnCopy) use it for the course card and the /learn page
     lc = U.get('learnCopy')
     card = lc['card'] if lc else dict(title=curr['title'], body=curr['body'].rstrip('：: '), action=U['ui']['studioActions'][0])
+    # English copy on a page in another language: marked lang="en" (screen readers, fonts)
+    english = bool(lc) and not en and lc is UI['en']['learnCopy']
+    if english:
+        card = dict(card, lang='en')
     studio = dict(
         title=stitle,
         sub=d['studioIntro'],
@@ -188,7 +192,8 @@ def build(loc: str):
     if lc:
         learn = dict(title=lc['title'], en=lc['en'], motto=lc['motto'], lead=lc['lead'], status=lc['status'],
                      course=dict(course, body=lc['course']),
-                     seasons=[dict(id=SEASON_IDS[i], **s) for i, s in enumerate(lc['seasons'])], cta=lc['cta'])
+                     seasons=[dict(id=SEASON_IDS[i], **s) for i, s in enumerate(lc['seasons'])], cta=lc['cta'],
+                     **({'lang': 'en'} if english else {}))
 
     ui = dict(U['ui'])
     ui['learn'] = {k: U['learn'][k] for k in ('seasonsAria', 'actions')}

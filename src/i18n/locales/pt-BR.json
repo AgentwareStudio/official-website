@@ -308,9 +308,10 @@
   "items": [
    {
     "tag": "01 // OPEN CURRICULUM",
-    "title": "Curso Aberto e Sistemático de IA",
-    "body": "Para passar de “operar software” para “delegar ao software”, é preciso primeiro atualizar a mentalidade e os métodos humanos. Estamos produzindo uma série sistemática de aulas sobre IA, dos princípios fundamentais à construção prática, ajudando qualquer pessoa a dominar as capacidades essenciais da era dos agentes",
-    "action": "Ir para o site do curso ↗",
+    "title": "AI Courses & Labs",
+    "body": "A good technical course should be a solid piece of work in its own right. Built by practicing engineers, pairing visual animations with interactive web labs and runnable templates.",
+    "action": "Visit Course Site ↗",
+    "lang": "en",
     "href": "https://learn.agentware.studio"
    },
    {
@@ -321,46 +322,47 @@
   ]
  },
  "learn": {
-  "title": "Curso Aberto e Sistemático de IA",
+  "title": "AI Courses & Labs",
   "en": "Open Curriculum",
   "motto": [
-   "We teach what we build.",
-   "Ensinamos aquilo que construímos."
+   "Built by engineers. Crafted to last.",
+   ""
   ],
-  "lead": "Para passar de “operar software” para “delegar ao software”, é preciso primeiro atualizar a mentalidade e os métodos humanos. Estamos produzindo uma série sistemática de aulas sobre IA, dos princípios fundamentais à construção prática, ajudando qualquer pessoa a dominar as capacidades essenciais da era dos agentes",
-  "status": "Primeiro curso: Graduating from AI Gacha",
+  "lead": "A good technical course should be a solid piece of work in its own right. Every course at Agentware Studio is written and built by practicing engineers—turning abstract mechanics into clear visual intuition, pinning every demo to real models and versions, and pairing every lesson with interactive web labs and runnable templates you can put to work right away.",
+  "status": "Course 01 \"Graduating from AI Gacha\" now streaming · More engineering courses in production",
   "course": {
    "name": "Graduating from AI Gacha",
-   "langs": "Idiomas do curso",
-   "body": "Chega de usar IA como quem tenta a sorte. Em três temporadas, o curso vai de como funcionam os grandes modelos de linguagem até programar com IA e transformar você mesmo um processo real em um sistema. O site do curso tem minijogos de prática e um assistente de IA que responde apenas com base no conteúdo do curso."
+   "langs": "Course languages",
+   "body": "Does using AI still feel like pulling a slot machine? When a model gives you bad output, the problem is usually what you put on its desk. Across three seasons, this course takes you from how large language models actually work, to coding with AI in your editor, to turning a real workflow into a working system. Every episode comes with a hands-on web game and an AI assistant that answers strictly from course materials with exact citations."
   },
   "seasons": [
    {
     "id": "ai-fundamentals",
-    "no": "Temporada 1",
-    "zh": "Fundamentos",
-    "en": "Fundamentals",
-    "specs": "",
-    "body": "Sem exageros de marketing — da previsão do próximo token, alucinações e janelas de contexto até RAG, chamada de ferramentas e Agentes — entendendo quando confiar na IA e como aplicá-la no trabalho."
+    "no": "Season 01",
+    "zh": "Fundamentals",
+    "en": "",
+    "specs": "Free · 14 animated episodes (incl. trailer) · No coding required",
+    "body": "Using a desk and a gacha machine, we visualize how large language models work under the hood: how they predict one token tile at a time, why long chats make them lose track, how to hand them reference books and tools, and when you can trust their output. Each episode takes 5–8 minutes and leaves you with one concrete habit you can use the same day."
    },
    {
     "id": "ai-coding",
-    "no": "Temporada 2",
-    "zh": "Prática",
-    "en": "AI Coding",
-    "specs": "",
-    "body": "Quando escrever código fica barato e o discernimento fica valioso, aprenda a escrever especificações de projeto para a IA, desenhar a solução antes de mexer no código e transformar experiência pessoal em habilidades reutilizáveis (Skills)."
+    "no": "Season 02",
+    "zh": "AI Coding",
+    "en": "",
+    "specs": "Free · 7 episodes · For developers",
+    "body": "Writing code has gotten cheap; judging whether that code is right has gotten harder. Using VS Code (GitHub Copilot) and Claude Code side by side, we cover what files the agent actually sees, how to write project instructions (AGENTS.md / CLAUDE.md), how to review a plan before touching code, and how to package recurring team workflows into reusable Skills and automated hooks."
    },
    {
     "id": "building-ai-systems",
-    "no": "Temporada 3",
-    "zh": "Construção",
-    "en": "Building AI Systems",
-    "specs": "",
-    "body": "Voltada para cenários reais — da engenharia de contexto, orquestração de fluxos (n8n / Dify) e desenvolvimento de servidores MCP até colaboração multiagente, governança de segurança e avaliação em produção."
+    "no": "Season 03",
+    "zh": "Building AI Systems",
+    "en": "",
+    "specs": "Pro · 17 hands-on builds · For business leads & engineers",
+    "body": "Built around six real workflows at a mid-sized company—weekly report automation, customer email triage, policy Q&A, an internal MCP server, multi-agent research, and cross-company agent handoffs. Step by step, you will sketch the architecture, engineer the context, build with n8n, Dify, or code, and run red-team safety tests, pass-rate evaluations, and ROI checks to ship a system ready for sign-off."
    }
   ],
-  "cta": "Vídeos no YouTube, |prática e perguntas no site do curso"
+  "cta": "Interactive labs and an AI tutor come with every course—|try them hands-⁠on right now",
+  "lang": "en"
  },
  "ui": {
   "skip": "Pular para o conteúdo",
@@ -458,8 +460,8 @@
   "learn": {
    "seasonsAria": "Três temporadas",
    "actions": [
-    "Começar o curso",
-    "Seguir no YouTube"
+    "Enter Course Site",
+    "Subscribe on YouTube"
    ]
   },
   "nf": {

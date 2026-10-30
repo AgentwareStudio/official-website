@@ -5,6 +5,8 @@ export const LINKS = {
   github: 'https://github.com/AgentwareStudio',
   x: 'https://x.com/AgentwareStudio',
   youtube: 'https://www.youtube.com/@agentwarestudio',
+  // channels in the page's language; other languages use the main channel (youtube above)
+  youtubeByLocale: { 'zh-CN': 'https://www.youtube.com/@agentwarecn', ja: 'https://www.youtube.com/@agentwareJapan' } as Record<string, string>,
   // all courses live under this one site (the first: /ai-gacha/), so the official site links to its root only
   learn: 'https://learn.agentware.studio',
 };
@@ -213,7 +215,7 @@ export const studio = {
       title: '面向用户的 AI 工具实验',
       body: '理念最终要由产品来验证。我们在 aikit.pro 持续设计与发布面向用户的 AI 工具与应用，探索“按意图行动的软件”在真实日常场景中的交互形态。',
     },
-  ] as { tag: string; title: string; body: string; action?: string; href?: string }[],
+  ] as { tag: string; title: string; body: string; action?: string; href?: string; lang?: string }[],
   seasons: [
     { no: '第一季', zh: '原理篇', en: 'Fundamentals', body: '剥离炒作，从接龙原理、Token、幻觉、上下文窗口讲到 RAG、工具调用与 Agent，弄懂“什么时候能信 AI，怎么把 AI 用进工作”。' },
     { no: '第二季', zh: '实战篇', en: 'AI Coding', body: '当代码变便宜、判断变贵，学习如何为 AI 编写项目说明书、如何先出方案再动代码、如何把个人经验沉淀为可复用的技能（Skills）。' },
@@ -259,6 +261,8 @@ export const learn = {
       body: '围绕一家企业的六项真实需求（周报汇总、来信分拣、规定问答、内部工具服务、多代理调研、跨公司对接），手把手带你画方案、设计上下文、用 n8n / Dify 或代码搭出成品，再做完红队安全测试、出货率评测和 ROI 测算，交付一套能真正上线验收的系统。' },
   ] as { id: string; no: string; zh: string; en: string; specs: string; body: string }[],
   cta: '每门课都配有互动实验与 AI 助教，|现在就可以上手试',
+  /** Set when the copy is in another language than the page (English on the es/de/fr/pt-BR/ko pages). */
+  lang: undefined as string | undefined,
 };
 
 // Interface strings (zh-CN). Other locales overwrite these from src/i18n/locales/<locale>.json.

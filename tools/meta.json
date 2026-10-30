@@ -13,27 +13,32 @@
  },
  "es": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "Curso abierto de IA — Agentware Studio",
-  "nf": "Página no encontrada — Agentware Studio"
+  "learn": "Courses & Labs — Agentware Studio",
+  "nf": "Página no encontrada — Agentware Studio",
+  "learnDesc": "AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems."
  },
  "de": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "Open-Access-KI-Kurs — Agentware Studio",
-  "nf": "Seite nicht gefunden — Agentware Studio"
+  "learn": "Courses & Labs — Agentware Studio",
+  "nf": "Seite nicht gefunden — Agentware Studio",
+  "learnDesc": "AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems."
  },
  "fr": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "Cours ouvert d’IA — Agentware Studio",
-  "nf": "Page introuvable — Agentware Studio"
+  "learn": "Courses & Labs — Agentware Studio",
+  "nf": "Page introuvable — Agentware Studio",
+  "learnDesc": "AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems."
  },
  "pt-BR": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "Curso aberto de IA — Agentware Studio",
-  "nf": "Página não encontrada — Agentware Studio"
+  "learn": "Courses & Labs — Agentware Studio",
+  "nf": "Página não encontrada — Agentware Studio",
+  "learnDesc": "AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems."
  },
  "ko": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "AI 체계화 공개 강의 — Agentware Studio",
-  "nf": "페이지를 찾을 수 없습니다 — Agentware Studio"
+  "learn": "Courses & Labs — Agentware Studio",
+  "nf": "페이지를 찾을 수 없습니다 — Agentware Studio",
+  "learnDesc": "AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems."
  }
 }

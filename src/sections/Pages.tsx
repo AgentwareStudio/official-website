@@ -1,6 +1,6 @@
 import { LINKS, learn, ui } from '../content';
 import { T } from '../lib';
-import { href, locale } from '../i18n';
+import { href, locale, youtubeLink } from '../i18n';
 
 // Read at render time: one build renders every locale in turn.
 const showEn = () => locale !== 'en';
@@ -18,9 +18,9 @@ function JoinLink({ to, label, en, sub, primary = false }: { to: string; label: 
   );
 }
 
-function PageHero({ crumb, title, en, lead, status, motto }: { crumb: string; title: string; en: string; lead: string; status: string; motto?: string[] }) {
+function PageHero({ crumb, title, en, lead, status, motto, lang }: { crumb: string; title: string; en: string; lead: string; status: string; motto?: string[]; lang?: string }) {
   return (
-    <section className="page-hero">
+    <section className="page-hero" lang={lang}>
       <div className="wrap">
         <p className="eyebrow"><a href={href('/')}>AGENTWARE STUDIO</a> <span aria-hidden="true">//</span> {crumb}</p>
         <h1 className="page-hero__title">
@@ -52,8 +52,8 @@ export function LearnPage() {
   const c = learn.course;
   return (
     <>
-      <PageHero crumb="COURSES & LABS" title={learn.title} en={learn.en} lead={learn.lead} status={learn.status} motto={learn.motto} />
-      <section className="course" id="ai-gacha" aria-labelledby="ai-gacha-t">
+      <PageHero crumb="COURSES & LABS" title={learn.title} en={learn.en} lead={learn.lead} status={learn.status} motto={learn.motto} lang={learn.lang} />
+      <section className="course" id="ai-gacha" aria-labelledby="ai-gacha-t" lang={learn.lang}>
         <div className="wrap course__grid">
           <div className="course__side">
             <div className="course__sticky">
@@ -80,12 +80,12 @@ export function LearnPage() {
           </div>
         </div>
       </section>
-      <section className="page-cta">
+      <section className="page-cta" lang={learn.lang}>
         <div className="wrap page-cta__inner">
           <h2 className="h-section"><T>{learn.cta}</T></h2>
           <ul className="join__actions">
             <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
-            <JoinLink to={LINKS.youtube} label={ui.learn.actions[1]} sub="YouTube" />
+            <JoinLink to={youtubeLink()} label={ui.learn.actions[1]} sub="YouTube" />
           </ul>
         </div>
       </section>

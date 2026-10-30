@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { LINKS, footer, ui } from '../content';
-import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale, type Locale } from '../i18n';
+import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale, youtubeLink, type Locale } from '../i18n';
 import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg?url';
 import lockupLight from '../assets/brand/agentware_lockup_on-light.svg?url';
 import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg?url';
@@ -240,7 +240,7 @@ export function Footer() {
         <nav className="site-footer__links" aria-label={ui.follow}>
           <a href={LINKS.github} target="_blank" rel="noopener">GitHub</a>
           <a href={LINKS.x} target="_blank" rel="noopener">X</a>
-          <a href={LINKS.youtube} target="_blank" rel="noopener">YouTube</a>
+          <a href={youtubeLink()} target="_blank" rel="noopener">YouTube</a>
         </nav>
       </div>
     </footer>

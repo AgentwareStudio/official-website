@@ -3,7 +3,7 @@
 // HTML (content.ts with the locale's messages), never converted from the HTML; blog pages come from the stored
 // Markdown (src/blog/markdown.ts).
 import * as C from './content';
-import { LOCALES, messagesFor, setLocale, type Locale } from './i18n';
+import { LOCALES, messagesFor, setLocale, youtubeLink, type Locale } from './i18n';
 import { ALTERNATES, SITE, pageMeta, pageUrl } from './meta';
 
 export const MARKDOWN_TYPE = 'text/markdown; charset=utf-8';
@@ -18,7 +18,7 @@ const CJK = new Set<Locale>(['zh-CN', 'ja']);
 let cjk = false;
 /** Copy as shown: "|" only marks where a line may wrap; a line break without punctuation before it separates
  *  phrases ("Exploring the paradigm\nSharing the knowledge"). */
-const text = (s: string) => s.replace(/\|/g, '')
+const text = (s: string) => s.replace(/[|\u2060]/g, '')
   .replace(/(\p{P}?)\s*\n/gu, (_, p: string) => p + (cjk ? '' : p ? ' ' : ' · ')).trim();
 /** Pieces of one sentence; no space after a dash that joins them. */
 const join = (parts: string[]) => parts.map(text).filter(Boolean).reduce((a, b) => (cjk || !a || /[—–-]$/.test(a) ? a + b : `${a} ${b}`), '');
@@ -79,7 +79,7 @@ function homeBody(base: string) {
     + studio.items.map((it) => `### ${text(it.title)}\n\n${text(it.body)}`
       + (it.href && it.action ? `\n\n[${label(text(it.action).replace(/\s*↗$/, ''))}](${it.href.startsWith('http') ? it.href : SITE + base + it.href})` : '')).join('\n\n'));
 
-  out.push(`## Links\n\n- GitHub: ${LINKS.github}\n- X: ${LINKS.x}\n- YouTube: ${LINKS.youtube}\n- Course site: ${LINKS.learn}`);
+  out.push(`## Links\n\n- GitHub: ${LINKS.github}\n- X: ${LINKS.x}\n- YouTube: ${youtubeLink()}\n- Course site: ${LINKS.learn}`);
   return out.join('\n\n');
 }
 
@@ -91,7 +91,7 @@ function learnBody() {
     `## ${text(learn.title)}${learn.en && learn.en !== learn.title ? ` · ${learn.en}` : ''}\n\n> ${learn.motto.map(text).filter(Boolean).join(' ')}\n\n${text(learn.lead)}\n\n${text(learn.status)}`,
     `## ${text(c.name)}\n\n${text(c.body)}\n\n${text(c.langs)}: 中文 · 日本語 · English\n\n`
       + learn.seasons.map((s) => `### ${s.no}: ${[s.zh, s.en].filter(Boolean).join(' · ')}\n\n${s.specs ? `${text(s.specs)}\n\n` : ''}${text(s.body)}`).join('\n\n'),
-    `## ${text(learn.cta)}\n\n- [${label(ui.learn.actions[0])}](${LINKS.learn})\n- [${label(ui.learn.actions[1])}](${LINKS.youtube})`,
+    `## ${text(learn.cta)}\n\n- [${label(ui.learn.actions[0])}](${LINKS.learn})\n- [${label(ui.learn.actions[1])}](${youtubeLink()})`,
   ].join('\n\n');
 }
 

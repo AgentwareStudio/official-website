@@ -63,7 +63,8 @@ UI['en'] = dict(
             dict(no='Season 03', zh='Building AI Systems', en='', specs='Pro · 17 hands-on builds · For business leads & engineers',
                  body='Built around six real workflows at a mid-sized company—weekly report automation, customer email triage, policy Q&A, an internal MCP server, multi-agent research, and cross-company agent handoffs. Step by step, you will sketch the architecture, engineer the context, build with n8n, Dify, or code, and run red-team safety tests, pass-rate evaluations, and ROI checks to ship a system ready for sign-off.'),
         ],
-        cta='Interactive labs and an AI tutor come with every course—|try them hands-on right now',
+        # U+2060 (word joiner) keeps “hands-on” on one line in large headings
+        cta='Interactive labs and an AI tutor come with every course—|try them hands-\u2060on right now',
         actions=['Enter Course Site', 'Subscribe on YouTube'],
         card=dict(title='AI Courses & Labs', body='A good technical course should be a solid piece of work in its own right. Built by practicing engineers, pairing visual animations with interactive web labs and runnable templates.', action='Visit Course Site ↗'),
     ),
@@ -379,3 +380,10 @@ UI['ko'] = dict(
     nf=dict(title='이 주소에는 페이지가 없습니다', lead='링크가 바뀌었을 수 있습니다. 홈으로 돌아가거나 강의를 열어 보세요.', actions=['홈으로', 'AI 강의']),
     meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 체계화 공개 강의 — Agentware Studio', nf='페이지를 찾을 수 없습니다 — Agentware Studio'),
 )
+
+# Locales without their own course copy show the English one: the /learn page, the home page's course card and the
+# /learn title and description (build_locales.py marks that copy lang="en").
+for _loc in ('es', 'de', 'fr', 'pt-BR', 'ko'):
+    UI[_loc]['learnCopy'] = UI['en']['learnCopy']
+    UI[_loc]['learn'] = dict(UI[_loc]['learn'], course=UI['en']['learn']['course'])
+    UI[_loc]['meta'] = dict(UI[_loc]['meta'], learn=UI['en']['meta']['learn'], learnDesc=UI['en']['meta']['learnDesc'])
