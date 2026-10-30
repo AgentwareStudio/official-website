@@ -122,13 +122,24 @@ Inter and native-language fonts retain their existing preload behavior; the loca
 
 The build fingerprints JavaScript, CSS, fonts and imported brand images (`assets/<name>.<hash>.<ext>`). `tools/astro_site.mjs` generates `dist/client/_headers` (replacing the `/assets/*` rule the Cloudflare adapter writes) with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard: Static Assets applies a wildcard rule to the 404 response of a missing path too, so unknown and obsolete asset URLs would inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
 
-The generated headers also declare `Content-Type: text/plain; charset=utf-8` for `/llms.txt` (the concise [llmstxt.org](https://llmstxt.org/) index) and `Content-Type: text/markdown; charset=utf-8` for `/agentware.md` (the standalone Markdown guide). Both files contain Unicode punctuation and symbols; without an HTTP charset, direct browser navigation can decode them as Windows-1252 and display garbled text. Keep the UTF-8 source characters and verify the response headers after deploying.
+The generated headers also declare `Content-Type: text/markdown; charset=utf-8` for every static Markdown file (the pages' `.md` versions, `/agentware.md`, `/auth.md`): Static Assets sends a bare `text/markdown`, and without an HTTP charset direct browser navigation can decode the Unicode punctuation as Windows-1252. One exact rule per file keeps the build well under the 100-rule limit.
 
 Edit fonts and brand images in `src/assets/`; the build also copies their original bytes to the legacy `/fonts/` and `/brand/` URLs for existing links. Those unversioned copies retain the platform's default revalidation policy. Font preloads, CSS and image imports all point to the fingerprinted URLs used by the current build.
 
 CSS is minified with esbuild (`astro.config.mjs`): Vite 8's default minifier rewrites colours such as `rgba(155, 163, 184, .13)` as `#9ba3b821`, and the rounded alpha visibly changes text rendering.
 
 After `npm run build`, run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes (it builds a disposable copy twice). For response-header and browser-cache checks, serve the build using `wrangler dev --local` with the root config; generic static preview servers do not interpret Cloudflare's `_headers` file. Production cache behavior must also be verified after deploying to Workers Static Assets.
+
+## For Agents and AI Search
+
+Every page has a Markdown version at its URL without the trailing slash plus `.md` (`/index.md` for the English home page, `/zh.md`, `/zh/learn.md`, `/blog.md`, `/ja/blog/<slug>.md`), and each HTML page links its own as `<link rel="alternate" type="text/markdown">`.
+
+- Site pages (`src/markdown.ts`): built with the static pages from the same copy as the HTML (`content.ts` and the locale's messages), section by section; they are not converted from the HTML. `/agentware.md`, the standalone English guide, is the home page and the curriculum page in one document.
+- Blog pages (`src/blog/markdown.ts`): rendered in the Worker from the stored Markdown (`body_md`) under a header with title, summary, author, dates, the page URL and the other languages. A blog index lists its posts.
+- `/llms.txt` ([llmstxt.org](https://llmstxt.org/)) links the Markdown versions and the 20 newest posts; `/llms-full.txt` is `/agentware.md` followed by every published post. Both render in the Worker, so they follow publishing without a build, and share the blog's five-minute edge cache (the publish script purges them).
+- Structured data (`src/structured.ts`): every page carries the studio (`Organization`) and the site (`WebSite`) as JSON-LD; a post adds `BlogPosting` and a `BreadcrumbList`.
+
+`wrangler.jsonc` sends `/blog.md`, `/zh/blog.md`, `/ja/blog.md`, `/llms.txt` and `/llms-full.txt` to the Worker first (posts' `.md` fall under `/blog/*`). `tools/check_routes.mjs` checks every sitemap page's Markdown version, its alternate link and its structured data.
 
 ## Blog Database
 

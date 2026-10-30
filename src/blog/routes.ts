@@ -13,6 +13,15 @@ export function blogLang(param: string | undefined): BlogLang | null {
 
 export const indexData = (lang: BlogLang) => withBlog((blog) => blog.listPosts(lang));
 
+/** A post and its other language versions (its Markdown page). */
+export async function postVersions(lang: BlogLang, slug: string | undefined): Promise<{ post: Post; others: Post[] } | null> {
+  if (!slug || !SLUG.test(slug)) return null;
+  return withBlog(async (blog) => {
+    const post = await blog.getPost(lang, slug);
+    return post && { post, others: await blog.translations(post) };
+  });
+}
+
 export async function postData(lang: BlogLang, slug: string | undefined): Promise<{ post: Post; others: Post[]; list: Post[] } | null> {
   if (!slug || !SLUG.test(slug)) return null;
   return withBlog(async (blog) => {

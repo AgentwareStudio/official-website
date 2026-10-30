@@ -37,11 +37,10 @@ function inlineHomeStyles(out) {
 
 function writeHeaders(out) {
   const rules = new Map();
-  // Plain-text and Markdown navigations cannot use HTML's <meta charset> declaration.
-  rules.set('/llms.txt', { 'Content-Type': 'text/plain; charset=utf-8' });
-  rules.set('/agentware.md', { 'Content-Type': 'text/markdown; charset=utf-8' });
   for (const file of files(out).map((f) => relative(out, f).split('\\').join('/'))) {
-    if (file.startsWith('assets/')) {
+    // Markdown cannot declare its charset like HTML's <meta charset>, and Static Assets sends a bare text/markdown.
+    if (file.endsWith('.md')) rules.set(`/${file}`, { 'Content-Type': 'text/markdown; charset=utf-8' });
+    else if (file.startsWith('assets/')) {
       if (!/^assets\/.+[.-][A-Za-z0-9_-]{8,}\.(?:js|css|woff2|svg|png)$/.test(file)) throw new Error(`Cannot cache an unversioned asset: ${file}`);
       rules.set(`/${file}`, { 'Cache-Control': 'public, max-age=31536000, immutable' });
     } else if (file.endsWith('.html')) {

@@ -28,13 +28,13 @@ function rulesOf(files) {
     }
   }
   assert.ok(rules.size <= 100);
-  const contentTypes = new Map([
-    ['/llms.txt', 'text/plain; charset=utf-8'],
-    ['/agentware.md', 'text/markdown; charset=utf-8'],
-  ]);
+  // Every static Markdown file (the pages' .md versions, agentware.md, auth.md) declares UTF-8; nothing else does.
+  const contentTypes = new Map([...files.keys()].filter((f) => f.endsWith('.md')).map((f) => [`/${f}`, 'text/markdown; charset=utf-8']));
+  for (const page of ['/index.md', '/zh/learn.md', '/agentware.md']) assert.ok(contentTypes.has(page), `Missing ${page}`);
   for (const [path, type] of contentTypes) {
     assert.deepEqual(rules.get(path), { 'Content-Type': type });
   }
+  for (const [path, headers] of rules) if (headers['Content-Type']) assert.ok(contentTypes.has(path), `Unexpected Content-Type rule for ${path}`);
   for (const [path, headers] of rules) {
     if (contentTypes.has(path)) continue;
     const value = headers['Cache-Control'];
@@ -101,5 +101,5 @@ await withFixture(async (fixture) => {
     }
   }
   for (const file of [...oldParents.font, ...oldParents.brand]) assert.ok(!next.has(file), `Parent ${file} kept its name after its asset changed`);
-  console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((headers) => headers['Cache-Control']?.includes('immutable')).length, llmsUtf8: true, agentwareUtf8: true, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
+  console.log(JSON.stringify({ rules: rules.size, immutableFiles: [...rules.values()].filter((headers) => headers['Cache-Control']?.includes('immutable')).length, markdownUtf8: [...rules.values()].filter((headers) => headers['Content-Type']).length, fontVersionChanged: true, brandVersionChanged: true, parentReferencesUpdated: true, legacyAliasesPreserved: true }));
 });

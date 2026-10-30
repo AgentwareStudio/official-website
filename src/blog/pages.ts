@@ -1,5 +1,6 @@
 // What the blog routes pass to the page layout: title, path and the language versions of each page.
 import { rssPath } from './rss';
+import { postGraph } from '../structured';
 import { BLOG_UI } from './strings';
 import { BLOG_LANGS, blogIndex, postPath, type BlogLang, type Post } from './types';
 import type { Alternates } from '../components/Chrome';
@@ -22,6 +23,7 @@ export const postMeta = (post: Post, others: Post[]) => ({
   path: postPath(post.lang, post.slug),
   alternates: Object.fromEntries([post, ...others].map((p) => [BLOG_LANGS[p.lang].locale, postPath(p.lang, p.slug)])) as Alternates,
   rss: rssPath(post.lang),
+  graph: postGraph(post),
 });
 
 /** h2/h3 headings with ids, for the table of contents. */

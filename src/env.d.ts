@@ -1,8 +1,8 @@
 /// <reference types="astro/client" />
 
-// Bindings of the Worker (wrangler.jsonc) used by the blog.
+// Bindings of the Worker (wrangler.jsonc) used by the blog; ASSETS (the static files) is added by the build.
 declare module 'cloudflare:workers' {
-  export const env: { HYPERDRIVE: { connectionString: string } };
+  export const env: { HYPERDRIVE: { connectionString: string }; ASSETS: { fetch(request: Request | string): Promise<Response> } };
 }
 
 declare namespace App {

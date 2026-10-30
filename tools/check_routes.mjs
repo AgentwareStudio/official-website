@@ -14,6 +14,8 @@ if (!['https:', 'http:'].includes(base.protocol) || base.pathname !== '/' || bas
 const checks = [];
 const assets = new Set();
 const nonce = `__aw_missing_${randomUUID()}__`;
+/** A page's Markdown version (src/markdown.ts). */
+const markdownPath = (path) => (path === '/' ? '/index.md' : `${path.replace(/\/$/, '')}.md`);
 const fingerprint = (body) => createHash('sha256').update(body).digest('hex');
 
 async function check(path, kind, visit = 'first') {
@@ -42,25 +44,38 @@ async function check(path, kind, visit = 'first') {
     const expect = (condition, message) => { if (!condition) problems.push(message); };
     if (kind === 'missing') {
       expect(response.status === 404, 'Missing path must return HTTP 404 without a redirect');
-      expect(/data-page="notfound"/.test(text), 'Missing path must serve the existing 404 entry');
+      // A missing Markdown version is an empty 404 from the Worker (or the static 404 page outside the blog).
+      if (!path.endsWith('.md')) expect(/data-page="notfound"/.test(text), 'Missing path must serve the existing 404 entry');
       expect(!/immutable|max-age\s*=\s*[1-9]\d*/i.test(row.cacheControl ?? ''), 'Missing response must not use long-lived browser caching');
     } else if (kind === 'llms') {
       expect(response.status === 200, 'llms.txt must return HTTP 200');
       expect(/^text\/plain\s*;\s*charset=utf-8$/i.test(type), 'llms.txt must declare UTF-8 for browser navigation');
       expect(text.startsWith('# Agentware Studio'), 'Wrong llms.txt content');
       expect(text.includes('https://agentware.studio/agentware.md'), 'llms.txt must link to agentware.md');
+      expect(text.includes('https://agentware.studio/index.md') && text.includes('https://agentware.studio/blog.md'), 'llms.txt must link the pages\' Markdown versions');
       expect(!text.includes('\uFFFD'), 'llms.txt contains invalid UTF-8 or replacement characters');
+    } else if (kind === 'llms-full') {
+      expect(response.status === 200, 'llms-full.txt must return HTTP 200');
+      expect(/^text\/plain\s*;\s*charset=utf-8$/i.test(type), 'llms-full.txt must declare UTF-8');
+      expect(text.startsWith('# Agentware\n') && text.includes('## The Agentware Manifesto'), 'llms-full.txt must start with the Agentware guide');
+    } else if (kind === 'markdown') {
+      expect(response.status === 200, 'Markdown version must return HTTP 200');
+      expect(/^text\/markdown\s*;\s*charset=utf-8$/i.test(type), 'Markdown version must declare UTF-8 Markdown');
+      expect(text.startsWith('# ') && !/^\s*<!doctype html/i.test(text), 'Markdown version must be Markdown');
+      expect(!text.includes('\uFFFD'), 'Markdown contains invalid UTF-8 or replacement characters');
     } else if (kind === 'agentware') {
       expect(response.status === 200, 'agentware.md must return HTTP 200');
       expect(/^text\/markdown\s*;\s*charset=utf-8$/i.test(type), 'agentware.md must declare UTF-8 Markdown for browser navigation');
       expect(text.startsWith('# Agentware'), 'Wrong agentware.md content');
-      expect(text.includes('## 05 // The Execution Loop') && text.includes('## 06 // The Four Pillars') && text.includes('## 07 // The Agentware Manifesto'), 'Missing expected agentware.md guide sections');
+      expect(text.includes('## Deterministic Core, Agentic Control Plane') && text.includes('## The Four Pillars') && text.includes('## The Agentware Manifesto') && text.includes('## Open AI Engineering Curriculum'), 'Missing expected agentware.md guide sections');
       expect(!text.includes('\uFFFD'), 'agentware.md contains invalid UTF-8 or replacement characters');
     } else if (kind === 'page') {
       expect(response.status === 200, 'Existing page must return HTTP 200');
       const page = path.includes('/learn/') ? 'learn' : /\/blog\/$/.test(path) ? 'blog' : path.includes('/blog/') ? 'post' : 'home';
       expect(text.includes(`data-page="${page}"`), 'Wrong HTML entry');
       expect(type.includes('text/html'), 'Page must be HTML');
+      expect(text.includes(`<link rel="alternate" type="text/markdown" href="https://agentware.studio${markdownPath(path)}">`), 'Page must link its Markdown version');
+      expect(/<script type="application\/ld\+json">\{"@context":"https:\/\/schema.org"/.test(text) && (page !== 'post' || text.includes('"@type":"BlogPosting"')), 'Page must carry its structured data');
       // Check the URLs actually shipped by this deployment, including older builds.
       // Island scripts are referenced by component-url / renderer-url rather than src.
       for (const [, href] of text.matchAll(/(?:src|href|component-url|renderer-url)="(\/(?:assets|fonts|brand)\/[^"?#]+)"/g)) assets.add(href);
@@ -99,14 +114,17 @@ if (JSON.stringify(site) !== JSON.stringify(expected)) throw new Error(`Sitemap 
 for (const index of ['/blog/', '/zh/blog/', '/ja/blog/']) if (!pages.includes(index)) throw new Error(`Sitemap is missing ${index}`);
 if (new Set(pages).size !== pages.length) throw new Error('Duplicate sitemap URLs');
 await check('/llms.txt', 'llms');
+await check('/llms-full.txt', 'llms-full');
 await check('/agentware.md', 'agentware');
 await batch(pages, (path) => check(path, 'page'));
+await batch(pages.map(markdownPath), (path) => check(path, 'markdown'));
 await batch([...assets].sort(), (path) => check(path, 'asset'));
 const missing = [
   '/.bashrc', `/${nonce}`, ...pages.filter((path) => !path.endsWith('/learn/')).map((path) => `${path}${nonce}/nested`),
   ...['js', 'css', 'woff2'].map((extension) => `/assets/${nonce}.${extension}`), `/fonts/${nonce}.woff2`,
   // Under the blog font slices' immutable wildcard: the 404 must still revalidate.
   `/fonts/cjk/sc-000.${nonce}.woff2`,
+  `/${nonce}.md`, `/blog/${nonce}.md`, `/zh/blog/${nonce}.md`, '/es/blog.md',
 ];
 // A unique path is not proof of a cold cache: retain actual cache headers for
 // both requests and leave origin/cache diagnosis to the deployment comparison.

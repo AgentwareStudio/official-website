@@ -9,6 +9,8 @@ import LearnSite from '../site/LearnSite';
 import NotFoundSite from '../site/NotFoundSite';
 import { LOCALES, messagesFor, type Locale } from '../i18n';
 import { ALTERNATES, SITE, pageMeta, pageUrl, type Page } from '../meta';
+import { markdownPath } from '../markdown';
+import { jsonLd } from '../structured';
 import type { Alternates } from '../components/Chrome';
 import faviconSvg from '../assets/brand/agentware_favicon_dark.svg?url';
 import favicon32 from '../assets/brand/agentware_favicon_dark_32.png?url';
@@ -21,8 +23,9 @@ import sansKr from '../assets/fonts/aw-sans-kr.woff2?url';
 interface Props {
   page: Page;
   code: Locale;
-  /** Blog pages: title, description, the page's path, its language versions (paths, this page included) and its feed. */
-  blog?: { title: string; description: string; path: string; alternates: Alternates; rss: string };
+  /** Blog pages: title, description, the page's path, its language versions (paths, this page included), its feed
+   *  and (posts) their structured data. */
+  blog?: { title: string; description: string; path: string; alternates: Alternates; rss: string; graph?: object[] };
 }
 const { page, code, blog } = Astro.props;
 const FONT: Partial<Record<Locale, string>> = { 'zh-CN': sansSc, ja: sansJp, ko: sansKr };
@@ -33,6 +36,8 @@ const blogVersions = blog ? (Object.entries(blog.alternates) as [Locale, string]
 const sub = page === 'learn' ? 'learn/' : '';
 const url = (path: string) => pageUrl(path, sub);
 const self = LOCALES.find((l) => l.code === code)!;
+// The page's Markdown version (src/markdown.ts) for agents; the 404 page has none.
+const markdown = page === 'notfound' ? null : SITE + markdownPath(blog?.path ?? url(self.path).slice(SITE.length));
 
 // Root home page only: on the first visit go to the browser's language (kept as aw-auto, so later visits to / land
 // in the same place); a language picked in the menu or the hint (aw-lang) always wins.
@@ -64,6 +69,8 @@ const redirect = page === 'home' && !self.path;
         <link rel="alternate" hreflang="x-default" href={url('')} />
       </>
     )}
+    {markdown && <link rel="alternate" type="text/markdown" href={markdown} />}
+    {page !== 'notfound' && <script is:inline type="application/ld+json" set:html={jsonLd(blog?.graph)} />}
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
     <link rel="apple-touch-icon" href={appleIcon} />
