@@ -2,7 +2,8 @@
 // - keep the existing download URLs /fonts/* and /brand/* (unversioned copies of src/assets/);
 // - inline the stylesheet into home pages, so the full cascade is there before the first render,
 //   and preload the header brand image;
-// - write _headers: fingerprinted files are immutable, HTML always revalidates.
+// - write _headers: fingerprinted files are immutable, HTML always revalidates;
+// - remove the NUL bytes React 18's Node renderer leaves in the pages (stripNul).
 import { cpSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +34,17 @@ function inlineHomeStyles(out) {
     pages++;
   }
   if (!pages) throw new Error('No home page found');
+}
+
+// React 18's renderToPipeableStream (Node, so the prerendered pages) pads its 2 KB write buffer with NUL bytes when a
+// multi-byte character does not fit at the end: Chinese, Japanese and Korean pages get stray NULs between characters.
+// They are only padding: removed, the page is byte for byte what renderToString gives. (Rendering with renderToString
+// instead, the integration's experimentalDisableStreaming, drops the island's useId prefix and breaks hydration.)
+function stripNul(out) {
+  for (const file of files(out).filter((f) => f.endsWith('.html'))) {
+    const bytes = readFileSync(file);
+    if (bytes.includes(0)) writeFileSync(file, bytes.filter((b) => b !== 0));
+  }
 }
 
 function writeHeaders(out) {
@@ -73,6 +85,7 @@ export function siteFiles() {
         const root = fileURLToPath(new URL('../', import.meta.url));
         // Preserve existing download URLs with the platform's revalidation defaults.
         for (const kind of ['fonts', 'brand']) cpSync(join(root, 'src/assets', kind), join(out, kind), { recursive: true });
+        stripNul(out);
         inlineHomeStyles(out);
         writeHeaders(out);
       },
