@@ -1,13 +1,15 @@
 {
  "en": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "Open Curriculum — Agentware Studio",
-  "nf": "Page not found — Agentware Studio"
+  "learn": "Courses & Labs — Agentware Studio",
+  "nf": "Page not found — Agentware Studio",
+  "learnDesc": "AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems."
  },
  "ja": {
   "home": "Agentware Studio — From Interface to Intent",
-  "learn": "AI 体系化オープン講座 — Agentware Studio",
-  "nf": "ページが見つかりません — Agentware Studio"
+  "learn": "AI 公開講座 — Agentware Studio",
+  "nf": "ページが見つかりません — Agentware Studio",
+  "learnDesc": "Agentware Studio の開発チームが制作する AI 公開講座。専用アニメーション、ブラウザで動かせるミニゲーム、そのまま使えるテンプレートを収録。第1弾『AIガチャ卒業講座』は大規模言語モデルの原理から AI コーディング、業務システム構築まで全3シーズン。"
  },
  "es": {
   "home": "Agentware Studio — From Interface to Intent",

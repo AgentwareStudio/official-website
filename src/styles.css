@@ -575,6 +575,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .season .eyebrow { margin-bottom: 14px; }
 .lessons__unit.season h3 { padding: 0; font-size: clamp(22px, 2vw, 28px); font-weight: 500; color: var(--fg); letter-spacing: -0.01em; }
 .season h3 [lang='en'] { font-family: var(--mono); font-size-adjust: var(--mono-size-adjust); font-size: 12px; letter-spacing: .08em; color: var(--dim); }
+.season__specs { margin-top: 8px; font-size: 13px; color: var(--dim); letter-spacing: .02em; }
 .season__body { margin-top: 14px; color: var(--slate); font-size: 15px; line-height: 1.85; font-weight: 300; }
 .course__go { margin-top: 36px; }
 .page-cta { padding: clamp(96px, 12vw, 160px) 0; }

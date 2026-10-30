@@ -161,11 +161,14 @@ def build(loc: str):
             stitle = parts[0] + ('|' if loc == 'ja' else ' |') + parts[1] + '\n' + ' '.join(parts[2:])
         else:
             stitle = parts[0] + '\n' + ' '.join(parts[1:])
+    # Locales with their own course copy (i18n_ui learnCopy) use it for the course card and the /learn page
+    lc = U.get('learnCopy')
+    card = lc['card'] if lc else dict(title=curr['title'], body=curr['body'].rstrip('：: '), action=U['ui']['studioActions'][0])
     studio = dict(
         title=stitle,
         sub=d['studioIntro'],
         items=[
-            dict(tag='01 // OPEN CURRICULUM', title=curr['title'], body=curr['body'].rstrip('：: '), action=U['ui']['studioActions'][0], href=LEARN),
+            dict(tag='01 // OPEN CURRICULUM', **card, href=LEARN),
             # AIKit is not deployed yet: described, but not linked
             dict(tag='02 // USER TOOLS', title=aikit['title'], body=aikit['body']),
         ],
@@ -178,13 +181,19 @@ def build(loc: str):
         no, local, sen = season(label)
         if en:
             local, sen = sen, ''
-        seasons.append(dict(id=SEASON_IDS[i], no=no, zh=local, en=sen, body=body))
+        seasons.append(dict(id=SEASON_IDS[i], no=no, zh=local, en=sen, specs='', body=body))
     course = U['learn']['course']
     learn = dict(title=curr['title'], en='Open Curriculum', motto=[m_en, m_local], lead=curr['body'].rstrip('：: '),
                  status=U['learn']['status'], course=course, seasons=seasons, cta=U['learn']['cta'])
+    if lc:
+        learn = dict(title=lc['title'], en=lc['en'], motto=lc['motto'], lead=lc['lead'], status=lc['status'],
+                     course=dict(course, body=lc['course']),
+                     seasons=[dict(id=SEASON_IDS[i], **s) for i, s in enumerate(lc['seasons'])], cta=lc['cta'])
 
     ui = dict(U['ui'])
     ui['learn'] = {k: U['learn'][k] for k in ('seasonsAria', 'actions')}
+    if lc:
+        ui['learn']['actions'] = lc['actions']
     ui['nf'] = U['nf']
     ui.pop('studioActions', None)
 

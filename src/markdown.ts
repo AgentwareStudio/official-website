@@ -88,9 +88,9 @@ function learnBody() {
   const { learn, ui, LINKS } = C;
   const c = learn.course;
   return [
-    `## ${text(learn.title)}${learn.en ? ` · ${learn.en}` : ''}\n\n> ${learn.motto.map(text).join(' ')}\n\n${text(learn.lead)}\n\n${text(learn.status)}`,
+    `## ${text(learn.title)}${learn.en && learn.en !== learn.title ? ` · ${learn.en}` : ''}\n\n> ${learn.motto.map(text).filter(Boolean).join(' ')}\n\n${text(learn.lead)}\n\n${text(learn.status)}`,
     `## ${text(c.name)}\n\n${text(c.body)}\n\n${text(c.langs)}: 中文 · 日本語 · English\n\n`
-      + learn.seasons.map((s) => `### ${s.no}: ${[s.zh, s.en].filter(Boolean).join(' · ')}\n\n${text(s.body)}`).join('\n\n'),
+      + learn.seasons.map((s) => `### ${s.no}: ${[s.zh, s.en].filter(Boolean).join(' · ')}\n\n${s.specs ? `${text(s.specs)}\n\n` : ''}${text(s.body)}`).join('\n\n'),
     `## ${text(learn.cta)}\n\n- [${label(ui.learn.actions[0])}](${LINKS.learn})\n- [${label(ui.learn.actions[1])}](${LINKS.youtube})`,
   ].join('\n\n');
 }
@@ -117,7 +117,7 @@ export async function guideMarkdown() {
   await useLocale('en');
   const { hero, LINKS } = C;
   const links = [
-    ['Official website', `${SITE}/`], ['Blog', `${SITE}/blog/`], ['Open curriculum', `${SITE}/learn/`], ['Course platform', LINKS.learn],
+    ['Official website', `${SITE}/`], ['Blog', `${SITE}/blog/`], ['Courses & labs', `${SITE}/learn/`], ['Course platform', LINKS.learn],
     ['GitHub', LINKS.github], ['X (Twitter)', LINKS.x], ['YouTube', LINKS.youtube],
   ].map(([k, v]) => `- **${k}**: ${v}`).join('\n');
   const home = homeBody('').replace(/\n\n## Links\n[\s\S]*$/, '');

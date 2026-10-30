@@ -50,7 +50,7 @@ Every page has a Markdown version at its URL plus \`index.md\` (\`/zh/learn/\` â
 
 ## Curriculum
 
-- [Open Curriculum Overview](${md('/learn/')}): Overview of the studio's open AI engineering curriculum (\`We teach what we build.\`) and the three seasons of its first course, *Graduating from AI Gacha* (\`ai-fundamentals\`, \`ai-coding\`, and \`building-ai-systems\`).
+- [AI Courses & Labs](${md('/learn/')}): The studio's AI courses, built by practicing engineers (\`Built by engineers. Crafted to last.\`), and the three seasons of its first course, *Graduating from AI Gacha* (\`ai-fundamentals\`, \`ai-coding\`, and \`building-ai-systems\`), with price, length and audience for each.
 - [Course Platform](${LINKS.learn}): Learning portal for *Graduating from AI Gacha* featuring interactive practice games and a course-grounded AI assistant.
 
 ## Blog

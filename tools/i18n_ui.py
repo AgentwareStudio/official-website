@@ -48,8 +48,28 @@ UI['en'] = dict(
         course=dict(name='Graduating from AI Gacha', langs='Course languages',
                     body='Stop rolling the dice with AI. Across three seasons, the course goes from how large language models work, to coding with AI, to building a real piece of work into a system yourself. The course site has practice games and an AI assistant that answers only from the course itself.'),
     ),
+    # The /learn page and the home page's course card (planning/agentware_studio_learn_copy.md in ai-gacha-course).
+    # Replaces the curriculum copy from the i18n document for this locale.
+    learnCopy=dict(
+        title='AI Courses & Labs', en='Open Curriculum', motto=['Built by engineers. Crafted to last.', ''],
+        lead='A good technical course should be a solid piece of work in its own right. Every course at Agentware Studio is written and built by practicing engineers—turning abstract mechanics into clear visual intuition, pinning every demo to real models and versions, and pairing every lesson with interactive web labs and runnable templates you can put to work right away.',
+        status='Course 01 "Graduating from AI Gacha" now streaming · More engineering courses in production',
+        course='Does using AI still feel like pulling a slot machine? When a model gives you bad output, the problem is usually what you put on its desk. Across three seasons, this course takes you from how large language models actually work, to coding with AI in your editor, to turning a real workflow into a working system. Every episode comes with a hands-on web game and an AI assistant that answers strictly from course materials with exact citations.',
+        seasons=[
+            dict(no='Season 01', zh='Fundamentals', en='', specs='Free · 14 animated episodes (incl. trailer) · No coding required',
+                 body='Using a desk and a gacha machine, we visualize how large language models work under the hood: how they predict one token tile at a time, why long chats make them lose track, how to hand them reference books and tools, and when you can trust their output. Each episode takes 5–8 minutes and leaves you with one concrete habit you can use the same day.'),
+            dict(no='Season 02', zh='AI Coding', en='', specs='Free · 7 episodes · For developers',
+                 body='Writing code has gotten cheap; judging whether that code is right has gotten harder. Using VS Code (GitHub Copilot) and Claude Code side by side, we cover what files the agent actually sees, how to write project instructions (AGENTS.md / CLAUDE.md), how to review a plan before touching code, and how to package recurring team workflows into reusable Skills and automated hooks.'),
+            dict(no='Season 03', zh='Building AI Systems', en='', specs='Pro · 17 hands-on builds · For business leads & engineers',
+                 body='Built around six real workflows at a mid-sized company—weekly report automation, customer email triage, policy Q&A, an internal MCP server, multi-agent research, and cross-company agent handoffs. Step by step, you will sketch the architecture, engineer the context, build with n8n, Dify, or code, and run red-team safety tests, pass-rate evaluations, and ROI checks to ship a system ready for sign-off.'),
+        ],
+        cta='Interactive labs and an AI tutor come with every course—|try them hands-on right now',
+        actions=['Enter Course Site', 'Subscribe on YouTube'],
+        card=dict(title='AI Courses & Labs', body='A good technical course should be a solid piece of work in its own right. Built by practicing engineers, pairing visual animations with interactive web labs and runnable templates.', action='Visit Course Site ↗'),
+    ),
     nf=dict(title='This address has no page', lead='The link may have changed. Go back home, or open the curriculum.', actions=['Back to home', 'Open Curriculum']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Open Curriculum — Agentware Studio', nf='Page not found — Agentware Studio'),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='Courses & Labs — Agentware Studio', nf='Page not found — Agentware Studio',
+              learnDesc='AI courses built by practicing engineers at Agentware Studio. Visual animations, interactive web labs, and runnable templates. Course 01: Graduating from AI Gacha—from LLM mechanics and AI coding to building production systems.'),
 )
 
 # ---------------------------------------------------------------- 日本語
@@ -96,8 +116,28 @@ UI['ja'] = dict(
         course=dict(name='AIガチャ卒業講座', langs='講座の言語',
                     body='AI を「ガチャ」のように運任せで使うのは、もう終わりにしましょう。3つのシーズンで、大規模言語モデルの仕組みから、AI とのコーディング、そして業務を自分の手でシステムに組み上げるところまでを学びます。講座サイトには練習ミニゲームと、講座の内容だけをもとに答える AI 質問アシスタントがあります。'),
     ),
+    # The /learn page and the home page's course card (planning/agentware_studio_learn_copy.md in ai-gacha-course).
+    # Replaces the curriculum copy from the i18n document for this locale.
+    learnCopy=dict(
+        title='AI 公開講座', en='Courses & Labs', motto=['Built by engineers. Crafted to last.', '現場のエンジニアが作る、根拠のある実践講座。'],
+        lead='良い技術講座は、それ自体が丁寧につくられた作品であるべきだと考えています。Agentware Studio の講座はすべて、日々システムを作っている研究開発チームが一から構成・制作しています。仕組みがひと目でわかるアニメーション、モデル名とバージョンを明記した実測デモ、ブラウザで試せる演習とそのまま動かせるテンプレートを揃え、実務で本当に使える力に繋げます。',
+        status='第1弾『AIガチャ卒業講座』公開中 ・ 専門コースも順次制作中',
+        course='AI を使うたび、ガチャを回すような運任せになっていませんか。思うような結果が出ない原因の多くは、AI に渡す入力（x）にあります。全3シーズンの講座で、大規模言語モデルの仕組みから、エディタでの AI コーディング、そして業務を自分の手でシステムに組み上げるところまでを順を追って学びます。各話にはブラウザで遊べるミニゲームと、講座の資料だけをもとに根拠つきで答える AI 質問アシスタントが付いています。',
+        seasons=[
+            dict(no='シーズン 1', zh='原理編', en='Fundamentals', specs='無料 · アニメーション全14話（予告編含む） · プログラミング知識不要',
+                 body='1台の机とガチャマシンを使って、大規模言語モデルの仕組みを視覚化します。1枚ずつ牌をつなぐ「しりとり」の仕組み、会話が長くなると鈍くなる理由、参考書やツールの渡し方、そしてどこまで AI を信じてよいか。1話5〜8分で、見終わったらすぐに普段の使い方を1つ改善できます。'),
+            dict(no='シーズン 2', zh='実践編', en='AI Coding', specs='無料 · 全7話 · コードを書く人向け',
+                 body='コードを書くコストは下がりましたが、そのコードが正しいか判断するのは以前より難しくなっています。VS Code（GitHub Copilot）と Claude Code を並べて動かしながら、AI に見えているファイルの範囲、プロジェクト説明書（AGENTS.md / CLAUDE.md）の書き方、コードに触る前に計画を出させる進め方、チームの定型手順をスキル（Skills）や自動チェックにする方法を解説します。'),
+            dict(no='シーズン 3', zh='構築編', en='Building AI Systems', specs='実践講座 · ハンズオン全17話 · 業務リーダー・エンジニア向け',
+                 body='架空の製造業の6つの業務課題（週報の自動集約、問い合わせメールの仕分け、社内規定 Q&A、社内ツール用 MCP サーバー、複数エージェントによる調査、取引先エージェントとの連携）を題材に、構成案の設計、コンテキスト設計、n8n・Dify・コードでの実装から、攻撃テスト、合格率の評価、ROI 試算までを一通りやり遂げ、そのまま本番導入に使えるシステムを仕上げます。'),
+        ],
+        cta='すべての講座にミニゲームと AI アシスタントを収録。|今すぐブラウザで試せます',
+        actions=['講座サイトへ', 'YouTube を見る'],
+        card=dict(title='AI 公開講座', body='現場の研究開発チームが一から制作する実践講座。仕組みがひと目でわかるアニメーション、ブラウザで試せる演習、そのまま動かせるテンプレートを揃えています。', action='講座サイトへ ↗'),
+    ),
     nf=dict(title='このアドレスにページはありません', lead='リンクが変わった可能性があります。ホームに戻るか、講座を開いてください。', actions=['ホームに戻る', 'AI 講座']),
-    meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 体系化オープン講座 — Agentware Studio', nf='ページが見つかりません — Agentware Studio'),
+    meta=dict(home='Agentware Studio — From Interface to Intent', learn='AI 公開講座 — Agentware Studio', nf='ページが見つかりません — Agentware Studio',
+              learnDesc='Agentware Studio の開発チームが制作する AI 公開講座。専用アニメーション、ブラウザで動かせるミニゲーム、そのまま使えるテンプレートを収録。第1弾『AIガチャ卒業講座』は大規模言語モデルの原理から AI コーディング、業務システム構築まで全3シーズン。'),
 )
 
 # ---------------------------------------------------------------- Español

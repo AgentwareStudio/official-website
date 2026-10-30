@@ -67,7 +67,7 @@ async function check(path, kind, visit = 'first') {
       expect(response.status === 200, 'agentware.md must return HTTP 200');
       expect(/^text\/markdown\s*;\s*charset=utf-8$/i.test(type), 'agentware.md must declare UTF-8 Markdown for browser navigation');
       expect(text.startsWith('# Agentware'), 'Wrong agentware.md content');
-      expect(text.includes('## Deterministic Core, Agentic Control Plane') && text.includes('## The Four Pillars') && text.includes('## The Agentware Manifesto') && text.includes('## Open AI Engineering Curriculum'), 'Missing expected agentware.md guide sections');
+      expect(text.includes('## Deterministic Core, Agentic Control Plane') && text.includes('## The Four Pillars') && text.includes('## The Agentware Manifesto') && text.includes('## AI Courses & Labs'), 'Missing expected agentware.md guide sections');
       expect(!text.includes('\uFFFD'), 'agentware.md contains invalid UTF-8 or replacement characters');
     } else if (kind === 'page') {
       expect(response.status === 200, 'Existing page must return HTTP 200');

@@ -340,6 +340,7 @@
     "no": "Temporada 1",
     "zh": "Fundamentos",
     "en": "Fundamentals",
+    "specs": "",
     "body": "Sem exageros de marketing — da previsão do próximo token, alucinações e janelas de contexto até RAG, chamada de ferramentas e Agentes — entendendo quando confiar na IA e como aplicá-la no trabalho."
    },
    {
@@ -347,6 +348,7 @@
     "no": "Temporada 2",
     "zh": "Prática",
     "en": "AI Coding",
+    "specs": "",
     "body": "Quando escrever código fica barato e o discernimento fica valioso, aprenda a escrever especificações de projeto para a IA, desenhar a solução antes de mexer no código e transformar experiência pessoal em habilidades reutilizáveis (Skills)."
    },
    {
@@ -354,6 +356,7 @@
     "no": "Temporada 3",
     "zh": "Construção",
     "en": "Building AI Systems",
+    "specs": "",
     "body": "Voltada para cenários reais — da engenharia de contexto, orquestração de fluxos (n8n / Dify) e desenvolvimento de servidores MCP até colaboração multiagente, governança de segurança e avaliação em produção."
    }
   ],

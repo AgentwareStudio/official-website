@@ -308,9 +308,9 @@
   "items": [
    {
     "tag": "01 // OPEN CURRICULUM",
-    "title": "Open AI Engineering Curriculum",
-    "body": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
-    "action": "Go to the course site ↗",
+    "title": "AI Courses & Labs",
+    "body": "A good technical course should be a solid piece of work in its own right. Built by practicing engineers, pairing visual animations with interactive web labs and runnable templates.",
+    "action": "Visit Course Site ↗",
     "href": "https://learn.agentware.studio"
    },
    {
@@ -321,43 +321,46 @@
   ]
  },
  "learn": {
-  "title": "Open AI Engineering Curriculum",
+  "title": "AI Courses & Labs",
   "en": "Open Curriculum",
   "motto": [
-   "We teach what we build.",
+   "Built by engineers. Crafted to last.",
    ""
   ],
-  "lead": "Moving from \"operating software\" to \"delegating to software\" starts with upgrading human mental models and methodology. We are producing a structured AI engineering curriculum—from foundational mechanics to hands-on system building—to help everyone master core capabilities for the agentic era",
-  "status": "First course: Graduating from AI Gacha",
+  "lead": "A good technical course should be a solid piece of work in its own right. Every course at Agentware Studio is written and built by practicing engineers—turning abstract mechanics into clear visual intuition, pinning every demo to real models and versions, and pairing every lesson with interactive web labs and runnable templates you can put to work right away.",
+  "status": "Course 01 \"Graduating from AI Gacha\" now streaming · More engineering courses in production",
   "course": {
    "name": "Graduating from AI Gacha",
    "langs": "Course languages",
-   "body": "Stop rolling the dice with AI. Across three seasons, the course goes from how large language models work, to coding with AI, to building a real piece of work into a system yourself. The course site has practice games and an AI assistant that answers only from the course itself."
+   "body": "Does using AI still feel like pulling a slot machine? When a model gives you bad output, the problem is usually what you put on its desk. Across three seasons, this course takes you from how large language models actually work, to coding with AI in your editor, to turning a real workflow into a working system. Every episode comes with a hands-on web game and an AI assistant that answers strictly from course materials with exact citations."
   },
   "seasons": [
    {
     "id": "ai-fundamentals",
-    "no": "Season 1",
+    "no": "Season 01",
     "zh": "Fundamentals",
     "en": "",
-    "body": "Stripping away the hype—from next-token prediction, tokens, hallucinations, and context windows to RAG, tool calling, and Agents—understanding when to trust AI and how to put it to work."
+    "specs": "Free · 14 animated episodes (incl. trailer) · No coding required",
+    "body": "Using a desk and a gacha machine, we visualize how large language models work under the hood: how they predict one token tile at a time, why long chats make them lose track, how to hand them reference books and tools, and when you can trust their output. Each episode takes 5–8 minutes and leaves you with one concrete habit you can use the same day."
    },
    {
     "id": "ai-coding",
-    "no": "Season 2",
+    "no": "Season 02",
     "zh": "AI Coding",
     "en": "",
-    "body": "When code becomes cheap and judgment becomes scarce, learn how to write specs for AI, design architecture before touching code, and distill personal expertise into reusable Skills."
+    "specs": "Free · 7 episodes · For developers",
+    "body": "Writing code has gotten cheap; judging whether that code is right has gotten harder. Using VS Code (GitHub Copilot) and Claude Code side by side, we cover what files the agent actually sees, how to write project instructions (AGENTS.md / CLAUDE.md), how to review a plan before touching code, and how to package recurring team workflows into reusable Skills and automated hooks."
    },
    {
     "id": "building-ai-systems",
-    "no": "Season 3",
+    "no": "Season 03",
     "zh": "Building AI Systems",
     "en": "",
-    "body": "Grounded in real-world scenarios—covering context engineering, workflow orchestration (n8n / Dify), MCP server development, multi-agent collaboration, safety guardrails, and evaluation pipelines to turn real workflows into autonomous systems."
+    "specs": "Pro · 17 hands-on builds · For business leads & engineers",
+    "body": "Built around six real workflows at a mid-sized company—weekly report automation, customer email triage, policy Q&A, an internal MCP server, multi-agent research, and cross-company agent handoffs. Step by step, you will sketch the architecture, engineer the context, build with n8n, Dify, or code, and run red-team safety tests, pass-rate evaluations, and ROI checks to ship a system ready for sign-off."
    }
   ],
-  "cta": "Videos on YouTube, |practice and Q&A on the course site"
+  "cta": "Interactive labs and an AI tutor come with every course—|try them hands-on right now"
  },
  "ui": {
   "skip": "Skip to content",
@@ -455,8 +458,8 @@
   "learn": {
    "seasonsAria": "Three seasons",
    "actions": [
-    "Start the course",
-    "Follow on YouTube"
+    "Enter Course Site",
+    "Subscribe on YouTube"
    ]
   },
   "nf": {

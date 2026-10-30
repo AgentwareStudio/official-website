@@ -1,6 +1,7 @@
 // Page titles and descriptions per locale.
 // zh-CN is the source language and has its own wording; other locales take the title from
-// tools/meta.json and the description from the page's lead copy, shortened for search results.
+// tools/meta.json and the description from the page's lead copy, shortened for search results, unless
+// tools/meta.json has one written for the page (learnDesc).
 import meta from '../tools/meta.json';
 import type { Locale, Messages } from './i18n';
 
@@ -20,8 +21,8 @@ const ZH: Record<SitePage, [string, string]> = {
     'Agentware 是为智能体时代而生的软件范式：你说明目标、划定边界、定义完成标准，系统在授权范围内组织行动，并交付可验证的结果。',
   ],
   learn: [
-    'AI 体系化公开课 — Agentware Studio',
-    'We teach what we build. Agentware Studio 的 AI 体系化公开课。首门课程《AI 抽卡毕业课》分三季：原理篇、实战篇、搭建篇。',
+    'AI 公开课 — Agentware Studio',
+    'Agentware Studio 一线工程团队出品的 AI 公开课。配备定制可视化动画、网页互动实验与可运行工程模板。首门课程《AI 抽卡毕业课》涵盖大模型原理、AI 编程实战与业务系统搭建。',
   ],
   notfound: ['页面不存在 — Agentware Studio', '这个地址没有页面。'],
 };
@@ -48,5 +49,5 @@ export function pageMeta(page: SitePage, code: Locale, messages: Messages | null
     learn: (messages?.learn as { lead: string }).lead,
     notfound: ((messages?.ui as { nf: { title: string } }).nf).title,
   }[page];
-  return { title, description: short(lead) };
+  return { title, description: (page === 'learn' && m.learnDesc) || short(lead) };
 }

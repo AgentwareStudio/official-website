@@ -4,13 +4,14 @@ import { href, locale } from '../i18n';
 
 // Read at render time: one build renders every locale in turn.
 const showEn = () => locale !== 'en';
-function JoinLink({ to, label, en, primary = false }: { to: string; label: string; en: string; primary?: boolean }) {
+/** `en`: the English label under a translated one (not on English pages); `sub`: a note shown on every page. */
+function JoinLink({ to, label, en, sub, primary = false }: { to: string; label: string; en?: string; sub?: string; primary?: boolean }) {
   const ext = to.startsWith('http');
   return (
     <li>
       <a className={`join-link ${primary ? 'is-primary' : ''}`} href={ext ? to : href(to)} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>
         <span className="join-link__zh">{label}</span>
-        {showEn() && <span className="join-link__en" lang="en">{en}</span>}
+        {(sub || (en && showEn())) && <span className="join-link__en" lang="en">{sub ?? en}</span>}
         <span className="join-link__arrow" aria-hidden="true">{ext ? '↗' : '→'}</span>
       </a>
     </li>
@@ -24,7 +25,7 @@ function PageHero({ crumb, title, en, lead, status, motto }: { crumb: string; ti
         <p className="eyebrow"><a href={href('/')}>AGENTWARE STUDIO</a> <span aria-hidden="true">//</span> {crumb}</p>
         <h1 className="page-hero__title">
           {title}
-          {showEn() && <em lang="en">{en}</em>}
+          {en !== title && <em lang="en">{en}</em>}
         </h1>
         <div className="page-hero__foot">
           {motto ? (
@@ -51,7 +52,7 @@ export function LearnPage() {
   const c = learn.course;
   return (
     <>
-      <PageHero crumb="OPEN CURRICULUM" title={learn.title} en={learn.en} lead={learn.lead} status={learn.status} motto={learn.motto} />
+      <PageHero crumb="COURSES & LABS" title={learn.title} en={learn.en} lead={learn.lead} status={learn.status} motto={learn.motto} />
       <section className="course" id="ai-gacha" aria-labelledby="ai-gacha-t">
         <div className="wrap course__grid">
           <div className="course__side">
@@ -63,7 +64,7 @@ export function LearnPage() {
                 <div><dt>{c.langs}</dt><dd>{dotted(COURSE_LANGS)}</dd></div>
               </dl>
               <ul className="join__actions course__go">
-                <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} en="learn.agentware.studio" />
+                <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
               </ul>
             </div>
           </div>
@@ -72,6 +73,7 @@ export function LearnPage() {
               <div className="lessons__unit season" id={s.id} key={s.id}>
                 <p className="eyebrow">{s.no} // {(s.en || s.zh).toUpperCase()}</p>
                 <h3>{s.zh}{s.en && <span lang="en"> · {s.en}</span>}</h3>
+                {s.specs && <p className="season__specs">{s.specs}</p>}
                 <p className="season__body">{s.body}</p>
               </div>
             ))}
@@ -82,8 +84,8 @@ export function LearnPage() {
         <div className="wrap page-cta__inner">
           <h2 className="h-section"><T>{learn.cta}</T></h2>
           <ul className="join__actions">
-            <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} en="Start the Course" />
-            <JoinLink to={LINKS.youtube} label={ui.learn.actions[1]} en="YouTube" />
+            <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
+            <JoinLink to={LINKS.youtube} label={ui.learn.actions[1]} sub="YouTube" />
           </ul>
         </div>
       </section>

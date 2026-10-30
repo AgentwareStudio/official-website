@@ -340,6 +340,7 @@
     "no": "Saison 1",
     "zh": "Fondamentaux",
     "en": "Fundamentals",
+    "specs": "",
     "body": "Au-delà du battage médiatique — de la prédiction du mot suivant, des tokens, des hallucinations et des fenêtres de contexte jusqu'au RAG, à l'appel d'outils et aux Agents — comprendre quand faire confiance à l'IA et comment l'intégrer dans son travail."
    },
    {
@@ -347,6 +348,7 @@
     "no": "Saison 2",
     "zh": "Pratique",
     "en": "AI Coding",
+    "specs": "",
     "body": "Lorsque produire du code devient abordable et que le discernement devient précieux, apprendre à rédiger des spécifications pour l'IA, à concevoir l'architecture avant de toucher au code et à transformer son expertise en compétences réutilisables (Skills)."
    },
    {
@@ -354,6 +356,7 @@
     "no": "Saison 3",
     "zh": "Construction",
     "en": "Building AI Systems",
+    "specs": "",
     "body": "Ancrée dans des cas réels — de l'ingénierie du contexte, de l'orchestration de flux (n8n / Dify) et du développement de serveurs MCP jusqu'à la collaboration multi-agents, la gouvernance de sécurité et l'évaluation en production."
    }
   ],

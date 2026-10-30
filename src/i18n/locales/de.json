@@ -340,6 +340,7 @@
     "no": "Staffel 1",
     "zh": "Grundlagen",
     "en": "Fundamentals",
+    "specs": "",
     "body": "Jenseits des Hypes – von Next-Token-Prediction, Tokens, Halluzinationen und Kontextfenstern bis hin zu RAG, Tool-Aufrufen und Agenten. Verstehen, wann man KI vertrauen kann und wie man sie produktiv einsetzt."
    },
    {
@@ -347,6 +348,7 @@
     "no": "Staffel 2",
     "zh": "Praxis",
     "en": "AI Coding",
+    "specs": "",
     "body": "Wenn Code günstig und Urteilskraft kostbar wird: Lernen Sie, wie man Spezifikationen für KI verfasst, erst die Architektur entwirft, bevor Code geschrieben wird, und persönliche Erfahrung in wiederverwendbare Fähigkeiten (Skills) gießt."
    },
    {
@@ -354,6 +356,7 @@
     "no": "Staffel 3",
     "zh": "Systemaufbau",
     "en": "Building AI Systems",
+    "specs": "",
     "body": "Für reale Anwendungsszenarien – von Context Engineering, Workflow-Orchestrierung (n8n / Dify) und MCP-Server-Entwicklung bis zu Multi-Agenten-Kollaboration, Sicherheits-Governance und Evaluierung im Produktivbetrieb."
    }
   ],

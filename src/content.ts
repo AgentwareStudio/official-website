@@ -203,8 +203,8 @@ export const studio = {
   items: [
     {
       tag: '01 // OPEN CURRICULUM',
-      title: 'AI 体系化公开课',
-      body: '要从“操作软件”转向“委托软件”，首先需要升级人的认知与方法。我们正在制作系统性的 AI 教育讲座，从底层原理到实战搭建，帮助每一个人掌握 Agent 时代的核心能力。',
+      title: 'AI 公开课',
+      body: '好的技术课，自己就该是一件扎实的作品。由一线研发团队编撰制作，用定制可视化动画、网页互动实验与可运行的工程资产，帮你把 AI 真正变成手里的生产力。',
       action: '前往课程网站 ↗',
       href: LINKS.learn,
     },
@@ -239,25 +239,26 @@ export const footer = {
 // /learn — the open curriculum. Lesson lists live on the course site (learn.agentware.studio), not here,
 // so this page only names the course and its seasons and does not need updating when episodes change.
 export const learn = {
-  title: 'AI 体系化公开课',
-  en: 'Open Curriculum',
-  motto: ['We teach what we build.', '我们所教，即我们所践。'],
-  lead: '要从“操作软件”转向“委托软件”，首先需要升级人的认知与方法。我们正在制作系统性的 AI 教育讲座，从底层原理到实战搭建，帮助每一个人掌握 Agent 时代的核心能力。',
-  status: '首门课程：AI 抽卡毕业课',
+  title: 'AI 公开课',
+  en: 'Courses & Labs',
+  motto: ['Built by engineers. Crafted to last.', '一线工程团队出品，只做经得起推敲的课。'],
+  lead: '好的技术课，自己就该是一件扎实的作品。Agentware Studio 的课程全部由一线研发团队编撰制作——每一个原理都给得出可视化的直觉，每一处演示都标明真实的模型与版本，每一门课都配齐互动练习与可运行的工程资产，帮你把 AI 真正变成手里的生产力。',
+  status: '01 号课程《AI 抽卡毕业课》连载中 · 更多工程专项课筹备中',
   course: {
     name: 'AI 抽卡毕业课',
-    body: '别再把 AI 当抽卡、靠运气。三季课程从大模型的原理讲起，到用 AI 写代码，再到亲手把一项业务搭成系统。课程网站上有练习小游戏，还有只依据课程内容回答的 AI 问答助手。',
+    body: '用 AI 总像在抽卡？模型算不出好结果，多半是交给它的输入没给对。三季课程从大模型的工作机制讲起，到用 AI 写代码，再到亲手把一项业务搭成系统。每集配有网页互动小游戏，以及只根据课程资料回答并标出处的 AI 问答助手。',
     langs: '课程语言',
   },
+  // specs: price, episodes and audience, under the season name ('' hides the line)
   seasons: [
-    { id: 'ai-fundamentals', no: '第一季', zh: '原理篇', en: 'Fundamentals',
-      body: '剥离炒作，从接龙原理、Token、幻觉、上下文窗口讲到 RAG、工具调用与 Agent，弄懂“什么时候能信 AI，怎么把 AI 用进工作”。' },
-    { id: 'ai-coding', no: '第二季', zh: '实战篇', en: 'AI Coding',
-      body: '当代码变便宜、判断变贵，学习如何为 AI 编写项目说明书、如何先出方案再动代码、如何把个人经验沉淀为可复用的技能（Skills）。' },
-    { id: 'building-ai-systems', no: '第三季', zh: '搭建篇', en: 'Building AI Systems',
-      body: '面向真实场景，从上下文工程、工作流编排（n8n / Dify）、MCP 服务开发，到多智能体协作、安全治理与评测上线，亲手把一项业务搭成系统。' },
-  ] as { id: string; no: string; zh: string; en: string; body: string }[],
-  cta: '视频在 YouTube 发布，|练习与问答在课程网站',
+    { id: 'ai-fundamentals', no: '第一季', zh: '原理篇', en: 'Fundamentals', specs: '免费 · 14 集动画（含预告）· 零代码基础',
+      body: '用一张桌子和一台抽卡机，把大模型的工作机制画出来：它怎么一块字牌一块字牌地接龙、为什么聊久了会变笨、怎么给它参考书和工具、什么时候能信它。每集 5–8 分钟，看完就能改掉一个日常用 AI 的坏习惯。' },
+    { id: 'ai-coding', no: '第二季', zh: '实战篇', en: 'AI Coding', specs: '免费 · 7 集 · 面向写代码的人',
+      body: '代码变便宜了，判断它写得对不对反而更难了。以 VS Code（GitHub Copilot）和 Claude Code 为例，讲清楚它在项目里看得见哪些文件、怎么写项目说明书（AGENTS.md / CLAUDE.md）、怎么让它先出方案再改代码，以及怎么把团队常做的活写成技能（Skills）和自动检查规则。' },
+    { id: 'building-ai-systems', no: '第三季', zh: '搭建篇', en: 'Building AI Systems', specs: '进阶课 · 17 集跟做实操 · 面向业务骨干与工程师',
+      body: '围绕一家企业的六项真实需求（周报汇总、来信分拣、规定问答、内部工具服务、多代理调研、跨公司对接），手把手带你画方案、设计上下文、用 n8n / Dify 或代码搭出成品，再做完红队安全测试、出货率评测和 ROI 测算，交付一套能真正上线验收的系统。' },
+  ] as { id: string; no: string; zh: string; en: string; specs: string; body: string }[],
+  cta: '每门课都配有互动实验与 AI 助教，|现在就可以上手试',
 };
 
 // Interface strings (zh-CN). Other locales overwrite these from src/i18n/locales/<locale>.json.
@@ -295,6 +296,6 @@ export const ui = {
       verifyFail: '验收未通过：需要人的决定', handback: '停止行动，说明原因与已完成部分，交还人类',
     },
   },
-  learn: { seasonsAria: '三季课程', actions: ['进入课程', '在 YouTube 关注'] },
+  learn: { seasonsAria: '三季课程', actions: ['进入课程网站', '订阅 YouTube 频道'] },
   nf: { title: '这个地址没有页面', lead: '链接可能已经改变。可以回到首页，或直接打开公开课。', actions: ['回到首页', 'AI 公开课'] },
 };
