@@ -5,6 +5,7 @@
 import * as C from './content';
 import { LOCALES, courseLink, href, messagesFor, setLocale, youtubeLink, type Locale } from './i18n';
 import { SITE, pageAlternates, pageMeta, pageSub, pageUrl } from './meta';
+import { WECHAT } from './newsletter/config';
 import { NEWSLETTER } from './newsletter/strings';
 
 export const MARKDOWN_TYPE = 'text/markdown; charset=utf-8';
@@ -104,6 +105,9 @@ function startBody(code: Locale) {
     `## ${p.title}\n\n${p.lead}`,
     `## ${p.what}\n\n${p.points.map((t) => `- ${t}`).join('\n')}\n\n${p.cadence}`,
     `## ${p.submit}\n\n${pageLink('start', code)}\n\n${p.privacy}${p.contentNote ? `\n\n${p.contentNote}` : ''}`,
+    // The same condition as the page (src/sections/Start.tsx).
+    ...(code === 'zh-CN' && WECHAT && p.wechatTitle
+      ? [`## ${p.wechatTitle}\n\n${p.wechatBody}\n\n**${WECHAT.name}**\n\n![${p.wechatTitle}：${WECHAT.name}](${SITE}${WECHAT.qr})`] : []),
   ].join('\n\n');
 }
 

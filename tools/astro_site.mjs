@@ -53,7 +53,7 @@ function writeHeaders(out) {
     // Markdown cannot declare its charset like HTML's <meta charset>, and Static Assets sends a bare text/markdown.
     if (file.endsWith('.md')) rules.set(`/${file}`, { 'Content-Type': 'text/markdown; charset=utf-8' });
     else if (file.startsWith('assets/')) {
-      if (!/^assets\/.+[.-][A-Za-z0-9_-]{8,}\.(?:js|css|woff2|svg|png)$/.test(file)) throw new Error(`Cannot cache an unversioned asset: ${file}`);
+      if (!/^assets\/.+[.-][A-Za-z0-9_-]{8,}\.(?:js|css|woff2|svg|png|webp)$/.test(file)) throw new Error(`Cannot cache an unversioned asset: ${file}`);
       rules.set(`/${file}`, { 'Cache-Control': 'public, max-age=31536000, immutable' });
     }
     // HTML gets no rule: Static Assets already sends `public, max-age=0, must-revalidate` for files without one

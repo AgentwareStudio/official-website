@@ -45,7 +45,7 @@ function rulesOf(files) {
       assert.ok(slices.length > 0, 'The font slice rule must cover existing files');
       for (const f of slices) assert.match(f, /^fonts\/cjk\/(sc|jp)-\d{3}\.[0-9a-f]{10}\.woff2$/, `${f} must be content-hashed`);
     } else if (value.includes('immutable')) {
-      assert.match(path, /^\/assets\/.+[.-][A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png)$/);
+      assert.match(path, /^\/assets\/.+[.-][A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png|webp)$/);
       assert.ok(files.has(path.slice(1)), 'Immutable rule must name an existing build file');
     } else assert.equal(value, 'public, max-age=0, must-revalidate');
   }

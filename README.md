@@ -172,9 +172,11 @@ Setup (once per environment; keys are typed by you, never committed):
 1. In Resend, add and verify the sending domain (the sender is `NEWSLETTER_FROM` in `wrangler.jsonc`), and create an API key with full access (a sending-only key cannot manage contacts or broadcasts).
 2. Save it as `RESEND_API_KEY=…` in `~/.config/agentware/resend.env` (mode 600) and run `set -a; . ~/.config/agentware/resend.env; set +a; node tools/newsletter_setup.mjs` and copy the printed segment ids into `NEWSLETTER_SEGMENTS` under `vars`. Contacts and their opt-out are shared across a Resend team (and the free plan allows three segments), so Workers Previews (`NEWSLETTER_PREVIEW` in `previews.vars`) send the confirmation, welcome and `test_to` emails but never change a contact or create a broadcast.
 3. In Cloudflare, create a Turnstile widget for `agentware.studio` (plus the `workers.dev` preview host) and put its site key in `src/newsletter/config.ts`.
-4. `npx wrangler secret put` each of `RESEND_API_KEY`, `NEWSLETTER_SECRET` (e.g. `openssl rand -hex 32`), `TURNSTILE_SECRET`, `NEWSLETTER_API_TOKEN`; for previews, the same with `npx wrangler preview base-config secret put`. Changing `NEWSLETTER_SECRET` invalidates confirmation links not yet used.
+4. Run `bash tools/newsletter_secrets.sh`: it asks once for the Turnstile secret key, generates `NEWSLETTER_SECRET` and `NEWSLETTER_API_TOKEN` (a separate pair for previews) into `~/.config/agentware/newsletter.env`, and uploads the four secrets with `wrangler secret bulk` and `wrangler preview base-config secret bulk`. `NEWSLETTER_API_TOKEN` there is the publishing system's token. Changing `NEWSLETTER_SECRET` invalidates confirmation links not yet used.
 
-Local testing: `.dev.vars` (ignored) holds the same names; Cloudflare's Turnstile test keys (`1x00000000000000000000AA` with secret `1x0000000000000000000000000000000AA`) always pass, and `RESEND_API_URL` can point the Worker at a local stand-in for the Resend API.
+Resend's free plan sends 100 emails a day and 3,000 a month, broadcasts included; each new subscriber takes two (confirmation and welcome).
+
+Local testing: `.dev.vars` (ignored) holds the same names; Cloudflare's Turnstile test keys always pass (build with `PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA npm run build`, secret `1x0000000000000000000000000000000AA` in `.dev.vars`; the real widget does not accept localhost), and `RESEND_API_URL` can point the Worker at a local stand-in for the Resend API.
 
 ## Project Structure
 
