@@ -2,8 +2,11 @@
 # Uploads the newsletter's four secrets (README "Newsletter") to the production Worker and to the Workers Preview base
 # config. Run it in your own terminal: the keys stay in ~/.config/agentware/ and never enter the repository.
 #
-#   bash tools/newsletter_secrets.sh
+#   bash tools/newsletter_secrets.sh                      # production Worker + Preview base config
+#   bash tools/newsletter_secrets.sh --preview <name>     # one existing Preview (e.g. feat-newsletter-start)
 #
+# The base config only seeds Previews created after it is set; a Preview that already existed keeps its own (empty)
+# secrets across deployments and needs --preview with its name (the branch name).
 # Reads RESEND_API_KEY from resend.env. On the first run it asks for the Turnstile secret key and writes newsletter.env
 # (mode 600) with random NEWSLETTER_SECRET and NEWSLETTER_API_TOKEN values; previews get their own pair, so a
 # confirmation link or API token from a preview does not work in production. Running it again re-uploads the same values.
@@ -48,6 +51,12 @@ secrets() {
     process.stdout.write(JSON.stringify(s));' "$1"
 }
 
+if [ "${1:-}" = --preview ]; then
+  [ -n "${2:-}" ] || { echo 'usage: --preview <name>' >&2; exit 1; }
+  echo "== Workers Preview $2"
+  secrets PREVIEW_ | npx wrangler preview secret bulk --name "$2"
+  exit
+fi
 echo '== production Worker'
 secrets '' | npx wrangler secret bulk
 echo '== Workers Preview base config'
