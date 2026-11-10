@@ -78,11 +78,11 @@ npx wrangler dev --local
 node tools/check_routes.mjs http://localhost:8787
 ```
 
-Run `node tools/check_routes.mjs https://agentware.studio` after deploying. The check takes the pages from the deployed `/sitemap.xml` (exactly the 16 localized pages, plus the three blog indexes and the published posts) and requests them as a browser navigation. It covers all of those pages, their referenced assets, and missing pages/JS/CSS/fonts on first and repeated requests. It verifies status codes and the existing 404 entry, records cache headers and body fingerprints, and exits unsuccessfully on a regression. Random URLs and `CF-Cache-Status` do not by themselves prove a cache bypass. Keep production issues open until the deployed configuration and responses have been verified.
+Run `node tools/check_routes.mjs https://agentware.studio` after deploying. The check takes the pages from the deployed `/sitemap.xml` (exactly the 11 localized pages, plus the three blog indexes and the published posts) and requests them as a browser navigation, plus the 301 redirects of the former course introductions in the other five languages. It covers all of those pages, their referenced assets, and missing pages/JS/CSS/fonts on first and repeated requests. It verifies status codes and the existing 404 entry, records cache headers and body fingerprints, and exits unsuccessfully on a regression. Random URLs and `CF-Cache-Status` do not by themselves prove a cache bypass. Keep production issues open until the deployed configuration and responses have been verified.
 
 ## Languages
 
-Eight locales: English at `/`, Simplified Chinese at `/zh/`, and `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/`, each with `learn/`.  
+Eight locales: English at `/`, Simplified Chinese at `/zh/`, and `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt-br/`. The course introduction (`learn/`) exists in English, Chinese and Japanese only, the course's own languages (`LEARN_LOCALES` in `src/i18n.ts`): its canonical, hreflang and sitemap entries list those three, the other home pages link to `/learn/` with a note in their language, and `public/_redirects` sends their former `learn/` addresses (and `learn/index.md`) to the English page with a 301.  
 On a first visit, the root page redirects to the browser's language; a language picked in the menu is remembered. Crawlers stay on the English root.
 
 - Simplified Chinese is the source language and lives in `src/content.ts`.

@@ -5,7 +5,7 @@ import { label, markdownPath } from '../markdown';
 import { postMarkdownUrl } from '../blog/markdown';
 import { BLOG_LANGS, blogIndex, type BlogLang, type Post } from '../blog/types';
 import { LINKS } from '../content';
-import { LOCALES } from '../i18n';
+import { LOCALES, hasLearn } from '../i18n';
 import { ALTERNATES, SITE } from '../meta';
 
 export const prerender = false;
@@ -31,7 +31,8 @@ export async function GET() {
   const languages = ALTERNATES.map((c) => {
     const l = LOCALES.find((x) => x.code === c)!;
     const base = l.path ? `/${l.path}/` : '/';
-    return `- [${l.label}](${md(base)}): the home page in ${l.label}\n- [${l.label}: curriculum](${md(`${base}learn/`)}): the open curriculum page in ${l.label}`;
+    return `- [${l.label}](${md(base)}): the home page in ${l.label}`
+      + (hasLearn(c) ? `\n- [${l.label}: curriculum](${md(`${base}learn/`)}): the open curriculum page in ${l.label}` : '');
   }).join('\n');
   const text = `# Agentware Studio
 

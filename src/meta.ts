@@ -3,7 +3,7 @@
 // tools/meta.json and the description from the page's lead copy, shortened for search results, unless
 // tools/meta.json has one written for the page (learnDesc).
 import meta from '../tools/meta.json';
-import type { Locale, Messages } from './i18n';
+import { LEARN_LOCALES, type Locale, type Messages } from './i18n';
 
 export type Page = 'home' | 'learn' | 'notfound' | 'blog' | 'post';
 /** Pages whose title and description come from the site copy (blog pages bring their own). */
@@ -12,6 +12,8 @@ export type SitePage = 'home' | 'learn' | 'notfound';
 export const SITE = 'https://agentware.studio';
 /** Language versions in the order the pages' hreflang links and the sitemap list them. */
 export const ALTERNATES: Locale[] = ['en', 'zh-CN', 'ja', 'ko', 'es', 'fr', 'de', 'pt-BR'];
+/** The language versions of a site page: the course introduction exists in English, Chinese and Japanese only. */
+export const pageAlternates = (sub: string) => (sub === 'learn/' ? ALTERNATES.filter((c) => LEARN_LOCALES.includes(c)) : ALTERNATES);
 /** Absolute URL of a page (`sub`: '' or 'learn/') in the locale whose path segment is `path` ('' for English). */
 export const pageUrl = (path: string, sub: string) => `${SITE}/${path ? `${path}/` : ''}${sub}`;
 

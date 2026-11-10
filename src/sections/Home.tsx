@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { architecture, hero, loop, manifesto, notAgentware, pillars, studio, ui } from '../content';
-import { href } from '../i18n';
+import { href, locale } from '../i18n';
 import { LiveMark } from '../components/Mark';
 import { ExecutionLoop } from '../components/ExecutionLoop';
 import { Footer } from '../components/Chrome';
@@ -269,6 +269,18 @@ function Manifesto() {
   );
 }
 
+/** Home pages without a course introduction in their language (ui.learnNote): the card's link leads to the English
+ *  one; say so in the page's language and name the course languages, each in its own font (the cross-language
+ *  subsets in src/fonts/shared.css, built from the same labels in Pages.tsx). */
+function LearnNote() {
+  return (
+    // the card itself is marked lang="en" (English copy); the note is in the page language
+    <p className="initiative__note" lang={locale}>
+      {ui.learnNote} <span className="initiative__langs"><span lang="zh-CN">中文</span> · <span lang="en">English</span> · <span lang="ja">日本語</span></span>
+    </p>
+  );
+}
+
 /** gemini's studio: title, subtitle, three editorial columns; the footer closes the same screen. */
 function Studio() {
   return (
@@ -288,10 +300,12 @@ function Studio() {
                   <h3 className="initiative__title">{it.title}</h3>
                   <p className="initiative__body">{it.body}</p>
                   {it.href && it.action && (
-                    <a className="text-action mono" href={ext ? it.href : href(it.href)} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>
+                    <a className="text-action mono" href={ext ? it.href : href(it.href)} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}
+                      hrefLang={it.href === '/learn/' && ui.learnNote ? 'en' : undefined}>
                       {it.action}
                     </a>
                   )}
+                  {it.href === '/learn/' && ui.learnNote && <LearnNote />}
                 </article>
               );
             })}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { LINKS, footer, ui } from '../content';
-import { HINT, LOCALES, browserLocale, chosenLocale, href, locale, localeHref, markSeen, rememberLocale, youtubeLink, type Locale } from '../i18n';
+import { HINT, LOCALES, browserLocale, chosenLocale, hasLearn, href, learnHref, locale, localeHref, markSeen, rememberLocale, youtubeLink, type Locale } from '../i18n';
 import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg?url';
 import lockupLight from '../assets/brand/agentware_lockup_on-light.svg?url';
 import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg?url';
@@ -28,10 +28,9 @@ const isCurrent = (page: Page, key: string) => page === key || (key === 'blog' &
 const showEn = () => locale !== 'en';
 const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
 const isBlog = (page: Page) => page === 'blog' || page === 'post';
-const pagePath = (page: Page) => (page === 'learn' ? '/learn/' : '/');
 /** Where a language link leads: the page's own version in that locale, else the locale's version of the page type. */
 const langHref = (code: Locale, page: Page, alternates?: Alternates) =>
-  alternates?.[code] ?? (isBlog(page) ? blogHref(code) : localeHref(code, pagePath(page)));
+  alternates?.[code] ?? (isBlog(page) ? blogHref(code) : page === 'learn' ? learnHref(code) : localeHref(code, '/'));
 
 const THEME_LABEL: Partial<Record<Locale, string>> = { 'zh-CN': '切换浅色/深色', ja: 'ライト/ダーク切り替え' };
 
@@ -207,8 +206,10 @@ export function LangHint({ page, alternates }: { page: Page; alternates?: Altern
     if (chosenLocale()) return;
     const pref = browserLocale();
     if (pref === locale) return;
-    // Only offer a version that exists (blog pages list theirs in `alternates`).
+    // Only offer a version that exists (blog pages list theirs in `alternates`; the course introduction is in
+    // LEARN_LOCALES only).
     if (isBlog(page) && !alternates?.[pref]) return;
+    if (page === 'learn' && !hasLearn(pref)) return;
     const t = window.setTimeout(() => { setWant(LOCALES.find((l) => l.code === pref) ?? null); requestAnimationFrame(() => setShown(true)); }, 900);
     return () => window.clearTimeout(t);
   }, []);

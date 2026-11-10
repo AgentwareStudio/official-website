@@ -1,6 +1,6 @@
 import { LINKS, learn, ui } from '../content';
 import { T } from '../lib';
-import { href, locale, youtubeLink } from '../i18n';
+import { courseLink, href, locale, youtubeLink } from '../i18n';
 
 // Read at render time: one build renders every locale in turn.
 const showEn = () => locale !== 'en';
@@ -64,7 +64,7 @@ export function LearnPage() {
                 <div><dt>{c.langs}</dt><dd>{dotted(COURSE_LANGS)}</dd></div>
               </dl>
               <ul className="join__actions course__go">
-                <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
+                <JoinLink primary to={courseLink()} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
               </ul>
             </div>
           </div>
@@ -84,7 +84,7 @@ export function LearnPage() {
         <div className="wrap page-cta__inner">
           <h2 className="h-section"><T>{learn.cta}</T></h2>
           <ul className="join__actions">
-            <JoinLink primary to={LINKS.learn} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
+            <JoinLink primary to={courseLink()} label={ui.learn.actions[0]} sub="learn.agentware.studio" />
             <JoinLink to={youtubeLink()} label={ui.learn.actions[1]} sub="YouTube" />
           </ul>
         </div>

@@ -166,13 +166,16 @@ def build(loc: str):
     card = lc['card'] if lc else dict(title=curr['title'], body=curr['body'].rstrip('：: '), action=U['ui']['studioActions'][0])
     # English copy on a page in another language: marked lang="en" (screen readers, fonts)
     english = bool(lc) and not en and lc is UI['en']['learnCopy']
+    card = dict(card, href=LEARN)
     if english:
-        card = dict(card, lang='en')
+        # No course introduction in this language: the card leads to the English one (/learn/, not localized by
+        # href() in src/i18n.ts), and ui.learnNote says so in the page's language.
+        card = dict(card, lang='en', action='Course Overview →', href='/learn/')
     studio = dict(
         title=stitle,
         sub=d['studioIntro'],
         items=[
-            dict(tag='01 // OPEN CURRICULUM', **card, href=LEARN),
+            dict(tag='01 // OPEN CURRICULUM', **card),
             # AIKit is not deployed yet: described, but not linked
             dict(tag='02 // USER TOOLS', title=aikit['title'], body=aikit['body']),
         ],

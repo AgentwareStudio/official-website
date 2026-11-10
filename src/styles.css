@@ -771,6 +771,7 @@ html.js .dock.is-docked::before { transform: scaleX(1); }
 .screen--last .initiative__body { margin-top: 0; margin-bottom: 28px; }
 .text-action { align-self: flex-start; border-bottom: 1px solid var(--fg); padding-bottom: 4px; font-size: 12px; color: var(--fg); transition: opacity .2s ease; }
 .text-action:hover { opacity: .7; }
+.initiative__note { margin-top: 14px; font-size: 12.5px; line-height: 1.6; color: var(--dim); }
 
 /* mono labels one step darker (quieter): dim → muted, muted → --faint */
 .eyebrow, .hero__tag, .era-card__meta, .readout__meta, .trace__head, .metrics dt, .console__top,
@@ -994,10 +995,10 @@ html:lang(en), html:lang(es), html:lang(de), html:lang(fr), html:lang(pt) {
 [lang='ko'] { --sans: 'Inter', 'AW Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
 /* Cross-language course labels use the same glyphs in smaller, content-hashed font files.
    Native paragraphs keep their original face and shaping; new characters can fall back to it. */
-html:not(:lang(zh)) :is(.course__title em, .facts dd) [lang='zh-CN'] { --sans: 'Inter', 'AW Sans SC Shared', 'AW Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; }
-html:not(:lang(ja)) :is(.course__title em, .facts dd) [lang='ja'] { --sans: 'Inter', 'AW Sans JP Shared', 'AW Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif; }
-/* course names and course languages on /learn: re-resolve the stack on the span itself */
-.course__title em [lang], .facts dd [lang] { font-family: var(--sans); font-size-adjust: none; }
+html:not(:lang(zh)) :is(.course__title em, .facts dd, .initiative__langs) [lang='zh-CN'] { --sans: 'Inter', 'AW Sans SC Shared', 'AW Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; }
+html:not(:lang(ja)) :is(.course__title em, .facts dd, .initiative__langs) [lang='ja'] { --sans: 'Inter', 'AW Sans JP Shared', 'AW Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif; }
+/* course names and course languages (/learn, the home course card's note): re-resolve the stack on the span itself */
+.course__title em [lang], .facts dd [lang], .initiative__langs [lang] { font-family: var(--sans); font-size-adjust: none; }
 
 html:lang(ja) :is(h1, h2, h3, .questions__q, .shift-closing, .lead-line) { word-break: auto-phrase; }
 html:lang(ko) :is(h1, h2, h3, h4, p, li, dd, td, th, dt) { word-break: keep-all; overflow-wrap: break-word; }

@@ -62,8 +62,18 @@ setLocale(locale, null);
 /** The YouTube channel in the current page's language (the main channel for the others). */
 export const youtubeLink = () => C.LINKS.youtubeByLocale[locale] ?? C.LINKS.youtube;
 
-/** Prefix a site path ("/learn/", "/#manifesto") with the current locale. */
-export const href = (p: string) => (p.startsWith('/') ? `${base}${p}` : p);
+/** The course introduction (/learn/) exists in these languages only, like the course itself; the other locales link to
+ *  the English page (their old addresses redirect there, public/_redirects). */
+export const LEARN_LOCALES: Locale[] = ['en', 'zh-CN', 'ja'];
+export const hasLearn = (code: Locale) => LEARN_LOCALES.includes(code);
+/** The course introduction for a page in `code`: its own language's, else the English one. */
+export const learnHref = (code: Locale) => (hasLearn(code) ? localeHref(code, '/learn/') : '/learn/');
+/** The course itself in the current page's language (English for the others). */
+export const courseLink = () => C.LINKS.course[locale] ?? C.LINKS.course.en;
+
+/** Prefix a site path ("/learn/", "/#manifesto") with the current locale. The course introduction (/learn/) stays
+ *  English in the locales that have none of their own (LEARN_LOCALES). */
+export const href = (p: string) => (!p.startsWith('/') ? p : p.startsWith('/learn/') && !hasLearn(locale) ? p : `${base}${p}`);
 /** The same page in another locale. */
 export function localeHref(code: Locale, page: string) {
   const l = LOCALES.find((x) => x.code === code)!;

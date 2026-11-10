@@ -1,8 +1,8 @@
-// Every page in every locale, each entry listing all its language versions. Blog pages list the versions that exist,
+// Every page in every locale (the course introduction in en, zh-CN and ja only), each entry listing all its language versions. Blog pages list the versions that exist,
 // with <lastmod>: when a post last changed or became visible, and for a blog index its newest such change.
 // Rendered in the Worker, so published posts appear without a build.
 import { LOCALES } from '../i18n';
-import { ALTERNATES, SITE, pageUrl } from '../meta';
+import { SITE, pageAlternates, pageUrl } from '../meta';
 import { INDEX_ALTERNATES } from '../blog/pages';
 import { withBlog } from '../blog/source';
 import { BLOG_LANGS, blogIndex, postPath } from '../blog/types';
@@ -29,9 +29,10 @@ function entries(versions: Alternates, lastmod: Map<string, Date> = new Map()) {
 export async function GET() {
   const rows: string[] = [];
   for (const sub of ['', 'learn/']) {
-    const alts = ALTERNATES.map((c) => `    <xhtml:link rel="alternate" hreflang="${c}" href="${pageUrl(path(c), sub)}" />\n`).join('')
+    const versions = pageAlternates(sub);
+    const alts = versions.map((c) => `    <xhtml:link rel="alternate" hreflang="${c}" href="${pageUrl(path(c), sub)}" />\n`).join('')
       + `    <xhtml:link rel="alternate" hreflang="x-default" href="${pageUrl('', sub)}" />\n`;
-    for (const c of ALTERNATES) rows.push(`  <url>\n    <loc>${pageUrl(path(c), sub)}</loc>\n${alts}  </url>\n`);
+    for (const c of versions) rows.push(`  <url>\n    <loc>${pageUrl(path(c), sub)}</loc>\n${alts}  </url>\n`);
   }
   // The language versions of a post share its id. A post's page changes when it is edited or becomes visible
   // (a scheduled post appears at publish_at); its blog index changes with it.

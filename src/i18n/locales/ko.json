@@ -310,9 +310,9 @@
     "tag": "01 // OPEN CURRICULUM",
     "title": "AI Courses & Labs",
     "body": "A good technical course should be a solid piece of work in its own right. Built by practicing engineers, pairing visual animations with interactive web labs and runnable templates.",
-    "action": "Visit Course Site ↗",
-    "lang": "en",
-    "href": "https://learn.agentware.studio"
+    "action": "Course Overview →",
+    "href": "/learn/",
+    "lang": "en"
    },
    {
     "tag": "02 // USER TOOLS",
@@ -457,6 +457,7 @@
     "handback": "행동을 멈추고 이유와 완료분을 알린 뒤 사람에게 인계"
    }
   },
+  "learnNote": "강의 소개는 영어로 되어 있습니다. 강의 언어:",
   "learn": {
    "seasonsAria": "세 개의 시즌",
    "actions": [

@@ -3,8 +3,8 @@
 // HTML (content.ts with the locale's messages), never converted from the HTML; blog pages come from the stored
 // Markdown (src/blog/markdown.ts).
 import * as C from './content';
-import { LOCALES, messagesFor, setLocale, youtubeLink, type Locale } from './i18n';
-import { ALTERNATES, SITE, pageMeta, pageUrl } from './meta';
+import { LOCALES, courseLink, href, messagesFor, setLocale, youtubeLink, type Locale } from './i18n';
+import { SITE, pageAlternates, pageMeta, pageUrl } from './meta';
 
 export const MARKDOWN_TYPE = 'text/markdown; charset=utf-8';
 
@@ -34,13 +34,13 @@ const pageLink = (page: SitePage, code: Locale, md = false) => {
 
 /** Title, summary, source URL and the other languages' Markdown. */
 function header(page: SitePage, code: Locale, title: string, description: string) {
-  const others = ALTERNATES.filter((c) => c !== code)
+  const others = pageAlternates(sub(page)).filter((c) => c !== code)
     .map((c) => `[${LOCALES.find((l) => l.code === c)!.label}](${pageLink(page, c, true)})`).join(' · ');
   return `# ${title}\n\n> ${description}\n\nSource: ${pageLink(page, code)}\nOther languages: ${others}\n`;
 }
 
-/** The home page's sections, in page order. `base` is the locale's path prefix for site links. */
-function homeBody(base: string) {
+/** The home page's sections, in page order. */
+function homeBody() {
   const { hero, shift, notAgentware, architecture, loop, pillars, manifesto, studio, ui, LINKS } = C;
   const out: string[] = [];
 
@@ -77,7 +77,8 @@ function homeBody(base: string) {
 
   out.push(`## ${text(studio.title)}\n\n${text(studio.sub)}\n\n`
     + studio.items.map((it) => `### ${text(it.title)}\n\n${text(it.body)}`
-      + (it.href && it.action ? `\n\n[${label(text(it.action).replace(/\s*↗$/, ''))}](${it.href.startsWith('http') ? it.href : SITE + base + it.href})` : '')).join('\n\n'));
+      + (it.href && it.action ? `\n\n[${label(text(it.action).replace(/\s*[↗→]$/, ''))}](${it.href.startsWith('http') ? it.href : SITE + href(it.href)})` : '')
+      + (it.href === '/learn/' && ui.learnNote ? `\n\n${ui.learnNote} 中文 · English · 日本語` : '')).join('\n\n'));
 
   out.push(`## Links\n\n- GitHub: ${LINKS.github}\n- X: ${LINKS.x}\n- YouTube: ${youtubeLink()}\n- Course site: ${LINKS.learn}`);
   return out.join('\n\n');
@@ -91,7 +92,7 @@ function learnBody() {
     `## ${text(learn.title)}${learn.en && learn.en !== learn.title ? ` · ${learn.en}` : ''}\n\n> ${learn.motto.map(text).filter(Boolean).join(' ')}\n\n${text(learn.lead)}\n\n${text(learn.status)}`,
     `## ${text(c.name)}\n\n${text(c.body)}\n\n${text(c.langs)}: 中文 · 日本語 · English\n\n`
       + learn.seasons.map((s) => `### ${s.no}: ${[s.zh, s.en].filter(Boolean).join(' · ')}\n\n${s.specs ? `${text(s.specs)}\n\n` : ''}${text(s.body)}`).join('\n\n'),
-    `## ${text(learn.cta)}\n\n- [${label(ui.learn.actions[0])}](${LINKS.learn})\n- [${label(ui.learn.actions[1])}](${youtubeLink()})`,
+    `## ${text(learn.cta)}\n\n- [${label(ui.learn.actions[0])}](${courseLink()})\n- [${label(ui.learn.actions[1])}](${youtubeLink()})`,
   ].join('\n\n');
 }
 
@@ -108,7 +109,7 @@ export async function pageMarkdown(page: SitePage, code: Locale) {
   const messages = await useLocale(code);
   const { title, description } = pageMeta(page, code, messages);
   const path = localePath(code);
-  const body = page === 'home' ? homeBody(path ? `/${path}` : '') : learnBody();
+  const body = page === 'home' ? homeBody() : learnBody();
   return `${header(page, code, title, description)}\n${body}\n`;
 }
 
@@ -120,6 +121,6 @@ export async function guideMarkdown() {
     ['Official website', `${SITE}/`], ['Blog', `${SITE}/blog/`], ['Courses & labs', `${SITE}/learn/`], ['Course platform', LINKS.learn],
     ['GitHub', LINKS.github], ['X (Twitter)', LINKS.x], ['YouTube', LINKS.youtube],
   ].map(([k, v]) => `- **${k}**: ${v}`).join('\n');
-  const home = homeBody('').replace(/\n\n## Links\n[\s\S]*$/, '');
+  const home = homeBody().replace(/\n\n## Links\n[\s\S]*$/, '');
   return `# Agentware\n\n> ${text(hero.intro)}\n\n${links}\n\n${home}\n\n${learnBody()}\n`;
 }

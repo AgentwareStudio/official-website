@@ -60,6 +60,6 @@ await withFixture(async (fixture) => {
       sourceModules: [...new Set(modules.filter((id) => id.includes('/src/')).map((id) => id.slice(id.lastIndexOf('/src/') + 1)))],
     });
   }
-  assert.equal(pages.length, 17, 'All 16 localized pages and the shared 404 must be checked');
+  assert.equal(pages.length, 12, 'All 11 localized pages (8 home pages, learn in en, zh and ja) and the shared 404 must be checked');
   console.log(JSON.stringify({ pages }, null, 2));
 });

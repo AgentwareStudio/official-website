@@ -1,0 +1,17 @@
+# The course introduction exists in English, Chinese and Japanese only (src/i18n.ts LEARN_LOCALES). The other
+# locales' former addresses go to the English page; only these paths, so /es/, /ko/, … (home pages) stay as they are.
+/ko/learn /learn/ 301
+/ko/learn/ /learn/ 301
+/ko/learn/index.md /learn/index.md 301
+/es/learn /learn/ 301
+/es/learn/ /learn/ 301
+/es/learn/index.md /learn/index.md 301
+/fr/learn /learn/ 301
+/fr/learn/ /learn/ 301
+/fr/learn/index.md /learn/index.md 301
+/de/learn /learn/ 301
+/de/learn/ /learn/ 301
+/de/learn/index.md /learn/index.md 301
+/pt-br/learn /learn/ 301
+/pt-br/learn/ /learn/ 301
+/pt-br/learn/index.md /learn/index.md 301

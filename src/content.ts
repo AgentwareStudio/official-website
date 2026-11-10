@@ -9,6 +9,12 @@ export const LINKS = {
   youtubeByLocale: { 'zh-CN': 'https://www.youtube.com/@agentwarecn', ja: 'https://www.youtube.com/@agentwareJapan' } as Record<string, string>,
   // all courses live under this one site (the first: /ai-gacha/), so the official site links to its root only
   learn: 'https://learn.agentware.studio',
+  // the first course in each of its languages: the course introduction pages' buttons go straight to it
+  course: {
+    'zh-CN': 'https://learn.agentware.studio/ai-gacha/zh/',
+    en: 'https://learn.agentware.studio/ai-gacha/en/',
+    ja: 'https://learn.agentware.studio/ai-gacha/ja/',
+  } as Record<string, string>,
 };
 
 export const hero = {
@@ -301,5 +307,8 @@ export const ui = {
     },
   },
   learn: { seasonsAria: '三季课程', actions: ['进入课程网站', '订阅 YouTube 频道'] },
+  /** Home pages of the locales without a course introduction of their own (ko, es, fr, de, pt-BR): under the course
+   *  card, before the course languages. Empty for zh-CN, en and ja. */
+  learnNote: '',
   nf: { title: '这个地址没有页面', lead: '链接可能已经改变。可以回到首页，或直接打开公开课。', actions: ['回到首页', 'AI 公开课'] },
 };

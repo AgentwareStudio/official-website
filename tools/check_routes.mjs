@@ -24,7 +24,7 @@ async function check(path, kind, visit = 'first') {
   try {
     // Pages and missing paths are requested as a browser opens them: Static Assets treats navigations differently
     // (an unmatched navigation gets the 404 page unless the path goes to the Worker first).
-    const navigate = kind === 'page' || kind === 'missing';
+    const navigate = kind === 'page' || kind === 'missing' || kind === 'redirect';
     const response = await fetch(new URL(path, base), {
       redirect: 'manual', signal: AbortSignal.timeout(15000),
       headers: {
@@ -42,7 +42,11 @@ async function check(path, kind, visit = 'first') {
     });
     const problems = [];
     const expect = (condition, message) => { if (!condition) problems.push(message); };
-    if (kind === 'missing') {
+    if (kind === 'redirect') {
+      const [, to] = REDIRECTS.find(([from]) => from === path);
+      expect(response.status === 301, 'Former course introduction must redirect permanently (301)');
+      expect(new URL(response.headers.get('location') ?? '', base).pathname === to, `Must redirect to ${to}`);
+    } else if (kind === 'missing') {
       expect(response.status === 404, 'Missing path must return HTTP 404 without a redirect');
       // A missing Markdown version is an empty 404 from the Worker (or the static 404 page outside the blog).
       if (!path.endsWith('.md')) expect(/data-page="notfound"/.test(text), 'Missing path must serve the existing 404 entry');
@@ -97,10 +101,16 @@ async function batch(items, run) {
   }));
 }
 
-// The pages are the ones the deployed sitemap lists: exactly the 16 localized pages, plus the blog
-// (an index for each blog language and the posts, which change with publishing).
+// The pages are the ones the deployed sitemap lists: exactly the 11 localized pages (eight home pages, the course
+// introduction in en, zh and ja), plus the blog (an index for each blog language and the posts, which change with
+// publishing).
 const LOCALE_PATHS = ['', 'zh/', 'ja/', 'ko/', 'es/', 'fr/', 'de/', 'pt-br/'];
-const expected = LOCALE_PATHS.flatMap((l) => [`/${l}`, `/${l}learn/`]).sort();
+const LEARN_PATHS = ['', 'zh/', 'ja/'];
+const expected = [...LOCALE_PATHS.map((l) => `/${l}`), ...LEARN_PATHS.map((l) => `/${l}learn/`)].sort();
+// The other locales' former course introductions (public/_redirects).
+const REDIRECTS = LOCALE_PATHS.filter((l) => !LEARN_PATHS.includes(l)).flatMap((l) => [
+  [`/${l}learn`, '/learn/'], [`/${l}learn/`, '/learn/'], [`/${l}learn/index.md`, '/learn/index.md'],
+]);
 const sitemapResponse = await fetch(new URL('/sitemap.xml', base), { redirect: 'manual', signal: AbortSignal.timeout(15000) });
 if (sitemapResponse.status !== 200 || !/xml/.test(sitemapResponse.headers.get('content-type') ?? '')) {
   throw new Error(`/sitemap.xml must return XML with HTTP 200 (got ${sitemapResponse.status} ${sitemapResponse.headers.get('content-type')})`);
@@ -110,13 +120,14 @@ if (locs.some((u) => u.origin !== 'https://agentware.studio')) throw new Error('
 const pages = locs.map((u) => u.pathname).sort();
 const isBlog = (p) => /^\/(?:zh\/|ja\/)?blog\/(?:[a-z0-9]+(?:-[a-z0-9]+)*\/)?$/.test(p);
 const site = pages.filter((p) => !isBlog(p));
-if (JSON.stringify(site) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 16 localized pages: ${site.join(' ')}`);
+if (JSON.stringify(site) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 11 localized pages: ${site.join(' ')}`);
 for (const index of ['/blog/', '/zh/blog/', '/ja/blog/']) if (!pages.includes(index)) throw new Error(`Sitemap is missing ${index}`);
 if (new Set(pages).size !== pages.length) throw new Error('Duplicate sitemap URLs');
 await check('/llms.txt', 'llms');
 await check('/llms-full.txt', 'llms-full');
 await check('/agentware.md', 'agentware');
 await batch(pages, (path) => check(path, 'page'));
+await batch(REDIRECTS.map(([from]) => from), (path) => check(path, 'redirect'));
 await batch(pages.map(markdownPath), (path) => check(path, 'markdown'));
 await batch([...assets].sort(), (path) => check(path, 'asset'));
 const missing = [

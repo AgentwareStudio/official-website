@@ -387,3 +387,15 @@ for _loc in ('es', 'de', 'fr', 'pt-BR', 'ko'):
     UI[_loc]['learnCopy'] = UI['en']['learnCopy']
     UI[_loc]['learn'] = dict(UI[_loc]['learn'], course=UI['en']['learn']['course'])
     UI[_loc]['meta'] = dict(UI[_loc]['meta'], learn=UI['en']['meta']['learn'], learnDesc=UI['en']['meta']['learnDesc'])
+
+# The course introduction (/learn/) exists in Chinese, English and Japanese only; these home pages link to the English
+# one and say so under the course card, followed by the course languages (中文 · English · 日本語, Pages.tsx).
+_LEARN_NOTE = {
+    'es': 'La presentación del curso está en inglés. Idiomas del curso:',
+    'de': 'Die Kursvorstellung ist auf Englisch. Kurssprachen:',
+    'fr': 'La présentation du cours est en anglais. Langues du cours :',
+    'pt-BR': 'A apresentação do curso está em inglês. Idiomas do curso:',
+    'ko': '강의 소개는 영어로 되어 있습니다. 강의 언어:',
+}
+for _loc, _note in _LEARN_NOTE.items():
+    UI[_loc]['ui']['learnNote'] = _note
