@@ -3,14 +3,12 @@
 // edition. Safe to run again: existing ones are reused. Prints the NEWSLETTER_SEGMENTS value for wrangler.jsonc.
 //
 //   set -a; . ~/.config/agentware/resend.env; set +a     # RESEND_API_KEY=… (mode 600, never committed)
-//   node tools/newsletter_setup.mjs              # production segments: newsletter-zh, -en, -ja
-//   node tools/newsletter_setup.mjs --staging    # Workers Previews: newsletter-zh-staging, …
+//   node tools/newsletter_setup.mjs              # segments newsletter-zh, -en, -ja (Workers Previews use none)
 const key = process.env.RESEND_API_KEY;
 if (!key) {
   console.error('RESEND_API_KEY is not set (see the comment at the top of this file).');
   process.exit(1);
 }
-const suffix = process.argv.includes('--staging') ? '-staging' : '';
 
 async function call(method, path, body) {
   const res = await fetch(`https://api.resend.com${path}`, {
@@ -35,9 +33,9 @@ else {
 const existing = await list('/segments');
 const ids = {};
 for (const edition of ['zh', 'en', 'ja']) {
-  const name = `newsletter-${edition}${suffix}`;
+  const name = `newsletter-${edition}`;
   const found = existing.find((s) => s.name === name);
   ids[edition] = found ? found.id : (await call('POST', '/segments', { name })).id;
   console.log(`segment ${name}: ${found ? 'exists' : 'created'} (${ids[edition]})`);
 }
-console.log(`\nNEWSLETTER_SEGMENTS for ${suffix ? 'previews.vars' : 'vars'} in wrangler.jsonc:\n${JSON.stringify(JSON.stringify(ids))}`);
+console.log(`\nNEWSLETTER_SEGMENTS for vars in wrangler.jsonc:\n${JSON.stringify(JSON.stringify(ids))}`);

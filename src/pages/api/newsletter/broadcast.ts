@@ -10,8 +10,9 @@
 //
 // `html` is the issue's body: it is placed in the newsletter layout with the edition's footer and unsubscribe link.
 // Set "layout": false to send a complete HTML document instead; it must contain {{{RESEND_UNSUBSCRIBE_URL}}}.
-// Subscribers in ko, es, fr, de and pt-BR are in the English edition's segment.
+// Subscribers in ko, es, fr, de and pt-BR are in the English edition's segment. On Workers Previews only test_to works.
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 import { bearerOk, json, normalizeEmail, readJson } from '../../../newsletter/api';
 import { EDITIONS, type Edition } from '../../../newsletter/config';
 import { UNSUBSCRIBE, broadcastEmail } from '../../../newsletter/email';
@@ -50,6 +51,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (testTo !== undefined && (!Array.isArray(testTo) || !testTo.length || testTo.length > 10 || testTo.some((a) => !normalizeEmail(a)))) {
     return json({ error: 'invalid', detail: 'test_to: 1–10 email addresses' }, 400);
   }
+  if (!testTo && env.NEWSLETTER_PREVIEW === 'true') return json({ error: 'preview', detail: 'Workers Previews only send test_to emails' }, 403);
 
   const prepared: [Edition, { subject: string; html: string; text?: string }][] = [];
   for (const [e, v] of Object.entries(editions) as [Edition, unknown][]) {

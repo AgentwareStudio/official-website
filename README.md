@@ -169,8 +169,8 @@ A monthly newsletter sent with [Resend](https://resend.com). The sign-up page `/
 
 Setup (once per environment; keys are typed by you, never committed):
 
-1. In Resend, add and verify the sending domain (the sender is `NEWSLETTER_FROM` in `wrangler.jsonc`), and create an API key with full access.
-2. Save it as `RESEND_API_KEY=…` in `~/.config/agentware/resend.env` (mode 600) and run `set -a; . ~/.config/agentware/resend.env; set +a; node tools/newsletter_setup.mjs` (and again with `--staging`). Copy the printed segment ids into `NEWSLETTER_SEGMENTS` under `vars` (and `previews.vars`). Contacts and their opt-out are shared across a Resend team, so previews (`NEWSLETTER_PREVIEW`) only change contacts that are in a staging segment and in no production segment (`NEWSLETTER_PRODUCTION_SEGMENTS` in `previews.vars`, the same ids as `vars`); a production subscriber confirming on a preview is left as is.
+1. In Resend, add and verify the sending domain (the sender is `NEWSLETTER_FROM` in `wrangler.jsonc`), and create an API key with full access (a sending-only key cannot manage contacts or broadcasts).
+2. Save it as `RESEND_API_KEY=…` in `~/.config/agentware/resend.env` (mode 600) and run `set -a; . ~/.config/agentware/resend.env; set +a; node tools/newsletter_setup.mjs` and copy the printed segment ids into `NEWSLETTER_SEGMENTS` under `vars`. Contacts and their opt-out are shared across a Resend team (and the free plan allows three segments), so Workers Previews (`NEWSLETTER_PREVIEW` in `previews.vars`) send the confirmation, welcome and `test_to` emails but never change a contact or create a broadcast.
 3. In Cloudflare, create a Turnstile widget for `agentware.studio` (plus the `workers.dev` preview host) and put its site key in `src/newsletter/config.ts`.
 4. `npx wrangler secret put` each of `RESEND_API_KEY`, `NEWSLETTER_SECRET` (e.g. `openssl rand -hex 32`), `TURNSTILE_SECRET`, `NEWSLETTER_API_TOKEN`; for previews, the same with `npx wrangler preview base-config secret put`. Changing `NEWSLETTER_SECRET` invalidates confirmation links not yet used.
 

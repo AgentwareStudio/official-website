@@ -23,7 +23,7 @@ async function call<T>(method: string, path: string, body?: unknown, headers: Re
   return text ? (JSON.parse(text) as T) : ({} as T);
 }
 
-/** Segment id of each edition (wrangler.jsonc vars; Workers Previews use test segments). */
+/** Segment id of each edition (wrangler.jsonc vars; production only). */
 export function segments(): Record<Edition, string> {
   const s = JSON.parse(env.NEWSLETTER_SEGMENTS) as Record<Edition, string>;
   for (const e of EDITIONS) if (!s[e]) throw new Error(`NEWSLETTER_SEGMENTS has no ${e}`);
@@ -42,6 +42,10 @@ export function sendEmail(mail: Mail, idempotencyKey: string) {
  * Returns whether it was already an active subscriber with the same locale.
  */
 export async function subscribe(email: string, locale: Locale): Promise<{ already: boolean }> {
+  // Contacts (and their opt-out) are shared by the whole Resend team, and the free plan has room for the three
+  // production segments only: a Workers Preview never changes a contact (it still sends the confirmation and welcome
+  // emails, so the flow can be tried there).
+  if (env.NEWSLETTER_PREVIEW === 'true') return { already: false };
   const seg = segments();
   const target = seg[editionOf(locale)];
   const path = `/contacts/${encodeURIComponent(email)}`;
@@ -53,14 +57,6 @@ export async function subscribe(email: string, locale: Locale): Promise<{ alread
   }
   const current = await call<{ data: { id: string }[] }>('GET', `${path}/segments`);
   const ids = new Set((current?.data ?? []).map((s) => s.id));
-  // Contacts (and their opt-out) are shared by the whole Resend team. A Workers Preview changes only its own test
-  // contacts: in one of its segments and in none of production's (a production subscriber, or one who unsubscribed
-  // there, keeps that membership).
-  if (env.NEWSLETTER_PREVIEW === 'true') {
-    const production = Object.values(JSON.parse(env.NEWSLETTER_PRODUCTION_SEGMENTS ?? '{}') as Record<string, string>).filter(Boolean);
-    if (!production.length) throw new Error('NEWSLETTER_PRODUCTION_SEGMENTS is not set for previews');
-    if (!EDITIONS.some((e) => ids.has(seg[e])) || production.some((id) => ids.has(id))) return { already: true };
-  }
   const same = !contact.unsubscribed && contact.properties?.locale?.value === locale;
   await call('PATCH', path, { unsubscribed: false, properties });
   if (!ids.has(target)) await call('POST', `${path}/segments/${target}`);
@@ -71,8 +67,9 @@ export async function subscribe(email: string, locale: Locale): Promise<{ alread
 
 export interface BroadcastInput { name?: string; subject: string; html: string; text?: string; send: boolean; scheduledAt?: string }
 
-/** Create (and optionally send or schedule) a broadcast to one edition's segment. */
+/** Create (and optionally send or schedule) a broadcast to one edition's segment. Not on Workers Previews. */
 export function broadcast(edition: Edition, b: BroadcastInput) {
+  if (env.NEWSLETTER_PREVIEW === 'true') throw new Error('broadcasts are not created on Workers Previews');
   return call<{ id: string }>('POST', '/broadcasts', {
     segment_id: segments()[edition],
     from: env.NEWSLETTER_FROM,

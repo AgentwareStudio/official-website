@@ -11,16 +11,14 @@
   // settings stay at the top level). Preview URLs are public on workers.dev with noindex. Previews read the staging
   // database: bindings are not inherited from the top level.
   "previews": {
-    // Newsletter (src/newsletter): previews put confirmed test subscribers into separate "-staging" segments.
+    // Newsletter (src/newsletter): previews send the confirmation, welcome and test_to emails but never change a
+    // Resend contact or create a broadcast (NEWSLETTER_PREVIEW), so they need no segments.
     // Secrets: npx wrangler preview base-config secret put RESEND_API_KEY | NEWSLETTER_SECRET | TURNSTILE_SECRET |
     // NEWSLETTER_API_TOKEN (README "Newsletter").
     "vars": {
-      // Previews only change their own test contacts, never one in a production segment (src/newsletter/resend.ts):
-      // NEWSLETTER_PRODUCTION_SEGMENTS repeats the top-level NEWSLETTER_SEGMENTS.
       "NEWSLETTER_PREVIEW": "true",
-      "NEWSLETTER_PRODUCTION_SEGMENTS": "{\"zh\":\"\",\"en\":\"\",\"ja\":\"\"}",
       "NEWSLETTER_FROM": "Agentware Studio <newsletter@news.agentware.studio>",
-      "NEWSLETTER_SEGMENTS": "{\"zh\":\"\",\"en\":\"\",\"ja\":\"\"}"
+      "NEWSLETTER_SEGMENTS": "{}"
     },
     "hyperdrive": [
       // Hyperdrive agentware-blog-staging: Supabase agentware-staging as blog_reader.
@@ -46,7 +44,7 @@
   // NEWSLETTER_SECRET (seals confirmation links), TURNSTILE_SECRET, NEWSLETTER_API_TOKEN (the publishing system).
   "vars": {
     "NEWSLETTER_FROM": "Agentware Studio <newsletter@news.agentware.studio>",
-    "NEWSLETTER_SEGMENTS": "{\"zh\":\"\",\"en\":\"\",\"ja\":\"\"}"
+    "NEWSLETTER_SEGMENTS": "{\"zh\":\"28dbd7b8-41d3-41a7-8579-ac0c4f1acf90\",\"en\":\"a5f45bbe-5f13-4cf3-ad8d-a162ac94bb9f\",\"ja\":\"fa8c4193-9e3b-49d0-8c45-047ec438f2ba\"}"
   },
   "hyperdrive": [
     {

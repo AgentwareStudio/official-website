@@ -11,7 +11,6 @@ declare module 'cloudflare:workers' {
     NEWSLETTER_REPLY_TO?: string;
     RESEND_API_URL?: string;
     NEWSLETTER_PREVIEW?: string;
-    NEWSLETTER_PRODUCTION_SEGMENTS?: string;
     RESEND_API_KEY: string;
     NEWSLETTER_SECRET: string;
     TURNSTILE_SECRET: string;
