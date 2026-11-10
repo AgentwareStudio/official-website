@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "订阅 Newsletter — Agentware Studio",
+    "description": "订阅 Agentware Studio 的月度 Newsletter：每月一封，汇总当月的博客文章、新课程与新剧集，以及工作室的工具实验。随时可以退订。",
+    "confirmTitle": "确认订阅 — Agentware Studio"
+  },
+  "page": {
+    "crumb": "NEWSLETTER",
+    "title": "订阅 Newsletter",
+    "lead": "每月一封，把这个月值得读的内容整理好送到你的邮箱。不会每篇博客都发信打扰你。",
+    "what": "你会收到",
+    "points": [
+      "当月博客文章精选：Agentware 与 AI Agent 工程",
+      "新课程、新剧集上线的消息",
+      "工作室的工具实验与开源资产"
+    ],
+    "cadence": "每月一封 · 每封都能一键退订",
+    "email": "邮箱地址",
+    "placeholder": "you@example.com",
+    "submit": "订阅",
+    "sending": "正在提交…",
+    "privacy": "你的邮箱只用于发送这份 Newsletter，由邮件服务 Resend 代为发送，不会用于其他用途，也不会提供给第三方。",
+    "contentNote": "",
+    "sent": "请查收确认邮件",
+    "sentBody": "我们给 {email} 发了一封确认邮件。点击邮件里的按钮后，订阅才会生效。没收到的话，请看看垃圾邮件文件夹。",
+    "errInvalid": "请输入有效的邮箱地址。",
+    "errVerify": "人机验证没有通过，请再试一次。",
+    "errServer": "暂时无法提交，请稍后再试。",
+    "wechatTitle": "关注微信公众号",
+    "wechatBody": "也可以在微信里关注我们的公众号，第一时间收到中文更新。"
+  },
+  "confirm": {
+    "title": "确认订阅",
+    "lead": "点击下面的按钮，完成订阅。",
+    "button": "确认订阅",
+    "working": "正在确认…",
+    "doneTitle": "订阅成功",
+    "doneBody": "欢迎！之后的 Newsletter 会发到你的邮箱，欢迎邮件也已经发出。",
+    "expired": "这个确认链接已经过期。请回到订阅页重新提交邮箱。",
+    "invalid": "这个确认链接无效。请回到订阅页重新提交邮箱。",
+    "error": "暂时无法确认，请稍后再试。",
+    "back": "回到订阅页"
+  },
+  "mail": {
+    "confirmSubject": "请确认订阅 Agentware Newsletter",
+    "confirmPreheader": "点击按钮完成订阅",
+    "confirmHeading": "确认你的订阅",
+    "confirmBody": "有人（希望是你）用这个邮箱订阅了 Agentware Studio 的 Newsletter。点击下面的按钮确认，订阅才会生效。链接 7 天内有效。",
+    "confirmButton": "确认订阅",
+    "confirmIgnore": "如果不是你本人操作，忽略这封邮件即可，你不会收到任何后续邮件。",
+    "welcomeSubject": "欢迎订阅 Agentware Newsletter",
+    "welcomeHeading": "订阅成功",
+    "welcomeBody": "感谢订阅。我们每月写一封信，汇总当月的博客文章、新课程与新剧集，以及工作室的新实验。每封邮件底部都有退订链接。",
+    "welcomeLinks": "现在可以先看看",
+    "linkCourse": "AI 公开课",
+    "linkBlog": "博客",
+    "contentNote": "",
+    "footer": "Agentware Studio · 独立研究与创作实验室",
+    "why": "你收到这封邮件，是因为订阅了 Agentware Studio 的 Newsletter。",
+    "unsubscribe": "退订"
+  }
+}

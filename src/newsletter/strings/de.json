@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "Newsletter — Agentware Studio",
+    "description": "Abonnieren Sie den monatlichen Newsletter von Agentware Studio: eine E-Mail pro Monat mit den Beiträgen des Monats zu Agentware und zur Entwicklung von KI-Agenten, neuen Kursen und Folgen sowie den Tool-Experimenten des Studios. Jederzeit abbestellbar.",
+    "confirmTitle": "Abonnement bestätigen — Agentware Studio"
+  },
+  "page": {
+    "crumb": "NEWSLETTER",
+    "title": "Newsletter",
+    "lead": "Eine E-Mail im Monat, die das Lesenswerte des vergangenen Monats bündelt. Keine E-Mail zu jedem einzelnen Blogbeitrag.",
+    "what": "Das erhalten Sie",
+    "points": [
+      "Die Beiträge des Monats zu Agentware und zur Entwicklung von KI-Agenten",
+      "Hinweise auf neue Kurse und Folgen",
+      "Tool-Experimente und offene Ressourcen des Studios"
+    ],
+    "cadence": "Einmal im Monat · Abmeldung mit einem Klick in jeder E-Mail",
+    "email": "E-Mail-Adresse",
+    "placeholder": "sie@beispiel.de",
+    "submit": "Abonnieren",
+    "sending": "Wird gesendet …",
+    "privacy": "Ihre E-Mail-Adresse wird ausschließlich für den Versand dieses Newsletters verwendet. Der Versand erfolgt über den E-Mail-Dienst Resend; die Adresse wird weder anderweitig genutzt noch an Dritte weitergegeben.",
+    "contentNote": "Der Newsletter erscheint auf Englisch (außerdem auf Chinesisch und Japanisch). Bestätigungs- und Willkommens-E-Mails erhalten Sie auf Deutsch.",
+    "sent": "Bitte prüfen Sie Ihr Postfach",
+    "sentBody": "Wir haben eine Bestätigungs-E-Mail an {email} gesendet. Ihr Abonnement beginnt, sobald Sie auf die Schaltfläche darin klicken. Falls sie nicht ankommt, sehen Sie bitte im Spam-Ordner nach.",
+    "errInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "errVerify": "Die Prüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "errServer": "Das Absenden ist gerade nicht möglich. Bitte versuchen Sie es später erneut.",
+    "wechatTitle": "",
+    "wechatBody": ""
+  },
+  "confirm": {
+    "title": "Abonnement bestätigen",
+    "lead": "Klicken Sie auf die Schaltfläche, um Ihr Abonnement abzuschließen.",
+    "button": "Abonnement bestätigen",
+    "working": "Wird bestätigt …",
+    "doneTitle": "Sie sind angemeldet",
+    "doneBody": "Willkommen! Künftige Newsletter kommen in Ihr Postfach, und eine Willkommens-E-Mail ist bereits unterwegs.",
+    "expired": "Dieser Bestätigungslink ist abgelaufen. Bitte melden Sie sich auf der Newsletter-Seite erneut an.",
+    "invalid": "Dieser Bestätigungslink ist ungültig. Bitte melden Sie sich auf der Newsletter-Seite erneut an.",
+    "error": "Die Bestätigung ist gerade nicht möglich. Bitte versuchen Sie es später erneut.",
+    "back": "Zur Newsletter-Seite"
+  },
+  "mail": {
+    "confirmSubject": "Bitte bestätigen Sie Ihr Abonnement des Agentware-Newsletters",
+    "confirmPreheader": "Ein Klick zum Abschließen",
+    "confirmHeading": "Abonnement bestätigen",
+    "confirmBody": "Jemand (hoffentlich Sie) hat diese Adresse für den Newsletter von Agentware Studio angemeldet. Klicken Sie auf die Schaltfläche, um das Abonnement zu bestätigen. Der Link ist 7 Tage gültig.",
+    "confirmButton": "Abonnement bestätigen",
+    "confirmIgnore": "Falls Sie das nicht waren, ignorieren Sie diese E-Mail einfach – Sie erhalten dann keine weiteren Nachrichten.",
+    "welcomeSubject": "Willkommen beim Agentware-Newsletter",
+    "welcomeHeading": "Sie sind angemeldet",
+    "welcomeBody": "Danke für Ihr Abonnement. Einmal im Monat senden wir Ihnen einen Überblick über die Beiträge des Monats, neue Kurse und Folgen sowie die neuesten Experimente des Studios. Jede E-Mail enthält einen Abmeldelink.",
+    "welcomeLinks": "Schon jetzt lesenswert",
+    "linkCourse": "KI-Kurse & Labs",
+    "linkBlog": "Blog",
+    "contentNote": "Der Newsletter erscheint auf Englisch.",
+    "footer": "Agentware Studio · Independent Research & Creation Studio",
+    "why": "Sie erhalten diese E-Mail, weil Sie den Newsletter von Agentware Studio abonniert haben.",
+    "unsubscribe": "Abmelden"
+  }
+}

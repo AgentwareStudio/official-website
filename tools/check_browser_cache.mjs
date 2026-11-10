@@ -52,10 +52,9 @@ function rulesOf(files) {
   for (const file of [...files.keys()].filter((f) => f.startsWith('assets/'))) {
     assert.ok(rules.get(`/${file}`)?.['Cache-Control']?.includes('immutable'), `${file} must be cached as immutable`);
   }
+  // HTML keeps the platform default (revalidate every time); tools/check_routes.mjs verifies the served header.
   for (const file of [...files.keys()].filter((f) => f.endsWith('.html'))) {
-    for (const path of [`/${file}`, `/${file.replace(/index\.html$|\.html$/, '')}`]) {
-      assert.equal(rules.get(path)['Cache-Control'], 'public, max-age=0, must-revalidate');
-    }
+    for (const path of [`/${file}`, `/${file.replace(/index\.html$|\.html$/, '')}`]) assert.ok(!rules.has(path), `${path} needs no rule`);
   }
   for (const path of ['/missing', '/zh/missing', '/assets/missing.js', '/assets/missing.css', '/assets/missing.woff2', '/fonts/inter.woff2', '/brand/agentware_lockup_on-dark.svg']) {
     assert.ok(!rules.has(path), `${path} must not inherit immutable`);

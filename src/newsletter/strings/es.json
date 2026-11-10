@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "Newsletter — Agentware Studio",
+    "description": "Suscríbete a la newsletter mensual de Agentware Studio: un correo al mes con los artículos del mes sobre Agentware e ingeniería de agentes de IA, nuevos cursos y episodios y los experimentos del estudio. Puedes darte de baja cuando quieras.",
+    "confirmTitle": "Confirma tu suscripción — Agentware Studio"
+  },
+  "page": {
+    "crumb": "NEWSLETTER",
+    "title": "Newsletter",
+    "lead": "Un correo al mes con lo que merece la pena leer del último mes, todo en un solo lugar. Nada de un correo por cada artículo del blog.",
+    "what": "Qué recibirás",
+    "points": [
+      "Los artículos del mes sobre Agentware e ingeniería de agentes de IA",
+      "Avisos de nuevos cursos y episodios",
+      "Los experimentos de herramientas y recursos abiertos del estudio"
+    ],
+    "cadence": "Un correo al mes · Baja con un clic en cada correo",
+    "email": "Correo electrónico",
+    "placeholder": "tu@ejemplo.com",
+    "submit": "Suscribirme",
+    "sending": "Enviando…",
+    "privacy": "Tu correo se usa solo para enviarte esta newsletter. Se envía a través del servicio de correo Resend y nunca se usa para otra cosa ni se comparte con terceros.",
+    "contentNote": "La newsletter se escribe en inglés (también en chino y japonés). Los correos de confirmación y bienvenida te llegarán en español.",
+    "sent": "Revisa tu bandeja de entrada",
+    "sentBody": "Hemos enviado un correo de confirmación a {email}. Tu suscripción empieza cuando pulses el botón del correo. Si no lo ves, revisa la carpeta de spam.",
+    "errInvalid": "Introduce una dirección de correo válida.",
+    "errVerify": "No se pudo completar la verificación. Inténtalo de nuevo.",
+    "errServer": "No se ha podido enviar ahora. Inténtalo más tarde.",
+    "wechatTitle": "",
+    "wechatBody": ""
+  },
+  "confirm": {
+    "title": "Confirma tu suscripción",
+    "lead": "Pulsa el botón para terminar de suscribirte.",
+    "button": "Confirmar suscripción",
+    "working": "Confirmando…",
+    "doneTitle": "Ya estás suscrito",
+    "doneBody": "¡Bienvenido! Las próximas newsletters llegarán a tu correo y ya te hemos enviado un correo de bienvenida.",
+    "expired": "Este enlace de confirmación ha caducado. Vuelve a la página de la newsletter y envía tu correo de nuevo.",
+    "invalid": "Este enlace de confirmación no es válido. Vuelve a la página de la newsletter y envía tu correo de nuevo.",
+    "error": "No se ha podido confirmar ahora. Inténtalo más tarde.",
+    "back": "Volver a la página de la newsletter"
+  },
+  "mail": {
+    "confirmSubject": "Confirma tu suscripción a la newsletter de Agentware",
+    "confirmPreheader": "Un clic para terminar",
+    "confirmHeading": "Confirma tu suscripción",
+    "confirmBody": "Alguien (esperamos que tú) ha suscrito esta dirección a la newsletter de Agentware Studio. Pulsa el botón para confirmarlo. El enlace es válido durante 7 días.",
+    "confirmButton": "Confirmar suscripción",
+    "confirmIgnore": "Si no has sido tú, ignora este correo: no volverás a saber de nosotros.",
+    "welcomeSubject": "Bienvenido a la newsletter de Agentware",
+    "welcomeHeading": "Ya estás suscrito",
+    "welcomeBody": "Gracias por suscribirte. Una vez al mes te enviaremos un resumen con los artículos del mes, los nuevos cursos y episodios y los últimos experimentos del estudio. Cada correo incluye un enlace para darte de baja.",
+    "welcomeLinks": "Mientras tanto",
+    "linkCourse": "Cursos y laboratorios de IA",
+    "linkBlog": "Blog",
+    "contentNote": "La newsletter se escribe en inglés.",
+    "footer": "Agentware Studio · Independent Research & Creation Studio",
+    "why": "Recibes este correo porque te suscribiste a la newsletter de Agentware Studio.",
+    "unsubscribe": "Darse de baja"
+  }
+}

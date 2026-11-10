@@ -5,7 +5,7 @@ import { withFixture } from './astro_fixture.mjs';
 // Build a disposable copy and inspect the actual module graph: each page loads only its own island, and the
 // home-only modules never reach the other pages (not even through a shared chunk).
 // (Blog pages render in the Worker, so they are not among the built HTML files.)
-const ISLAND = { home: 'HomeSite', learn: 'LearnSite', notfound: 'NotFoundSite' };
+const ISLAND = { home: 'HomeSite', learn: 'LearnSite', notfound: 'NotFoundSite', start: 'StartSite', confirm: 'StartSite' };
 const homeOnly = [
   '/src/sections/Home.tsx', '/src/sections/Shift.tsx', '/src/components/ShiftStage.tsx',
   '/src/components/ExecutionLoop.tsx', '/src/components/Mark.tsx', '/src/pager.ts',
@@ -60,6 +60,6 @@ await withFixture(async (fixture) => {
       sourceModules: [...new Set(modules.filter((id) => id.includes('/src/')).map((id) => id.slice(id.lastIndexOf('/src/') + 1)))],
     });
   }
-  assert.equal(pages.length, 12, 'All 11 localized pages (8 home pages, learn in en, zh and ja) and the shared 404 must be checked');
+  assert.equal(pages.length, 28, 'All 27 localized pages (8 home, 3 learn, 8 newsletter sign-up and 8 confirmation pages) and the shared 404 must be checked');
   console.log(JSON.stringify({ pages }, null, 2));
 });

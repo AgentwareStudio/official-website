@@ -28,7 +28,7 @@ function entries(versions: Alternates, lastmod: Map<string, Date> = new Map()) {
 
 export async function GET() {
   const rows: string[] = [];
-  for (const sub of ['', 'learn/']) {
+  for (const sub of ['', 'learn/', 'start/']) {
     const versions = pageAlternates(sub);
     const alts = versions.map((c) => `    <xhtml:link rel="alternate" hreflang="${c}" href="${pageUrl(path(c), sub)}" />\n`).join('')
       + `    <xhtml:link rel="alternate" hreflang="x-default" href="${pageUrl('', sub)}" />\n`;

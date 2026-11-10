@@ -4,10 +4,13 @@
 // tools/meta.json has one written for the page (learnDesc).
 import meta from '../tools/meta.json';
 import { LEARN_LOCALES, type Locale, type Messages } from './i18n';
+import { NEWSLETTER } from './newsletter/strings';
 
-export type Page = 'home' | 'learn' | 'notfound' | 'blog' | 'post';
+export type Page = 'home' | 'learn' | 'notfound' | 'blog' | 'post' | 'start' | 'confirm';
 /** Pages whose title and description come from the site copy (blog pages bring their own). */
-export type SitePage = 'home' | 'learn' | 'notfound';
+export type SitePage = 'home' | 'learn' | 'notfound' | 'start' | 'confirm';
+/** The path of a site page below its locale's prefix. */
+export const pageSub = (page: Page) => ({ learn: 'learn/', start: 'start/', confirm: 'start/confirm/' } as Partial<Record<Page, string>>)[page] ?? '';
 
 export const SITE = 'https://agentware.studio';
 /** Language versions in the order the pages' hreflang links and the sitemap list them. */
@@ -17,7 +20,7 @@ export const pageAlternates = (sub: string) => (sub === 'learn/' ? ALTERNATES.fi
 /** Absolute URL of a page (`sub`: '' or 'learn/') in the locale whose path segment is `path` ('' for English). */
 export const pageUrl = (path: string, sub: string) => `${SITE}/${path ? `${path}/` : ''}${sub}`;
 
-const ZH: Record<SitePage, [string, string]> = {
+const ZH: Record<'home' | 'learn' | 'notfound', [string, string]> = {
   home: [
     'Agentware Studio — From Interface to Intent · 从操作界面，到委托意图',
     'Agentware 是为智能体时代而生的软件范式：你说明目标、划定边界、定义完成标准，系统在授权范围内组织行动，并交付可验证的结果。',
@@ -40,6 +43,11 @@ export function short(s: string, n = 158) {
 }
 
 export function pageMeta(page: SitePage, code: Locale, messages: Messages | null): { title: string; description: string } {
+  // The newsletter pages (src/newsletter/strings) have their own copy in every locale.
+  if (page === 'start' || page === 'confirm') {
+    const m = NEWSLETTER[code].meta;
+    return { title: page === 'start' ? m.title : m.confirmTitle, description: m.description };
+  }
   if (code === 'zh-CN') {
     const [title, description] = ZH[page];
     return { title, description };

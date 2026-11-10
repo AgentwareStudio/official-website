@@ -54,6 +54,10 @@ Every page has a Markdown version at its URL plus \`index.md\` (\`/zh/learn/\` â
 - [AI Courses & Labs](${md('/learn/')}): The studio's AI courses, built by practicing engineers (\`Built by engineers. Crafted to last.\`), and the three seasons of its first course, *Graduating from AI Gacha* (\`ai-fundamentals\`, \`ai-coding\`, and \`building-ai-systems\`), with price, length and audience for each.
 - [Course Platform](${LINKS.learn}): Learning portal for *Graduating from AI Gacha* featuring interactive practice games and a course-grounded AI assistant.
 
+## Newsletter
+
+- [Newsletter](${md('/start/')}): Sign-up page for the studio's monthly newsletter (the month's writing, new courses and episodes, tool experiments), in all eight site languages; the newsletter itself is written in English, Chinese and Japanese. Subscribing needs a browser (human check and email confirmation).
+
 ## Blog
 
 ${(Object.keys(BLOG_LANGS) as BlogLang[]).map((l) => `- [Blog (${BLOG_NAMES[l]})](${md(blogIndex(l))}): ${l === 'en' ? 'Studio essays on Agentware, agentic software, and what the studio is building, written conclusion first; every post in its language.' : `The ${BLOG_NAMES[l]} edition of the blog.`}`).join('\n')}

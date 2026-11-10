@@ -55,10 +55,9 @@ function writeHeaders(out) {
     else if (file.startsWith('assets/')) {
       if (!/^assets\/.+[.-][A-Za-z0-9_-]{8,}\.(?:js|css|woff2|svg|png)$/.test(file)) throw new Error(`Cannot cache an unversioned asset: ${file}`);
       rules.set(`/${file}`, { 'Cache-Control': 'public, max-age=31536000, immutable' });
-    } else if (file.endsWith('.html')) {
-      rules.set(`/${file}`, { 'Cache-Control': 'public, max-age=0, must-revalidate' });
-      rules.set(`/${file.replace(/index\.html$|\.html$/, '')}`, { 'Cache-Control': 'public, max-age=0, must-revalidate' });
     }
+    // HTML gets no rule: Static Assets already sends `public, max-age=0, must-revalidate` for files without one
+    // (tools/check_routes.mjs checks the served pages), and two rules per page would exceed the limit of 100.
   }
   // The blog's CJK font slices (tools/blog_fonts.py) are too many for exact rules. Every one has a content hash, and
   // wrangler.jsonc sends /fonts/cjk/* to the Worker first, so a missing slice gets the Worker's 404 response, not

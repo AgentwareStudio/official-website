@@ -4,7 +4,8 @@
 // Markdown (src/blog/markdown.ts).
 import * as C from './content';
 import { LOCALES, courseLink, href, messagesFor, setLocale, youtubeLink, type Locale } from './i18n';
-import { SITE, pageAlternates, pageMeta, pageUrl } from './meta';
+import { SITE, pageAlternates, pageMeta, pageSub, pageUrl } from './meta';
+import { NEWSLETTER } from './newsletter/strings';
 
 export const MARKDOWN_TYPE = 'text/markdown; charset=utf-8';
 
@@ -23,8 +24,8 @@ const text = (s: string) => s.replace(/[|\u2060]/g, '')
 /** Pieces of one sentence; no space after a dash that joins them. */
 const join = (parts: string[]) => parts.map(text).filter(Boolean).reduce((a, b) => (cjk || !a || /[—–-]$/.test(a) ? a + b : `${a} ${b}`), '');
 
-type SitePage = 'home' | 'learn';
-const sub = (page: SitePage) => (page === 'learn' ? 'learn/' : '');
+type SitePage = 'home' | 'learn' | 'start';
+const sub = (page: SitePage) => pageSub(page);
 const localePath = (code: Locale) => LOCALES.find((l) => l.code === code)!.path;
 /** The page's own URL in a locale (`.md` false) or its Markdown version. */
 const pageLink = (page: SitePage, code: Locale, md = false) => {
@@ -96,6 +97,16 @@ function learnBody() {
   ].join('\n\n');
 }
 
+/** The newsletter sign-up page: what it sends and how to subscribe (the form needs a browser). */
+function startBody(code: Locale) {
+  const p = NEWSLETTER[code].page;
+  return [
+    `## ${p.title}\n\n${p.lead}`,
+    `## ${p.what}\n\n${p.points.map((t) => `- ${t}`).join('\n')}\n\n${p.cadence}`,
+    `## ${p.submit}\n\n${pageLink('start', code)}\n\n${p.privacy}${p.contentNote ? `\n\n${p.contentNote}` : ''}`,
+  ].join('\n\n');
+}
+
 /** Applies the locale to the shared copy; the caller reads it before anything else can switch it. */
 async function useLocale(code: Locale) {
   const messages = await messagesFor(code);
@@ -109,7 +120,7 @@ export async function pageMarkdown(page: SitePage, code: Locale) {
   const messages = await useLocale(code);
   const { title, description } = pageMeta(page, code, messages);
   const path = localePath(code);
-  const body = page === 'home' ? homeBody() : learnBody();
+  const body = page === 'home' ? homeBody() : page === 'learn' ? learnBody() : startBody(code);
   return `${header(page, code, title, description)}\n${body}\n`;
 }
 

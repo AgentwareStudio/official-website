@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "뉴스레터 — Agentware Studio",
+    "description": "Agentware Studio 월간 뉴스레터를 구독하세요. 한 달에 한 번, 그달의 블로그 글(Agentware와 AI 에이전트 엔지니어링), 새 강의와 에피소드, 스튜디오의 도구 실험을 모아 보내 드립니다. 언제든 구독을 해지할 수 있습니다.",
+    "confirmTitle": "구독 확인 — Agentware Studio"
+  },
+  "page": {
+    "crumb": "NEWSLETTER",
+    "title": "뉴스레터",
+    "lead": "한 달에 한 번, 지난 한 달 동안 읽을 만한 내용을 모아 보내 드립니다. 블로그 글이 올라올 때마다 메일을 보내지 않습니다.",
+    "what": "받게 되는 내용",
+    "points": [
+      "그달의 블로그 글: Agentware와 AI 에이전트 엔지니어링",
+      "새 강의와 에피소드 공개 소식",
+      "스튜디오의 도구 실험과 공개 자료"
+    ],
+    "cadence": "월 1회 발송 · 모든 메일에서 한 번의 클릭으로 구독 해지",
+    "email": "이메일 주소",
+    "placeholder": "you@example.com",
+    "submit": "구독하기",
+    "sending": "보내는 중…",
+    "privacy": "이메일 주소는 이 뉴스레터 발송에만 사용합니다. 발송은 이메일 서비스 Resend를 통해 이루어지며, 다른 용도로 사용하거나 제3자에게 제공하지 않습니다.",
+    "contentNote": "뉴스레터 본문은 영어로 작성됩니다(중국어·일본어판도 있습니다). 확인 메일과 환영 메일은 한국어로 보내 드립니다.",
+    "sent": "메일함을 확인해 주세요",
+    "sentBody": "{email}(으)로 확인 메일을 보냈습니다. 메일 안의 버튼을 누르면 구독이 완료됩니다. 메일이 보이지 않으면 스팸함도 확인해 주세요.",
+    "errInvalid": "올바른 이메일 주소를 입력해 주세요.",
+    "errVerify": "확인 절차를 통과하지 못했습니다. 다시 시도해 주세요.",
+    "errServer": "지금은 제출할 수 없습니다. 잠시 후 다시 시도해 주세요.",
+    "wechatTitle": "",
+    "wechatBody": ""
+  },
+  "confirm": {
+    "title": "구독 확인",
+    "lead": "아래 버튼을 누르면 구독이 완료됩니다.",
+    "button": "구독 확인",
+    "working": "확인 중…",
+    "doneTitle": "구독이 완료되었습니다",
+    "doneBody": "환영합니다! 앞으로 뉴스레터가 이 메일 주소로 발송되며, 환영 메일도 보내 드렸습니다.",
+    "expired": "이 확인 링크는 만료되었습니다. 뉴스레터 페이지에서 이메일 주소를 다시 제출해 주세요.",
+    "invalid": "이 확인 링크는 유효하지 않습니다. 뉴스레터 페이지에서 이메일 주소를 다시 제출해 주세요.",
+    "error": "지금은 확인할 수 없습니다. 잠시 후 다시 시도해 주세요.",
+    "back": "뉴스레터 페이지로"
+  },
+  "mail": {
+    "confirmSubject": "Agentware 뉴스레터 구독을 확인해 주세요",
+    "confirmPreheader": "버튼을 눌러 구독을 완료하세요",
+    "confirmHeading": "구독 확인",
+    "confirmBody": "이 이메일 주소로 Agentware Studio 뉴스레터 구독 신청이 접수되었습니다. 아래 버튼을 누르면 구독이 완료됩니다. 링크는 7일 동안 유효합니다.",
+    "confirmButton": "구독 확인",
+    "confirmIgnore": "본인이 신청하지 않았다면 이 메일을 무시하세요. 더 이상 메일을 받지 않습니다.",
+    "welcomeSubject": "Agentware 뉴스레터에 오신 것을 환영합니다",
+    "welcomeHeading": "구독이 완료되었습니다",
+    "welcomeBody": "구독해 주셔서 감사합니다. 한 달에 한 번, 그달의 블로그 글과 새 강의·에피소드, 스튜디오의 새로운 실험을 모아 보내 드립니다. 모든 메일 하단에 구독 해지 링크가 있습니다.",
+    "welcomeLinks": "먼저 둘러보기",
+    "linkCourse": "AI 강의",
+    "linkBlog": "블로그",
+    "contentNote": "뉴스레터 본문은 영어로 작성됩니다.",
+    "footer": "Agentware Studio · Independent Research & Creation Studio",
+    "why": "Agentware Studio 뉴스레터를 구독하셨기 때문에 이 메일을 받으셨습니다.",
+    "unsubscribe": "구독 해지"
+  }
+}

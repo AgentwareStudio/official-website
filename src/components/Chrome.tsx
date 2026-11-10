@@ -30,7 +30,8 @@ const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: '
 const isBlog = (page: Page) => page === 'blog' || page === 'post';
 /** Where a language link leads: the page's own version in that locale, else the locale's version of the page type. */
 const langHref = (code: Locale, page: Page, alternates?: Alternates) =>
-  alternates?.[code] ?? (isBlog(page) ? blogHref(code) : page === 'learn' ? learnHref(code) : localeHref(code, '/'));
+  alternates?.[code] ?? (isBlog(page) ? blogHref(code) : page === 'learn' ? learnHref(code)
+    : page === 'start' || page === 'confirm' ? localeHref(code, '/start/') : localeHref(code, '/'));
 
 const THEME_LABEL: Partial<Record<Locale, string>> = { 'zh-CN': '切换浅色/深色', ja: 'ライト/ダーク切り替え' };
 
@@ -210,6 +211,8 @@ export function LangHint({ page, alternates }: { page: Page; alternates?: Altern
     // LEARN_LOCALES only).
     if (isBlog(page) && !alternates?.[pref]) return;
     if (page === 'learn' && !hasLearn(pref)) return;
+    // The confirmation page holds a link from an email in the language the visitor chose.
+    if (page === 'confirm') return;
     const t = window.setTimeout(() => { setWant(LOCALES.find((l) => l.code === pref) ?? null); requestAnimationFrame(() => setShown(true)); }, 900);
     return () => window.clearTimeout(t);
   }, []);

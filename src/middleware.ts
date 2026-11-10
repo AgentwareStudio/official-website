@@ -19,6 +19,8 @@ function forBrowser(response: Response) {
 
 export const onRequest = defineMiddleware(async (context, next) => {
   if (context.isPrerendered) return next();
+  // The newsletter API (src/pages/api/): never cached, never redirected.
+  if (new URL(context.request.url).pathname.startsWith('/api/')) return next();
   // Page routes live at directory URLs, like the static pages (feeds and the sitemap are files). Only a page that
   // exists is redirected; anything else keeps its immediate 404.
   const { pathname, search } = new URL(context.request.url);

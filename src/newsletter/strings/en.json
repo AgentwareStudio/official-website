@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "Newsletter — Agentware Studio",
+    "description": "Subscribe to the Agentware Studio monthly newsletter: one email a month with the month’s writing on Agentware and AI agent engineering, new courses and episodes, and the studio’s tool experiments. Unsubscribe any time.",
+    "confirmTitle": "Confirm your subscription — Agentware Studio"
+  },
+  "page": {
+    "crumb": "NEWSLETTER",
+    "title": "Newsletter",
+    "lead": "One email a month, with what’s worth reading from the past month gathered in one place. No email for every single blog post.",
+    "what": "What you’ll get",
+    "points": [
+      "The month’s writing on Agentware and AI agent engineering",
+      "New courses and episodes as they launch",
+      "The studio’s tool experiments and open assets"
+    ],
+    "cadence": "Once a month · One-click unsubscribe in every email",
+    "email": "Email address",
+    "placeholder": "you@example.com",
+    "submit": "Subscribe",
+    "sending": "Submitting…",
+    "privacy": "Your email is used only to send this newsletter. It is delivered through the email service Resend and is never used for anything else or shared with third parties.",
+    "contentNote": "",
+    "sent": "Check your inbox",
+    "sentBody": "We sent a confirmation email to {email}. Your subscription starts once you click the button in it. If it hasn’t arrived, check your spam folder.",
+    "errInvalid": "Please enter a valid email address.",
+    "errVerify": "The human check didn’t pass. Please try again.",
+    "errServer": "We couldn’t submit this right now. Please try again later.",
+    "wechatTitle": "",
+    "wechatBody": ""
+  },
+  "confirm": {
+    "title": "Confirm your subscription",
+    "lead": "Click the button below to finish subscribing.",
+    "button": "Confirm subscription",
+    "working": "Confirming…",
+    "doneTitle": "You’re subscribed",
+    "doneBody": "Welcome! Future newsletters will arrive in your inbox, and we’ve sent you a welcome email.",
+    "expired": "This confirmation link has expired. Please go back to the newsletter page and submit your email again.",
+    "invalid": "This confirmation link is not valid. Please go back to the newsletter page and submit your email again.",
+    "error": "We couldn’t confirm this right now. Please try again later.",
+    "back": "Back to the newsletter page"
+  },
+  "mail": {
+    "confirmSubject": "Confirm your Agentware newsletter subscription",
+    "confirmPreheader": "One click to finish subscribing",
+    "confirmHeading": "Confirm your subscription",
+    "confirmBody": "Someone (hopefully you) subscribed this address to the Agentware Studio newsletter. Click the button below to confirm. The link is valid for 7 days.",
+    "confirmButton": "Confirm subscription",
+    "confirmIgnore": "If this wasn’t you, simply ignore this email—you won’t hear from us again.",
+    "welcomeSubject": "Welcome to the Agentware newsletter",
+    "welcomeHeading": "You’re subscribed",
+    "welcomeBody": "Thanks for subscribing. Once a month we’ll send a roundup of the month’s writing, new courses and episodes, and the studio’s latest experiments. Every email has an unsubscribe link at the bottom.",
+    "welcomeLinks": "In the meantime",
+    "linkCourse": "AI Courses & Labs",
+    "linkBlog": "Blog",
+    "contentNote": "",
+    "footer": "Agentware Studio · Independent Research & Creation Studio",
+    "why": "You’re receiving this because you subscribed to the Agentware Studio newsletter.",
+    "unsubscribe": "Unsubscribe"
+  }
+}

@@ -7,8 +7,10 @@ import BlogSite from '../site/BlogSite';
 import HomeSite from '../site/HomeSite';
 import LearnSite from '../site/LearnSite';
 import NotFoundSite from '../site/NotFoundSite';
+import StartSite from '../site/StartSite';
+import { NEWSLETTER } from '../newsletter/strings';
 import { LOCALES, messagesFor, type Locale } from '../i18n';
-import { SITE, pageAlternates, pageMeta, pageUrl, type Page } from '../meta';
+import { SITE, pageAlternates, pageMeta, pageSub, pageUrl, type Page, type SitePage } from '../meta';
 import { markdownPath } from '../markdown';
 import { jsonLd } from '../structured';
 import type { Alternates } from '../components/Chrome';
@@ -31,13 +33,15 @@ const { page, code, blog } = Astro.props;
 const FONT: Partial<Record<Locale, string>> = { 'zh-CN': sansSc, ja: sansJp, ko: sansKr };
 
 const messages = await messagesFor(code);
-const { title, description } = blog ?? pageMeta(page as 'home' | 'learn' | 'notfound', code, messages);
+const { title, description } = blog ?? pageMeta(page as SitePage, code, messages);
 const blogVersions = blog ? (Object.entries(blog.alternates) as [Locale, string][]) : [];
-const sub = page === 'learn' ? 'learn/' : '';
+const sub = pageSub(page);
+// Pages for people, not search: the 404 page and the newsletter's confirmation page (reached from an email only).
+const unlisted = page === 'notfound' || page === 'confirm';
 const url = (path: string) => pageUrl(path, sub);
 const self = LOCALES.find((l) => l.code === code)!;
 // The page's Markdown version (src/markdown.ts) for agents; the 404 page has none.
-const markdown = page === 'notfound' ? null : SITE + markdownPath(blog?.path ?? url(self.path).slice(SITE.length));
+const markdown = unlisted ? null : SITE + markdownPath(blog?.path ?? url(self.path).slice(SITE.length));
 
 // Root home page only: on the first visit go to the browser's language (kept as aw-auto, so later visits to / land
 // in the same place); a language picked in the menu or the hint (aw-lang) always wins.
@@ -53,7 +57,7 @@ const redirect = page === 'home' && !self.path;
     <meta name="color-scheme" content={blog ? 'dark light' : 'dark'} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {page === 'notfound' ? (
+    {unlisted ? (
       <meta name="robots" content="noindex" />
     ) : blog ? (
       <>
@@ -71,7 +75,7 @@ const redirect = page === 'home' && !self.path;
     )}
     {markdown && <link rel="alternate" type="text/markdown" href={markdown} />}
     {markdown && <link rel="describedby" type="text/plain" href={`${SITE}/llms.txt`} />}
-    {page !== 'notfound' && <script is:inline type="application/ld+json" set:html={jsonLd(blog?.graph)} />}
+    {!unlisted && <script is:inline type="application/ld+json" set:html={jsonLd(blog?.graph)} />}
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
     <link rel="apple-touch-icon" href={appleIcon} />
@@ -100,6 +104,7 @@ const redirect = page === 'home' && !self.path;
       {page === 'home' && <HomeSite client:load code={code} messages={messages} />}
       {page === 'learn' && <LearnSite client:load code={code} messages={messages} />}
       {page === 'notfound' && <NotFoundSite client:only="react" />}
+      {(page === 'start' || page === 'confirm') && <StartSite client:load page={page} code={code} messages={messages} nl={NEWSLETTER[code]} />}
       {(page === 'blog' || page === 'post') && (
         <BlogSite client:load page={page} code={code} messages={messages} alternates={blog?.alternates}><slot /></BlogSite>
       )}

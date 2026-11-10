@@ -78,7 +78,7 @@ npx wrangler dev --local
 node tools/check_routes.mjs http://localhost:8787
 ```
 
-Run `node tools/check_routes.mjs https://agentware.studio` after deploying. The check takes the pages from the deployed `/sitemap.xml` (exactly the 11 localized pages, plus the three blog indexes and the published posts) and requests them as a browser navigation, plus the 301 redirects of the former course introductions in the other five languages. It covers all of those pages, their referenced assets, and missing pages/JS/CSS/fonts on first and repeated requests. It verifies status codes and the existing 404 entry, records cache headers and body fingerprints, and exits unsuccessfully on a regression. Random URLs and `CF-Cache-Status` do not by themselves prove a cache bypass. Keep production issues open until the deployed configuration and responses have been verified.
+Run `node tools/check_routes.mjs https://agentware.studio` after deploying. The check takes the pages from the deployed `/sitemap.xml` (exactly the 19 localized pages, plus the three blog indexes and the published posts) and requests them as a browser navigation, plus the 301 redirects of the former course introductions in the other five languages. It covers all of those pages, their referenced assets, and missing pages/JS/CSS/fonts on first and repeated requests. It verifies status codes and the existing 404 entry, records cache headers and body fingerprints, and exits unsuccessfully on a regression. Random URLs and `CF-Cache-Status` do not by themselves prove a cache bypass. Keep production issues open until the deployed configuration and responses have been verified.
 
 ## Languages
 
@@ -120,7 +120,7 @@ Inter and native-language fonts retain their existing preload behavior; the loca
 
 ## Browser Caching on Workers Static Assets
 
-The build fingerprints JavaScript, CSS, fonts and imported brand images (`assets/<name>.<hash>.<ext>`). `tools/astro_site.mjs` generates `dist/client/_headers` (replacing the `/assets/*` rule the Cloudflare adapter writes) with one-year immutable caching for the exact asset URLs in that build. HTML uses `max-age=0, must-revalidate`. There is no `/assets/*` wildcard: Static Assets applies a wildcard rule to the 404 response of a missing path too, so unknown and obsolete asset URLs would inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
+The build fingerprints JavaScript, CSS, fonts and imported brand images (`assets/<name>.<hash>.<ext>`). `tools/astro_site.mjs` generates `dist/client/_headers` (replacing the `/assets/*` rule the Cloudflare adapter writes) with one-year immutable caching for the exact asset URLs in that build. HTML gets no rule: Static Assets already sends `public, max-age=0, must-revalidate` for files without one (`tools/check_routes.mjs` checks it on every served page), and a rule per page would soon exceed the limit. There is no `/assets/*` wildcard: Static Assets applies a wildcard rule to the 404 response of a missing path too, so unknown and obsolete asset URLs would inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
 
 The generated headers also declare `Content-Type: text/markdown; charset=utf-8` for every static Markdown file (the pages' `.md` versions, `/agentware.md`, `/auth.md`): Static Assets sends a bare `text/markdown`, and without an HTTP charset direct browser navigation can decode the Unicode punctuation as Windows-1252. One exact rule per file keeps the build well under the 100-rule limit.
 
@@ -157,6 +157,24 @@ supabase start          # Postgres on 127.0.0.1:54322, Studio on 127.0.0.1:54323
 supabase db reset       # apply the migrations and supabase/seed.sql (local test posts and local-only passwords)
 supabase test db        # supabase/tests/: who can read and write what
 ```
+
+## Newsletter
+
+A monthly newsletter sent with [Resend](https://resend.com). The sign-up page `/start/` exists in all eight languages; the newsletter itself has three editions (Chinese, English, Japanese), and subscribers from the ko, es, fr, de and pt-BR pages get the English one, while their confirmation and welcome emails are in their own language. Copy for the pages and the emails: `src/newsletter/strings/<locale>.json`.
+
+- **Sign-up** (double opt-in): the form posts to `POST /api/newsletter/subscribe` with a Cloudflare Turnstile token; the Worker emails a confirmation link to `/<locale>/start/confirm/#t=<token>`. The token seals the address, locale and expiry (7 days) with AES-GCM under `NEWSLETTER_SECRET`, so nothing is stored before confirmation and the address is not in the URL. The page sends the token to `POST /api/newsletter/confirm` only when the visitor presses its button (mail scanners that open links do not subscribe anyone). The Worker then creates or resubscribes the Resend contact with the property `locale`, keeps it in its edition's segment only, and sends the welcome email.
+- **Unsubscribing** is Resend's: every broadcast carries `{{{RESEND_UNSUBSCRIBE_URL}}}` and Resend's one-click List-Unsubscribe header. Its hosted page is shared by all languages; customize its text in the Resend dashboard.
+- **Sending** is done by the publishing system through `POST /api/newsletter/broadcast` (`Authorization: Bearer <NEWSLETTER_API_TOKEN>`): per edition a subject and an HTML body, which the Worker places in the newsletter layout with the edition's footer, then creates a Resend broadcast for that edition's segment. By default it creates drafts only; `send: true` sends (or, with `scheduled_at`, schedules) them, and `test_to` emails the editions to up to 10 addresses instead. The request format is documented at the top of `src/pages/api/newsletter/broadcast.ts`.
+- The confirmation pages are `noindex` and not in the sitemap; the sign-up pages are in the sitemap with hreflang for all eight languages.
+
+Setup (once per environment; keys are typed by you, never committed):
+
+1. In Resend, add and verify the sending domain (the sender is `NEWSLETTER_FROM` in `wrangler.jsonc`), and create an API key with full access.
+2. Save it as `RESEND_API_KEY=…` in `~/.config/agentware/resend.env` (mode 600) and run `set -a; . ~/.config/agentware/resend.env; set +a; node tools/newsletter_setup.mjs` (and again with `--staging`). Copy the printed segment ids into `NEWSLETTER_SEGMENTS` under `vars` (and `previews.vars`). Contacts and their opt-out are shared across a Resend team, so previews (`NEWSLETTER_PREVIEW`) only change contacts that are in a staging segment and in no production segment (`NEWSLETTER_PRODUCTION_SEGMENTS` in `previews.vars`, the same ids as `vars`); a production subscriber confirming on a preview is left as is.
+3. In Cloudflare, create a Turnstile widget for `agentware.studio` (plus the `workers.dev` preview host) and put its site key in `src/newsletter/config.ts`.
+4. `npx wrangler secret put` each of `RESEND_API_KEY`, `NEWSLETTER_SECRET` (e.g. `openssl rand -hex 32`), `TURNSTILE_SECRET`, `NEWSLETTER_API_TOKEN`; for previews, the same with `npx wrangler preview base-config secret put`. Changing `NEWSLETTER_SECRET` invalidates confirmation links not yet used.
+
+Local testing: `.dev.vars` (ignored) holds the same names; Cloudflare's Turnstile test keys (`1x00000000000000000000AA` with secret `1x0000000000000000000000000000000AA`) always pass, and `RESEND_API_URL` can point the Worker at a local stand-in for the Resend API.
 
 ## Project Structure
 

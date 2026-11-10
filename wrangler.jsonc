@@ -11,6 +11,17 @@
   // settings stay at the top level). Preview URLs are public on workers.dev with noindex. Previews read the staging
   // database: bindings are not inherited from the top level.
   "previews": {
+    // Newsletter (src/newsletter): previews put confirmed test subscribers into separate "-staging" segments.
+    // Secrets: npx wrangler preview base-config secret put RESEND_API_KEY | NEWSLETTER_SECRET | TURNSTILE_SECRET |
+    // NEWSLETTER_API_TOKEN (README "Newsletter").
+    "vars": {
+      // Previews only change their own test contacts, never one in a production segment (src/newsletter/resend.ts):
+      // NEWSLETTER_PRODUCTION_SEGMENTS repeats the top-level NEWSLETTER_SEGMENTS.
+      "NEWSLETTER_PREVIEW": "true",
+      "NEWSLETTER_PRODUCTION_SEGMENTS": "{\"zh\":\"\",\"en\":\"\",\"ja\":\"\"}",
+      "NEWSLETTER_FROM": "Agentware Studio <newsletter@news.agentware.studio>",
+      "NEWSLETTER_SEGMENTS": "{\"zh\":\"\",\"en\":\"\",\"ja\":\"\"}"
+    },
     "hyperdrive": [
       // Hyperdrive agentware-blog-staging: Supabase agentware-staging as blog_reader.
       { "binding": "HYPERDRIVE", "id": "8c6041b546574fdaae248f34fdbf40cb" }
@@ -26,8 +37,16 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
     "run_worker_first": [
-      "/blog", "/blog/*", "/zh/blog", "/zh/blog/*", "/ja/blog", "/ja/blog/*", "/sitemap.xml", "/llms.txt", "/llms-full.txt", "/fonts/cjk/*"
+      "/blog", "/blog/*", "/zh/blog", "/zh/blog/*", "/ja/blog", "/ja/blog/*", "/sitemap.xml", "/llms.txt", "/llms-full.txt", "/fonts/cjk/*",
+      "/api/*"
     ]
+  },
+  // Newsletter (src/newsletter, README "Newsletter"): the sender and the Resend segment of each edition
+  // (tools/newsletter_setup.mjs prints the ids). Secrets, set with `npx wrangler secret put`: RESEND_API_KEY,
+  // NEWSLETTER_SECRET (seals confirmation links), TURNSTILE_SECRET, NEWSLETTER_API_TOKEN (the publishing system).
+  "vars": {
+    "NEWSLETTER_FROM": "Agentware Studio <newsletter@news.agentware.studio>",
+    "NEWSLETTER_SEGMENTS": "{\"zh\":\"\",\"en\":\"\",\"ja\":\"\"}"
   },
   "hyperdrive": [
     {
