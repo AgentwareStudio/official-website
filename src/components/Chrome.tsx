@@ -18,12 +18,13 @@ const NAV = [
 const PAGES = [
   { href: '/learn/', key: 'learn', en: 'Learn' },
   { href: '/blog/', key: 'blog', en: 'Blog' },
+  { href: '/start/', key: 'start', en: 'Newsletter' },
 ] as const;
 // The blog is written in Chinese, English and Japanese; the other locales link to the English blog.
 const BLOG_LOCALES: Locale[] = ['zh-CN', 'en', 'ja'];
 export const blogHref = (code: Locale) => (BLOG_LOCALES.includes(code) ? localeHref(code, '/blog/') : '/blog/');
 const pageHref = (p: string) => (p === '/blog/' ? blogHref(locale) : href(p));
-const isCurrent = (page: Page, key: string) => page === key || (key === 'blog' && page === 'post');
+const isCurrent = (page: Page, key: string) => page === key || (key === 'blog' && page === 'post') || (key === 'start' && page === 'confirm');
 // Read at render time: one build renders every locale in turn.
 const showEn = () => locale !== 'en';
 const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
@@ -242,6 +243,7 @@ export function Footer() {
           <span lang="en">Agentware Studio · {footer.entity}</span>
         </div>
         <nav className="site-footer__links" aria-label={ui.follow}>
+          <a href={href('/start/')}>{ui.nav.start}</a>
           <a href={LINKS.github} target="_blank" rel="noopener">GitHub</a>
           <a href={LINKS.x} target="_blank" rel="noopener">X</a>
           <a href={youtubeLink()} target="_blank" rel="noopener">YouTube</a>
