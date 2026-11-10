@@ -15,6 +15,11 @@ export const POST: APIRoute = async ({ request }) => {
   const body = await readJson(request);
   const email = normalizeEmail(body?.email);
   if (!body || !email || !isLocale(body.locale)) return json({ error: 'invalid' }, 400);
+  // Missing secrets are the site's fault, not the visitor's: answer "server", not "verification failed".
+  if (!env.TURNSTILE_SECRET || !env.RESEND_API_KEY) {
+    console.error('newsletter subscribe: TURNSTILE_SECRET or RESEND_API_KEY is not set');
+    return json({ error: 'server' }, 503);
+  }
   if (!(await turnstileOk(body.turnstile, request))) return json({ error: 'verify' }, 403);
   const locale = body.locale;
 
