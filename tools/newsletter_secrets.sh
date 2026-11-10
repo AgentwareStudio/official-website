@@ -8,11 +8,19 @@
 # (mode 600) with random NEWSLETTER_SECRET and NEWSLETTER_API_TOKEN values; previews get their own pair, so a
 # confirmation link or API token from a preview does not work in production. Running it again re-uploads the same values.
 # NEWSLETTER_API_TOKEN in newsletter.env is the token for the publishing system.
+# Wrangler needs to be logged in (`npx wrangler login`), or a Cloudflare API token with Workers Scripts: Edit saved as
+# CLOUDFLARE_API_TOKEN=… (and CLOUDFLARE_ACCOUNT_ID=…) in cloudflare.env.
 set -euo pipefail
 dir="$HOME/.config/agentware"
 umask 077
 # shellcheck source=/dev/null
 . "$dir/resend.env"
+if [ -f "$dir/cloudflare.env" ]; then
+  set -a
+  # shellcheck source=/dev/null
+  . "$dir/cloudflare.env"
+  set +a
+fi
 file="$dir/newsletter.env"
 if [ ! -f "$file" ]; then
   read -rsp 'Turnstile secret key (Cloudflare > Turnstile > widget > Settings): ' turnstile; echo
