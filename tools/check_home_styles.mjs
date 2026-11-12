@@ -39,6 +39,6 @@ for (const file of readdirSync(dist, { recursive: true }).filter((f) => f.endsWi
   }
 }
 assert.equal(homes, 8);
-assert.equal(otherPages, 20); // learn in en, zh and ja, 8 newsletter sign-up and 8 confirmation pages, plus 404
+assert.equal(otherPages, 26); // learn in en, zh and ja, 8 newsletter sign-up and 8 confirmation pages, 3 product lists and 3 product pages, plus 404
 assert.equal(shared.size, 1, 'All pages share one site stylesheet');
 console.log(JSON.stringify({ homes, otherPages, fullCascadeIdentical: true, inlineAssetURLsValid: true }));

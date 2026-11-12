@@ -86,12 +86,13 @@ async function check(path, kind, visit = 'first') {
       expect(!text.includes('\uFFFD'), 'agentware.md contains invalid UTF-8 or replacement characters');
     } else if (kind === 'page') {
       expect(response.status === 200, 'Existing page must return HTTP 200');
-      const page = path.includes('/learn/') ? 'learn' : path.includes('/start/') ? 'start' : /\/blog\/$/.test(path) ? 'blog' : path.includes('/blog/') ? 'post' : 'home';
+      const page = /\/products\/$/.test(path) ? 'products' : path.includes('/products/') ? 'product' : path.includes('/learn/') ? 'learn' : path.includes('/start/') ? 'start' : /\/blog\/$/.test(path) ? 'blog' : path.includes('/blog/') ? 'post' : 'home';
       expect(text.includes(`data-page="${page}"`), 'Wrong HTML entry');
       expect(type.includes('text/html'), 'Page must be HTML');
       expect(row.cacheControl === 'public, max-age=0, must-revalidate', 'Page must revalidate on every visit');
       expect(text.includes(`<link rel="alternate" type="text/markdown" href="https://agentware.studio${markdownPath(path)}">`), 'Page must link its Markdown version');
-      expect(/<script type="application\/ld\+json">\{"@context":"https:\/\/schema.org"/.test(text) && (page !== 'post' || text.includes('"@type":"BlogPosting"')), 'Page must carry its structured data');
+      expect(/<script type="application\/ld\+json">\{"@context":"https:\/\/schema.org"/.test(text) && (page !== 'post' || text.includes('"@type":"BlogPosting"'))
+        && (page !== 'product' || text.includes('"@type":"SoftwareApplication"')) && (page !== 'products' || text.includes('"@type":"CollectionPage"')), 'Page must carry its structured data');
       // Check the URLs actually shipped by this deployment, including older builds.
       // Island scripts are referenced by component-url / renderer-url rather than src.
       for (const [, href] of text.matchAll(/(?:src|href|component-url|renderer-url)="(\/(?:assets|fonts|brand)\/[^"?#]+)"/g)) assets.add(href);
@@ -113,12 +114,16 @@ async function batch(items, run) {
   }));
 }
 
-// The pages are the ones the deployed sitemap lists: exactly the 19 localized pages (eight home pages, the course
-// introduction in en, zh and ja, the newsletter sign-up page in all eight), plus the blog (an index for each blog
+// The pages are the ones the deployed sitemap lists: exactly the 25 localized pages (eight home pages, the course
+// introduction in en, zh and ja, the newsletter sign-up page in all eight, the product list and each product's page
+// in en, zh and ja), plus the blog (an index for each blog
 // language and the posts, which change with publishing).
 const LOCALE_PATHS = ['', 'zh/', 'ja/', 'ko/', 'es/', 'fr/', 'de/', 'pt-br/'];
 const LEARN_PATHS = ['', 'zh/', 'ja/'];
-const expected = [...LOCALE_PATHS.map((l) => `/${l}`), ...LEARN_PATHS.map((l) => `/${l}learn/`), ...LOCALE_PATHS.map((l) => `/${l}start/`)].sort();
+// The products (src/products/index.ts PRODUCTS), in the same three languages as the course introduction.
+const PRODUCT_SLUGS = ['voxnexus'];
+const PRODUCT_PAGES = LEARN_PATHS.flatMap((l) => [`/${l}products/`, ...PRODUCT_SLUGS.map((s) => `/${l}products/${s}/`)]);
+const expected = [...LOCALE_PATHS.map((l) => `/${l}`), ...LEARN_PATHS.map((l) => `/${l}learn/`), ...LOCALE_PATHS.map((l) => `/${l}start/`), ...PRODUCT_PAGES].sort();
 // The other locales' former course introductions (public/_redirects).
 const REDIRECTS = LOCALE_PATHS.filter((l) => !LEARN_PATHS.includes(l)).flatMap((l) => [
   [`/${l}learn`, '/learn/'], [`/${l}learn/`, '/learn/'], [`/${l}learn/index.md`, '/learn/index.md'],
@@ -132,7 +137,7 @@ if (locs.some((u) => u.origin !== 'https://agentware.studio')) throw new Error('
 const pages = locs.map((u) => u.pathname).sort();
 const isBlog = (p) => /^\/(?:zh\/|ja\/)?blog\/(?:[a-z0-9]+(?:-[a-z0-9]+)*\/)?$/.test(p);
 const site = pages.filter((p) => !isBlog(p));
-if (JSON.stringify(site) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 19 localized pages: ${site.join(' ')}`);
+if (JSON.stringify(site) !== JSON.stringify(expected)) throw new Error(`Sitemap pages differ from the 25 localized pages: ${site.join(' ')}`);
 for (const index of ['/blog/', '/zh/blog/', '/ja/blog/']) if (!pages.includes(index)) throw new Error(`Sitemap is missing ${index}`);
 if (new Set(pages).size !== pages.length) throw new Error('Duplicate sitemap URLs');
 await check('/llms.txt', 'llms');
@@ -145,7 +150,7 @@ await batch(['/api/newsletter/subscribe', '/api/newsletter/confirm'], (path) => 
 await batch(pages.map(markdownPath), (path) => check(path, 'markdown'));
 await batch([...assets].sort(), (path) => check(path, 'asset'));
 const missing = [
-  '/.bashrc', `/${nonce}`, ...pages.filter((path) => !path.endsWith('/learn/')).map((path) => `${path}${nonce}/nested`),
+  '/.bashrc', `/${nonce}`, '/fr/products/', '/ko/products/voxnexus/', `/products/${nonce}/`, ...pages.filter((path) => !path.endsWith('/learn/')).map((path) => `${path}${nonce}/nested`),
   ...['js', 'css', 'woff2'].map((extension) => `/assets/${nonce}.${extension}`), `/fonts/${nonce}.woff2`,
   // Under the blog font slices' immutable wildcard: the 404 must still revalidate.
   `/fonts/cjk/sc-000.${nonce}.woff2`,

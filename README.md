@@ -182,7 +182,7 @@ Local testing: `.dev.vars` (ignored) holds the same names; Cloudflare's Turnstil
 
 | Path | Contents |
 |---|---|
-| `src/pages/` | Routes: home and learn per locale, 404, sitemap, blog |
+| `src/pages/` | Routes: home, learn and products per locale, 404, sitemap, blog |
 | `src/blog/` | Blog pages, styles, strings, RSS, and the Supabase source (`source.ts`, `routes.ts`) |
 | `src/middleware.ts` | Edge caching and trailing slashes for Worker-rendered pages |
 | `src/layouts/Page.astro` | `<head>` and the page island |
@@ -192,6 +192,8 @@ Local testing: `.dev.vars` (ignored) holds the same names; Cloudflare's Turnstil
 | `src/sections/Home.tsx` | Home page screens |
 | `src/sections/Shift.tsx` | Paradigm shift section: pinned title, animation and cards that switch on scroll |
 | `src/sections/Pages.tsx` | `/learn` and 404 |
+| `src/products/` | Product pages (`/products/`, `/products/<slug>/` in en, zh, ja): data, copy and each product's own scenes |
+| `src/sections/product/` | The product pages' shared blocks |
 | `src/components/Chrome.tsx` | Header, language menu, mobile menu, footer |
 | `src/components/ShiftStage.tsx` | Paradigm shift animations |
 | `src/components/ExecutionLoop.tsx` | Execution-loop console: run a delegation or simulate going out of bounds |

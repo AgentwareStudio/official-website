@@ -1,12 +1,14 @@
 ---
 // Every page in every locale: title, description, canonical/hreflang, icons and font preloads in <head>; the body is
 // one React island rendered at build time (copy in the HTML) and hydrated in the browser. Blog pages pass their own
-// title, URLs and language versions, and their content as the island's slot.
+// title, URLs and language versions, and their content as the island's slot; product pages pass theirs as `doc`.
 import '../styles.css';
 import BlogSite from '../site/BlogSite';
 import HomeSite from '../site/HomeSite';
 import LearnSite from '../site/LearnSite';
 import NotFoundSite from '../site/NotFoundSite';
+import ProductSite from '../site/ProductSite';
+import ProductsSite from '../site/ProductsSite';
 import StartSite from '../site/StartSite';
 import { NEWSLETTER } from '../newsletter/strings';
 import { LOCALES, messagesFor, type Locale } from '../i18n';
@@ -14,6 +16,7 @@ import { SITE, pageAlternates, pageMeta, pageSub, pageUrl, type Page, type SiteP
 import { markdownPath } from '../markdown';
 import { jsonLd } from '../structured';
 import type { Alternates } from '../components/Chrome';
+import type { Doc } from '../products/pages';
 import faviconSvg from '../assets/brand/agentware_favicon_dark.svg?url';
 import favicon32 from '../assets/brand/agentware_favicon_dark_32.png?url';
 import appleIcon from '../assets/brand/agentware_icon_app_dark_180.png?url';
@@ -28,20 +31,24 @@ interface Props {
   /** Blog pages: title, description, the page's path, its language versions (paths, this page included), its feed
    *  and (posts) their structured data. */
   blog?: { title: string; description: string; path: string; alternates: Alternates; rss: string; graph?: object[] };
+  /** Product pages (src/products/pages.ts): the same, without a feed. */
+  doc?: Doc;
 }
-const { page, code, blog } = Astro.props;
+const { page, code, blog, doc } = Astro.props;
+// A page that brings its own head: its language versions are the ones it lists.
+const own = blog ?? doc;
 const FONT: Partial<Record<Locale, string>> = { 'zh-CN': sansSc, ja: sansJp, ko: sansKr };
 
 const messages = await messagesFor(code);
-const { title, description } = blog ?? pageMeta(page as SitePage, code, messages);
-const blogVersions = blog ? (Object.entries(blog.alternates) as [Locale, string][]) : [];
+const { title, description } = own ?? pageMeta(page as SitePage, code, messages);
+const ownVersions = own ? (Object.entries(own.alternates) as [Locale, string][]) : [];
 const sub = pageSub(page);
 // Pages for people, not search: the 404 page and the newsletter's confirmation page (reached from an email only).
 const unlisted = page === 'notfound' || page === 'confirm';
 const url = (path: string) => pageUrl(path, sub);
 const self = LOCALES.find((l) => l.code === code)!;
 // The page's Markdown version (src/markdown.ts) for agents; the 404 page has none.
-const markdown = unlisted ? null : SITE + markdownPath(blog?.path ?? url(self.path).slice(SITE.length));
+const markdown = unlisted ? null : SITE + markdownPath(own?.path ?? url(self.path).slice(SITE.length));
 
 // Root home page only: on the first visit go to the browser's language (kept as aw-auto, so later visits to / land
 // in the same place); a language picked in the menu or the hint (aw-lang) always wins.
@@ -59,12 +66,12 @@ const redirect = page === 'home' && !self.path;
     <meta name="description" content={description} />
     {unlisted ? (
       <meta name="robots" content="noindex" />
-    ) : blog ? (
+    ) : own ? (
       <>
-        <link rel="canonical" href={SITE + blog.path} />
-        {blogVersions.map(([c, path]) => <link rel="alternate" hreflang={c} href={SITE + path} />)}
-        {blog.alternates.en && <link rel="alternate" hreflang="x-default" href={SITE + blog.alternates.en} />}
-        <link rel="alternate" type="application/rss+xml" title={blog.title} href={SITE + blog.rss} />
+        <link rel="canonical" href={SITE + own.path} />
+        {ownVersions.map(([c, path]) => <link rel="alternate" hreflang={c} href={SITE + path} />)}
+        {own.alternates.en && <link rel="alternate" hreflang="x-default" href={SITE + own.alternates.en} />}
+        {blog && <link rel="alternate" type="application/rss+xml" title={blog.title} href={SITE + blog.rss} />}
       </>
     ) : (
       <>
@@ -75,7 +82,7 @@ const redirect = page === 'home' && !self.path;
     )}
     {markdown && <link rel="alternate" type="text/markdown" href={markdown} />}
     {markdown && <link rel="describedby" type="text/plain" href={`${SITE}/llms.txt`} />}
-    {!unlisted && <script is:inline type="application/ld+json" set:html={jsonLd(blog?.graph)} />}
+    {!unlisted && <script is:inline type="application/ld+json" set:html={jsonLd(own?.graph)} />}
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
     <link rel="apple-touch-icon" href={appleIcon} />
@@ -105,6 +112,8 @@ const redirect = page === 'home' && !self.path;
       {page === 'learn' && <LearnSite client:load code={code} messages={messages} />}
       {page === 'notfound' && <NotFoundSite client:only="react" />}
       {(page === 'start' || page === 'confirm') && <StartSite client:load page={page} code={code} messages={messages} nl={NEWSLETTER[code]} />}
+      {page === 'products' && doc && <ProductsSite client:load code={code} messages={messages} alternates={doc.alternates} />}
+      {page === 'product' && doc && <ProductSite client:load code={code} messages={messages} alternates={doc.alternates} slug={Astro.params.slug!} />}
       {(page === 'blog' || page === 'post') && (
         <BlogSite client:load page={page} code={code} messages={messages} alternates={blog?.alternates}><slot /></BlogSite>
       )}

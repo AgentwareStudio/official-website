@@ -1,4 +1,4 @@
-// Every page in every locale (the course introduction in en, zh-CN and ja only), each entry listing all its language versions. Blog pages list the versions that exist,
+// Every page in every locale (the course introduction and the product pages in en, zh-CN and ja only), each entry listing all its language versions. Blog pages list the versions that exist,
 // with <lastmod>: when a post last changed or became visible, and for a blog index its newest such change.
 // Rendered in the Worker, so published posts appear without a build.
 import { LOCALES } from '../i18n';
@@ -7,6 +7,7 @@ import { INDEX_ALTERNATES } from '../blog/pages';
 import { withBlog } from '../blog/source';
 import { BLOG_LANGS, blogIndex, postPath } from '../blog/types';
 import type { Alternates } from '../components/Chrome';
+import { PRODUCTS, productAlternates } from '../products';
 
 export const prerender = false;
 
@@ -34,6 +35,8 @@ export async function GET() {
       + `    <xhtml:link rel="alternate" hreflang="x-default" href="${pageUrl('', sub)}" />\n`;
     for (const c of versions) rows.push(`  <url>\n    <loc>${pageUrl(path(c), sub)}</loc>\n${alts}  </url>\n`);
   }
+  rows.push(...entries(productAlternates()));
+  for (const p of PRODUCTS) rows.push(...entries(productAlternates(p.slug)));
   // The language versions of a post share its id. A post's page changes when it is edited or becomes visible
   // (a scheduled post appears at publish_at); its blog index changes with it.
   const versions = new Map<string, Alternates>();

@@ -7,6 +7,7 @@ import { BLOG_LANGS, blogIndex, type BlogLang, type Post } from '../blog/types';
 import { LINKS } from '../content';
 import { LOCALES, hasLearn } from '../i18n';
 import { ALTERNATES, SITE } from '../meta';
+import { PRODUCTS, PRODUCT_LOCALES, copyOf, productPath, productsPath } from '../products';
 
 export const prerender = false;
 
@@ -34,6 +35,15 @@ export async function GET() {
     return `- [${l.label}](${md(base)}): the home page in ${l.label}`
       + (hasLearn(c) ? `\n- [${l.label}: curriculum](${md(`${base}learn/`)}): the open curriculum page in ${l.label}` : '');
   }).join('\n');
+  // English first, then the other languages the product pages exist in.
+  const products = [
+    `- [Products](${md(productsPath('en'))}): The products Agentware Studio builds, each with a one-sentence summary and what it can do.`,
+    ...PRODUCTS.flatMap((p) => PRODUCT_LOCALES.map((c) => {
+      const copy = copyOf(p, c);
+      const lang = LOCALES.find((l) => l.code === c)!.label;
+      return `- [${label(copy.name)}${c === 'en' ? '' : ` (${lang})`}](${md(productPath(c, p.slug))}): ${c === 'en' ? `${copy.summary} What it does, the systems it connects to, how agents are created with the Admin Agent, the limits it keeps, use cases and questions.` : `The ${copy.name} product page in ${lang}.`}`;
+    })),
+  ].join('\n');
   const text = `# Agentware Studio
 
 > Agentware Studio is an independent research and creation studio dedicated to Agentware—a class of software designed for the agentic era that shifts human-computer interaction from operating interfaces to delegating intent (\`[ A↗• ] AGENTWARE — SOFTWARE THAT ACTS ON INTENT\`).
@@ -48,6 +58,10 @@ Every page has a Markdown version at its URL plus \`index.md\` (\`/zh/learn/\` �
 - [Agentware Studio](${md('/')}): Official multilingual website presenting the Agentware paradigm, architecture comparison, execution loop, four foundational pillars, and manifesto.
 - [Full text](${SITE}/llms-full.txt): The Agentware Guide followed by every published blog post in full, in one file.
 - [Public Access Policy](${SITE}/auth.md): Audience, anonymous access policy, and GET request instructions for AI agents, bots, and automated clients; all public pages and documentation require no registration, credentials, or Authorization header.
+
+## Products
+
+${products}
 
 ## Curriculum
 

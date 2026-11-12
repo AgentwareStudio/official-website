@@ -6,7 +6,7 @@ import meta from '../tools/meta.json';
 import { LEARN_LOCALES, type Locale, type Messages } from './i18n';
 import { NEWSLETTER } from './newsletter/strings';
 
-export type Page = 'home' | 'learn' | 'notfound' | 'blog' | 'post' | 'start' | 'confirm';
+export type Page = 'home' | 'learn' | 'notfound' | 'blog' | 'post' | 'start' | 'confirm' | 'products' | 'product';
 /** Pages whose title and description come from the site copy (blog pages bring their own). */
 export type SitePage = 'home' | 'learn' | 'notfound' | 'start' | 'confirm';
 /** The path of a site page below its locale's prefix. */

@@ -5,6 +5,7 @@ import lockupDark from '../assets/brand/agentware_lockup_on-dark.svg?url';
 import lockupLight from '../assets/brand/agentware_lockup_on-light.svg?url';
 import wordmarkDark from '../assets/brand/agentware_wordmark_on-dark.svg?url';
 import type { Page } from '../meta';
+import { productsPath } from '../products/paths';
 
 /** The same page in other locales, when it differs from the per-page default (blog posts exist in some languages only). */
 export type Alternates = Partial<Record<Locale, string>>;
@@ -16,6 +17,7 @@ const NAV = [
   { href: '/#studio', key: 'studio', en: 'Studio' },
 ] as const;
 const PAGES = [
+  { href: '/products/', key: 'products', en: 'Products' },
   { href: '/learn/', key: 'learn', en: 'Learn' },
   { href: '/blog/', key: 'blog', en: 'Blog' },
   { href: '/start/', key: 'start', en: 'Newsletter' },
@@ -23,15 +25,18 @@ const PAGES = [
 // The blog is written in Chinese, English and Japanese; the other locales link to the English blog.
 const BLOG_LOCALES: Locale[] = ['zh-CN', 'en', 'ja'];
 export const blogHref = (code: Locale) => (BLOG_LOCALES.includes(code) ? localeHref(code, '/blog/') : '/blog/');
-const pageHref = (p: string) => (p === '/blog/' ? blogHref(locale) : href(p));
-const isCurrent = (page: Page, key: string) => page === key || (key === 'blog' && page === 'post') || (key === 'start' && page === 'confirm');
+const pageHref = (p: string) => (p === '/blog/' ? blogHref(locale) : p === '/products/' ? productsPath(locale) : href(p));
+const isCurrent = (page: Page, key: string) => page === key || (key === 'blog' && page === 'post') || (key === 'start' && page === 'confirm') || (key === 'products' && page === 'product');
 // Read at render time: one build renders every locale in turn.
 const showEn = () => locale !== 'en';
 const SHORT: Record<string, string> = { 'zh-CN': 'ZH', en: 'EN', ja: 'JA', ko: 'KO', es: 'ES', fr: 'FR', de: 'DE', 'pt-BR': 'PT' };
 const isBlog = (page: Page) => page === 'blog' || page === 'post';
+const isProduct = (page: Page) => page === 'products' || page === 'product';
 /** Where a language link leads: the page's own version in that locale, else the locale's version of the page type. */
 const langHref = (code: Locale, page: Page, alternates?: Alternates) =>
   alternates?.[code] ?? (isBlog(page) ? blogHref(code) : page === 'learn' ? learnHref(code)
+    // Product pages exist in some languages only (their `alternates`): the others get the English page.
+    : isProduct(page) ? alternates?.en ?? productsPath(code)
     : page === 'start' || page === 'confirm' ? localeHref(code, '/start/') : localeHref(code, '/'));
 
 const THEME_LABEL: Partial<Record<Locale, string>> = { 'zh-CN': '切换浅色/深色', ja: 'ライト/ダーク切り替え' };
@@ -210,7 +215,7 @@ export function LangHint({ page, alternates }: { page: Page; alternates?: Altern
     if (pref === locale) return;
     // Only offer a version that exists (blog pages list theirs in `alternates`; the course introduction is in
     // LEARN_LOCALES only).
-    if (isBlog(page) && !alternates?.[pref]) return;
+    if ((isBlog(page) || isProduct(page)) && !alternates?.[pref]) return;
     if (page === 'learn' && !hasLearn(pref)) return;
     // The confirmation page holds a link from an email in the language the visitor chose.
     if (page === 'confirm') return;

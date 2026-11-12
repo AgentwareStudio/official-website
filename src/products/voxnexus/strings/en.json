@@ -1,0 +1,333 @@
+{
+  "meta": {
+    "title": "VoxNexus — Hand work over, by voice | Agentware Studio",
+    "description": "VoxNexus is a voice AI agent platform: describe an agent in a sentence and it is built; the agent then talks and gets the work done. Connected to your business systems, it looks things up, takes requests and hands calls over."
+  },
+  "name": "VoxNexus",
+  "summary": "A voice AI agent platform: you create agents by talking, and the agents get work done by talking.",
+  "features": [
+    "Natural conversation with instant barge-in, in several languages",
+    "Lookups, intake, bookings and updates in the business systems you connect",
+    "Connects to existing systems through MCP and APIs; external tools can be added",
+    "Hand-over between agents and to people, with the whole conversation",
+    "The Admin Agent creates and configures Voice Agents",
+    "The Admin Agent investigates problems and explains how to use the platform",
+    "Every operation is allowed, confirmed with the customer or refused; people approve important changes; everything is recorded",
+    "Runs on your own servers"
+  ],
+  "hero": {
+    "eyebrow": "PRODUCT // VOXNEXUS",
+    "title": "Hand work over,\nby voice.",
+    "lead": "Create AI agents by talking. They talk, and get the work done.",
+    "film": "Watch the 90-second film"
+  },
+  "shift": {
+    "old": "Until now: menus and scripts.",
+    "now": "From now: it hears what you need and sees it through."
+  },
+  "useCases": {
+    "title": "On the floor",
+    "tabs": [
+      {
+        "label": "Manufacturing",
+        "items": [
+          {
+            "title": "Stock and delivery dates",
+            "body": "When a customer calls, it checks the production system and answers on the spot, nights and weekends included."
+          },
+          {
+            "title": "Repair intake and hand-over",
+            "body": "“The machine has stopped.” It takes down the symptom and machine number, opens a ticket and passes the whole conversation to the person in charge."
+          },
+          {
+            "title": "Bulk notices",
+            "body": "Delivery changes and inspection bookings go out as calls, within the hours and redial rules you set."
+          },
+          {
+            "title": "Questions in Teams meetings",
+            "body": "It joins the meeting and answers questions about stock and progress as they come up."
+          }
+        ]
+      },
+      {
+        "label": "Customer service",
+        "items": [
+          {
+            "title": "Orders and bookings",
+            "body": "From identity checks to lookups and change requests. Before it changes anything, it confirms with the customer."
+          },
+          {
+            "title": "Account details",
+            "body": "It looks up what is on record and answers. Operations it is not allowed to perform, it refuses plainly."
+          },
+          {
+            "title": "Hand-over to staff",
+            "body": "What it has learned is passed along as is, so customers never explain the same thing twice."
+          }
+        ]
+      },
+      {
+        "label": "Inside the company",
+        "items": [
+          {
+            "title": "Internal help desk",
+            "body": "Questions about procedures and rules, answered from the company’s own documents."
+          },
+          {
+            "title": "Across languages",
+            "body": "It speaks English or Chinese with staff from abroad, switching to the caller’s language."
+          },
+          {
+            "title": "Requests",
+            "body": "Leave and equipment requests are taken by voice and entered into the business system."
+          }
+        ]
+      }
+    ]
+  },
+  "trust": {
+    "title": "What it may not do, it refuses plainly.",
+    "items": [
+      "Performs only the operations it is allowed",
+      "People approve important changes",
+      "Every operation is recorded, and earlier settings can be restored",
+      "Runs on your own servers; call records stay inside the company"
+    ]
+  },
+  "film": {
+    "title": "The film"
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      {
+        "q": "How is this different from an ordinary phone menu?",
+        "a": "A phone menu answers along fixed menus and scripts. A VoxNexus Voice Agent understands what the caller needs, carries out lookups, intake and updates in the business systems you connect, and hands the call over when needed."
+      },
+      {
+        "q": "Can it connect to the production system we already have?",
+        "a": "Yes, through MCP and APIs. For each connected operation you decide whether it is allowed, confirmed with the customer first, or refused."
+      },
+      {
+        "q": "Which languages does it speak?",
+        "a": "It handles Japanese, English, Chinese and more, switching to the caller’s language."
+      },
+      {
+        "q": "Can we use it without specialist knowledge?",
+        "a": "Tell the Admin Agent what you need and it drafts the Voice Agent’s configuration. It also answers how-to questions and fills in the page for you."
+      },
+      {
+        "q": "What if the caller wants a person?",
+        "a": "It hands the call to a human operator, together with the conversation so far."
+      },
+      {
+        "q": "Can it join Teams meetings?",
+        "a": "Yes. It answers questions during the meeting."
+      },
+      {
+        "q": "Where does it run?",
+        "a": "On your own servers, with call records kept inside the company."
+      }
+    ]
+  },
+  "ending": {
+    "title": "Work, handed over by voice.",
+    "again": "Watch from the top",
+    "all": "All products"
+  },
+  "ui": {
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "sound": "Sound effects",
+    "replay": "Play again",
+    "demoData": "Fictional demo data"
+  },
+  "scenes": {
+    "hero": {
+      "action": "Hear it",
+      "say": "When can A-1024 ship?",
+      "steps": [
+        "Stock checked",
+        "Delivery confirmed"
+      ],
+      "result": "It can ship as early as November 28"
+    },
+    "maze": {
+      "keys": [
+        "For inquiries, press 1",
+        "For orders, press 2",
+        "For delivery dates, press 3",
+        "For repairs, press 4",
+        "For anything else, press 9",
+        "To hear this again, press #",
+        "…please press a key"
+      ],
+      "say": "Do you have it in stock?"
+    },
+    "talk": {
+      "title": "Say it. It gets done.",
+      "note": "Interrupt it mid-sentence if you like. Japanese, English or Chinese.",
+      "pick": "Say something",
+      "you": "Customer",
+      "agent": "Voice Agent",
+      "calls": [
+        {
+          "say": "When can A-1024 ship?",
+          "steps": [
+            "Stock checked",
+            "Delivery confirmed"
+          ],
+          "result": "Ships as early as November 28",
+          "reply": "We have 120 in stock. It can ship as early as November 28."
+        },
+        {
+          "say": "The machine has stopped",
+          "steps": [
+            "Symptom taken down",
+            "Confirmed with you"
+          ],
+          "result": "Ticket opened",
+          "reply": "Machine 3 has stopped, understood. I have opened a ticket and passed it to maintenance."
+        },
+        {
+          "say": "Cancel that order",
+          "steps": [
+            "Order found"
+          ],
+          "stop": "This operation is not allowed",
+          "reply": "I am sorry, I cannot cancel orders. Let me put you through to the person in charge."
+        }
+      ]
+    },
+    "latency": {
+      "value": "1.2",
+      "unit": "s",
+      "note": "Target response time (median, including the model provider’s processing time)",
+      "action": "Feel it",
+      "ask": "…when can it ship?",
+      "answer": "As early as November 28.",
+      "askLabel": "You stop talking",
+      "answerLabel": "The answer begins"
+    },
+    "connect": {
+      "title": "What you connect\nis what it can do.",
+      "lead": "It connects to the systems you already have through MCP and APIs. Add external tools and it can do more. Skills teach it how the work is done.",
+      "hub": "Voice Agent",
+      "pick": "Connect something",
+      "listTitle": "What it can do",
+      "empty": "For now it can only talk. Connect a system on the left.",
+      "systems": [
+        {
+          "name": "Stock",
+          "can": [
+            "Answer stock levels",
+            "Quote delivery dates"
+          ]
+        },
+        {
+          "name": "Production",
+          "can": [
+            "Report progress",
+            "Announce delivery changes"
+          ]
+        },
+        {
+          "name": "Maintenance",
+          "can": [
+            "Take repair requests",
+            "Hand over to maintenance"
+          ]
+        },
+        {
+          "name": "Bookings",
+          "can": [
+            "Book inspections",
+            "Change bookings"
+          ]
+        },
+        {
+          "name": "Teams meetings",
+          "can": [
+            "Join meetings and answer"
+          ]
+        },
+        {
+          "name": "Internal FAQ",
+          "can": [
+            "Explain procedures",
+            "Look up the rules"
+          ]
+        }
+      ]
+    },
+    "forge": {
+      "title": "AI that builds AI.",
+      "lead": "The Admin Agent drafts the configuration. You confirm and publish.",
+      "pick": "Ask the Admin Agent",
+      "labels": {
+        "name": "Name",
+        "langs": "Languages",
+        "can": "Can do",
+        "cannot": "Cannot do",
+        "confirm": "Confirm",
+        "published": "Published",
+        "first": "First words"
+      },
+      "examples": [
+        {
+          "say": "Create a night-shift repair intake agent. It must not cancel orders",
+          "name": "Night repair intake",
+          "langs": "English",
+          "can": [
+            "Take down symptoms",
+            "Open tickets",
+            "Hand over to maintenance"
+          ],
+          "cannot": [
+            "Cancel orders"
+          ],
+          "first": "Thank you for calling. This is night repair intake."
+        },
+        {
+          "say": "Create an agent that answers delivery date questions",
+          "name": "Delivery dates",
+          "langs": "English",
+          "can": [
+            "Check stock",
+            "Quote delivery dates"
+          ],
+          "cannot": [
+            "Change orders"
+          ],
+          "first": "Thank you for calling. Which part number is it?"
+        },
+        {
+          "say": "Let it take calls in Japanese and Chinese too",
+          "name": "Multilingual reception",
+          "langs": "English, Japanese, Chinese",
+          "can": [
+            "Find out what the caller needs",
+            "Hand over to the right agent"
+          ],
+          "cannot": [
+            "Answer contract questions"
+          ],
+          "first": "Thank you for calling. Japanese and Chinese are fine too."
+        }
+      ],
+      "probe": {
+        "title": "When something goes wrong, just ask.",
+        "say": "Why did last night’s calls fail?",
+        "action": "Have it look",
+        "cause": "The maintenance system stopped responding at 02:10.",
+        "count": "Calls affected: 3",
+        "help": "Not sure how something works? Ask the Admin Agent. It even fills in the page for you."
+      }
+    },
+    "boundary": {
+      "say": "Cancel that order",
+      "denied": "This operation is not allowed",
+      "human": "To a person"
+    }
+  }
+}

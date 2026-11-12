@@ -1,0 +1,11 @@
+---
+import Page from '../../../layouts/Page.astro';
+import { PRODUCTS } from '../../../products';
+import { productDoc } from '../../../products/pages';
+
+export function getStaticPaths() {
+  return PRODUCTS.map((p) => ({ params: { slug: p.slug } }));
+}
+const { slug } = Astro.params;
+---
+<Page page="product" code="en" doc={productDoc(slug!, 'en')} />

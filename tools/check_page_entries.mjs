@@ -5,7 +5,9 @@ import { withFixture } from './astro_fixture.mjs';
 // Build a disposable copy and inspect the actual module graph: each page loads only its own island, and the
 // home-only modules never reach the other pages (not even through a shared chunk).
 // (Blog pages render in the Worker, so they are not among the built HTML files.)
-const ISLAND = { home: 'HomeSite', learn: 'LearnSite', notfound: 'NotFoundSite', start: 'StartSite', confirm: 'StartSite' };
+const ISLAND = { home: 'HomeSite', learn: 'LearnSite', notfound: 'NotFoundSite', start: 'StartSite', confirm: 'StartSite', products: 'ProductsSite', product: 'ProductSite' };
+// A product's own scenes and the sounds reach its page only: not the product list, not any other page.
+const productOnly = ['/src/sections/product/Page.tsx', '/src/products/scenes.ts', '/src/products/sound.ts'];
 const homeOnly = [
   '/src/sections/Home.tsx', '/src/sections/Shift.tsx', '/src/components/ShiftStage.tsx',
   '/src/components/ExecutionLoop.tsx', '/src/components/Mark.tsx', '/src/pager.ts',
@@ -53,6 +55,11 @@ await withFixture(async (fixture) => {
     for (const module of homeOnly) {
       assert.equal(modules.some((id) => id.endsWith(module)), page === 'home', `${file}: ${module}`);
     }
+    for (const module of productOnly) {
+      assert.equal(modules.some((id) => id.endsWith(module)), page === 'product', `${file}: ${module}`);
+    }
+    // The products' copy stays out of every other page (the header only imports their paths).
+    assert.equal(modules.some((id) => id.endsWith('/src/products/index.ts')), page === 'product' || page === 'products', `${file}: product data`);
     pages.push({
       file, page, chunks,
       bytes: chunks.reduce((sum, c) => sum + files.get(c).length, 0),
@@ -60,6 +67,6 @@ await withFixture(async (fixture) => {
       sourceModules: [...new Set(modules.filter((id) => id.includes('/src/')).map((id) => id.slice(id.lastIndexOf('/src/') + 1)))],
     });
   }
-  assert.equal(pages.length, 28, 'All 27 localized pages (8 home, 3 learn, 8 newsletter sign-up and 8 confirmation pages) and the shared 404 must be checked');
+  assert.equal(pages.length, 34, 'All 33 localized pages (8 home, 3 learn, 8 newsletter sign-up and 8 confirmation pages, 3 product lists and 3 product pages) and the shared 404 must be checked');
   console.log(JSON.stringify({ pages }, null, 2));
 });

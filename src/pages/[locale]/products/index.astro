@@ -1,0 +1,8 @@
+---
+import Page from '../../../layouts/Page.astro';
+import { productLocalePaths, productsDoc } from '../../../products/pages';
+
+export const getStaticPaths = productLocalePaths;
+const { code } = Astro.props;
+---
+<Page page="products" code={code} doc={productsDoc(code)} />

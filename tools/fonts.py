@@ -4,7 +4,8 @@
 Usage:  python3 tools/fonts.py
 Sources (google/fonts, OFL):
   ofl/notosanssc/NotoSansSC[wght].ttf  -> src/assets/fonts/aw-sans-sc.woff2  (zh-CN copy and titles: src/**/*.ts(x), src/blog excluded;
-                                         src/newsletter/strings/zh-CN.json; likewise ja.json and ko.json below)
+                                         src/newsletter/strings/zh-CN.json and the products' strings/zh-CN.json;
+                                         likewise ja.json and ko.json below)
   ofl/notosansjp/NotoSansJP[wght].ttf  -> src/assets/fonts/aw-sans-jp.woff2  (src/i18n/locales/ja.json + ja titles in tools/meta.json)
   ofl/notosanskr/NotoSansKR[wght].ttf  -> src/assets/fonts/aw-sans-kr.woff2  (src/i18n/locales/ko.json + ko titles in tools/meta.json)
 Paths default to ../fontlab/; pass --sc/--jp/--kr to override. Re-run after changing copy.
@@ -110,8 +111,10 @@ if __name__ == '__main__':
         # The blog has its own full fonts (tools/blog_fonts.py): its copy stays out of the site subset.
         site = [p for p in [*ROOT.glob('src/**/*.ts'), *ROOT.glob('src/**/*.tsx')] if 'blog' not in p.relative_to(ROOT / 'src').parts]
         nl = ROOT / 'src/newsletter/strings'  # the newsletter pages' copy (JSON)
-        zh = read(site + [nl / 'zh-CN.json'])
-        ja = read([ROOT / 'src/i18n/locales/ja.json', ROOT / 'src/i18n.ts', nl / 'ja.json']) | titles('ja')
+        # The product pages' copy (JSON, one directory per product); their list page's words are in src/products/index.ts.
+        products = lambda name: [*ROOT.glob(f'src/products/*/strings/{name}'), ROOT / 'src/products/index.ts']
+        zh = read(site + [nl / 'zh-CN.json'] + products('zh-CN.json'))
+        ja = read([ROOT / 'src/i18n/locales/ja.json', ROOT / 'src/i18n.ts', nl / 'ja.json'] + products('ja.json')) | titles('ja')
         ko = read([ROOT / 'src/i18n/locales/ko.json', ROOT / 'src/i18n.ts', nl / 'ko.json']) | titles('ko')
         make(a.sc, zh, 'aw-sans-sc.woff2')
         make(a.jp, ja, 'aw-sans-jp.woff2')
