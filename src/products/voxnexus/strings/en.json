@@ -1,29 +1,29 @@
 {
   "meta": {
     "title": "VoxNexus — Hand work over, by voice | Agentware Studio",
-    "description": "VoxNexus is a voice AI agent platform: describe an agent in a sentence and it is built; the agent then talks and gets the work done. Connected to your business systems, it looks things up, takes requests and hands calls over."
+    "description": "VoxNexus is a voice AI agent platform: create an agent by speaking, and let it handle real work over voice. Connected to your business systems, it looks up records, logs requests, and hands calls over."
   },
   "name": "VoxNexus",
-  "summary": "A voice AI agent platform: you create agents by talking, and the agents get work done by talking.",
+  "summary": "A voice AI agent platform: describe an agent aloud, and it handles real work through natural conversation.",
   "features": [
-    "Natural conversation with instant barge-in, in several languages",
-    "Lookups, intake, bookings and updates in the business systems you connect",
-    "Connects to existing systems through MCP and APIs; external tools can be added",
-    "Hand-over between agents and to people, with the whole conversation",
-    "The Admin Agent creates and configures Voice Agents",
-    "The Admin Agent investigates problems and explains how to use the platform",
-    "Every operation is allowed, confirmed with the customer or refused; people approve important changes; everything is recorded",
+    "Natural voice conversations with instant barge-in across languages",
+    "Lookups, intake, bookings, and updates across connected business systems",
+    "Connects to existing systems via MCP and APIs, with support for external tools",
+    "Seamless hand-over between agents and staff with full conversation context",
+    "Admin Agent creates and configures Voice Agents",
+    "Admin Agent diagnoses call failures and answers how-to questions",
+    "Per-action rules (allow, confirm with the caller, or refuse), human approval for key changes, and full audit logs",
     "Runs on your own servers"
   ],
   "hero": {
     "eyebrow": "PRODUCT // VOXNEXUS",
     "title": "Hand work over,\nby voice.",
-    "lead": "Create AI agents by talking. They talk, and get the work done.",
+    "lead": "Create AI agents just by speaking. They take the call and see the job through.",
     "film": "Watch the 90-second film"
   },
   "shift": {
-    "old": "Until now: menus and scripts.",
-    "now": "From now: it hears what you need and sees it through."
+    "old": "Before: menus and scripts.",
+    "now": "Now: it hears what you need and sees it through."
   },
   "useCases": {
     "title": "On the floor",
@@ -37,11 +37,11 @@
           },
           {
             "title": "Repair intake and hand-over",
-            "body": "“The machine has stopped.” It takes down the symptom and machine number, opens a ticket and passes the whole conversation to the person in charge."
+            "body": "“The machine has stopped.” It logs the symptom and machine ID, opens a ticket, and passes the full conversation to the person in charge."
           },
           {
             "title": "Bulk notices",
-            "body": "Delivery changes and inspection bookings go out as calls, within the hours and redial rules you set."
+            "body": "Delivery updates and inspection reminders go out automatically within the hours and redial rules you set."
           },
           {
             "title": "Questions in Teams meetings",
@@ -58,11 +58,11 @@
           },
           {
             "title": "Account details",
-            "body": "It looks up what is on record and answers. Operations it is not allowed to perform, it refuses plainly."
+            "body": "It pulls up what is on record and answers—and clearly refuses any operation it is not allowed to perform."
           },
           {
             "title": "Hand-over to staff",
-            "body": "What it has learned is passed along as is, so customers never explain the same thing twice."
+            "body": "Everything gathered is passed along intact, so customers never have to explain twice."
           }
         ]
       },
@@ -71,7 +71,7 @@
         "items": [
           {
             "title": "Internal help desk",
-            "body": "Questions about procedures and rules, answered from the company’s own documents."
+            "body": "Answers questions on policies and procedures directly from your internal documents."
           },
           {
             "title": "Across languages",
@@ -79,19 +79,19 @@
           },
           {
             "title": "Requests",
-            "body": "Leave and equipment requests are taken by voice and entered into the business system."
+            "body": "Takes leave and equipment requests by voice and logs them directly into your business systems."
           }
         ]
       }
     ]
   },
   "trust": {
-    "title": "What it may not do, it refuses plainly.",
+    "title": "It refuses what isn’t allowed.",
     "items": [
-      "Performs only the operations it is allowed",
-      "People approve important changes",
-      "Every operation is recorded, and earlier settings can be restored",
-      "Runs on your own servers; call records stay inside the company"
+      "Executes only explicitly permitted operations",
+      "Requires human approval for important changes",
+      "Logs every operation and lets you restore earlier settings",
+      "Runs on your own servers so call records stay inside the company"
     ]
   },
   "film": {
@@ -102,7 +102,7 @@
     "items": [
       {
         "q": "How is this different from an ordinary phone menu?",
-        "a": "A phone menu answers along fixed menus and scripts. A VoxNexus Voice Agent understands what the caller needs, carries out lookups, intake and updates in the business systems you connect, and hands the call over when needed."
+        "a": "A phone menu follows fixed menus and scripts. A VoxNexus Voice Agent understands what callers need, runs lookups, intake and updates in your connected systems, and hands over when needed."
       },
       {
         "q": "Can it connect to the production system we already have?",
@@ -110,19 +110,19 @@
       },
       {
         "q": "Which languages does it speak?",
-        "a": "It handles Japanese, English, Chinese and more, switching to the caller’s language."
+        "a": "English, Japanese, Chinese and more, switching automatically to the caller’s language."
       },
       {
         "q": "Can we use it without specialist knowledge?",
-        "a": "Tell the Admin Agent what you need and it drafts the Voice Agent’s configuration. It also answers how-to questions and fills in the page for you."
+        "a": "Tell the Admin Agent what you need and it drafts the Voice Agent’s configuration. It also answers how-to questions and guides you through setup."
       },
       {
         "q": "What if the caller wants a person?",
-        "a": "It hands the call to a human operator, together with the conversation so far."
+        "a": "It hands the call over to a human operator along with the full conversation."
       },
       {
         "q": "Can it join Teams meetings?",
-        "a": "Yes. It answers questions during the meeting."
+        "a": "Yes. It joins the meeting and answers questions on the spot from your connected systems."
       },
       {
         "q": "Where does it run?",
@@ -150,7 +150,7 @@
         "Stock checked",
         "Delivery confirmed"
       ],
-      "result": "It can ship as early as November 28"
+      "result": "Ships as early as November 28"
     },
     "maze": {
       "keys": [
@@ -166,7 +166,7 @@
     },
     "talk": {
       "title": "Say it. It gets done.",
-      "note": "Interrupt it mid-sentence if you like. Japanese, English or Chinese.",
+      "note": "Barge in mid-sentence anytime. English, Japanese, or Chinese.",
       "pick": "Say something",
       "you": "Customer",
       "agent": "Voice Agent",
@@ -183,11 +183,11 @@
         {
           "say": "The machine has stopped",
           "steps": [
-            "Symptom taken down",
-            "Confirmed with you"
+            "Symptom logged",
+            "Confirmed with caller"
           ],
           "result": "Ticket opened",
-          "reply": "Machine 3 has stopped, understood. I have opened a ticket and passed it to maintenance."
+          "reply": "Understood—Machine 3 has stopped. I’ve opened a ticket and passed it to maintenance."
         },
         {
           "say": "Cancel that order",
@@ -195,7 +195,7 @@
             "Order found"
           ],
           "stop": "This operation is not allowed",
-          "reply": "I am sorry, I cannot cancel orders. Let me put you through to the person in charge."
+          "reply": "I’m sorry, I’m not authorized to cancel orders. Let me put you through to the person in charge."
         }
       ]
     },
@@ -211,16 +211,16 @@
     },
     "connect": {
       "title": "What you connect\nis what it can do.",
-      "lead": "It connects to the systems you already have through MCP and APIs. Add external tools and it can do more. Skills teach it how the work is done.",
+      "lead": "Connects to your existing systems via MCP and APIs. Add external tools to expand capabilities, and use Skills to teach it how the work gets done.",
       "hub": "Voice Agent",
-      "pick": "Connect something",
+      "pick": "Connect a system",
       "listTitle": "What it can do",
-      "empty": "For now it can only talk. Connect a system on the left.",
+      "empty": "For now it can only talk. Connect a system on the left to see what it can do.",
       "systems": [
         {
           "name": "Stock",
           "can": [
-            "Answer stock levels",
+            "Check stock levels",
             "Quote delivery dates"
           ]
         },
@@ -242,20 +242,20 @@
           "name": "Bookings",
           "can": [
             "Book inspections",
-            "Change bookings"
+            "Reschedule bookings"
           ]
         },
         {
           "name": "Teams meetings",
           "can": [
-            "Join meetings and answer"
+            "Join meetings and answer live"
           ]
         },
         {
           "name": "Internal FAQ",
           "can": [
             "Explain procedures",
-            "Look up the rules"
+            "Look up policies"
           ]
         }
       ]
@@ -275,18 +275,18 @@
       },
       "examples": [
         {
-          "say": "Create a night-shift repair intake agent. It must not cancel orders",
+          "say": "Create an overnight repair intake agent. Never let it cancel orders",
           "name": "Night repair intake",
           "langs": "English",
           "can": [
-            "Take down symptoms",
+            "Log symptoms",
             "Open tickets",
             "Hand over to maintenance"
           ],
           "cannot": [
             "Cancel orders"
           ],
-          "first": "Thank you for calling. This is night repair intake."
+          "first": "Thank you for calling. This is overnight repair intake."
         },
         {
           "say": "Create an agent that answers delivery date questions",
@@ -306,22 +306,22 @@
           "name": "Multilingual reception",
           "langs": "English, Japanese, Chinese",
           "can": [
-            "Find out what the caller needs",
+            "Capture what the caller needs",
             "Hand over to the right agent"
           ],
           "cannot": [
             "Answer contract questions"
           ],
-          "first": "Thank you for calling. Japanese and Chinese are fine too."
+          "first": "Thank you for calling. English, Japanese, and Chinese are all welcome."
         }
       ],
       "probe": {
         "title": "When something goes wrong, just ask.",
         "say": "Why did last night’s calls fail?",
-        "action": "Have it look",
+        "action": "Investigate",
         "cause": "The maintenance system stopped responding at 02:10.",
         "count": "Calls affected: 3",
-        "help": "Not sure how something works? Ask the Admin Agent. It even fills in the page for you."
+        "help": "Not sure how something works? Just ask the Admin Agent—it guides you through every step."
       }
     },
     "boundary": {

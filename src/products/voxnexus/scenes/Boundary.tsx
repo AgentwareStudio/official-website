@@ -1,6 +1,7 @@
 // The line that knows where to stop: a request it may not carry out runs into the boundary, stops cleanly and turns
 // to a person. The reasons you can hand work over follow. Plays once when it comes into view.
 import { useState } from 'react';
+import { T } from '../../../lib';
 import { thud } from '../../sound';
 import type { VoxCopy } from '../product';
 import { useFirstView } from './shared';
@@ -12,7 +13,7 @@ export function Boundary({ copy }: { copy: VoxCopy }) {
   return (
     <section className="pd-block vx-boundary" aria-labelledby="vx-boundary-t">
       <div className="wrap">
-        <h2 className="pd-h2" id="vx-boundary-t">{copy.trust.title}</h2>
+        <h2 className="pd-h2" id="vx-boundary-t"><T>{copy.trust.title}</T></h2>
         <div className={`vx-boundary__stage ${seen ? 'is-in' : ''}`} ref={ref}>
           <p className="vx-boundary__say">「{s.say}」</p>
           <div className="vx-boundary__run" aria-hidden="true">

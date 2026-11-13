@@ -22,7 +22,7 @@ const BLOCKS: Record<string, (c: ProductCopy) => string> = {
   hero: (c) => `## ${flat(c.hero.title)}\n\n${c.hero.lead}\n\n${c.features.map((f) => `- ${f}`).join('\n')}`,
   shift: (c) => `## ${c.shift.now}\n\n${c.shift.old}\n\n${c.shift.now}`,
   useCases: (c) => `## ${c.useCases.title}\n\n` + c.useCases.tabs.map((t) => `### ${t.label}\n\n${t.items.map((it) => `- **${it.title}**: ${it.body}`).join('\n')}`).join('\n\n'),
-  trust: (c) => `## ${c.trust.title}\n\n${c.trust.items.map((t) => `- ${t}`).join('\n')}`,
+  trust: (c) => `## ${flat(c.trust.title)}\n\n${c.trust.items.map((t) => `- ${t}`).join('\n')}`,
   faq: (c) => `## ${c.faq.title}\n\n` + c.faq.items.map((it) => `### ${it.q}\n\n${it.a}`).join('\n\n'),
   ending: (c) => `## ${c.ending.title}`,
 };

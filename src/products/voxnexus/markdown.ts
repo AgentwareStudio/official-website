@@ -26,5 +26,5 @@ export const VOXNEXUS_MARKDOWN: Record<string, (copy: VoxCopy) => string> = {
       + s.examples.map((e) => `- 「${e.say}」\n  - ${l.name}: ${e.name}\n  - ${l.langs}: ${e.langs}\n  - ${l.can}: ${e.can.join(' / ')}\n  - ${l.cannot}: ${e.cannot.join(' / ')}\n  - ${l.first}: ${e.first}`).join('\n')
       + `\n\n### ${s.probe.title}\n\n「${s.probe.say}」 → ${s.probe.cause} ${s.probe.count}\n\n${s.probe.help}`;
   },
-  boundary: (c) => `## ${c.trust.title}\n\n「${c.scenes.boundary.say}」 → ${c.scenes.boundary.denied} → ${c.scenes.boundary.human}\n\n${c.trust.items.map((t) => `- ${t}`).join('\n')}`,
+  boundary: (c) => `## ${c.trust.title.replace(/\n/g, '')}\n\n「${c.scenes.boundary.say}」 → ${c.scenes.boundary.denied} → ${c.scenes.boundary.human}\n\n${c.trust.items.map((t) => `- ${t}`).join('\n')}`,
 };

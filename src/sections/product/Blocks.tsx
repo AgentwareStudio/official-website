@@ -95,7 +95,7 @@ export function TrustList({ copy }: { copy: ProductCopy }) {
   return (
     <section className="pd-block pd-trust" aria-labelledby="pd-trust-t">
       <div className="wrap">
-        <h2 className="pd-h2" id="pd-trust-t">{copy.trust.title}</h2>
+        <h2 className="pd-h2" id="pd-trust-t"><T>{copy.trust.title}</T></h2>
         <ul className="pd-trust__list">{copy.trust.items.map((t) => <li key={t} className="reveal">{t}</li>)}</ul>
       </div>
     </section>
