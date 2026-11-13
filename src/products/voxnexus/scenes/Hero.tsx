@@ -12,6 +12,7 @@ const TOTAL = 4600;
 let listener: (() => void) | null = null;
 
 export function HeroVisual({ copy }: { copy: VoxCopy }) {
+  const [qo, qc] = copy.ui.quote;
   const s = copy.scenes.hero;
   const cues = [
     { at: 1500, run: () => tick(0) },
@@ -30,7 +31,7 @@ export function HeroVisual({ copy }: { copy: VoxCopy }) {
     <div className="vx-hero" data-playing={playing || undefined}>
       <Wave energy={energy} className="vx-hero__wave" />
       <div className="wrap vx-hero__call" aria-live="polite">
-        <p className="vx-hero__say">「<Typed text={s.say} k={seg(t, 0, 1100)} />」</p>
+        <p className="vx-hero__say">{qo}<Typed text={s.say} k={seg(t, 0, 1100)} />{qc}</p>
         <ol className="vx-hero__steps">
           {s.steps.map((label, i) => <li key={label} className={t >= 1500 + i * 800 ? 'is-on' : ''}><i aria-hidden="true" />{label}</li>)}
           <li className={`vx-hero__result ${t >= 3300 ? 'is-on' : ''}`}><i className="pd-result" aria-hidden="true" />{s.result}</li>

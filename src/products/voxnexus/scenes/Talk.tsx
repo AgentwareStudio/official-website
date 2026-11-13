@@ -13,6 +13,7 @@ const REPLY = 1500;   // the agent's answer
 const total = (c: Call) => SAY + c.steps.length * STEP + STEP + REPLY;
 
 export function Talk({ copy }: { copy: VoxCopy }) {
+  const [qo, qc] = copy.ui.quote;
   const s = copy.scenes.talk;
   const [pick, setPick] = useState(0);
   const call = s.calls[pick];
@@ -44,13 +45,13 @@ export function Talk({ copy }: { copy: VoxCopy }) {
         <p className="vx-pick" id="vx-talk-pick">{s.pick}</p>
         <div className="vx-chips" role="group" aria-labelledby="vx-talk-pick">
           {s.calls.map((c, i) => (
-            <button key={c.say} type="button" className={`vx-chip ${pick === i ? 'is-on' : ''}`} aria-pressed={pick === i} onClick={() => choose(i)}>「{c.say}」</button>
+            <button key={c.say} type="button" className={`vx-chip ${pick === i ? 'is-on' : ''}`} aria-pressed={pick === i} onClick={() => choose(i)}>{qo}{c.say}{qc}</button>
           ))}
         </div>
         <div className={`vx-stage ${call.stop ? 'is-stop' : ''}`} ref={ref} style={{ '--k': k.toFixed(3) } as React.CSSProperties} aria-live="polite">
           <div className="vx-stage__who">
             <span className="vx-label">{s.you}</span>
-            <p className="vx-stage__say">「<Typed text={call.say} k={seg(t, 0, SAY)} />」</p>
+            <p className="vx-stage__say">{qo}<Typed text={call.say} k={seg(t, 0, SAY)} />{qc}</p>
           </div>
           <div className="vx-track">
             <i className="vx-track__rail" aria-hidden="true" />

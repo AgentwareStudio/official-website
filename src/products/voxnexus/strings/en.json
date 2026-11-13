@@ -17,13 +17,13 @@
   ],
   "hero": {
     "eyebrow": "PRODUCT // VOXNEXUS",
-    "title": "Hand work over,\nby voice.",
+    "title": "Hand work over,\nby voice",
     "lead": "Create AI agents just by speaking. They take the call and see the job through.",
     "film": "Watch the 90-second film"
   },
   "shift": {
-    "old": "Before: menus and scripts.",
-    "now": "Now: it hears what you need and sees it through."
+    "old": "Before: menus and scripts",
+    "now": "Now: it hears what you need and sees it through"
   },
   "useCases": {
     "title": "On the floor",
@@ -86,7 +86,7 @@
     ]
   },
   "trust": {
-    "title": "It refuses what isn’t allowed.",
+    "title": "It refuses what isn’t allowed",
     "items": [
       "Executes only explicitly permitted operations",
       "Requires human approval for important changes",
@@ -131,11 +131,12 @@
     ]
   },
   "ending": {
-    "title": "Work, handed over by voice.",
+    "title": "Work, handed over by voice",
     "again": "Watch from the top",
     "all": "All products"
   },
   "ui": {
+    "quote": ["“", "”"],
     "soundOn": "Sound on",
     "soundOff": "Sound off",
     "sound": "Sound effects",
@@ -165,7 +166,7 @@
       "say": "Do you have it in stock?"
     },
     "talk": {
-      "title": "Say it. It gets done.",
+      "title": "Say it. It gets done",
       "note": "Barge in mid-sentence anytime. English, Japanese, or Chinese.",
       "pick": "Say something",
       "you": "Customer",
@@ -210,7 +211,7 @@
       "answerLabel": "The answer begins"
     },
     "connect": {
-      "title": "What you connect\nis what it can do.",
+      "title": "What you connect\nis what it can do",
       "lead": "Connects to your existing systems via MCP and APIs. Add external tools to expand capabilities, and use Skills to teach it how the work gets done.",
       "hub": "Voice Agent",
       "pick": "Connect a system",
@@ -261,7 +262,7 @@
       ]
     },
     "forge": {
-      "title": "AI that builds AI.",
+      "title": "AI that builds AI",
       "lead": "The Admin Agent drafts the configuration. You confirm and publish.",
       "pick": "Ask the Admin Agent",
       "labels": {
@@ -276,7 +277,7 @@
       "examples": [
         {
           "say": "Create an overnight repair intake agent. Never let it cancel orders",
-          "name": "Night repair intake",
+          "name": "Overnight repair intake",
           "langs": "English",
           "can": [
             "Log symptoms",
@@ -316,7 +317,7 @@
         }
       ],
       "probe": {
-        "title": "When something goes wrong, just ask.",
+        "title": "When something goes wrong, just ask",
         "say": "Why did last night’s calls fail?",
         "action": "Investigate",
         "cause": "The maintenance system stopped responding at 02:10.",

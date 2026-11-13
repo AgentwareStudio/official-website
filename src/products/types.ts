@@ -34,7 +34,7 @@ export interface ProductCopy {
   film: { title: string };
   faq: { title: string; items: { q: string; a: string }[] };
   ending: { title: string; again: string; all: string };
-  ui: { soundOn: string; soundOff: string; sound: string; replay: string; demoData: string };
+  ui: { quote: string[]; soundOn: string; soundOff: string; sound: string; replay: string; demoData: string };
   scenes: Record<string, unknown>;
 }
 

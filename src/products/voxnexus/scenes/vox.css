@@ -117,10 +117,16 @@
 /* ---------- AI that builds AI ---------- */
 .vx-forge__stage { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px var(--col-gap); align-items: center; padding: clamp(24px, 3vw, 40px); border: 1px solid var(--hair); background: var(--surface); }
 .vx-forge__say { grid-column: 1 / -1; font-size: clamp(19px, 2vw, 26px); font-weight: 500; line-height: 1.5; min-height: 3em; }
-.vx-forge__coil { --k: 1; width: 150px; height: 150px; overflow: visible; }
-.vx-forge__coil path { fill: none; stroke: var(--fg); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--k)); filter: drop-shadow(0 0 5px var(--accent)); }
-.vx-forge__coil circle { fill: var(--fg); opacity: 0; transition: opacity .4s ease; filter: drop-shadow(0 0 10px var(--accent)); }
-.vx-forge__coil circle.is-on { opacity: 1; }
+.vx-forge__coil { --k: 1; width: 150px; height: 128px; overflow: visible; }
+.vx-forge__coil path { fill: none; stroke: var(--fg); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--k)); filter: drop-shadow(0 0 5px var(--accent)); }
+.vx-forge__inner { fill: none; stroke: var(--hair-2); stroke-width: 1; stroke-dasharray: 2 4; opacity: calc(var(--k) * 1); }
+.vx-forge__node { fill: var(--surface); stroke: var(--dim); stroke-width: 1.2; opacity: calc(min(1, var(--k) * 4)); transition: fill .3s ease, stroke .3s ease; }
+.vx-forge__node.is-on { fill: var(--fg); stroke: var(--fg); filter: drop-shadow(0 0 4px var(--accent)); }
+.vx-forge__core { fill: var(--fg); opacity: 0; transform: scale(.4); transform-box: fill-box; transform-origin: center; transition: opacity .4s ease, transform .5s var(--ease); filter: drop-shadow(0 0 10px var(--accent)); }
+.vx-forge__core.is-on { opacity: 1; transform: none; }
+.vx-forge__pulse { fill: none; stroke: var(--accent); stroke-width: 1.2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.vx-forge__pulse.is-on { animation: vx-forge-pulse 1.4s var(--ease) 2; }
+@keyframes vx-forge-pulse { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(4.2); } }
 .vx-agent { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--col-gap); border-top: 1px solid var(--hair-2); transition: border-color .5s ease; }
 .vx-agent.is-live { border-top-color: var(--fg); }
 .vx-agent > div { padding: 16px 0; border-bottom: 1px solid var(--hair); opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .5s var(--ease); }
@@ -217,7 +223,7 @@ html.js .vx-boundary__reasons:not(.is-in) li { opacity: 0; }
   .vx-hero__steps { font-size: 13px; }
   .vx-chip { font-size: 14px; }
   .vx-forge__stage { grid-template-columns: 1fr; }
-  .vx-forge__coil { width: 96px; height: 96px; }
+  .vx-forge__coil { width: 112px; height: 96px; }
   .vx-forge__first { grid-column: 1; }
   .vx-agent, .vx-connect__can ul, .vx-boundary__reasons { grid-template-columns: 1fr; }
   .vx-connect__systems { grid-template-columns: 1fr; }
@@ -229,6 +235,6 @@ html.js .vx-boundary__reasons:not(.is-in) li { opacity: 0; }
   .vx-maze { height: auto; }
   .vx-maze__stage { position: static; height: auto; min-height: 70vh; padding: var(--section-y) 0; }
   .vx-maze__tree, .vx-maze__menu { display: none; }
-  .vx-boundary__stage.is-in *, .vx-boundary__reasons.is-in li, .vx-connect__can li, .vx-field.is-live line { animation: none !important; }
+  .vx-boundary__stage.is-in *, .vx-boundary__reasons.is-in li, .vx-connect__can li, .vx-field.is-live line, .vx-forge__pulse.is-on { animation: none !important; }
   .vx-switch::after, .vx-switch__knob::after, .vx-agent > div, .vx-stage__result { transition: none; }
 }

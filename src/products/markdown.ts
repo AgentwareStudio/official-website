@@ -10,7 +10,8 @@ import { VOXNEXUS_MARKDOWN } from './voxnexus/markdown';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SCENES: Record<string, Record<string, (copy: any) => string>> = { voxnexus: VOXNEXUS_MARKDOWN };
 
-const flat = (s: string) => s.replace(/\n/g, '');
+// Line breaks in titles are for the page: CJK joins up, Latin needs a space.
+const flat = (s: string) => s.replace(/\n/g, (_m, i: number) => (/[\u3000-\u9fff\uff00-\uffef]/.test(s[i - 1] ?? '') ? '' : ' '));
 
 function header(title: string, description: string, code: Locale, path: (c: Locale) => string) {
   const others = PRODUCT_LOCALES.filter((c) => c !== code)

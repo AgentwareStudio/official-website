@@ -7,6 +7,7 @@ import type { VoxCopy } from '../product';
 import { useFirstView } from './shared';
 
 export function Boundary({ copy }: { copy: VoxCopy }) {
+  const [qo, qc] = copy.ui.quote;
   const s = copy.scenes.boundary;
   const [seen, setSeen] = useState(false);
   const ref = useFirstView<HTMLDivElement>(() => { setSeen(true); window.setTimeout(thud, 1100); });
@@ -15,7 +16,7 @@ export function Boundary({ copy }: { copy: VoxCopy }) {
       <div className="wrap">
         <h2 className="pd-h2" id="vx-boundary-t"><T>{copy.trust.title}</T></h2>
         <div className={`vx-boundary__stage ${seen ? 'is-in' : ''}`} ref={ref}>
-          <p className="vx-boundary__say">「{s.say}」</p>
+          <p className="vx-boundary__say">{qo}{s.say}{qc}</p>
           <div className="vx-boundary__run" aria-hidden="true">
             <i className="vx-boundary__line" />
             <i className="vx-boundary__wall" />

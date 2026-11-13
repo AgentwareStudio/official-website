@@ -28,6 +28,7 @@ const NODES: Node[] = (() => {
 })();
 
 export function Maze({ copy }: { copy: VoxCopy }) {
+  const [qo, qc] = copy.ui.quote;
   const ref = useScrollProgress<HTMLElement>();
   const m = copy.scenes.maze;
   return (
@@ -49,7 +50,7 @@ export function Maze({ copy }: { copy: VoxCopy }) {
         </ul>
         <div className="wrap vx-maze__copy">
           <p className="vx-maze__old">{copy.shift.old}</p>
-          <p className="vx-maze__say" aria-hidden="true">「{m.say}」</p>
+          <p className="vx-maze__say" aria-hidden="true">{qo}{m.say}{qc}</p>
           <i className="vx-maze__line" aria-hidden="true" />
           <p className="vx-maze__now">{copy.shift.now}</p>
         </div>

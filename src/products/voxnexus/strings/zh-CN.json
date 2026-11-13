@@ -17,13 +17,13 @@
   ],
   "hero": {
     "eyebrow": "PRODUCT // VOXNEXUS",
-    "title": "用声音，\n把工作交出去。",
+    "title": "用声音，\n把工作交出去",
     "lead": "说一句话就能创建 AI Agent，让它直接对话、把事办完。",
     "film": "观看 90 秒影片"
   },
   "shift": {
-    "old": "过去，是菜单和固定话术。",
-    "now": "现在，是听懂来意，把事办完。"
+    "old": "过去，是菜单和固定话术",
+    "now": "现在，是听懂来意，把事办完"
   },
   "useCases": {
     "title": "业务现场",
@@ -56,7 +56,7 @@
     ]
   },
   "trust": {
-    "title": "做不了的事，明确拒绝。",
+    "title": "做不了的事，明确拒绝",
     "items": [
       "只执行授权范围内的操作",
       "重要变更，必须由人审批",
@@ -77,8 +77,8 @@
       { "q": "可以部署在哪里？", "a": "可以部署在企业自己的服务器上，通话记录保存在公司内部。" }
     ]
   },
-  "ending": { "title": "迈向用声音托付工作的时代。", "again": "从头再看一遍", "all": "全部产品" },
-  "ui": { "soundOn": "声音 开", "soundOff": "声音 关", "sound": "音效", "replay": "再来一次", "demoData": "演示用的虚构数据" },
+  "ending": { "title": "迈向用声音托付工作的时代", "again": "从头再看一遍", "all": "全部产品" },
+  "ui": { "quote": ["“", "”"], "soundOn": "声音 开", "soundOff": "声音 关", "sound": "音效", "replay": "再来一次", "demoData": "演示用的虚构数据" },
   "scenes": {
     "hero": {
       "action": "听一听",
@@ -91,7 +91,7 @@
       "say": "有库存吗？"
     },
     "talk": {
-      "title": "开口说，就去办。",
+      "title": "开口说，就去办",
       "note": "说到一半打断也没关系。日语、英语、中文都可以。",
       "pick": "对它说一句",
       "you": "客户",
@@ -113,7 +113,7 @@
       "answerLabel": "开始回答"
     },
     "connect": {
-      "title": "接上什么，\n就会做什么。",
+      "title": "接上什么，\n就会做什么",
       "lead": "通过 MCP 与 API 接入现有系统，扩展外部工具就能解锁更多能力；还能用 Skill 教它按业务规范办事。",
       "hub": "Voice Agent",
       "pick": "接一接试试",
@@ -129,7 +129,7 @@
       ]
     },
     "forge": {
-      "title": "AI，造出 AI。",
+      "title": "AI，造出 AI",
       "lead": "由 Admin Agent 生成配置方案，你只需确认并发布。",
       "pick": "让 Admin Agent 来做",
       "labels": { "name": "名称", "langs": "使用的语言", "can": "能做的事", "cannot": "不能做的事", "confirm": "确认", "published": "已发布", "first": "第一句话" },
@@ -139,7 +139,7 @@
         { "say": "让它也能用英语和日语接待", "name": "多语言接待", "langs": "中文・English・日本語", "can": ["了解来意", "转给负责的 Agent"], "cannot": ["回答合同相关问题"], "first": "Thank you for calling. How may I help you?" }
       ],
       "probe": {
-        "title": "出了问题，问一句就知道。",
+        "title": "出了问题，问一句就知道",
         "say": "昨晚的通话为什么失败了？",
         "action": "让它查一查",
         "cause": "维修系统从 02:10 起没有响应。",
