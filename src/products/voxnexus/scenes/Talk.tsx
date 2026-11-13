@@ -3,30 +3,41 @@
 // here talks to a server.
 import { useEffect, useRef, useState } from 'react';
 import { clamp, seg } from '../../../lib';
-import { resultTone, thud, tick } from '../../sound';
+import { hush, preload, resultTone, speak, thud, tick, useSound } from '../../sound';
 import type { Call, VoxCopy } from '../product';
+import { voiceOf } from '../voice';
 import { Typed, useFirstView, useTimeline } from './shared';
 
-const SAY = 900;      // the caller's sentence
 const STEP = 750;     // each step on the way
-const REPLY = 1500;   // the agent's answer
-const total = (c: Call) => SAY + c.steps.length * STEP + STEP + REPLY;
+// The caller's sentence and the agent's answer take as long as their recorded voices, where the page has them.
+const sayMs = (c: Call) => voiceOf(c.say)?.ms ?? 900;
+const replyMs = (c: Call) => voiceOf(c.reply)?.ms ?? 1500;
+const total = (c: Call) => sayMs(c) + c.steps.length * STEP + STEP + replyMs(c);
 
 export function Talk({ copy }: { copy: VoxCopy }) {
   const [qo, qc] = copy.ui.quote;
   const s = copy.scenes.talk;
   const [pick, setPick] = useState(0);
   const call = s.calls[pick];
-  const end = SAY + call.steps.length * STEP + STEP;
+  const said = sayMs(call);
+  const end = said + call.steps.length * STEP + STEP;
+  const asked = voiceOf(call.say);
+  const answer = voiceOf(call.reply);
   const cues = [
-    ...call.steps.map((_, i) => ({ at: SAY + (i + 1) * STEP, run: () => tick(i * 3) })),
+    { at: 0, run: () => (asked ? speak(asked.src) : hush()) }, // a sentence without a voice silences the last one
+    ...call.steps.map((_, i) => ({ at: said + (i + 1) * STEP, run: () => tick(i * 3) })),
     { at: end, run: call.stop ? thud : resultTone },
+    ...(answer ? [{ at: end + 150, run: () => speak(answer.src) }] : []),
   ];
-  const { t, play } = useTimeline(total(call), cues);
+  const sound = useSound();
+  useEffect(() => {
+    if (sound) preload(s.calls.flatMap((c) => [voiceOf(c.say)?.src, voiceOf(c.reply)?.src]).filter((x): x is string => !!x));
+  }, [sound, s.calls]);
+  const { t, play } = useTimeline(total(call), cues, [asked?.src, answer?.src].filter((x): x is string => !!x));
   const ref = useFirstView<HTMLDivElement>(play);
   // How far the line has travelled (0–1). A refused request stops short of the end.
   const reach = call.stop ? 0.72 : 1;
-  const k = clamp(seg(t, SAY, end)) * reach;
+  const k = clamp(seg(t, said, end)) * reach;
   // Another sentence plays once it has rendered (the effect); the same one again replays at once.
   const shown = useRef(pick);
   useEffect(() => {
@@ -51,14 +62,14 @@ export function Talk({ copy }: { copy: VoxCopy }) {
         <div className={`vx-stage ${call.stop ? 'is-stop' : ''}`} ref={ref} style={{ '--k': k.toFixed(3) } as React.CSSProperties} aria-live="polite">
           <div className="vx-stage__who">
             <span className="vx-label">{s.you}</span>
-            <p className="vx-stage__say">{qo}<Typed text={call.say} k={seg(t, 0, SAY)} />{qc}</p>
+            <p className="vx-stage__say">{qo}<Typed text={call.say} k={seg(t, 0, said)} />{qc}</p>
           </div>
           <div className="vx-track">
             <i className="vx-track__rail" aria-hidden="true" />
             <i className="vx-track__line" aria-hidden="true" />
             <ol className="vx-track__steps">
               {call.steps.map((label, i) => (
-                <li key={label} className={t >= SAY + (i + 1) * STEP ? 'is-on' : ''} style={{ '--pos': `${(((i + 1) / (call.steps.length + 1)) * reach * 100).toFixed(1)}%` } as React.CSSProperties}><i aria-hidden="true" /><span>{label}</span></li>
+                <li key={label} className={t >= said + (i + 1) * STEP ? 'is-on' : ''} style={{ '--pos': `${(((i + 1) / (call.steps.length + 1)) * reach * 100).toFixed(1)}%` } as React.CSSProperties}><i aria-hidden="true" /><span>{label}</span></li>
               ))}
               {call.stop && <li className={`vx-track__wall ${t >= end ? 'is-on' : ''}`} style={{ '--pos': `${reach * 100}%` } as React.CSSProperties}><i aria-hidden="true" /><span>{call.stop}</span></li>}
             </ol>
@@ -66,7 +77,7 @@ export function Talk({ copy }: { copy: VoxCopy }) {
           <div className="vx-stage__out">
             <span className="vx-label">{s.agent}</span>
             {call.result && <p className={`vx-stage__result ${t >= end ? 'is-on' : ''}`}><i className="pd-result" aria-hidden="true" />{call.result}</p>}
-            <p className="vx-stage__reply"><Typed text={call.reply} k={seg(t, end, end + REPLY)} /></p>
+            <p className="vx-stage__reply"><Typed text={call.reply} k={seg(t, end, end + replyMs(call))} /></p>
           </div>
         </div>
         <p className="pd-note">{copy.ui.demoData}</p>

@@ -1,16 +1,35 @@
 // The line that knows where to stop: a request it may not carry out runs into the boundary, stops cleanly and turns
-// to a person. The reasons you can hand work over follow. Plays once when it comes into view.
-import { useState } from 'react';
+// to a person. The reasons you can hand work over follow. Plays once when it comes into view; with the sound on and a
+// recorded voice for the sentence, the caller says it first and the agent's refusal follows the stop.
+import { useEffect, useState } from 'react';
 import { T } from '../../../lib';
-import { thud } from '../../sound';
+import { preload, ready, speak, thud, useSound } from '../../sound';
 import type { VoxCopy } from '../product';
+import { voiceOf } from '../voice';
 import { useFirstView } from './shared';
 
 export function Boundary({ copy }: { copy: VoxCopy }) {
   const [qo, qc] = copy.ui.quote;
   const s = copy.scenes.boundary;
   const [seen, setSeen] = useState(false);
-  const ref = useFirstView<HTMLDivElement>(() => { setSeen(true); window.setTimeout(thud, 1100); });
+  const asked = voiceOf(s.say);
+  const refusal = voiceOf(copy.scenes.talk.calls.find((c) => c.stop)?.reply ?? '');
+  const sound = useSound();
+  useEffect(() => {
+    if (sound) preload([asked?.src, refusal?.src].filter((x): x is string => !!x));
+  }, [sound, asked, refusal]);
+  const ref = useFirstView<HTMLDivElement>(() => {
+    // The line runs once the caller has spoken (at once while the sound is off: there is nothing to wait for).
+    const lead = sound && asked ? asked.ms : 0;
+    void ready(sound ? [asked?.src, refusal?.src].filter((x): x is string => !!x) : []).then(() => {
+      if (lead) speak(asked!.src);
+      window.setTimeout(() => {
+        setSeen(true);
+        window.setTimeout(thud, 1100);
+        if (sound && refusal) window.setTimeout(() => speak(refusal.src), 1300);
+      }, lead);
+    });
+  });
   return (
     <section className="pd-block vx-boundary" aria-labelledby="vx-boundary-t">
       <div className="wrap">

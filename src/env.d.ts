@@ -27,3 +27,9 @@ declare namespace App {
 
 /** The deployment that built the Worker (astro.config.mjs). */
 declare const __AW_BUILD__: string;
+
+// Recorded lines of the product pages (src/products/voxnexus/voice.ts): Vite emits them as versioned assets.
+declare module '*.m4a' {
+  const src: string;
+  export default src;
+}

@@ -3,16 +3,19 @@
 // failure: the line runs back along last night's calls and stops at the cause.
 import { useEffect, useRef, useState } from 'react';
 import { seg } from '../../../lib';
-import { resultTone, tick } from '../../sound';
+import { hush, preload, resultTone, speak, tick, useSound } from '../../sound';
 import type { VoxCopy } from '../product';
+import { voiceOf } from '../voice';
 import { Typed, useFirstView, useTimeline } from './shared';
 
-const SAY = 1300;
 const WIND = 900;
 const FIELD = 420;
-const BUILD = SAY + WIND + FIELD * 4;   // the four fields are in
-const DONE = BUILD + 700;               // confirmed and published
-const TOTAL = DONE + 1400;
+/** The script of one example; the sentence takes as long as its recorded voice, where the page has one. */
+function script(say: number) {
+  const build = say + WIND + FIELD * 4;   // the four fields are in
+  const done = build + 700;               // confirmed and published
+  return { build, done, total: done + 1400 };
+}
 
 const CALLS = 14;
 const FAILED = [3, 4, 5];
@@ -21,10 +24,14 @@ const PROBE = 2600;
 function Probe({ copy }: { copy: VoxCopy }) {
   const [qo, qc] = copy.ui.quote;
   const p = copy.scenes.forge.probe;
-  const { t, play, playing } = useTimeline(PROBE, [{ at: 1500, run: () => tick(-5) }]);
+  // With a recorded question, the line starts once it has been asked.
+  const voice = voiceOf(p.say);
+  const lead = voice?.ms ?? 0;
+  const cues = [...(voice ? [{ at: 0, run: () => speak(voice.src) }] : []), { at: lead + 1500, run: () => tick(-5) }];
+  const { t, play, playing } = useTimeline(lead + PROBE, cues, voice ? [voice.src] : []);
   // The line runs from the newest call back to the first failed one.
-  const k = seg(t, 200, 1500);
-  const found = t >= 1500;
+  const k = seg(t, lead + 200, lead + 1500);
+  const found = t >= lead + 1500;
   return (
     <div className="vx-probe" style={{ '--k': k.toFixed(3) } as React.CSSProperties}>
       <h3 className="vx-probe__title">{p.title}</h3>
@@ -48,11 +55,19 @@ export function Forge({ copy }: { copy: VoxCopy }) {
   const s = copy.scenes.forge;
   const [pick, setPick] = useState(0);
   const ex = s.examples[pick];
+  const voice = voiceOf(ex.say);
+  const said = voice?.ms ?? 1300;
+  const { build: built, done, total } = script(said);
   const cues = [
-    ...[0, 1, 2, 3].map((i) => ({ at: SAY + WIND + FIELD * (i + 1), run: () => tick(i * 2) })),
-    { at: DONE, run: resultTone },
+    { at: 0, run: () => (voice ? speak(voice.src) : hush()) }, // a sentence without a voice silences the last one
+    ...[0, 1, 2, 3].map((i) => ({ at: said + WIND + FIELD * (i + 1), run: () => tick(i * 2) })),
+    { at: done, run: resultTone },
   ];
-  const { t, play } = useTimeline(TOTAL, cues);
+  const sound = useSound();
+  useEffect(() => {
+    if (sound) preload([...s.examples.map((e) => e.say), s.probe.say].map((x) => voiceOf(x)?.src).filter((x): x is string => !!x));
+  }, [sound, s]);
+  const { t, play } = useTimeline(total, cues, voice ? [voice.src] : []);
   const ref = useFirstView<HTMLDivElement>(play);
   // Another sentence plays once it has rendered (the effect); the same one again replays at once.
   const shown = useRef(pick);
@@ -62,7 +77,7 @@ export function Forge({ copy }: { copy: VoxCopy }) {
     play();
   }, [pick, play]);
   const choose = (i: number) => (i === pick ? play() : setPick(i));
-  const field = (i: number) => (t >= SAY + WIND + FIELD * (i + 1) ? 'is-on' : '');
+  const field = (i: number) => (t >= said + WIND + FIELD * (i + 1) ? 'is-on' : '');
   return (
     <section className="pd-block vx-forge" aria-labelledby="vx-forge-t">
       <div className="wrap">
@@ -77,27 +92,27 @@ export function Forge({ copy }: { copy: VoxCopy }) {
           ))}
         </div>
         <div className="vx-forge__stage" ref={ref} aria-live="polite">
-          <p className="vx-forge__say"><span className="vx-label">Admin Agent ←</span>{qo}<Typed text={ex.say} k={seg(t, 0, SAY)} />{qc}</p>
+          <p className="vx-forge__say"><span className="vx-label">Admin Agent ←</span>{qo}<Typed text={ex.say} k={seg(t, 0, said)} />{qc}</p>
           {/* The voice line flows in, settles and closes into the new agent's ring; a node lights for each of the
               four fields as it fills in, and the core lights (and speaks: one pulse) when the agent is published. */}
-          <svg className="vx-forge__coil" viewBox="0 0 140 120" aria-hidden="true" style={{ '--k': seg(t, SAY, SAY + WIND + FIELD * 4).toFixed(3) } as React.CSSProperties}>
+          <svg className="vx-forge__coil" viewBox="0 0 140 120" aria-hidden="true" style={{ '--k': seg(t, said, said + WIND + FIELD * 4).toFixed(3) } as React.CSSProperties}>
             <circle className="vx-forge__inner" cx="72" cy="60" r="18" />
             <path pathLength={1} d="M2 60 Q5 42 8 60 Q11 78 14 60 Q17 47 20 60 Q23 73 26 60 Q29 53 32 60 Q35 65 38 60 A34 34 0 1 1 106 60 A34 34 0 1 1 38 60" />
             {[[48, 36], [96, 36], [96, 84], [48, 84]].map(([x, y], i) => <circle key={i} className={`vx-forge__node ${field(i)}`} cx={x} cy={y} r="3.4" />)}
-            <circle className={`vx-forge__pulse ${t >= DONE ? 'is-on' : ''}`} cx="72" cy="60" r="7" />
-            <circle className={`vx-forge__core ${t >= DONE ? 'is-on' : ''}`} cx="72" cy="60" r="7" />
+            <circle className={`vx-forge__pulse ${t >= done ? 'is-on' : ''}`} cx="72" cy="60" r="7" />
+            <circle className={`vx-forge__core ${t >= done ? 'is-on' : ''}`} cx="72" cy="60" r="7" />
           </svg>
-          <dl className={`vx-agent ${t >= DONE ? 'is-live' : ''}`}>
+          <dl className={`vx-agent ${t >= done ? 'is-live' : ''}`}>
             <div className={field(0)}><dt>{s.labels.name}</dt><dd className="vx-agent__name">{ex.name}</dd></div>
             <div className={field(1)}><dt>{s.labels.langs}</dt><dd>{ex.langs}</dd></div>
             <div className={field(2)}><dt>{s.labels.can}</dt><dd><ul>{ex.can.map((c) => <li key={c}>{c}</li>)}</ul></dd></div>
             <div className={field(3)}><dt>{s.labels.cannot}</dt><dd><ul className="vx-agent__no">{ex.cannot.map((c) => <li key={c}>{c}</li>)}</ul></dd></div>
-            <div className={`vx-agent__foot ${t >= BUILD + 250 ? 'is-on' : ''}`}>
+            <div className={`vx-agent__foot ${t >= built + 250 ? 'is-on' : ''}`}>
               <dt className="visually-hidden">{s.labels.confirm}</dt>
-              <dd><span className="vx-agent__stamp">{s.labels.confirm}</span><span className={`vx-agent__live ${t >= DONE ? 'is-on' : ''}`}><i className="pd-result" aria-hidden="true" />{s.labels.published}</span></dd>
+              <dd><span className="vx-agent__stamp">{s.labels.confirm}</span><span className={`vx-agent__live ${t >= done ? 'is-on' : ''}`}><i className="pd-result" aria-hidden="true" />{s.labels.published}</span></dd>
             </div>
           </dl>
-          <p className={`vx-forge__first ${t >= DONE ? 'is-on' : ''}`}><span className="vx-label">{s.labels.first}</span>{qo}<Typed text={ex.first} k={seg(t, DONE + 100, TOTAL - 100)} />{qc}</p>
+          <p className={`vx-forge__first ${t >= done ? 'is-on' : ''}`}><span className="vx-label">{s.labels.first}</span>{qo}<Typed text={ex.first} k={seg(t, done + 100, total - 100)} />{qc}</p>
         </div>
         <Probe copy={copy} />
       </div>

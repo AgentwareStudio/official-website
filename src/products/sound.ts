@@ -1,6 +1,6 @@
-// The product pages' sounds, synthesised in the browser (no files): the "result tone" that marks a finished job, the
-// three rising notes of the sound mark, and a soft tick. The page is silent until the visitor turns sound on; the
-// choice is kept for the next visit.
+// The product pages' sounds: tones synthesised in the browser — the "result tone" that marks a finished job, the
+// three rising notes of the sound mark, a soft tick — and recorded lines a page may add (`speak`). The page is silent
+// until the visitor turns sound on; the choice is kept for the next visit.
 import { useSyncExternalStore } from 'react';
 
 const KEY = 'aw-product-sound';
@@ -15,6 +15,7 @@ if (typeof window !== 'undefined') on = read();
 
 export function setSound(next: boolean) {
   on = next;
+  if (!next) hush();
   try { window.localStorage.setItem(KEY, next ? 'on' : 'off'); } catch { /* storage off: the choice lasts for this page */ }
   // Called from a click, so the browser lets the audio context start.
   if (next) audio()?.resume();
@@ -51,6 +52,55 @@ function note(freq: number, at: number, length: number, gain: number) {
     osc.start(t);
     osc.stop(t + length + 0.05);
   }
+}
+
+// Recorded lines: fetched and decoded once, when the sound is on (the page stays silent and light until then).
+const buffers = new Map<string, Promise<AudioBuffer | null>>();
+let speaking: AudioBufferSourceNode | null = null;
+let request = 0; // the newest speak() or hush(): a line still loading for an older request never plays
+
+function load(src: string) {
+  const a = audio();
+  if (!a) return Promise.resolve(null);
+  let got = buffers.get(src);
+  if (!got) {
+    got = fetch(src).then((r) => r.arrayBuffer()).then((b) => a.decodeAudioData(b)).catch(() => null);
+    buffers.set(src, got);
+  }
+  return got;
+}
+
+/** Fetches lines ahead, so they start on their cue; nothing while the sound is off. */
+export function preload(srcs: string[]) {
+  if (on) srcs.forEach(load);
+}
+
+/** Resolves once the lines are ready (at once while the sound is off), for a scene that starts on a click. */
+export async function ready(srcs: string[]) {
+  if (on) await Promise.all(srcs.map(load));
+}
+
+/** Plays a recorded line (cutting off the one before); silent while the sound is off. */
+export function speak(src: string) {
+  const a = audio();
+  const mine = ++request;
+  if (!a || !on || a.state !== 'running') return;
+  void load(src).then((buffer) => {
+    if (!buffer || !on || mine !== request) return;
+    speaking?.stop();
+    const s = a.createBufferSource();
+    s.buffer = buffer;
+    s.connect(a.destination);
+    s.onended = () => { if (speaking === s) speaking = null; };
+    s.start();
+    speaking = s;
+  });
+}
+
+export function hush() {
+  request += 1;
+  speaking?.stop();
+  speaking = null;
 }
 
 // D major: the result tone is the high tonic the sound mark rises to.

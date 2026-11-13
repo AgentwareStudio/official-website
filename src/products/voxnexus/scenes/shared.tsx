@@ -2,12 +2,14 @@
 // breathing voice line.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { clamp, prefersReducedMotion } from '../../../lib';
+import { ready } from '../../sound';
 
 /**
  * A scripted animation of `total` ms. `t` starts at the end (the finished picture, which is also what the built HTML
- * and reduced-motion visitors get); `play()` runs it from 0. `at` cues fire once as the clock passes them.
+ * and reduced-motion visitors get); `play()` runs it from 0. `at` cues fire once as the clock passes them. With the
+ * sound on, it starts once the recorded `lines` it speaks are loaded, so voice and picture stay together.
  */
-export function useTimeline(total: number, cues: { at: number; run: () => void }[] = []) {
+export function useTimeline(total: number, cues: { at: number; run: () => void }[] = [], lines: string[] = []) {
   const [t, setT] = useState(total);
   const raf = useRef(0);
   const cueRef = useRef(cues);
@@ -15,7 +17,15 @@ export function useTimeline(total: number, cues: { at: number; run: () => void }
   // The script can change between renders (another sentence, another length): `play` always runs the current one.
   const totalRef = useRef(total);
   totalRef.current = total;
+  const linesRef = useRef(lines);
+  linesRef.current = lines;
+  const asked = useRef(0);
   const play = useCallback(() => {
+    const mine = ++asked.current; // a newer play() while this one waits for its lines wins
+    cancelAnimationFrame(raf.current); // the old clock stops now: its cues are already the new script's
+    void ready(linesRef.current).then(() => { if (mine === asked.current) run(); });
+  }, []);
+  const run = () => {
     cancelAnimationFrame(raf.current);
     const total = totalRef.current;
     if (prefersReducedMotion()) { setT(total); return; }
@@ -31,7 +41,7 @@ export function useTimeline(total: number, cues: { at: number; run: () => void }
     };
     setT(0);
     raf.current = requestAnimationFrame(step);
-  }, []);
+  };
   useEffect(() => () => cancelAnimationFrame(raf.current), []);
   return { t, play, playing: t < total };
 }
