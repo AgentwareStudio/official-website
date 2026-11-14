@@ -66,7 +66,20 @@ Blog responses are kept in the data center cache for five minutes (Cache API, `s
 
 The Worker needs the `HYPERDRIVE` binding, a Hyperdrive configuration connecting to Supabase as `blog_reader` through the Session pooler: `agentware-blog-prod` (Supabase `agentware-prod`) for production, and `agentware-blog-staging` (Supabase `agentware-staging`) in the `previews` block for Workers Previews, which do not inherit bindings. `nodejs_compat` is required by `pg`.
 
-For Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command, with this repository as the project root. The Worker name is `agentware-official`. Keep the existing custom domain associated with that Worker; the config leaves domain/route management in the dashboard and disables `workers.dev` for the Worker itself; `preview_urls` keeps workers.dev URLs (public, noindex) for Workers Previews and version previews. Before production deployment, compare the current dashboard configuration with this file, including any existing Worker script, bindings and routes. The local configuration does not prove which settings are currently deployed.
+For Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command, with this repository as the project root. The Worker name is `agentware-official`. Keep the existing custom domain associated with that Worker; the config leaves domain/route management in the dashboard and disables `workers.dev` for the Worker itself; `preview_urls` keeps workers.dev URLs (noindex, behind Cloudflare Access) for Workers Previews and version previews. Before production deployment, compare the current dashboard configuration with this file, including any existing Worker script, bindings and routes. The local configuration does not prove which settings are currently deployed.
+
+### Preview
+
+Every branch other than `main` gets a Workers Preview at `https://<branch>-agentware-official.judgelight1078.workers.dev/` (a `/` in the branch name becomes `-`), plus a version URL `https://<first 8 characters of the Version ID>-agentware-official.judgelight1078.workers.dev/` for each build. For one URL that never changes, push the branch under review to `preview` as well:
+
+```bash
+git push origin feat/xxx
+git push -f origin feat/xxx:preview   # https://preview-agentware-official.judgelight1078.workers.dev/
+```
+
+`preview` only mirrors the branch under review and is overwritten each time: never commit on it. One branch is previewed there at a time. After approval, fast-forward `main` to the feature branch as usual.
+
+Cloudflare Access (enabled in the dashboard for the Worker's preview URLs) covers every `*-agentware-official.judgelight1078.workers.dev` host, including branches not yet pushed; without a login they redirect to the Access login page. A new Preview gets the Newsletter secrets from the preview base config (see Newsletter).
 
 To test locally with Wrangler and Node.js 22.23.4 or later:
 
