@@ -7,11 +7,11 @@
   "page": {
     "crumb": "NEWSLETTER",
     "title": "Newsletter",
-    "lead": "One email a month, with what’s worth reading from the past month gathered in one place. No email for every single blog post.",
+    "lead": "One email a month, with what’s worth reading from the past month gathered in one place.",
     "what": "What you’ll get",
     "points": [
       "The month’s writing on Agentware and AI agent engineering",
-      "New courses and episodes as they launch",
+      "Updates on new courses and episodes",
       "The studio’s tool experiments and open assets"
     ],
     "cadence": "Once a month · One-click unsubscribe in every email",
@@ -19,12 +19,12 @@
     "placeholder": "you@example.com",
     "submit": "Subscribe",
     "sending": "Submitting…",
-    "privacy": "Your email is used only to send this newsletter. It is delivered through the email service Resend and is never used for anything else or shared with third parties.",
+    "privacy": "Your email address is used only to send you this newsletter, which is delivered through the email service Resend. It is never used for anything else or shared with third parties.",
     "contentNote": "",
     "sent": "Check your inbox",
-    "sentBody": "We sent a confirmation email to {email}. Your subscription starts once you click the button in it. If it hasn’t arrived, check your spam folder.",
+    "sentBody": "We sent a confirmation email to {email}. Click the button in it to open the confirmation page and finish subscribing. If it hasn’t arrived, check your spam folder.",
     "errInvalid": "Please enter a valid email address.",
-    "errVerify": "The human check didn’t pass. Please try again.",
+    "errVerify": "Verification failed. Please try again.",
     "errServer": "We couldn’t submit this right now. Please try again later.",
     "wechatTitle": "",
     "wechatBody": ""
@@ -43,7 +43,7 @@
   },
   "mail": {
     "confirmSubject": "Confirm your Agentware newsletter subscription",
-    "confirmPreheader": "One click to finish subscribing",
+    "confirmPreheader": "Click to confirm your subscription",
     "confirmHeading": "Confirm your subscription",
     "confirmBody": "Someone (hopefully you) subscribed this address to the Agentware Studio newsletter. Click the button below to confirm. The link is valid for 7 days.",
     "confirmButton": "Confirm subscription",

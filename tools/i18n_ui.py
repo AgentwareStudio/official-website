@@ -149,7 +149,7 @@ UI['es'] = dict(
     ui=dict(
         skip='Saltar al contenido', home='Inicio de Agentware Studio', mainNav='Navegación principal', menuOpen='Abrir menú', menuClose='Cerrar menú',
         follow='Síguenos', language='Idioma',
-        nav=dict(paradigm='Paradigma', architecture='Arquitectura', manifesto='Manifiesto', studio='Studio', products='Productos', learn='Curso', blog='Blog', start='Boletín'),
+        nav=dict(paradigm='Paradigma', architecture='Arquitectura', manifesto='Manifiesto', studio='Studio', products='Productos', learn='Curso', blog='Blog', start='Newsletter'),
         heroCta='Conoce Agentware', heroCta2='Leer el manifiesto', questionsAria='Las dos preguntas del software',
         markAria='Marca AGENTWARE: los corchetes son el límite autorizado, la línea ascendente una ruta de ejecución que puede cambiar y el punto un resultado que debe ser verificable. Haz clic o pulsa Intro para repetir la animación; usa las flechas para mover la ruta.',
         markAriaLight='Marca AGENTWARE',

@@ -7,7 +7,7 @@
   "page": {
     "crumb": "NEWSLETTER",
     "title": "Newsletter",
-    "lead": "Eine E-Mail im Monat, die das Lesenswerte des vergangenen Monats bündelt. Keine E-Mail zu jedem einzelnen Blogbeitrag.",
+    "lead": "Eine E-Mail im Monat, die das Lesenswerte des vergangenen Monats bündelt.",
     "what": "Das erhalten Sie",
     "points": [
       "Die Beiträge des Monats zu Agentware und zur Entwicklung von KI-Agenten",
@@ -22,7 +22,7 @@
     "privacy": "Ihre E-Mail-Adresse wird ausschließlich für den Versand dieses Newsletters verwendet. Der Versand erfolgt über den E-Mail-Dienst Resend; die Adresse wird weder anderweitig genutzt noch an Dritte weitergegeben.",
     "contentNote": "Der Newsletter erscheint auf Englisch (außerdem auf Chinesisch und Japanisch). Bestätigungs- und Willkommens-E-Mails erhalten Sie auf Deutsch.",
     "sent": "Bitte prüfen Sie Ihr Postfach",
-    "sentBody": "Wir haben eine Bestätigungs-E-Mail an {email} gesendet. Ihr Abonnement beginnt, sobald Sie auf die Schaltfläche darin klicken. Falls sie nicht ankommt, sehen Sie bitte im Spam-Ordner nach.",
+    "sentBody": "Wir haben eine Bestätigungs-E-Mail an {email} gesendet. Klicken Sie auf die Schaltfläche darin, um zur Bestätigungsseite zu gelangen und Ihr Abonnement abzuschließen. Falls sie nicht ankommt, sehen Sie bitte im Spam-Ordner nach.",
     "errInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
     "errVerify": "Die Prüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "errServer": "Das Absenden ist gerade nicht möglich. Bitte versuchen Sie es später erneut.",
@@ -43,7 +43,7 @@
   },
   "mail": {
     "confirmSubject": "Bitte bestätigen Sie Ihr Abonnement des Agentware-Newsletters",
-    "confirmPreheader": "Ein Klick zum Abschließen",
+    "confirmPreheader": "Bestätigen Sie Ihr Abonnement",
     "confirmHeading": "Abonnement bestätigen",
     "confirmBody": "Jemand (hoffentlich Sie) hat diese Adresse für den Newsletter von Agentware Studio angemeldet. Klicken Sie auf die Schaltfläche, um das Abonnement zu bestätigen. Der Link ist 7 Tage gültig.",
     "confirmButton": "Abonnement bestätigen",
