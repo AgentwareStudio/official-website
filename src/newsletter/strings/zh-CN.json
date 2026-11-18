@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "Newsletter — Agentware Studio",
+    "title": "订阅 Newsletter — Agentware Studio",
     "description": "订阅 Agentware Studio 的 Newsletter：每月一封，汇总当月的博客文章、新课程与新剧集，以及工作室的工具实验。随时可以退订。",
     "confirmTitle": "确认订阅 — Agentware Studio"
   },
   "page": {
     "crumb": "NEWSLETTER",
-    "title": "Newsletter",
+    "title": "订阅 Newsletter",
     "lead": "每月一封，汇总当月值得读的内容。",
     "what": "你会收到",
     "points": [
       "当月的博客文章：Agentware 与 AI Agent 工程",
       "新上线的课程与剧集",
-      "工作室的工具实验与开源资源"
+      "工作室的工具实验与开源资产"
     ],
     "cadence": "每月一封 · 邮件内一键退订",
     "email": "邮箱地址",
