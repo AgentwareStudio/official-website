@@ -16,8 +16,8 @@ function rulesOf(files) {
     assert.ok(line.length <= 2000, 'Static Assets header line length limit');
     if (!line || line.startsWith('#')) continue;
     if (!/^\s/.test(line)) {
-      // One wildcard: the blog's font slices, all content-hashed, behind run_worker_first (tools/astro_site.mjs).
-      assert.ok(line === '/fonts/cjk/*' || !/[*?:]/.test(line), 'Cache rules must use exact local paths');
+      // The global rule is for security headers. The font slices are content-hashed and behind run_worker_first.
+      assert.ok(line === '/*' || line === '/fonts/cjk/*' || !/[*?:]/.test(line), 'Cache rules must use exact local paths');
       assert.ok(!rules.has(line), 'Duplicate header path');
       path = line;
       rules.set(path, {});
@@ -28,6 +28,9 @@ function rulesOf(files) {
     }
   }
   assert.ok(rules.size <= 100);
+  assert.deepEqual(Object.keys(rules.get('/*') ?? {}).sort(), [
+    'Content-Security-Policy', 'Permissions-Policy', 'Referrer-Policy', 'X-Frame-Options',
+  ], 'The global rule must contain only security headers');
   // Every static Markdown file (the pages' .md versions, agentware.md, auth.md) declares UTF-8; nothing else does.
   const contentTypes = new Map([...files.keys()].filter((f) => f.endsWith('.md')).map((f) => [`/${f}`, 'text/markdown; charset=utf-8']));
   for (const page of ['/index.md', '/zh/learn/index.md', '/agentware.md']) assert.ok(contentTypes.has(page), `Missing ${page}`);
@@ -36,7 +39,7 @@ function rulesOf(files) {
   }
   for (const [path, headers] of rules) if (headers['Content-Type']) assert.ok(contentTypes.has(path), `Unexpected Content-Type rule for ${path}`);
   for (const [path, headers] of rules) {
-    if (contentTypes.has(path)) continue;
+    if (path === '/*' || contentTypes.has(path)) continue;
     const value = headers['Cache-Control'];
     assert.ok(value, `Expected Cache-Control header for ${path}`);
     if (path === '/fonts/cjk/*') {
@@ -45,7 +48,7 @@ function rulesOf(files) {
       assert.ok(slices.length > 0, 'The font slice rule must cover existing files');
       for (const f of slices) assert.match(f, /^fonts\/cjk\/(sc|jp)-\d{3}\.[0-9a-f]{10}\.woff2$/, `${f} must be content-hashed`);
     } else if (value.includes('immutable')) {
-      assert.match(path, /^\/assets\/.+[.-][A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png|webp)$/);
+      assert.match(path, /^\/assets\/.+[.-][A-Za-z0-9_-]{8,}\.(js|css|woff2|svg|png|webp|m4a)$/);
       assert.ok(files.has(path.slice(1)), 'Immutable rule must name an existing build file');
     } else assert.equal(value, 'public, max-age=0, must-revalidate');
   }

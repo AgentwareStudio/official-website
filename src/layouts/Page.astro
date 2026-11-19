@@ -12,6 +12,7 @@ import ProductsSite from '../site/ProductsSite';
 import StartSite from '../site/StartSite';
 import { NEWSLETTER } from '../newsletter/strings';
 import { LOCALES, messagesFor, type Locale } from '../i18n';
+import { applyBlogTheme, chooseLocale, prepareAnimations } from '../head-scripts';
 import { SITE, pageAlternates, pageMeta, pageSub, pageUrl, type Page, type SitePage } from '../meta';
 import { markdownPath } from '../markdown';
 import { jsonLd } from '../structured';
@@ -88,23 +89,9 @@ const redirect = page === 'home' && !self.path;
     <link rel="apple-touch-icon" href={appleIcon} />
     <link rel="preload" href={inter} as="font" type="font/woff2" crossorigin />
     {FONT[code] && <link rel="preload" href={FONT[code]} as="font" type="font/woff2" crossorigin />}
-    {redirect && (
-      <script is:inline>(function(){try{
-      var ua=navigator.userAgent||'';if(navigator.webdriver||/bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(ua))return;
-      var P={'en':'','zh-CN':'zh','ja':'ja','ko':'ko','es':'es','fr':'fr','de':'de','pt-BR':'pt-br'};
-      var ls=window.localStorage,pick=ls.getItem('aw-lang'),seen=ls.getItem('aw-seen');ls.setItem('aw-seen','1');
-      if(!pick&&seen)pick=ls.getItem('aw-auto');
-      if(!pick){if(seen)return;var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
-        pick='en';for(var i=0;i<L.length;i++){var t=String(L[i]).toLowerCase(),b=t.split('-')[0];
-          if(b==='zh'){pick='zh-CN';break}if(b==='pt'){pick='pt-BR';break}if(/^(en|ja|ko|es|fr|de)$/.test(b)){pick=b;break}}ls.setItem('aw-auto',pick)}
-      var path=P[pick];if(path)location.replace('/'+path+'/'+location.search+location.hash);
-    }catch(e){}})();</script>
-    )}
-    {blog && (
-      // Blog pages, before the first paint: the reader's choice (Chrome.tsx ThemeButton), else the system setting.
-      <script is:inline>try{var r=document.documentElement,c=localStorage.getItem('aw-blog-theme');r.dataset.blogMode=c==='paper'||c==='dark'?c:matchMedia('(prefers-color-scheme: light)').matches?'paper':'dark';if(r.dataset.blogMode==='paper')document.querySelector('meta[name="theme-color"]').setAttribute('content','#F4F3EF')}catch(e){}</script>
-    )}
-    <script is:inline>try{document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-pending')}catch(e){}</script>
+    {redirect && <script is:inline set:html={chooseLocale} />}
+    {blog && <script is:inline set:html={applyBlogTheme} />}
+    <script is:inline set:html={prepareAnimations} />
   </head>
   <body data-page={page} data-locale={page === 'notfound' ? undefined : code}>
     <div id="root">

@@ -45,6 +45,23 @@ async function check(path, kind, visit = 'first') {
     });
     const problems = [];
     const expect = (condition, message) => { if (!condition) problems.push(message); };
+    if (kind !== 'redirect') {
+      const csp = response.headers.get('content-security-policy') ?? '';
+      expect(/(?:^|;\s*)frame-ancestors 'none'(?:;|$)/.test(csp), 'CSP must disallow framing');
+      expect(response.headers.get('x-frame-options') === 'DENY', 'X-Frame-Options must be DENY');
+      expect(response.headers.get('referrer-policy') === 'strict-origin-when-cross-origin', 'Wrong Referrer-Policy');
+      expect(response.headers.get('permissions-policy')?.includes('camera=(), geolocation=(), microphone=()'), 'Permissions-Policy must disable camera, geolocation and microphone');
+      if (type.includes('text/html')) {
+        const scripts = csp.match(/(?:^|;\s*)script-src ([^;]+)/)?.[1] ?? '';
+        expect(scripts.includes("'sha256-") && !/unsafe-inline|unsafe-eval/.test(scripts), 'HTML CSP must use hashes for inline scripts');
+        const styles = csp.match(/(?:^|;\s*)style-src ([^;]+)/)?.[1] ?? '';
+        for (const [, tag, attrs, content] of text.matchAll(/<(script|style)\b([^>]*)>([\s\S]*?)<\/\1>/g)) {
+          if (!content || /\btype="application\/ld\+json"/.test(attrs)) continue;
+          const hash = createHash('sha256').update(content).digest('base64');
+          expect((tag === 'script' ? scripts : styles).includes(`'sha256-${hash}'`), `CSP must allow the inline ${tag} with hash ${hash}`);
+        }
+      }
+    }
     if (kind === 'confirm') {
       expect(response.status === 200 && type.includes('text/html'), 'Confirmation page must return HTML with HTTP 200');
       expect(text.includes('data-page="confirm"') && text.includes('<meta name="robots" content="noindex">'), 'Confirmation page must be the confirm entry, not indexed');
@@ -150,7 +167,7 @@ await batch(['/api/newsletter/subscribe', '/api/newsletter/confirm'], (path) => 
 await batch(pages.map(markdownPath), (path) => check(path, 'markdown'));
 await batch([...assets].sort(), (path) => check(path, 'asset'));
 const missing = [
-  '/.bashrc', `/${nonce}`, '/fr/products/', '/ko/products/voxnexus/', `/products/${nonce}/`, ...pages.filter((path) => !path.endsWith('/learn/')).map((path) => `${path}${nonce}/nested`),
+  '/.bashrc', `/${nonce}`, '/fr/products/', '/ko/products/voxnexus/', `/products/${nonce}/`, `/blog/${nonce}/`, ...pages.filter((path) => !path.endsWith('/learn/')).map((path) => `${path}${nonce}/nested`),
   ...['js', 'css', 'woff2'].map((extension) => `/assets/${nonce}.${extension}`), `/fonts/${nonce}.woff2`,
   // Under the blog font slices' immutable wildcard: the 404 must still revalidate.
   `/fonts/cjk/sc-000.${nonce}.woff2`,

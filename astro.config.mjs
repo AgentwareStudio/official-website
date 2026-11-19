@@ -1,9 +1,15 @@
 // Every site page is rendered to HTML at build time (copy included) and hydrated in the browser, then served as
 // Workers Static Assets (wrangler.jsonc). Blog pages read Supabase and render in the Worker (`prerender = false`).
+import { createHash } from 'node:crypto';
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
 import { siteFiles } from './tools/astro_site.mjs';
+import * as headScripts from './src/head-scripts.ts';
+import { pageCsp } from './src/security-headers.ts';
+
+// Worker HTML may start streaming after Astro has set the CSP header. Hash the trusted head scripts at build time.
+const headScriptHashes = Object.values(headScripts).map((script) => `sha256-${createHash('sha256').update(script).digest('base64')}`);
 
 export default defineConfig({
   site: 'https://agentware.studio',
@@ -11,6 +17,7 @@ export default defineConfig({
   // Prerender in Node as before (the pages share module state for the locale); no sessions or image service.
   adapter: cloudflare({ prerenderEnvironment: 'node', imageService: 'passthrough' }),
   session: false,
+  security: { csp: { ...pageCsp, scriptDirective: { ...pageCsp.scriptDirective, hashes: headScriptHashes } } },
   // Pages live at directory URLs (build.format). The Worker must not redirect requests it has no route for, or a
   // missing path would answer 301 before 404: src/middleware.ts adds the slash for the blog routes only.
   trailingSlash: 'ignore',

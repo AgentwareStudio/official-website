@@ -133,7 +133,7 @@ Inter and native-language fonts retain their existing preload behavior; the loca
 
 ## Browser Caching on Workers Static Assets
 
-The build fingerprints JavaScript, CSS, fonts and imported brand images (`assets/<name>.<hash>.<ext>`). `tools/astro_site.mjs` generates `dist/client/_headers` (replacing the `/assets/*` rule the Cloudflare adapter writes) with one-year immutable caching for the exact asset URLs in that build. HTML gets no rule: Static Assets already sends `public, max-age=0, must-revalidate` for files without one (`tools/check_routes.mjs` checks it on every served page), and a rule per page would soon exceed the limit. There is no `/assets/*` wildcard: Static Assets applies a wildcard rule to the 404 response of a missing path too, so unknown and obsolete asset URLs would inherit a long cache lifetime. The build fails if it exceeds Static Assets' 100-rule limit.
+The build fingerprints JavaScript, CSS, fonts and imported brand images (`assets/<name>.<hash>.<ext>`). `tools/astro_site.mjs` generates `dist/client/_headers` with one-year immutable caching for the exact asset URLs in that build. HTML uses the Static Assets default of `public, max-age=0, must-revalidate` (`tools/check_routes.mjs` checks it on every served page). Exact asset rules keep the immutable lifetime from reaching 404 responses for unknown or obsolete asset URLs. The build fails if it exceeds Static Assets' 100-rule limit.
 
 The generated headers also declare `Content-Type: text/markdown; charset=utf-8` for every static Markdown file (the pages' `.md` versions, `/agentware.md`, `/auth.md`): Static Assets sends a bare `text/markdown`, and without an HTTP charset direct browser navigation can decode the Unicode punctuation as Windows-1252. One exact rule per file keeps the build well under the 100-rule limit.
 
@@ -142,6 +142,10 @@ Edit fonts and brand images in `src/assets/`; the build also copies their origin
 CSS is minified with esbuild (`astro.config.mjs`): Vite 8's default minifier rewrites colours such as `rgba(155, 163, 184, .13)` as `#9ba3b821`, and the rounded alpha visibly changes text rendering.
 
 After `npm run build`, run `node tools/check_browser_cache.mjs` to check the generated policies, legacy copies and cache invalidation after font or brand changes (it builds a disposable copy twice). For response-header and browser-cache checks, serve the build using `wrangler dev --local` with the root config; generic static preview servers do not interpret Cloudflare's `_headers` file. Production cache behavior must also be verified after deploying to Workers Static Assets.
+
+## Security Response Headers
+
+`src/security-headers.ts` defines the site's framing, referrer, permissions and content security policies. The build promotes Astro's prerendered CSP to the global Static Assets header rule and adds the hash of the inlined homepage CSS. Astro supplies the CSP for Worker-rendered HTML, and `src/worker.ts` applies the other security headers to the final Worker response. `tools/check_routes.mjs` checks the four headers and the inline script and stylesheet hashes on served pages.
 
 ## For Agents and AI Search
 

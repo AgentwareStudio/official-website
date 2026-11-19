@@ -1,5 +1,6 @@
 {
   "name": "agentware-official",
+  "main": "./src/worker.ts",
   "compatibility_date": "2026-10-19",
   // pg (the blog's Postgres client, src/blog/source.ts) needs Node.js APIs.
   "compatibility_flags": ["nodejs_compat"],
@@ -25,7 +26,7 @@
       { "binding": "HYPERDRIVE", "id": "8c6041b546574fdaae248f34fdbf40cb" }
     ]
   },
-  // The build (@astrojs/cloudflare) adds the Worker entry, the ASSETS binding and the assets directory (dist/client).
+  // The build (@astrojs/cloudflare) bundles the Worker entry and adds the ASSETS binding and directory (dist/client).
   // Site pages are static assets. The blog and the sitemap render in the Worker: they must go to it first, because a
   // browser navigation that matches no asset would otherwise get the 404 page without the Worker being invoked.
   // So do llms.txt and llms-full.txt (they list the posts); the blog's Markdown versions (/blog/index.md, …) fall

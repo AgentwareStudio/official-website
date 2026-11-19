@@ -2,11 +2,13 @@
 // - keep the existing download URLs /fonts/* and /brand/* (unversioned copies of src/assets/);
 // - inline the stylesheet into home pages, so the full cascade is there before the first render,
 //   and preload the header brand image;
-// - write _headers: fingerprinted files are immutable, HTML always revalidates;
+// - write _headers: security headers for all assets, immutable caching for fingerprinted files;
 // - remove the NUL bytes React 18's Node renderer leaves in the pages (stripNul).
+import { createHash } from 'node:crypto';
 import { cpSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { securityHeaders } from '../src/security-headers.ts';
 
 const files = (dir) => readdirSync(dir, { recursive: true, withFileTypes: true }).filter((f) => f.isFile()).map((f) => join(f.parentPath, f.name));
 
@@ -14,6 +16,7 @@ function inlineHomeStyles(out) {
   const assets = readdirSync(join(out, 'assets'));
   const brand = assets.find((f) => /^agentware_lockup_on-dark[.-][\w-]+\.svg$/.test(f));
   if (!brand) throw new Error('Missing fingerprinted header brand asset');
+  const styleHashes = new Set();
   let pages = 0;
   for (const file of files(out).filter((f) => f.endsWith('.html'))) {
     let html = readFileSync(file, 'utf8');
@@ -24,6 +27,7 @@ function inlineHomeStyles(out) {
       if (!href?.startsWith('/assets/') || !href.endsWith('.css')) throw new Error(`Cannot inline homepage stylesheet: ${href}`);
       const css = readFileSync(join(out, href), 'utf8');
       if (/<\/style\b/i.test(css)) throw new Error('Unsafe closing style tag in homepage CSS');
+      styleHashes.add(`'sha256-${createHash('sha256').update(css).digest('base64')}'`);
       inlined++;
       return `<style data-home-styles="${href.slice(1)}">${css}</style>`;
     });
@@ -34,6 +38,7 @@ function inlineHomeStyles(out) {
     pages++;
   }
   if (!pages) throw new Error('No home page found');
+  return styleHashes;
 }
 
 // React 18's renderToPipeableStream (Node, so the prerendered pages) pads its 2 KB write buffer with NUL bytes when a
@@ -47,8 +52,28 @@ function stripNul(out) {
   }
 }
 
-function writeHeaders(out) {
-  const rules = new Map();
+// Promote Astro's prerendered CSP to a response header, which supports frame-ancestors and covers the shared 404.
+// Pages use the same sources and differ only in their trusted inline hashes. Collect those in one Static Assets rule.
+function staticCsp(out, homeStyleHashes) {
+  const directives = new Map();
+  const meta = /<meta http-equiv="content-security-policy" content="([^"]+)">/;
+  for (const file of files(out).filter((f) => f.endsWith('.html'))) {
+    const html = readFileSync(file, 'utf8');
+    const match = html.match(meta);
+    if (!match) throw new Error(`Missing generated CSP in ${relative(out, file)}`);
+    for (const directive of match[1].split(';').filter((part) => part.trim())) {
+      const [name, ...sources] = directive.trim().split(/\s+/);
+      if (!directives.has(name)) directives.set(name, new Set());
+      for (const source of sources) directives.get(name).add(source);
+    }
+    writeFileSync(file, html.replace(meta, ''));
+  }
+  for (const hash of homeStyleHashes) directives.get('style-src').add(hash);
+  return [...directives].map(([name, sources]) => `${name} ${[...sources].join(' ')}`).join('; ');
+}
+
+function writeHeaders(out, csp) {
+  const rules = new Map([['/*', { ...securityHeaders, 'Content-Security-Policy': csp }]]);
   for (const file of files(out).map((f) => relative(out, f).split('\\').join('/'))) {
     // Markdown cannot declare its charset like HTML's <meta charset>, and Static Assets sends a bare text/markdown.
     if (file.endsWith('.md')) rules.set(`/${file}`, { 'Content-Type': 'text/markdown; charset=utf-8' });
@@ -72,6 +97,7 @@ function writeHeaders(out) {
   const source = '# Generated from existing build files; never replace with /assets/*.\n'
     + [...rules].sort(([a], [b]) => a.localeCompare(b))
       .map(([path, headers]) => `${path}\n${Object.entries(headers).map(([name, value]) => `  ${name}: ${value}\n`).join('')}`).join('\n');
+  if (source.split('\n').some((line) => line.length > 2000)) throw new Error('Cloudflare Static Assets header line exceeds 2000 characters');
   writeFileSync(join(out, '_headers'), source);
 }
 
@@ -85,8 +111,8 @@ export function siteFiles() {
         // Preserve existing download URLs with the platform's revalidation defaults.
         for (const kind of ['fonts', 'brand']) cpSync(join(root, 'src/assets', kind), join(out, kind), { recursive: true });
         stripNul(out);
-        inlineHomeStyles(out);
-        writeHeaders(out);
+        const homeStyleHashes = inlineHomeStyles(out);
+        writeHeaders(out, staticCsp(out, homeStyleHashes));
       },
     },
   };
