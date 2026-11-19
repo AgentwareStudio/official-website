@@ -57,6 +57,11 @@ async function check(path, kind, visit = 'first') {
         const styles = csp.match(/(?:^|;\s*)style-src ([^;]+)/)?.[1] ?? '';
         for (const [, tag, attrs, content] of text.matchAll(/<(script|style)\b([^>]*)>([\s\S]*?)<\/\1>/g)) {
           if (!content || /\btype="application\/ld\+json"/.test(attrs)) continue;
+          // Cloudflare's JavaScript Detection is injected at the edge with per-request content.
+          if (tag === 'script' && response.headers.has('cf-ray') && content.includes('window.__CF$cv$params=') && content.includes('/cdn-cgi/challenge-platform/')) {
+            row.cloudflareDetectionInjected = true;
+            continue;
+          }
           const hash = createHash('sha256').update(content).digest('base64');
           expect((tag === 'script' ? scripts : styles).includes(`'sha256-${hash}'`), `CSP must allow the inline ${tag} with hash ${hash}`);
         }

@@ -147,6 +147,8 @@ After `npm run build`, run `node tools/check_browser_cache.mjs` to check the gen
 
 `src/security-headers.ts` defines the site's framing, referrer, permissions and content security policies. The build promotes Astro's prerendered CSP to the global Static Assets header rule and adds the hash of the inlined homepage CSS. Astro supplies the CSP for Worker-rendered HTML, and `src/worker.ts` applies the other security headers to the final Worker response. `tools/check_routes.mjs` checks the four headers and the inline script and stylesheet hashes on served pages.
 
+Cloudflare injects its JavaScript Detection at the edge with a different inline script for each response. The site's hash-based CSP blocks that script. Cloudflare Turnstile and Web Analytics use external scripts allowed by the policy.
+
 ## For Agents and AI Search
 
 Every page has a Markdown version at its URL plus `index.md`, the [llmstxt.org](https://llmstxt.org/) convention for URLs without a file name (`/index.md`, `/zh/index.md`, `/zh/learn/index.md`, `/blog/index.md`, `/ja/blog/<slug>/index.md`). Each HTML page links its own as `<link rel="alternate" type="text/markdown">` and `/llms.txt` as `rel="describedby"`.
